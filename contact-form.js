@@ -2,6 +2,31 @@
   var form = document.getElementById('kontaktForm');
   if(!form) return;
 
+  var CRM_INTAKE_URL = 'https://nbnpeoiqiakwnnkorxim.supabase.co/functions/v1/claritylab-lead-intake';
+
+  // Best-effort: forwards the lead into the Rima-Equity CRM. Never blocks or
+  // fails the user-facing submission — the local Supabase insert above is
+  // the source of truth either way.
+  function forwardToCrm(fields){
+    var parts = fields.name.split(' ');
+    var firstName = parts.shift();
+    var lastName = parts.join(' ') || null;
+    fetch(CRM_INTAKE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: firstName,
+        last_name: lastName,
+        email: fields.email,
+        phone: fields.phone || null,
+        lead_company: fields.company || null,
+        employee_count: fields.employeeCount || null,
+        annual_revenue: fields.annualRevenue || null,
+        biggest_challenge: fields.biggestChallenge || null
+      })
+    }).catch(function(err){ console.warn('CRM forward failed (non-blocking):', err); });
+  }
+
   var noteEl = document.getElementById('formNote');
   var followup = document.getElementById('bookingFollowup');
   var submitBtn = form.querySelector('button[type="submit"]');
@@ -68,6 +93,7 @@
             });
         }
       }).then(function(){
+        forwardToCrm({ name: name, email: email, phone: phone, company: company, employeeCount: employeeCount, annualRevenue: annualRevenue, biggestChallenge: biggestChallenge });
         form.reset();
         showNote(currentStrings().form_success || 'Thank you.', false);
         if(followup) followup.classList.add('show');
