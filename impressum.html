@@ -28,11 +28,10 @@
   :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
   .wrap{ max-width: 860px; margin: 0 auto; padding: 0 32px; }
   @media (max-width: 640px){ .wrap{ padding: 0 22px; } }
-  .bg-stone{ position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.16;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='5' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.5 0.4 0 0' result='a'/%3E%3CfeFlood flood-color='%235B6570' result='tint'/%3E%3CfeComposite in='tint' in2='a' operator='in'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-repeat: repeat; background-size: 320px 320px; animation: stoneDrift 140s ease-in-out infinite alternate; }
-  @keyframes stoneDrift{ from{ background-position: 0 0; } to{ background-position: 26px 18px; } }
-  @media (prefers-reduced-motion: reduce){ .bg-stone{ animation: none; } }
+  .bg-stone{ position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(1100px 620px at 14% -8%, rgba(63,90,69,0.07), transparent 60%),
+      radial-gradient(900px 640px at 104% 18%, rgba(63,90,69,0.05), transparent 55%); }
   #progress{ position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--accent); z-index: 100; transition: width .08s linear; }
   header{ position: sticky; top: 0; z-index: 50; background: rgba(247,245,240,0.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
   .nav{ display:flex; align-items:center; justify-content:space-between; padding: 20px 0; max-width: 1160px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
