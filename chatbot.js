@@ -4,7 +4,7 @@
 
   var UI = {
     de: {
-      title: 'Clarity·Lab Assistent',
+      title: 'Luside Assistent',
       closeAria: 'Chat schließen',
       openAria: 'Chat öffnen',
       placeholder: 'Frage eingeben…',
@@ -12,7 +12,7 @@
       send: 'Senden',
       bookingChip: 'Termin buchen',
       contactChip: 'Kontakt aufnehmen',
-      greeting: 'Hallo! Ich bin der Clarity·Lab Assistent. Frag mich etwas über die Firma oder unsere Leistungen — oder wähl unten eine Frage.',
+      greeting: 'Hallo! Ich bin der Luside Assistent. Frag mich etwas über Luside — oder wähl unten eine Frage.',
       fallback: 'Das habe ich leider nicht ganz verstanden. Wähle unten eine Frage aus, oder vereinbare direkt ein unverbindliches Erstgespräch.',
       aiError: 'Da ist gerade etwas schiefgelaufen. Bitte versuche es nochmal oder nimm über das Formular Kontakt auf.',
       thinking: '…',
@@ -35,7 +35,7 @@
       invalidEmail: 'Das sieht nicht nach einer gültigen E-Mail-Adresse aus — bitte nochmal.'
     },
     en: {
-      title: 'Clarity·Lab Assistant',
+      title: 'Luside Assistant',
       closeAria: 'Close chat',
       openAria: 'Open chat',
       placeholder: 'Type a question…',
@@ -43,7 +43,7 @@
       send: 'Send',
       bookingChip: 'Book a meeting',
       contactChip: 'Get in touch',
-      greeting: "Hello! I'm the Clarity·Lab Assistant. Ask me something about the company or our services — or pick a question below.",
+      greeting: "Hello! I'm the Luside Assistant. Ask me something about Luside — or pick a question below.",
       fallback: "Sorry, I didn't quite catch that. Pick a question below, or schedule a free, no-obligation consultation directly.",
       aiError: 'Something went wrong there. Please try again, or get in touch via the form.',
       thinking: '…',
@@ -70,24 +70,29 @@
   var FAQS = {
     de: [
       {
-        label: 'Über Clarity Lab',
-        keywords: ['was ist', 'über euch', 'über clarity', 'firma', 'unternehmen', 'wer seid ihr'],
-        answer: 'Clarity Lab baut mit inhabergeführten Betrieben Systeme für planbare Neukunden, bessere Abschlüsse und klare Prozesse — damit dein Unternehmen nicht dauerhaft von dir abhängig ist. Praxis statt Theorie: Wir setzen dieselben Systeme auch in unseren eigenen Unternehmen ein.'
+        label: 'Über Luside',
+        keywords: ['was ist', 'über euch', 'über luside', 'firma', 'unternehmen', 'wer seid ihr'],
+        answer: 'Luside steigt bei etablierten, inhabergeführten Unternehmen ein — mit Kapital, wenn es passt, und mit echter Unterstützung in Prozessen, Marketing, Finanzen und Digitalisierung. Kein Berater von außen: Wir packen mit an.'
       },
       {
-        label: 'Unsere Leistungen',
-        keywords: ['leistung', 'angebot', 'service', 'was bietet'],
-        answer: 'Fünf Bereiche: <ul><li>Mehr Neukunden — Meta/Google Ads, Webseiten, Leadgenerierung</li><li>Mehr Abschlüsse — Vertriebsprozess, Telefonleitfäden, Einwandbehandlung</li><li>CRM &amp; Automatisierung — Aircall, CRM, KI, Dashboards</li><li>Prozesse — Checklisten, Standards, Verantwortlichkeiten</li><li>Unternehmerfreiheit — Delegation, Kennzahlen, Führung</li></ul>'
+        label: 'Was Luside macht',
+        keywords: ['leistung', 'angebot', 'service', 'was bietet', 'was macht ihr'],
+        answer: 'Fünf Bereiche: <ul><li>Beteiligung &amp; Kapital — zu vereinbarten Prozentsätzen</li><li>Prozesse &amp; Systeme — Abläufe, Standards, Verantwortlichkeiten</li><li>Marketing — Positionierung, Kampagnen, Leadgenerierung</li><li>Finanzielle Angelegenheiten — Controlling, Reporting</li><li>Digitalisierung &amp; KI — firmenspezifische KI-Systeme</li></ul>'
+      },
+      {
+        label: 'Beteiligung oder nur Unterstützung?',
+        keywords: ['beteiligung', 'prozentsatz', 'anteile', 'investieren', 'kapital'],
+        answer: 'Beides ist möglich. Manchmal reicht reine Unterstützung in Prozessen, Marketing, Finanzen oder Digitalisierung — manchmal steigen wir zusätzlich mit Kapital ein, zu einem individuell vereinbarten Prozentsatz. Es gibt keine pauschalen Prozentsätze; das wird im Erstgespräch geklärt.'
       },
       {
         label: 'Ablauf der Zusammenarbeit',
         keywords: ['methode', 'ablauf', 'wie arbeitet', 'vorgehen', 'zusammenarbeit'],
-        answer: 'Drei Schritte:<br>1. <strong>Analyse</strong> — wir schauen uns dein Unternehmen an.<br>2. <strong>Aufbau</strong> — wir bauen gemeinsam die fehlenden Systeme.<br>3. <strong>Umsetzung</strong> — Begleitung bis es messbar läuft.'
+        answer: 'Drei Schritte:<br>1. <strong>Analyse</strong> — wir prüfen dein Unternehmen.<br>2. <strong>Aufbau</strong> — wir vereinbaren das Modell und bauen die fehlenden Systeme.<br>3. <strong>Umsetzung</strong> — Begleitung als Partner, langfristig.'
       },
       {
         label: 'Für welche Unternehmen?',
-        keywords: ['für welche', 'zielgruppe', 'passt das', 'unternehmensgröße'],
-        answer: 'Für inhabergeführte Betriebe, vor allem im Handwerk und in produzierenden Branchen — von Tischlereien über Installateure bis zu Bauunternehmen. Von Einzelunternehmern mit ersten Mitarbeitern bis zu Betrieben mit mehreren Dutzend Mitarbeitenden.'
+        keywords: ['für welche', 'zielgruppe', 'passt das', 'unternehmensgröße', 'start-up', 'startup'],
+        answer: 'Für etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und einer gewachsenen Struktur — nicht für Start-ups oder Ideen in der Frühphase.'
       },
       {
         label: 'Unser Team',
@@ -97,35 +102,40 @@
       {
         label: 'Kontakt & Adresse',
         keywords: ['kontakt', 'email', 'e-mail', 'telefon', 'adresse', 'erreichen', 'standort'],
-        answer: 'E-Mail: inquiry@clarity-lab.com<br>Telefon: +43 660 3607188<br>Adresse: Royerstraße 7, 2482 Münchendorf<br><br>Am schnellsten geht’s über das Analyse-Formular unten auf der Startseite, oder über den „Kontakt aufnehmen"-Button unten.'
+        answer: 'E-Mail: inquiry@luside.com<br>Telefon: +43 660 3607188<br>Adresse: Royerstraße 7, 2482 Münchendorf<br><br>Am schnellsten geht’s über das Formular unten auf der Startseite, oder über den „Kontakt aufnehmen"-Button unten.'
       },
       {
         label: 'Termin vereinbaren',
         hideChip: true,
-        keywords: ['termin', 'buchen', 'meeting', 'gespräch', 'vereinbaren', 'erstgespräch', 'analyse'],
+        keywords: ['termin', 'buchen', 'meeting', 'gespräch', 'vereinbaren', 'erstgespräch'],
         answer: 'Am schnellsten über den „Kontakt aufnehmen"-Button unten — danach kannst du direkt einen Termin wählen: <a href="' + BOOKING_URL + '" target="_blank" rel="noopener noreferrer">Termin-Kalender öffnen →</a>'
       }
     ],
     en: [
       {
-        label: 'About Clarity Lab',
-        keywords: ['what is', 'about you', 'about clarity', 'company', 'who are you'],
-        answer: "Clarity Lab builds systems with owner-run businesses for predictable new customers, better close rates, and clear processes — so your business isn't permanently dependent on you. Practice, not theory: we use the same systems in our own businesses."
+        label: 'About Luside',
+        keywords: ['what is', 'about you', 'about luside', 'company', 'who are you'],
+        answer: "Luside steps in with established, owner-run businesses — with capital when it fits, and real support in processes, marketing, finance, and digitalization. Not an outside consultant: we get hands-on."
       },
       {
-        label: 'Our Services',
+        label: 'What Luside does',
         keywords: ['service', 'offer', 'what do you do'],
-        answer: 'Five areas: <ul><li>More new customers — Meta/Google Ads, websites, lead generation</li><li>More closed deals — sales process, phone scripts, objection handling</li><li>CRM &amp; Automation — Aircall, CRM, AI, dashboards</li><li>Processes — checklists, standards, responsibilities</li><li>Owner freedom — delegation, metrics, leadership</li></ul>'
+        answer: 'Five areas: <ul><li>Equity &amp; Capital — at agreed percentages</li><li>Processes &amp; Systems — workflows, standards, responsibilities</li><li>Marketing — positioning, campaigns, lead generation</li><li>Financial matters — controlling, reporting</li><li>Digitalization &amp; AI — company-specific AI systems</li></ul>'
+      },
+      {
+        label: 'Equity stake or just support?',
+        keywords: ['equity', 'stake', 'percentage', 'invest', 'capital'],
+        answer: "Both are possible. Sometimes pure support in processes, marketing, finance, or digitalization is enough — sometimes we also take an equity stake, at an individually agreed percentage. There are no flat percentages; that's clarified in the introductory call."
       },
       {
         label: 'How we work together',
         keywords: ['method', 'process', 'how do you work', 'approach', 'collaboration'],
-        answer: 'Three steps:<br>1. <strong>Analysis</strong> — we look at your business.<br>2. <strong>Build</strong> — we build the missing systems together.<br>3. <strong>Implementation</strong> — support until it runs measurably.'
+        answer: 'Three steps:<br>1. <strong>Analysis</strong> — we review your business.<br>2. <strong>Build</strong> — we agree on the model and build the missing systems.<br>3. <strong>Implementation</strong> — support as a partner, long-term.'
       },
       {
         label: 'Who is this for?',
-        keywords: ['who is this for', 'company size', 'fit', 'suitable'],
-        answer: 'For owner-run businesses, especially in trades and manufacturing — from joineries to electricians to construction companies. From sole proprietors with their first employees to businesses with several dozen employees.'
+        keywords: ['who is this for', 'company size', 'fit', 'suitable', 'startup', 'start-up'],
+        answer: 'For established, owner-run businesses with existing revenue and a grown structure — not for start-ups or early-stage ideas.'
       },
       {
         label: 'Our Team',
@@ -135,12 +145,12 @@
       {
         label: 'Contact & Address',
         keywords: ['contact', 'email', 'phone', 'address', 'reach you', 'location'],
-        answer: 'Email: inquiry@clarity-lab.com<br>Phone: +43 660 3607188<br>Address: Royerstraße 7, 2482 Münchendorf, Austria<br><br>Fastest way is the "Get in touch" button below.'
+        answer: 'Email: inquiry@luside.com<br>Phone: +43 660 3607188<br>Address: Royerstraße 7, 2482 Münchendorf, Austria<br><br>Fastest way is the "Get in touch" button below.'
       },
       {
         label: 'Schedule an appointment',
         hideChip: true,
-        keywords: ['appointment', 'book', 'meeting', 'schedule', 'consultation', 'analysis'],
+        keywords: ['appointment', 'book', 'meeting', 'schedule', 'consultation'],
         answer: 'Fastest way is the "Get in touch" button below — afterwards you can pick a time directly: <a href="' + BOOKING_URL + '" target="_blank" rel="noopener noreferrer">Open booking calendar →</a>'
       }
     ]
@@ -152,7 +162,7 @@
     + '.cl-chat-toggle svg{width:24px;height:24px;}'
     + '.cl-chat-panel{position:fixed;bottom:92px;right:24px;width:min(360px, calc(100vw - 32px));max-height:min(560px, calc(100vh - 140px));background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 20px 48px -20px rgba(20,30,60,0.35);display:none;flex-direction:column;overflow:hidden;z-index:200;font-family:"IBM Plex Sans",sans-serif;}'
     + '.cl-chat-panel.open{display:flex;}'
-    + '.cl-chat-header{background:var(--ink);color:var(--paper);padding:14px 16px;padding-top:calc(14px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:0.96rem;flex-shrink:0;}'
+    + '.cl-chat-header{background:var(--ink);color:var(--paper);padding:14px 16px;padding-top:calc(14px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;font-family:"Fraunces",serif;font-weight:600;font-size:1.02rem;flex-shrink:0;}'
     + '.cl-chat-close{background:none;border:none;color:var(--paper);opacity:0.75;font-size:1.2rem;line-height:1;cursor:pointer;padding:0 2px;}'
     + '.cl-chat-close:hover{opacity:1;}'
     + '.cl-chat-messages{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;}'

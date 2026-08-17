@@ -1,15 +1,19 @@
-# Clarity Lab Website
+# Luside Website
 
-Static one-page site for Clarity Lab, served via GitHub Pages.
+Static site for Luside, served via GitHub Pages.
 
 ## Branches
 
 - `main` — clean, live version. This is what GitHub Pages publishes.
-- `staging` — work-in-progress drafts and edits. Merge into `main` via PR once approved.
+- `staging` — work-in-progress drafts and edits. Merge into `main` once approved.
 
 ## Structure
 
-- `index.html` — the entire site (self-contained: markup, styles, and script in one file).
+- `index.html` — homepage (hero, problem, model, services, why us, process, FAQ, contact form).
+- `team.html`, `datenschutz.html`, `impressum.html`, `admin.html` — subpages.
+- `i18n.js` — DE/EN translations, applied via `data-i18n` attributes.
+- `chatbot.js` — bottom-right chat widget (FAQ keyword matching + OpenAI fallback + guided lead capture).
+- `supabase/functions/claritylab-chat` — Edge Function proxying chat requests to OpenAI (holds the API key server-side).
 
 ## Deploying
 

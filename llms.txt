@@ -1,17 +1,17 @@
-# Clarity Lab
+# Luside
 
-> Clarity Lab baut mit inhabergeführten Unternehmen (v.a. Handwerksbetriebe, produzierende Betriebe) Systeme für planbare Neukunden, bessere Abschlussquoten, klare Prozesse und weniger Abhängigkeit vom Inhaber. Ablauf: Analyse, Aufbau, Umsetzung.
+> Luside steigt bei etablierten, inhabergeführten Unternehmen ein — mit Kapital, wenn es passt, und mit echter Unterstützung in Prozessen, Marketing, Finanzen und Digitalisierung. Voraussetzung: das Unternehmen hat bereits Umsatz und eine gewachsene Struktur. Ablauf: Analyse, Aufbau, Umsetzung.
 
 ## Seiten
 
-- [Startseite](https://rdclarity.github.io/clarity-lab-website/index.html): Leistungen (Mehr Neukunden, Mehr Abschlüsse, CRM & Automatisierung, Prozesse, Unternehmerfreiheit), Warum Clarity Lab, Ablauf, FAQ, kostenlose Unternehmensanalyse
-- [Team](https://rdclarity.github.io/clarity-lab-website/team.html): Richard Dobrohruschka (Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau), Marko Katalan (Strategie, Organisation, Unternehmensentwicklung, Wachstum)
-- [Datenschutz](https://rdclarity.github.io/clarity-lab-website/datenschutz.html): Datenschutzerklärung
-- [Impressum](https://rdclarity.github.io/clarity-lab-website/impressum.html): Impressum
+- [Startseite](https://rdclarity.github.io/luside-website/index.html): Leistungen (Beteiligung & Kapital, Prozesse & Systeme, Marketing, Finanzielle Angelegenheiten, Digitalisierung & KI), Warum Luside, Ablauf, FAQ, Kontaktformular
+- [Team](https://rdclarity.github.io/luside-website/team.html): Richard Dobrohruschka (Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau), Marko Katalan (Strategie, Organisation, Unternehmensentwicklung, Wachstum)
+- [Datenschutz](https://rdclarity.github.io/luside-website/datenschutz.html): Datenschutzerklärung
+- [Impressum](https://rdclarity.github.io/luside-website/impressum.html): Impressum
 
 ## Kontakt
 
-- E-Mail: inquiry@clarity-lab.com
+- E-Mail: inquiry@luside.com
 - Telefon: +43 660 3607188
 - Adresse: Royerstraße 7, 2482 Münchendorf, Österreich
-- Kostenlose Unternehmensanalyse: Formular im Kontakt-Bereich der Startseite
+- Erstgespräch: Formular im Kontakt-Bereich der Startseite

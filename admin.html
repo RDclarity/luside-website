@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<title>Admin — Clarity Lab</title>
+<title>Admin — Luside</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,7 +169,7 @@
 <body>
 
 <header>
-  <div class="brand">Clarity<span class="dot">·</span>Lab<span class="brand-sub">Admin</span></div>
+  <div class="brand">Luside<span class="brand-sub">Admin</span></div>
   <button id="logoutBtn" type="button">Abmelden</button>
 </header>
 
@@ -200,7 +200,7 @@
       <div class="count" id="contactsCount"></div>
       <table>
         <thead>
-          <tr><th>Unternehmen</th><th>Name</th><th>Mitarbeiter</th><th>Umsatz</th><th>Herausforderung</th><th>Telefon</th><th>E-Mail</th><th>Newsletter</th><th>Datum</th></tr>
+          <tr><th>Unternehmen</th><th>Name</th><th>Mitarbeiter</th><th>Umsatz</th><th>Anliegen</th><th>Telefon</th><th>E-Mail</th><th>Newsletter</th><th>Datum</th></tr>
         </thead>
         <tbody id="contactsBody">
           <tr class="loading-row"><td colspan="9">Lade…</td></tr>
@@ -303,7 +303,7 @@
       { label: 'Name', get: function(r){ return r.name; } },
       { label: 'Mitarbeiterzahl', get: function(r){ return r.employee_count; } },
       { label: 'Jahresumsatz', get: function(r){ return r.annual_revenue; } },
-      { label: 'Größte Herausforderung', get: function(r){ return r.biggest_challenge; } },
+      { label: 'Anliegen', get: function(r){ return r.biggest_challenge; } },
       { label: 'Telefon', get: function(r){ return r.phone; } },
       { label: 'E-Mail', get: function(r){ return r.email; } },
       { label: 'Newsletter', get: function(r){ return r.newsletter_opt_in ? 'Ja' : 'Nein'; } },
