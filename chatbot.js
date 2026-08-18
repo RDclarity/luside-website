@@ -72,22 +72,17 @@
       {
         label: 'Über Luside',
         keywords: ['was ist', 'über euch', 'über luside', 'firma', 'unternehmen', 'wer seid ihr'],
-        answer: 'Luside steigt bei etablierten, inhabergeführten Unternehmen ein — mit Kapital, wenn es passt, und mit echter Unterstützung in Prozessen, Marketing, Finanzen und Digitalisierung. Kein Berater von außen: Wir packen mit an.'
+        answer: 'Luside ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Wir beraten nicht nur, wir setzen um.'
       },
       {
         label: 'Was Luside macht',
         keywords: ['leistung', 'angebot', 'service', 'was bietet', 'was macht ihr'],
-        answer: 'Fünf Bereiche: <ul><li>Beteiligung &amp; Kapital — zu vereinbarten Prozentsätzen</li><li>Prozesse &amp; Systeme — Abläufe, Standards, Verantwortlichkeiten</li><li>Marketing — Positionierung, Kampagnen, Leadgenerierung</li><li>Finanzielle Angelegenheiten — Controlling, Reporting</li><li>Digitalisierung &amp; KI — firmenspezifische KI-Systeme</li></ul>'
-      },
-      {
-        label: 'Beteiligung oder nur Unterstützung?',
-        keywords: ['beteiligung', 'prozentsatz', 'anteile', 'investieren', 'kapital'],
-        answer: 'Beides ist möglich. Manchmal reicht reine Unterstützung in Prozessen, Marketing, Finanzen oder Digitalisierung — manchmal steigen wir zusätzlich mit Kapital ein, zu einem individuell vereinbarten Prozentsatz. Es gibt keine pauschalen Prozentsätze; das wird im Erstgespräch geklärt.'
+        answer: 'Vier Bereiche: <ul><li>Prozesse &amp; Systeme — Abläufe, Standards, Verantwortlichkeiten</li><li>Marketing — Positionierung, Kampagnen, Leadgenerierung</li><li>Finanzielle Angelegenheiten — Controlling, Reporting</li><li>Digitalisierung &amp; KI — firmenspezifische KI-Systeme</li></ul>'
       },
       {
         label: 'Ablauf der Zusammenarbeit',
         keywords: ['methode', 'ablauf', 'wie arbeitet', 'vorgehen', 'zusammenarbeit'],
-        answer: 'Drei Schritte:<br>1. <strong>Analyse</strong> — wir prüfen dein Unternehmen.<br>2. <strong>Aufbau</strong> — wir vereinbaren das Modell und bauen die fehlenden Systeme.<br>3. <strong>Umsetzung</strong> — Begleitung als Partner, langfristig.'
+        answer: 'Drei Schritte:<br>1. <strong>Analyse</strong> — wir prüfen dein Unternehmen.<br>2. <strong>Aufbau</strong> — wir bauen gemeinsam die fehlenden Systeme.<br>3. <strong>Umsetzung</strong> — Begleitung als Partner, langfristig.'
       },
       {
         label: 'Für welche Unternehmen?',
@@ -115,22 +110,17 @@
       {
         label: 'About Luside',
         keywords: ['what is', 'about you', 'about luside', 'company', 'who are you'],
-        answer: "Luside steps in with established, owner-run businesses — with capital when it fits, and real support in processes, marketing, finance, and digitalization. Not an outside consultant: we get hands-on."
+        answer: "Luside is a management consultancy and development partner for established, owner-run businesses — in processes, systems, marketing, and AI. We don't just advise, we implement."
       },
       {
         label: 'What Luside does',
         keywords: ['service', 'offer', 'what do you do'],
-        answer: 'Five areas: <ul><li>Equity &amp; Capital — at agreed percentages</li><li>Processes &amp; Systems — workflows, standards, responsibilities</li><li>Marketing — positioning, campaigns, lead generation</li><li>Financial matters — controlling, reporting</li><li>Digitalization &amp; AI — company-specific AI systems</li></ul>'
-      },
-      {
-        label: 'Equity stake or just support?',
-        keywords: ['equity', 'stake', 'percentage', 'invest', 'capital'],
-        answer: "Both are possible. Sometimes pure support in processes, marketing, finance, or digitalization is enough — sometimes we also take an equity stake, at an individually agreed percentage. There are no flat percentages; that's clarified in the introductory call."
+        answer: 'Four areas: <ul><li>Processes &amp; Systems — workflows, standards, responsibilities</li><li>Marketing — positioning, campaigns, lead generation</li><li>Financial matters — controlling, reporting</li><li>Digitalization &amp; AI — company-specific AI systems</li></ul>'
       },
       {
         label: 'How we work together',
         keywords: ['method', 'process', 'how do you work', 'approach', 'collaboration'],
-        answer: 'Three steps:<br>1. <strong>Analysis</strong> — we review your business.<br>2. <strong>Build</strong> — we agree on the model and build the missing systems.<br>3. <strong>Implementation</strong> — support as a partner, long-term.'
+        answer: 'Three steps:<br>1. <strong>Analysis</strong> — we review your business.<br>2. <strong>Build</strong> — we build the missing systems together.<br>3. <strong>Implementation</strong> — support as a partner, long-term.'
       },
       {
         label: 'Who is this for?',

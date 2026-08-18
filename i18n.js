@@ -6,7 +6,7 @@
       hero: {
         eyebrow: 'LUSIDE',
         h1: 'Du hast dein Unternehmen aufgebaut. Nicht, um jetzt allein weiterzukämpfen.',
-        sub: 'Wir steigen mit dir ein — mit Kapital, wenn es passt, und mit echter Unterstützung in Prozessen, Marketing, Finanzen und Digitalisierung. Kein Berater von außen. Ein Partner, der mit anpackt.',
+        sub: 'Luside ist Unternehmensberatung und Entwicklungspartner für inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Wir beraten nicht nur, wir setzen um.',
         cta1: 'Unternehmen vorstellen',
         cta2: 'Wie wir helfen',
         reassurance: 'Kein Massengeschäft. Nur für Unternehmen mit bestehendem Umsatz und Struktur.'
@@ -16,31 +16,30 @@
         h2: 'Du machst alles richtig. Trotzdem trägst du es allein.',
         p: 'Die meisten Unternehmer, mit denen wir sprechen, kennen genau dieses Gefühl:',
         li1: 'Du arbeitest mehr als jeder Mitarbeiter — und siehst es kaum am Ergebnis.',
-        li2: 'Für den nächsten Wachstumsschritt fehlt Kapital, das du nicht allein aufbringen willst.',
+        li2: 'Wachstum hängt nur an dir — ohne dich läuft spürbar weniger.',
         li3: 'Prozesse, Digitalisierung, KI — dafür bleibt neben dem Tagesgeschäft keine Zeit.',
         li4: 'Einen Partner, der wirklich mit anpackt statt nur zu beraten, hast du bisher nicht gefunden.'
       },
       loesung: {
-        label: 'WIE WIR HELFEN',
-        h2: 'Manchmal reicht Unterstützung. Manchmal steigen wir mit ein.',
-        p: 'Wir arbeiten mit dir an den Prozessen, dem Marketing, den Finanzen und der Digitalisierung deines Unternehmens. Wenn es passt, beteiligen wir uns zusätzlich mit Kapital, zu einem gemeinsam vereinbarten Prozentsatz. Voraussetzung für beides: dein Unternehmen hat bereits Umsatz und eine gewachsene Struktur.'
+        label: 'UNSER ANSATZ',
+        h2: 'Beratung, die umsetzt.',
+        p: 'Wir beraten dich bei den Prozessen, Systemen, dem Marketing und der KI-Strategie deines Unternehmens — und bleiben, bis es tatsächlich läuft. Keine Folien-Präsentationen, sondern Umsetzung. Voraussetzung: dein Unternehmen hat bereits Umsatz und eine gewachsene Struktur.'
       },
       leistungen: {
         label: 'LEISTUNGEN',
         h2: 'Wo wir konkret mit anpacken',
-        p: 'Fünf Bereiche. Ein Ziel: dass du nicht mehr alles allein tragen musst.',
-        s1_tag: 'Beteiligung & Kapital', s1_h: 'Eigenkapital zu vereinbarten Prozentsätzen.', s1_p: 'Für Unternehmen, die für den nächsten Wachstumsschritt einen Kapitalpartner suchen.',
-        s2_tag: 'Prozesse & Systeme', s2_h: 'Ein Unternehmen, das auch ohne ständige Eingriffe funktioniert.', s2_p: 'Abläufe, Standards, Verantwortlichkeiten, Struktur.',
-        s3_tag: 'Marketing', s3_h: 'Sichtbarkeit, die zum Umsatz passt.', s3_p: 'Positionierung, Kampagnen, Leadgenerierung, Vertrieb.',
-        s4_tag: 'Finanzielle Angelegenheiten', s4_h: 'Kennzahlen, auf die man sich verlassen kann.', s4_p: 'Controlling, Reporting, Struktur für fundierte Entscheidungen.',
-        s5_tag: 'Digitalisierung & KI', s5_h: 'KI-Systeme, die zu deinem Unternehmen passen.', s5_p: 'Firmenspezifisch entwickelt und von uns selbst implementiert.'
+        p: 'Vier Bereiche. Ein Ziel: dass du nicht mehr alles allein tragen musst.',
+        s1_tag: 'Prozesse & Systeme', s1_h: 'Ein Unternehmen, das auch ohne ständige Eingriffe funktioniert.', s1_p: 'Abläufe, Standards, Verantwortlichkeiten, Struktur.',
+        s2_tag: 'Marketing', s2_h: 'Sichtbarkeit, die zum Umsatz passt.', s2_p: 'Positionierung, Kampagnen, Leadgenerierung, Vertrieb.',
+        s3_tag: 'Finanzielle Angelegenheiten', s3_h: 'Kennzahlen, auf die man sich verlassen kann.', s3_p: 'Controlling, Reporting, Struktur für fundierte Entscheidungen.',
+        s4_tag: 'Digitalisierung & KI', s4_h: 'KI-Systeme, die zu deinem Unternehmen passen.', s4_p: 'Firmenspezifisch entwickelt und von uns selbst implementiert.'
       },
       warum: {
         label: 'WARUM LUSIDE',
         h2: 'Ein Partner, der wirklich mit anpackt.',
         p: 'Wir sind keine Berater von außen — wir arbeiten mit.',
         w1_name: 'Wir packen mit an', w1_desc: 'Nicht nur Ratschläge — wir übernehmen Verantwortung mit.',
-        w2_name: 'Kapital ist keine Pflicht', w2_desc: 'Wir unterstützen auch ohne Kapitaleinsatz, wenn das der richtige Weg ist.',
+        w2_name: 'Beratung, die umsetzt', w2_desc: 'Keine Folien-Präsentationen — wir bauen die Systeme mit.',
         w3_name: 'Nur etablierte Unternehmen', w3_desc: 'Wir arbeiten mit Unternehmen, die bereits Umsatz und Struktur haben.',
         w4_name: 'Klare Verantwortlichkeiten', w4_desc: 'Jeder weiß, wer wofür zuständig ist.',
         w5_name: 'Firmenspezifische KI', w5_desc: 'Keine Standardsoftware — Systeme, die zu deinem Unternehmen passen.',
@@ -50,8 +49,8 @@
         label: 'ABLAUF',
         h2: 'So läuft die Zusammenarbeit.',
         p: 'Drei Schritte, ohne Umwege.',
-        step1_h: 'Analyse', step1_p: 'Wir prüfen dein Unternehmen: Zahlen, Struktur, Potenzial — und ob eine Beteiligung oder reine Unterstützung der richtige Weg ist.',
-        step2_h: 'Aufbau', step2_p: 'Wir vereinbaren das Modell und bauen gemeinsam die Systeme, die fehlen — in Prozessen, Marketing, Finanzen oder Digitalisierung.',
+        step1_h: 'Analyse', step1_p: 'Wir prüfen dein Unternehmen: Zahlen, Struktur, Potenzial — und wo die größten Hebel liegen.',
+        step2_h: 'Aufbau', step2_p: 'Gemeinsam bauen wir die Systeme, die fehlen — in Prozessen, Marketing oder Digitalisierung.',
         step3_h: 'Umsetzung', step3_p: 'Wir begleiten die Umsetzung als Partner — messbar, langfristig, mit echtem Interesse am Ergebnis.'
       },
       midcta: {
@@ -64,15 +63,13 @@
         h2: 'Häufige Fragen',
         p: 'Was du vor einem Erstgespräch wissen solltest.',
         q1: 'Wann lohnt sich Luside für dich?',
-        a1: 'Wenn dein Unternehmen bereits Umsatz und Struktur hat, aber Kapital, Prozesse oder Digitalisierung fehlen, um den nächsten Schritt zu gehen.',
-        q2: 'Beteiligt ihr euch an jedem Unternehmen, mit dem ihr arbeitet?',
-        a2: 'Nein. Eine Beteiligung ist ein mögliches, aber kein notwendiges Modell — wir unterstützen Unternehmen auch ohne Kapitaleinsatz, wenn das der richtige Weg ist.',
-        q3: 'Für welche Unternehmen eignet sich das?',
-        a3: 'Für etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und einer gewachsenen Struktur — nicht für Start-ups oder Ideen in der Frühphase.',
-        q4: 'Wie hoch ist eine typische Beteiligung?',
-        a4: 'Das hängt vom Einzelfall ab und wird individuell verhandelt. Es gibt keine pauschalen Prozentsätze.',
-        q5: 'Wie läuft die Zusammenarbeit ab?',
-        a5: 'In drei Schritten: Analyse deines Unternehmens, gemeinsame Vereinbarung des Modells, begleitete Umsetzung.'
+        a1: 'Wenn dein Unternehmen bereits Umsatz und Struktur hat, aber Prozesse, Marketing oder Digitalisierung den nächsten Schritt bremsen.',
+        q2: 'Für welche Unternehmen eignet sich das?',
+        a2: 'Für etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und einer gewachsenen Struktur — nicht für Start-ups oder Ideen in der Frühphase.',
+        q3: 'Wie lange dauert ein Projekt?',
+        a3: 'Das hängt vom Umfang ab. Im Erstgespräch klären wir konkret, wo wir ansetzen würden und wie lange das realistisch dauert.',
+        q4: 'Wie läuft die Zusammenarbeit ab?',
+        a4: 'In drei Schritten: Analyse deines Unternehmens, gemeinsamer Aufbau der fehlenden Systeme, begleitete Umsetzung.'
       },
       kontakt: {
         label: 'ERSTGESPRÄCH',
@@ -86,7 +83,7 @@
         form_name: 'Name',
         form_employees: 'Mitarbeiterzahl',
         form_revenue: 'Jahresumsatz',
-        form_challenge: 'Anliegen (z. B. Beteiligung, Unterstützung, beides)',
+        form_challenge: 'Größte Herausforderung',
         form_phone: 'Telefon',
         form_email: 'E-Mail',
         form_select_placeholder: 'Bitte wählen',
@@ -104,7 +101,7 @@
         meta_title: 'Team — Luside',
         eyebrow: 'TEAM — LUSIDE',
         h1: 'Die Menschen hinter Luside.',
-        sub: 'Unternehmer, die selbst investieren und aufbauen — nicht nur beraten.',
+        sub: 'Unternehmer, die selbst umsetzen — nicht nur beraten.',
         role_pending: 'Rolle folgt',
         r_richard: 'Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau',
         r_marko: 'Strategie, Organisation, Unternehmensentwicklung, Wachstum',
@@ -123,7 +120,7 @@
         l_gewerbe: 'Gewerbeberechtigung', l_behoerde: 'Aufsichtsbehörde',
         pending: 'folgt',
         h_purpose: 'Unternehmensgegenstand',
-        p_purpose: 'Beteiligung an sowie Unterstützung von etablierten, inhabergeführten Unternehmen in Prozessen, Marketing, Finanzen und Digitalisierung.',
+        p_purpose: 'Unternehmensberatung und Entwicklung für etablierte, inhabergeführte Unternehmen in den Bereichen Prozesse, Systeme, Marketing und Digitalisierung/KI.',
         h_dispute: 'Streitbeilegung',
         p_dispute: 'Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: ec.europa.eu/consumers/odr. Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle weder verpflichtet noch bereit.',
         h_liability: 'Haftung für Inhalte',
@@ -175,7 +172,7 @@
       hero: {
         eyebrow: 'LUSIDE',
         h1: "You built this business. Not to keep carrying it alone.",
-        sub: "We step in with you — with capital when it fits, and real support in processes, marketing, finance, and digitalization. Not an outside consultant. A partner who gets hands-on.",
+        sub: "Luside is a management consultancy and development partner for owner-run businesses — in processes, systems, marketing, and AI. We don't just advise, we implement.",
         cta1: 'Introduce your business',
         cta2: 'How we help',
         reassurance: "Not a volume business. Only for companies with existing revenue and structure."
@@ -185,31 +182,30 @@
         h2: "You're doing everything right. And still carrying it alone.",
         p: 'Most business owners we talk to know exactly this feeling:',
         li1: "You work harder than anyone on your team — and barely see it in the result.",
-        li2: "The next growth step needs capital you don't want to raise alone.",
+        li2: "Growth depends entirely on you — without you, things visibly slow down.",
         li3: "Processes, digitalization, AI — there's never time for it alongside the day-to-day.",
         li4: "A partner who actually gets hands-on, not just advises, hasn't shown up yet."
       },
       loesung: {
-        label: 'HOW WE HELP',
-        h2: 'Sometimes support is enough. Sometimes we take a stake.',
-        p: "We work with you on your business's processes, marketing, finance, and digitalization. When it fits, we also take an equity stake, at a jointly agreed percentage. Either way, the requirement is the same: your business already has revenue and a grown structure."
+        label: 'OUR APPROACH',
+        h2: 'Advice that gets implemented.',
+        p: "We advise you on your business's processes, systems, marketing, and AI strategy — and stay until it actually runs. No slide decks, just implementation. Requirement: your business already has revenue and a grown structure."
       },
       leistungen: {
         label: 'SERVICES',
         h2: 'Where we get hands-on',
-        p: "Five areas. One goal: you don't have to carry it all alone anymore.",
-        s1_tag: 'Equity & Capital', s1_h: 'Equity capital at agreed percentages.', s1_p: 'For businesses looking for a capital partner for their next growth step.',
-        s2_tag: 'Processes & Systems', s2_h: 'A business that runs without constant hands-on intervention.', s2_p: 'Workflows, standards, responsibilities, structure.',
-        s3_tag: 'Marketing', s3_h: 'Visibility that matches your revenue.', s3_p: 'Positioning, campaigns, lead generation, sales.',
-        s4_tag: 'Financial matters', s4_h: 'Numbers you can rely on.', s4_p: 'Controlling, reporting, structure for sound decisions.',
-        s5_tag: 'Digitalization & AI', s5_h: 'AI systems built for your business.', s5_p: 'Company-specific, built and implemented by us.'
+        p: "Four areas. One goal: you don't have to carry it all alone anymore.",
+        s1_tag: 'Processes & Systems', s1_h: 'A business that runs without constant hands-on intervention.', s1_p: 'Workflows, standards, responsibilities, structure.',
+        s2_tag: 'Marketing', s2_h: 'Visibility that matches your revenue.', s2_p: 'Positioning, campaigns, lead generation, sales.',
+        s3_tag: 'Financial matters', s3_h: 'Numbers you can rely on.', s3_p: 'Controlling, reporting, structure for sound decisions.',
+        s4_tag: 'Digitalization & AI', s4_h: 'AI systems built for your business.', s4_p: 'Company-specific, built and implemented by us.'
       },
       warum: {
         label: 'WHY LUSIDE',
         h2: 'A partner who actually gets hands-on.',
         p: "We're not outside consultants — we work alongside you.",
         w1_name: 'We get hands-on', w1_desc: "Not just advice — we take on responsibility with you.",
-        w2_name: 'Capital is never required', w2_desc: "We also support businesses without taking capital, when that's the right path.",
+        w2_name: 'Advice that gets implemented', w2_desc: "No slide decks — we build the systems with you.",
         w3_name: 'Established businesses only', w3_desc: 'We work with businesses that already have revenue and structure.',
         w4_name: 'Clear responsibilities', w4_desc: 'Everyone knows who is responsible for what.',
         w5_name: 'Company-specific AI', w5_desc: 'No off-the-shelf software — systems built for your business.',
@@ -219,8 +215,8 @@
         label: 'PROCESS',
         h2: 'How the collaboration works.',
         p: 'Three steps, no detours.',
-        step1_h: 'Analysis', step1_p: "We review your business: numbers, structure, potential — and whether an equity stake or pure support is the right path.",
-        step2_h: 'Build', step2_p: 'We agree on the model and build the systems that are missing together — in processes, marketing, finance, or digitalization.',
+        step1_h: 'Analysis', step1_p: "We review your business: numbers, structure, potential — and where the biggest levers are.",
+        step2_h: 'Build', step2_p: 'Together we build the systems that are missing — in processes, marketing, or digitalization.',
         step3_h: 'Implementation', step3_p: "We support the rollout as a partner — measurably, long-term, with genuine interest in the outcome."
       },
       midcta: {
@@ -233,15 +229,13 @@
         h2: 'Frequently asked questions',
         p: 'What to know before an introductory call.',
         q1: 'When is Luside worth it for you?',
-        a1: 'When your business already has revenue and structure, but is missing capital, processes, or digitalization to take the next step.',
-        q2: 'Do you take a stake in every business you work with?',
-        a2: "No. An equity stake is one possible model, not a requirement — we also support businesses without taking capital, when that's the right path.",
-        q3: 'What kind of businesses is this a fit for?',
-        a3: 'For established, owner-run businesses with existing revenue and a grown structure — not for start-ups or early-stage ideas.',
-        q4: 'How large is a typical stake?',
-        a4: 'That depends on the individual case and is negotiated individually. There are no flat percentages.',
-        q5: 'How does the collaboration work?',
-        a5: 'In three steps: analysis of your business, jointly agreeing on the model, supported implementation.'
+        a1: 'When your business already has revenue and structure, but processes, marketing, or digitalization are holding back the next step.',
+        q2: 'What kind of businesses is this a fit for?',
+        a2: 'For established, owner-run businesses with existing revenue and a grown structure — not for start-ups or early-stage ideas.',
+        q3: 'How long does a project take?',
+        a3: "That depends on scope. In the introductory call we clarify concretely where we'd start and how long that realistically takes.",
+        q4: 'How does the collaboration work?',
+        a4: 'In three steps: analysis of your business, jointly building the missing systems, supported implementation.'
       },
       kontakt: {
         label: 'INTRODUCTORY CALL',
@@ -255,7 +249,7 @@
         form_name: 'Name',
         form_employees: 'Number of employees',
         form_revenue: 'Annual revenue',
-        form_challenge: 'What you need (e.g. equity, support, both)',
+        form_challenge: 'Biggest challenge',
         form_phone: 'Phone',
         form_email: 'Email',
         form_select_placeholder: 'Please select',
@@ -273,7 +267,7 @@
         meta_title: 'Team — Luside',
         eyebrow: 'TEAM — LUSIDE',
         h1: 'The people behind Luside.',
-        sub: 'Business owners who invest and build themselves — not just advise.',
+        sub: 'Business owners who implement themselves — not just advise.',
         role_pending: 'Role to be announced',
         r_richard: 'Marketing, sales, business development, process design',
         r_marko: 'Strategy, organization, business development, growth',
@@ -292,7 +286,7 @@
         l_gewerbe: 'Trade license', l_behoerde: 'Supervisory authority',
         pending: 'pending',
         h_purpose: 'Business purpose',
-        p_purpose: 'Taking equity stakes in, and supporting, established owner-run businesses in processes, marketing, finance, and digitalization.',
+        p_purpose: 'Management consulting and development for established, owner-run businesses in processes, systems, marketing, and digitalization/AI.',
         h_dispute: 'Dispute resolution',
         p_dispute: 'The European Commission provides a platform for online dispute resolution (ODR): ec.europa.eu/consumers/odr. We are neither obligated nor willing to participate in dispute resolution proceedings before a consumer arbitration board.',
         h_liability: 'Liability for content',

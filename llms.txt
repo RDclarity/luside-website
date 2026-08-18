@@ -1,10 +1,10 @@
 # Luside
 
-> Luside steigt bei etablierten, inhabergeführten Unternehmen ein — mit Kapital, wenn es passt, und mit echter Unterstützung in Prozessen, Marketing, Finanzen und Digitalisierung. Voraussetzung: das Unternehmen hat bereits Umsatz und eine gewachsene Struktur. Ablauf: Analyse, Aufbau, Umsetzung.
+> Luside ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Voraussetzung: das Unternehmen hat bereits Umsatz und eine gewachsene Struktur. Ablauf: Analyse, Aufbau, Umsetzung.
 
 ## Seiten
 
-- [Startseite](https://rdclarity.github.io/luside-website/index.html): Leistungen (Beteiligung & Kapital, Prozesse & Systeme, Marketing, Finanzielle Angelegenheiten, Digitalisierung & KI), Warum Luside, Ablauf, FAQ, Kontaktformular
+- [Startseite](https://rdclarity.github.io/luside-website/index.html): Leistungen (Prozesse & Systeme, Marketing, Finanzielle Angelegenheiten, Digitalisierung & KI), Warum Luside, Ablauf, FAQ, Kontaktformular
 - [Team](https://rdclarity.github.io/luside-website/team.html): Richard Dobrohruschka (Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau), Marko Katalan (Strategie, Organisation, Unternehmensentwicklung, Wachstum)
 - [Datenschutz](https://rdclarity.github.io/luside-website/datenschutz.html): Datenschutzerklärung
 - [Impressum](https://rdclarity.github.io/luside-website/impressum.html): Impressum
