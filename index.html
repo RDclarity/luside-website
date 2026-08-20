@@ -108,6 +108,27 @@
       radial-gradient(900px 640px at 104% 18%, rgba(63,90,69,0.05), transparent 55%);
   }
 
+  /* ---------- FILM GRAIN ---------- */
+  .grain{
+    position: fixed; inset: 0; z-index: 90; pointer-events: none;
+    opacity: 0.035; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-repeat: repeat; background-size: 140px 140px;
+  }
+  @media (prefers-reduced-motion: reduce){ .grain{ opacity: 0.02; } }
+
+  /* ---------- AURORA (hero) ---------- */
+  .aurora{ position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
+  .aurora span{ position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.16; }
+  .aurora span:nth-child(1){ width: 480px; height: 480px; background: var(--accent); top: -200px; left: -140px; animation: auroraA 24s ease-in-out infinite alternate; }
+  .aurora span:nth-child(2){ width: 380px; height: 380px; background: #C9A94A; bottom: -200px; left: 32%; opacity: 0.1; animation: auroraB 28s ease-in-out infinite alternate; }
+  .aurora span:nth-child(3){ width: 340px; height: 340px; background: #8FA07A; top: 8%; right: -140px; animation: auroraC 20s ease-in-out infinite alternate; }
+  @keyframes auroraA{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(50px,40px) scale(1.12); } }
+  @keyframes auroraB{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(-40px,-30px) scale(0.92); } }
+  @keyframes auroraC{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(-30px,50px) scale(1.08); } }
+  @media (prefers-reduced-motion: reduce){ .aurora span{ animation: none; } }
+  @media (max-width: 640px){ .aurora{ opacity: 0.6; } }
+
   /* ---------- 3D ACCENT ---------- */
   .cube-scene{
     position: absolute; top: 50%; right: 4%; width: 190px; height: 190px;
@@ -132,8 +153,15 @@
     from{ transform: rotateX(-18deg) rotateY(0deg); }
     to{ transform: rotateX(-18deg) rotateY(360deg); }
   }
+  .orbit{ position:absolute; inset:-40px; pointer-events:none; }
+  .orbit span{ position:absolute; top:50%; left:50%; width:6px; height:6px; border-radius:50%; background: var(--accent); box-shadow: 0 0 12px 2px rgba(63,90,69,0.5); animation: orbitSpin 12s linear infinite; }
+  .orbit span:nth-child(2){ animation-duration: 18s; animation-direction: reverse; opacity: 0.55; }
+  @keyframes orbitSpin{
+    from{ transform: rotate(0deg) translateX(135px) rotate(0deg); }
+    to{ transform: rotate(360deg) translateX(135px) rotate(-360deg); }
+  }
   @media (max-width: 900px){ .cube-scene{ display:none; } }
-  @media (prefers-reduced-motion: reduce){ .cube{ animation: none; transform: rotateX(-18deg) rotateY(28deg); } }
+  @media (prefers-reduced-motion: reduce){ .cube{ animation: none; transform: rotateX(-18deg) rotateY(28deg); } .orbit span{ animation: none; } }
 
   /* ---------- PROGRESS ---------- */
   #progress{ position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--accent); z-index: 100; transition: width .08s linear; }
@@ -151,6 +179,8 @@
   .nav-links a::after{ content:''; position:absolute; left:0; bottom:0; width:100%; height:1px; background: var(--accent); transform: scaleX(0); transform-origin: right; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
   .nav-links a:hover{ color: var(--ink); }
   .nav-links a:hover::after{ transform: scaleX(1); transform-origin: left; }
+  .nav-links a.current{ color: var(--ink); }
+  .nav-links a.current::after{ transform: scaleX(1); transform-origin: left; }
   .nav-cta{ font-size: 0.82rem; padding: 10px 18px; background: var(--ink); color: var(--paper); border-radius: var(--radius); transition: background .2s ease; }
   .nav-cta:hover{ background: var(--accent); }
   .lang-switch{ display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.04em; }
@@ -223,8 +253,10 @@
   .services{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   @media (max-width: 900px){ .services{ grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 600px){ .services{ grid-template-columns: 1fr; } }
-  .service{ background: var(--paper); padding: 36px 30px; border: 1px solid var(--line); border-radius: var(--radius); transition: background .3s ease, box-shadow .3s ease; position: relative; z-index: 1; transform-style: preserve-3d; will-change: transform; }
+  .service{ background: var(--paper); padding: 36px 30px; border: 1px solid var(--line); border-radius: var(--radius); transition: background .3s ease, box-shadow .3s ease; position: relative; z-index: 1; overflow: hidden; transform-style: preserve-3d; will-change: transform; }
   .service:hover{ background: var(--accent-dim); box-shadow: 0 20px 36px -22px rgba(27,26,23,0.28); }
+  .service::before{ content:''; position:absolute; inset:0; opacity:0; transition: opacity .35s ease; pointer-events:none; background: radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(63,90,69,0.16), transparent 70%); }
+  .service:hover::before{ opacity:1; }
   .service .num{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; font-size: 0.82rem; color: var(--accent); margin-bottom: 20px; display:block; }
   .service .tag{ transition: color .3s ease; font-size: 0.72rem; color: var(--slate-light); margin-bottom: 14px; display:block; text-transform:uppercase; letter-spacing:0.04em; }
   .service:hover .tag{ color: var(--accent); }
@@ -233,9 +265,11 @@
 
   /* ---------- WARUM (trust) ---------- */
   .why-grid{ display:flex; flex-direction:column; gap: 0; }
-  .why-item{ padding: 24px 4px; border-top: 1px solid var(--line); display:flex; justify-content:space-between; gap: 20px; transition: padding .3s cubic-bezier(.2,.7,.2,1), background .3s ease; }
+  .why-item{ padding: 24px 4px; border-top: 1px solid var(--line); display:flex; justify-content:space-between; gap: 20px; position: relative; transition: padding .3s cubic-bezier(.2,.7,.2,1), background .3s ease; }
+  .why-item::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+  .why-item:hover::before{ transform: scaleY(1); }
   .why-item:last-child{ border-bottom: 1px solid var(--line); }
-  .why-item:hover{ padding-left: 14px; background: rgba(36,86,229,0.04); }
+  .why-item:hover{ padding-left: 20px; background: rgba(63,90,69,0.05); }
   .why-item .w-name{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; font-size:1rem; transition: color .3s ease; flex-shrink:0; }
   .why-item:hover .w-name{ color: var(--accent); }
   .why-item .w-desc{ color: var(--slate); font-size: 0.9rem; max-width: 38ch; text-align:right; }
@@ -323,6 +357,7 @@
 <body>
 
 <div class="bg-stone" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 <div id="progress" aria-hidden="true"></div>
 
 <header>
@@ -352,7 +387,9 @@
 </header>
 
 <section class="hero" data-bg="#F7F5F0">
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="cube-scene" aria-hidden="true">
+    <div class="orbit"><span></span><span></span></div>
     <div class="cube">
       <div class="face front"></div>
       <div class="face back"></div>
@@ -746,8 +783,9 @@
     revealEls.forEach(activate);
   }
 
-  // Subtle 3D tilt on hover — small angle range, disabled for touch/reduced-motion.
-  if(!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+  // Subtle 3D tilt + cursor spotlight on hover — small angle range, disabled for touch/reduced-motion.
+  const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if(!reduceMotion && fineHover){
     document.querySelectorAll('.service').forEach(card => {
       let raf = null;
       card.style.transition = 'background .3s ease, box-shadow .3s ease, transform .25s ease';
@@ -758,6 +796,8 @@
           const px = (e.clientX - r.left) / r.width - 0.5;
           const py = (e.clientY - r.top) / r.height - 0.5;
           card.style.transform = `perspective(700px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 5).toFixed(2)}deg)`;
+          card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+          card.style.setProperty('--my', `${e.clientY - r.top}px`);
           raf = null;
         });
       });
@@ -765,6 +805,80 @@
         card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg)';
       });
     });
+  }
+
+  // Magnetic pull on primary buttons — subtle, disabled for touch/reduced-motion.
+  if(!reduceMotion && fineHover){
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+      let raf = null;
+      btn.style.transition = btn.style.transition ? btn.style.transition : 'background .2s ease, box-shadow .2s ease';
+      btn.style.transition += ', transform .18s ease';
+      btn.addEventListener('mousemove', e => {
+        if(raf) return;
+        raf = requestAnimationFrame(() => {
+          const r = btn.getBoundingClientRect();
+          const mx = (e.clientX - r.left - r.width / 2) * 0.18;
+          const my = (e.clientY - r.top - r.height / 2) * 0.28;
+          btn.style.transform = `translate(${mx.toFixed(1)}px, ${my.toFixed(1)}px)`;
+          raf = null;
+        });
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
+    });
+  }
+
+  // Smooth FAQ accordion via Web Animations API — keeps native <details> semantics/no-JS fallback.
+  document.querySelectorAll('.faq-item').forEach(details => {
+    const content = details.querySelector('p');
+    let anim = null, closing = false, expanding = false;
+    if(!content) return;
+    details.addEventListener('click', e => {
+      e.preventDefault();
+      if(closing || !details.open){ openItem(); } else if(expanding || details.open){ shrink(); }
+    });
+    function shrink(){
+      closing = true;
+      const startH = details.offsetHeight + 'px';
+      const endH = details.querySelector('summary').offsetHeight + 'px';
+      runAnim(startH, endH, false);
+    }
+    function openItem(){
+      details.style.overflow = 'hidden';
+      details.open = true;
+      requestAnimationFrame(() => expand());
+    }
+    function expand(){
+      expanding = true;
+      const startH = details.querySelector('summary').offsetHeight + 'px';
+      const endH = details.offsetHeight + 'px';
+      runAnim(startH, endH, true);
+    }
+    function runAnim(startH, endH, isOpening){
+      if(anim) anim.cancel();
+      details.style.height = startH;
+      details.style.overflow = 'hidden';
+      anim = details.animate({ height: [startH, endH] }, { duration: reduceMotion ? 0 : 280, easing: 'cubic-bezier(.2,.7,.2,1)' });
+      anim.onfinish = () => {
+        details.open = isOpening;
+        details.style.height = details.style.overflow = '';
+        closing = false; expanding = false; anim = null;
+      };
+      anim.oncancel = () => { closing = false; expanding = false; };
+    }
+  });
+
+  // Nav active-section highlight.
+  const sectionEls = ['leistungen','warum','ablauf','faq'].map(id => document.getElementById(id)).filter(Boolean);
+  const navAnchors = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+  if(sectionEls.length && 'IntersectionObserver' in window){
+    const navIo = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navAnchors.forEach(a => a.classList.toggle('current', a.getAttribute('href') === '#' + id));
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    sectionEls.forEach(el => navIo.observe(el));
   }
 </script>
 <script src="i18n.js"></script>
