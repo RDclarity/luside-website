@@ -1,6 +1,6 @@
 (function(){
-  var form = document.getElementById('seminarForm');
-  if(!form) return;
+  var forms = document.querySelectorAll('form.seminar-form');
+  if(!forms.length) return;
 
   var CRM_INTAKE_URL = 'https://nbnpeoiqiakwnnkorxim.supabase.co/functions/v1/claritylab-lead-intake';
   var SEMINAR_TAG = 'Seminar-Interesse: Prozesse, Systeme, Marketing (Wien, Nov/Dez 2026 vorauss.)';
@@ -26,76 +26,80 @@
     }).catch(function(err){ console.warn('CRM forward failed (non-blocking):', err); });
   }
 
-  var noteEl = document.getElementById('formNote');
-  var submitBtn = form.querySelector('button[type="submit"]');
-
   function currentStrings(){
     var lang = localStorage.getItem('clarity_lang') || 'de';
     var dict = (window.clarityI18n && window.clarityI18n.translations[lang]) || {};
     return (dict.seminar_page) || {};
   }
 
-  function showNote(text, isError){
-    if(!noteEl) return;
-    noteEl.textContent = text;
-    noteEl.classList.add('show');
-    noteEl.classList.toggle('error', !!isError);
-  }
+  function wireForm(form){
+    var noteEl = form.querySelector('.form-note');
+    var submitBtn = form.querySelector('button[type="submit"]');
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-
-    var name = form.name.value.trim();
-    var company = form.company ? form.company.value.trim() : '';
-    var phone = form.phone.value.trim();
-    var email = form.email.value.trim();
-    var newsletter = form.newsletter.checked;
-
-    if(!name || !email) return;
-
-    if(!window.claritySupabaseReady){
-      console.warn('Supabase is not configured yet — see supabase-config.js');
-      showNote(currentStrings().form_error || 'Configuration missing.', true);
-      return;
+    function showNote(text, isError){
+      if(!noteEl) return;
+      noteEl.textContent = text;
+      noteEl.classList.add('show');
+      noteEl.classList.toggle('error', !!isError);
     }
 
-    submitBtn.disabled = true;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
 
-    window.claritySupabaseReady(function(client){
-      if(!client){
+      var name = form.name.value.trim();
+      var company = form.company ? form.company.value.trim() : '';
+      var phone = form.phone.value.trim();
+      var email = form.email.value.trim();
+      var newsletter = form.newsletter.checked;
+
+      if(!name || !email) return;
+
+      if(!window.claritySupabaseReady){
+        console.warn('Supabase is not configured yet — see supabase-config.js');
         showNote(currentStrings().form_error || 'Configuration missing.', true);
-        submitBtn.disabled = false;
         return;
       }
 
-      client.from('contacts').insert({
-        name: name,
-        phone: phone,
-        email: email,
-        newsletter_opt_in: newsletter,
-        company: company,
-        biggest_challenge: SEMINAR_TAG
-      }).then(function(res){
-        if(res.error) throw res.error;
-        if(newsletter){
-          return client.from('newsletter_subscribers')
-            .insert({ name: name, email: email })
-            .then(function(nlRes){
-              // 23505 = unique_violation: already subscribed with this email — not an error for the user
-              if(nlRes.error && nlRes.error.code !== '23505') throw nlRes.error;
-            });
+      submitBtn.disabled = true;
+
+      window.claritySupabaseReady(function(client){
+        if(!client){
+          showNote(currentStrings().form_error || 'Configuration missing.', true);
+          submitBtn.disabled = false;
+          return;
         }
-      }).then(function(){
-        forwardToCrm({ name: name, email: email, phone: phone, company: company });
-        form.reset();
-        showNote(currentStrings().form_success || 'Thank you.', false);
-        if(window.clarityLogConversion) window.clarityLogConversion('form_submit');
-      }).catch(function(err){
-        console.error(err);
-        showNote(currentStrings().form_error || 'Something went wrong.', true);
-      }).finally(function(){
-        submitBtn.disabled = false;
+
+        client.from('contacts').insert({
+          name: name,
+          phone: phone,
+          email: email,
+          newsletter_opt_in: newsletter,
+          company: company,
+          biggest_challenge: SEMINAR_TAG
+        }).then(function(res){
+          if(res.error) throw res.error;
+          if(newsletter){
+            return client.from('newsletter_subscribers')
+              .insert({ name: name, email: email })
+              .then(function(nlRes){
+                // 23505 = unique_violation: already subscribed with this email — not an error for the user
+                if(nlRes.error && nlRes.error.code !== '23505') throw nlRes.error;
+              });
+          }
+        }).then(function(){
+          forwardToCrm({ name: name, email: email, phone: phone, company: company });
+          form.reset();
+          showNote(currentStrings().form_success || 'Thank you.', false);
+          if(window.clarityLogConversion) window.clarityLogConversion('form_submit');
+        }).catch(function(err){
+          console.error(err);
+          showNote(currentStrings().form_error || 'Something went wrong.', true);
+        }).finally(function(){
+          submitBtn.disabled = false;
+        });
       });
     });
-  });
+  }
+
+  forms.forEach(wireForm);
 })();

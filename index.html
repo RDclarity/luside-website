@@ -177,8 +177,8 @@
 
   /* ---------- NAV ---------- */
   header{ position: sticky; top: 0; z-index: 50; background: rgba(247,245,240,0.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-  .nav{ display:flex; align-items:center; justify-content:space-between; padding: 20px 0; transition: padding .3s cubic-bezier(.2,.7,.2,1); }
-  header.scrolled .nav{ padding: 13px 0; }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding-top: 20px; padding-bottom: 20px; transition: padding-top .3s cubic-bezier(.2,.7,.2,1), padding-bottom .3s cubic-bezier(.2,.7,.2,1); }
+  header.scrolled .nav{ padding-top: 13px; padding-bottom: 13px; }
   .brand{ display:flex; align-items:baseline; gap:8px; font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; font-size:1.28rem; letter-spacing:-0.01em; }
   .brand .dot{ color: var(--accent); }
   .nav-right{ display:flex; align-items:center; gap:28px; }

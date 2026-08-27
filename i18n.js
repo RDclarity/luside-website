@@ -163,7 +163,8 @@
         form_newsletter: 'Ich möchte den Newsletter erhalten.',
         form_submit: 'Interesse anmelden',
         form_success: 'Danke! Wir melden uns, sobald der Termin feststeht.',
-        form_error: 'Da ist etwas schiefgelaufen. Bitte versuche es erneut oder schreib uns direkt per E-Mail.'
+        form_error: 'Da ist etwas schiefgelaufen. Bitte versuche es erneut oder schreib uns direkt per E-Mail.',
+        trust: 'Kein Massengeschäft. Begrenzte Teilnehmerzahl.'
       },
       impressum_page: {
         meta_title: 'Impressum — Luside',
@@ -385,7 +386,8 @@
         form_newsletter: 'I would like to receive the newsletter.',
         form_submit: 'Register interest',
         form_success: 'Thanks! We\'ll be in touch as soon as the date is confirmed.',
-        form_error: 'Something went wrong. Please try again or email us directly.'
+        form_error: 'Something went wrong. Please try again or email us directly.',
+        trust: "Not a volume business. Limited number of spots."
       },
       impressum_page: {
         meta_title: 'Legal Notice — Luside',

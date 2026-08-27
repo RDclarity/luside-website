@@ -153,10 +153,11 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding: 20px 0;
-    transition: padding .3s cubic-bezier(.2,.7,.2,1);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition: padding-top .3s cubic-bezier(.2,.7,.2,1), padding-bottom .3s cubic-bezier(.2,.7,.2,1);
   }
-  header.scrolled .nav{ padding: 13px 0; }
+  header.scrolled .nav{ padding-top: 13px; padding-bottom: 13px; }
   .brand{
     display:flex;
     align-items:baseline;
