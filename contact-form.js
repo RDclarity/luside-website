@@ -2,18 +2,23 @@
   var form = document.getElementById('kontaktForm');
   if(!form) return;
 
-  var CRM_INTAKE_URL = 'https://nbnpeoiqiakwnnkorxim.supabase.co/functions/v1/claritylab-lead-intake';
+  var CRM_INTAKE_URL = 'https://knuktzuqqmrrkpkusren.supabase.co/functions/v1/luside-rima-sync';
 
-  // Best-effort: forwards the lead into the Rima-Equity CRM. Never blocks or
+  // Best-effort: forwards the lead into the RIMA Equity CRM. Never blocks or
   // fails the user-facing submission — the local Supabase insert above is
   // the source of truth either way.
   function forwardToCrm(fields){
     var parts = fields.name.split(' ');
     var firstName = parts.shift();
     var lastName = parts.join(' ') || null;
+    var headers = { 'Content-Type': 'application/json' };
+    if(window.CLARITY_SUPABASE && window.CLARITY_SUPABASE.anonKey){
+      headers.apikey = window.CLARITY_SUPABASE.anonKey;
+      headers.Authorization = 'Bearer ' + window.CLARITY_SUPABASE.anonKey;
+    }
     fetch(CRM_INTAKE_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: headers,
       body: JSON.stringify({
         first_name: firstName,
         last_name: lastName,
