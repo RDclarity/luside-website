@@ -1,10 +1,10 @@
 (function(){
   var BOOKING_URL = 'https://outlook.office.com/bookwithme/user/dc79bf543acd4612bd3cd71f5b078ae2@tischlerkultur.onmicrosoft.com/meetingtype/Lf7qqrACrkGmDArzLF0Lvw2?anonymous&ismsaljsauthenabled&ep=mlink';
-  var CRM_INTAKE_URL = 'https://knuktzuqqmrrkpkusren.supabase.co/functions/v1/luside-rima-sync';
+  var CRM_INTAKE_URL = 'https://knuktzuqqmrrkpkusren.supabase.co/functions/v1/lusides-rima-sync';
 
   var UI = {
     de: {
-      title: 'Luside Assistent',
+      title: 'Lusides Assistent',
       closeAria: 'Chat schließen',
       openAria: 'Chat öffnen',
       placeholder: 'Frage eingeben…',
@@ -12,7 +12,7 @@
       send: 'Senden',
       bookingChip: 'Termin buchen',
       contactChip: 'Kontakt aufnehmen',
-      greeting: 'Hallo! Ich bin der Luside Assistent. Frag mich etwas über Luside — oder wähl unten eine Frage.',
+      greeting: 'Hallo! Ich bin der Lusides Assistent. Frag mich etwas über Lusides — oder wähl unten eine Frage.',
       fallback: 'Das habe ich leider nicht ganz verstanden. Wähle unten eine Frage aus, oder vereinbare direkt ein unverbindliches Erstgespräch.',
       aiError: 'Da ist gerade etwas schiefgelaufen. Bitte versuche es nochmal oder nimm über das Formular Kontakt auf.',
       thinking: '…',
@@ -35,7 +35,7 @@
       invalidEmail: 'Das sieht nicht nach einer gültigen E-Mail-Adresse aus — bitte nochmal.'
     },
     en: {
-      title: 'Luside Assistant',
+      title: 'Lusides Assistant',
       closeAria: 'Close chat',
       openAria: 'Open chat',
       placeholder: 'Type a question…',
@@ -43,7 +43,7 @@
       send: 'Send',
       bookingChip: 'Book a meeting',
       contactChip: 'Get in touch',
-      greeting: "Hello! I'm the Luside Assistant. Ask me something about Luside — or pick a question below.",
+      greeting: "Hello! I'm the Lusides Assistant. Ask me something about Lusides — or pick a question below.",
       fallback: "Sorry, I didn't quite catch that. Pick a question below, or schedule a free, no-obligation consultation directly.",
       aiError: 'Something went wrong there. Please try again, or get in touch via the form.',
       thinking: '…',
@@ -70,12 +70,12 @@
   var FAQS = {
     de: [
       {
-        label: 'Über Luside',
-        keywords: ['was ist', 'über euch', 'über luside', 'firma', 'unternehmen', 'wer seid ihr'],
-        answer: 'Luside ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Wir beraten nicht nur, wir setzen um.'
+        label: 'Über Lusides',
+        keywords: ['was ist', 'über euch', 'über luside', 'über lusides', 'firma', 'unternehmen', 'wer seid ihr'],
+        answer: 'Lusides ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Wir beraten nicht nur, wir setzen um.'
       },
       {
-        label: 'Was Luside macht',
+        label: 'Was Lusides macht',
         keywords: ['leistung', 'angebot', 'service', 'was bietet', 'was macht ihr'],
         answer: 'Vier Bereiche: <ul><li>Prozesse &amp; Systeme — Abläufe, Standards, Verantwortlichkeiten</li><li>Marketing — Positionierung, Kampagnen, Leadgenerierung</li><li>Finanzielle Angelegenheiten — Controlling, Reporting</li><li>Digitalisierung &amp; KI — firmenspezifische KI-Systeme</li></ul>'
       },
@@ -108,12 +108,12 @@
     ],
     en: [
       {
-        label: 'About Luside',
-        keywords: ['what is', 'about you', 'about luside', 'company', 'who are you'],
-        answer: "Luside is a management consultancy and development partner for established, owner-run businesses — in processes, systems, marketing, and AI. We don't just advise, we implement."
+        label: 'About Lusides',
+        keywords: ['what is', 'about you', 'about luside', 'about lusides', 'company', 'who are you'],
+        answer: "Lusides is a management consultancy and development partner for established, owner-run businesses — in processes, systems, marketing, and AI. We don't just advise, we implement."
       },
       {
-        label: 'What Luside does',
+        label: 'What Lusides does',
         keywords: ['service', 'offer', 'what do you do'],
         answer: 'Four areas: <ul><li>Processes &amp; Systems — workflows, standards, responsibilities</li><li>Marketing — positioning, campaigns, lead generation</li><li>Financial matters — controlling, reporting</li><li>Digitalization &amp; AI — company-specific AI systems</li></ul>'
       },
@@ -222,7 +222,7 @@
   var leadSteps = ['first_name', 'last_name', 'phone', 'postal_code', 'email'];
 
   function getLang(){
-    return localStorage.getItem('luside_lang') || 'de';
+    return localStorage.getItem('lusides_lang') || 'de';
   }
 
   function ui(){ return UI[getLang()] || UI.de; }
@@ -281,7 +281,7 @@
     bookingChip.type = 'button';
     bookingChip.textContent = ui().bookingChip;
     bookingChip.addEventListener('click', function(){
-      if(window.lusideLogConversion) window.lusideLogConversion('booking_click');
+      if(window.lusidesLogConversion) window.lusidesLogConversion('booking_click');
       window.open(BOOKING_URL, '_blank', 'noopener');
     });
     chipsEl.appendChild(bookingChip);
@@ -334,9 +334,9 @@
     var strings = ui();
 
     var crmHeaders = { 'Content-Type': 'application/json' };
-    if(window.LUSIDE_SUPABASE && window.LUSIDE_SUPABASE.anonKey){
-      crmHeaders.apikey = window.LUSIDE_SUPABASE.anonKey;
-      crmHeaders.Authorization = 'Bearer ' + window.LUSIDE_SUPABASE.anonKey;
+    if(window.LUSIDES_SUPABASE && window.LUSIDES_SUPABASE.anonKey){
+      crmHeaders.apikey = window.LUSIDES_SUPABASE.anonKey;
+      crmHeaders.Authorization = 'Bearer ' + window.LUSIDES_SUPABASE.anonKey;
     }
     fetch(CRM_INTAKE_URL, {
       method: 'POST',
@@ -355,8 +355,8 @@
     // not a full Promise — chaining .catch() directly on it throws
     // "...catch is not a function". Always go through .then(res => ...) and
     // inspect res.error instead (matches the pattern in contact-form.js).
-    if(window.lusideSupabaseReady){
-      window.lusideSupabaseReady(function(client){
+    if(window.lusidesSupabaseReady){
+      window.lusidesSupabaseReady(function(client){
         if(!client) return;
         try {
           client.from('contacts').insert({
@@ -394,12 +394,12 @@
     link.rel = 'noopener noreferrer';
     link.textContent = strings.bookingChip + ' →';
     link.addEventListener('click', function(){
-      if(window.lusideLogConversion) window.lusideLogConversion('booking_click');
+      if(window.lusidesLogConversion) window.lusidesLogConversion('booking_click');
     });
     followup.appendChild(link);
     messagesEl.appendChild(followup);
     messagesEl.scrollTop = messagesEl.scrollHeight;
-    if(window.lusideLogConversion) window.lusideLogConversion('form_submit');
+    if(window.lusidesLogConversion) window.lusidesLogConversion('form_submit');
   }
 
   function handleLeadStep(text){
@@ -438,8 +438,8 @@
     if(aiHistory.length > 12) aiHistory = aiHistory.slice(-12);
 
     var typingEl = showTyping();
-    var configured = window.LUSIDE_SUPABASE && window.LUSIDE_SUPABASE.url && window.LUSIDE_SUPABASE.anonKey
-      && window.LUSIDE_SUPABASE.url.indexOf('YOUR_SUPABASE') === -1;
+    var configured = window.LUSIDES_SUPABASE && window.LUSIDES_SUPABASE.url && window.LUSIDES_SUPABASE.anonKey
+      && window.LUSIDES_SUPABASE.url.indexOf('YOUR_SUPABASE') === -1;
 
     if(!configured){
       typingEl.remove();
@@ -447,12 +447,12 @@
       return;
     }
 
-    fetch(window.LUSIDE_SUPABASE.url + '/functions/v1/luside-chat', {
+    fetch(window.LUSIDES_SUPABASE.url + '/functions/v1/lusides-chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'apikey': window.LUSIDE_SUPABASE.anonKey,
-        'Authorization': 'Bearer ' + window.LUSIDE_SUPABASE.anonKey
+        'apikey': window.LUSIDES_SUPABASE.anonKey,
+        'Authorization': 'Bearer ' + window.LUSIDES_SUPABASE.anonKey
       },
       body: JSON.stringify({ messages: aiHistory, lang: getLang() })
     }).then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); })
@@ -527,7 +527,7 @@
     }
   });
 
-  window.addEventListener('luside:langchange', function(){
+  window.addEventListener('lusides:langchange', function(){
     applyChrome();
     if(initialized) renderMenu();
   });

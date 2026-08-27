@@ -1,6 +1,6 @@
-# Luside Website
+# Lusides Website
 
-Static site for Luside, served via GitHub Pages.
+Static site for Lusides, served via GitHub Pages.
 
 ## Branches
 
@@ -14,8 +14,8 @@ Static site for Luside, served via GitHub Pages.
 - `seminar.html` — standalone paid-traffic landing page (Meta ads) for the in-person seminar; own form(s), no exit navigation.
 - `i18n.js` — DE/EN translations, applied via `data-i18n` attributes.
 - `chatbot.js` — bottom-right chat widget (FAQ keyword matching + OpenAI fallback + guided lead capture).
-- `supabase/functions/luside-chat` — Edge Function proxying chat requests to OpenAI (holds the API key server-side).
-- `supabase/functions/luside-rima-sync` — Edge Function forwarding every lead (contact form, seminar form, chatbot) into RIMA Equity's shared CRM.
+- `supabase/functions/lusides-chat` — Edge Function proxying chat requests to OpenAI (holds the API key server-side).
+- `supabase/functions/lusides-rima-sync` — Edge Function forwarding every lead (contact form, seminar form, chatbot) into RIMA Equity's shared CRM.
 
 ## Deploying
 

@@ -2,7 +2,7 @@
   var form = document.getElementById('kontaktForm');
   if(!form) return;
 
-  var CRM_INTAKE_URL = 'https://knuktzuqqmrrkpkusren.supabase.co/functions/v1/luside-rima-sync';
+  var CRM_INTAKE_URL = 'https://knuktzuqqmrrkpkusren.supabase.co/functions/v1/lusides-rima-sync';
 
   // Best-effort: forwards the lead into the RIMA Equity CRM. Never blocks or
   // fails the user-facing submission — the local Supabase insert above is
@@ -12,9 +12,9 @@
     var firstName = parts.shift();
     var lastName = parts.join(' ') || null;
     var headers = { 'Content-Type': 'application/json' };
-    if(window.LUSIDE_SUPABASE && window.LUSIDE_SUPABASE.anonKey){
-      headers.apikey = window.LUSIDE_SUPABASE.anonKey;
-      headers.Authorization = 'Bearer ' + window.LUSIDE_SUPABASE.anonKey;
+    if(window.LUSIDES_SUPABASE && window.LUSIDES_SUPABASE.anonKey){
+      headers.apikey = window.LUSIDES_SUPABASE.anonKey;
+      headers.Authorization = 'Bearer ' + window.LUSIDES_SUPABASE.anonKey;
     }
     fetch(CRM_INTAKE_URL, {
       method: 'POST',
@@ -37,8 +37,8 @@
   var submitBtn = form.querySelector('button[type="submit"]');
 
   function currentStrings(){
-    var lang = localStorage.getItem('luside_lang') || 'de';
-    var dict = (window.lusideI18n && window.lusideI18n.translations[lang]) || {};
+    var lang = localStorage.getItem('lusides_lang') || 'de';
+    var dict = (window.lusidesI18n && window.lusidesI18n.translations[lang]) || {};
     return (dict.kontakt) || {};
   }
 
@@ -63,7 +63,7 @@
 
     if(!name || !email) return;
 
-    if(!window.lusideSupabaseReady){
+    if(!window.lusidesSupabaseReady){
       console.warn('Supabase is not configured yet — see supabase-config.js');
       showNote(currentStrings().form_error || 'Configuration missing.', true);
       return;
@@ -71,7 +71,7 @@
 
     submitBtn.disabled = true;
 
-    window.lusideSupabaseReady(function(client){
+    window.lusidesSupabaseReady(function(client){
       if(!client){
         showNote(currentStrings().form_error || 'Configuration missing.', true);
         submitBtn.disabled = false;
@@ -102,7 +102,7 @@
         form.reset();
         showNote(currentStrings().form_success || 'Thank you.', false);
         if(followup) followup.classList.add('show');
-        if(window.lusideLogConversion) window.lusideLogConversion('form_submit');
+        if(window.lusidesLogConversion) window.lusidesLogConversion('form_submit');
       }).catch(function(err){
         console.error(err);
         showNote(currentStrings().form_error || 'Something went wrong.', true);

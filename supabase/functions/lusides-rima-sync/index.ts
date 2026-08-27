@@ -1,17 +1,19 @@
 import { corsHeaders, handlePreflight, json } from "../_shared/cors.ts";
 
-// Public lead-intake for the Luside website (main contact form + the
+// Public lead-intake for the Lusides website (main contact form + the
 // seminar page's signup form). Forwards into RIMA Equity's shared CRM
-// (contact_submissions, tagged source_company='luside').
+// (contact_submissions, tagged source_company='lusides').
 //
 // Bewusst kein Shared Secret zum Browser hin nötig (wie bei
-// luside-chat): der Aufrufer kann hier nur ein einziges Ding tun —
-// einen Lead für Luside anlegen. Die eigentliche Absicherung liegt auf
+// lusides-chat): der Aufrufer kann hier nur ein einziges Ding tun —
+// einen Lead für Lusides anlegen. Die eigentliche Absicherung liegt auf
 // der RIMA-Seite: nur wer LUSIDE_SYNC_SECRET kennt (serverseitig, nie im
-// Browser) darf dort source_company='luside' setzen. Ohne dieses Secret
+// Browser) darf dort source_company='lusides' setzen. Ohne dieses Secret
 // würde RIMA den Aufruf zwar noch annehmen, aber als generisches
-// 'rima-equity' statt 'luside' verbuchen — kein Datenzugriff, nur eine
+// 'rima-equity' statt 'lusides' verbuchen — kein Datenzugriff, nur eine
 // falsche Zuordnung, und genau das verhindert das Secret hier.
+// (Die Secret-Variable heißt weiterhin LUSIDE_SYNC_SECRET — reine
+// Infra-Benennung, nirgends sichtbar, daher nicht mitrotiert.)
 
 const RIMA_URL = Deno.env.get("RIMA_URL") ?? "https://vkiwbxayraxgrachjaoc.supabase.co";
 const RIMA_ANON_KEY = Deno.env.get("RIMA_ANON_KEY") ?? "";
@@ -64,7 +66,7 @@ Deno.serve(async (req) => {
   const message = [body.biggest_challenge?.trim() || "", ...extras].filter(Boolean).join("\n\n") || "(keine Angabe)";
 
   if (!RIMA_ANON_KEY || !LUSIDE_SYNC_SECRET) {
-    console.error("luside-rima-sync misconfigured: missing RIMA_ANON_KEY or LUSIDE_SYNC_SECRET");
+    console.error("lusides-rima-sync misconfigured: missing RIMA_ANON_KEY or LUSIDE_SYNC_SECRET");
     return json({ error: "Konfiguration fehlt" }, 500);
   }
 
@@ -83,7 +85,7 @@ Deno.serve(async (req) => {
         channel: body.channel?.trim().slice(0, 100) || "Kontaktformular",
         message,
         locale: body.locale === "en" ? "en" : "de",
-        source_company: "luside",
+        source_company: "lusides",
         source_path: "luside.com",
       }),
     });
@@ -96,7 +98,7 @@ Deno.serve(async (req) => {
 
     return json({ ok: true });
   } catch (err) {
-    console.error("luside-rima-sync error:", err);
+    console.error("lusides-rima-sync error:", err);
     return json({ error: "CRM-Weiterleitung fehlgeschlagen" }, 502);
   }
 });

@@ -1,12 +1,12 @@
 (function(){
   var TRANSLATIONS = {
     de: {
-      meta: { title: 'Luside — Du musst dein Unternehmen nicht allein tragen' },
+      meta: { title: 'Lusides — Du musst dein Unternehmen nicht allein tragen' },
       nav: { leistungen: 'Leistungen', warum: 'Warum wir', ablauf: 'Ablauf', faq: 'FAQ', team: 'Team', seminar: 'Seminar', cta: 'Erstgespräch' },
       hero: {
-        eyebrow: 'LUSIDE',
+        eyebrow: 'LUSIDES',
         h1: 'Du hast dein Unternehmen aufgebaut. Nicht, um jetzt allein weiterzukämpfen.',
-        sub: 'Luside ist Unternehmensberatung und Entwicklungspartner für inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Wir beraten nicht nur, wir setzen um.',
+        sub: 'Lusides ist Unternehmensberatung und Entwicklungspartner für inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Wir beraten nicht nur, wir setzen um.',
         cta1: 'Unternehmen vorstellen',
         cta2: 'Wie wir helfen',
         reassurance: 'Kein Massengeschäft. Nur für Unternehmen mit bestehendem Umsatz und Struktur.'
@@ -35,7 +35,7 @@
         s4_tag: 'Digitalisierung & KI', s4_h: 'KI-Systeme, die zu deinem Unternehmen passen.', s4_p: 'Firmenspezifisch entwickelt und von uns selbst implementiert.'
       },
       warum: {
-        label: 'WARUM LUSIDE',
+        label: 'WARUM LUSIDES',
         h2: 'Ein Partner, der wirklich mit anpackt.',
         p: 'Wir sind keine Berater von außen — wir arbeiten mit.',
         w1_name: 'Wir packen mit an', w1_desc: 'Nicht nur Ratschläge — wir übernehmen Verantwortung mit.',
@@ -62,7 +62,7 @@
         label: 'FAQ',
         h2: 'Häufige Fragen',
         p: 'Was du vor einem Erstgespräch wissen solltest.',
-        q1: 'Wann lohnt sich Luside für dich?',
+        q1: 'Wann lohnt sich Lusides für dich?',
         a1: 'Wenn dein Unternehmen bereits Umsatz und Struktur hat, aber Prozesse, Marketing oder Digitalisierung den nächsten Schritt bremsen.',
         q2: 'Für welche Unternehmen eignet sich das?',
         a2: 'Für etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und einer gewachsenen Struktur — nicht für Start-ups oder Ideen in der Frühphase.',
@@ -93,14 +93,14 @@
         form_error: 'Da ist etwas schiefgelaufen. Bitte versuche es erneut oder schreib uns direkt per E-Mail.'
       },
       footer: {
-        copyright: '© 2026 Luside. Alle Rechte vorbehalten.',
+        copyright: '© 2026 Lusides. Alle Rechte vorbehalten.',
         impressum: 'Impressum',
         datenschutz: 'Datenschutz'
       },
       team_page: {
-        meta_title: 'Team — Luside',
-        eyebrow: 'TEAM — LUSIDE',
-        h1: 'Die Menschen hinter Luside.',
+        meta_title: 'Team — Lusides',
+        eyebrow: 'TEAM — LUSIDES',
+        h1: 'Die Menschen hinter Lusides.',
         sub: 'Unternehmer, die selbst umsetzen — nicht nur beraten.',
         role_pending: 'Rolle folgt',
         r_richard: 'Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau',
@@ -110,7 +110,7 @@
         cta_btn: 'Unternehmen vorstellen'
       },
       seminar_page: {
-        meta_title: 'Seminar: Prozesse, Systeme, Marketing — Wien | Luside',
+        meta_title: 'Seminar: Prozesse, Systeme, Marketing — Wien | Lusides',
         eyebrow: 'SEMINAR — WIEN',
         h1: 'Prozesse, Systeme, Marketing: zwei Tage, die dein Unternehmen weiterbringen.',
         sub: 'Ein 2-tägiges Praxisseminar für Unternehmer, die ihre Prozesse, Systeme und ihr Marketing auf das nächste Level heben wollen.',
@@ -167,7 +167,7 @@
         trust: 'Kein Massengeschäft. Begrenzte Teilnehmerzahl.'
       },
       impressum_page: {
-        meta_title: 'Impressum — Luside',
+        meta_title: 'Impressum — Lusides',
         eyebrow: 'IMPRESSUM',
         h1: 'Impressum',
         sub: 'Angaben gemäß §5 ECG und §25 MedienG.',
@@ -185,12 +185,12 @@
         last_updated: 'Letzte Aktualisierung: August 2026'
       },
       privacy_page: {
-        meta_title: 'Datenschutz — Luside',
+        meta_title: 'Datenschutz — Lusides',
         eyebrow: 'DATENSCHUTZ',
         h1: 'Datenschutzerklärung',
         sub: 'Stand: August 2026. Diese Erklärung beschreibt, welche personenbezogenen Daten wir auf dieser Website erheben, wofür wir sie verwenden und welche Rechte Sie haben.',
         h_controller: 'Verantwortlicher',
-        p_controller: 'Verantwortlich für die Datenverarbeitung auf dieser Website ist Luside GmbH, Royerstraße 7, 2482 Münchendorf, Österreich. E-Mail: inquiry@luside.com, Telefon: +43 660 3607188.',
+        p_controller: 'Verantwortlich für die Datenverarbeitung auf dieser Website ist Lusides GmbH, Royerstraße 7, 2482 Münchendorf, Österreich. E-Mail: inquiry@luside.com, Telefon: +43 660 3607188.',
         h_data: 'Welche Daten wir erheben',
         h_contact_form: 'Kontaktformular',
         p_contact_form: 'Wenn Sie unser Kontaktformular ausfüllen, erheben wir: Name, Unternehmen, Mitarbeiterzahl, Jahresumsatz (jeweils als Größenklasse), Ihr Anliegen, Telefonnummer (optional) und E-Mail-Adresse. Diese Daten verwenden wir ausschließlich, um Ihre Anfrage zu bearbeiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bearbeitung einer Anfrage im vorvertraglichen Stadium).',
@@ -224,12 +224,12 @@
       }
     },
     en: {
-      meta: { title: "Luside — You Don't Have to Carry Your Business Alone" },
+      meta: { title: "Lusides — You Don't Have to Carry Your Business Alone" },
       nav: { leistungen: 'Services', warum: 'Why us', ablauf: 'Process', faq: 'FAQ', team: 'Team', seminar: 'Seminar', cta: 'Get in touch' },
       hero: {
-        eyebrow: 'LUSIDE',
+        eyebrow: 'LUSIDES',
         h1: "You built this business. Not to keep carrying it alone.",
-        sub: "Luside is a management consultancy and development partner for owner-run businesses — in processes, systems, marketing, and AI. We don't just advise, we implement.",
+        sub: "Lusides is a management consultancy and development partner for owner-run businesses — in processes, systems, marketing, and AI. We don't just advise, we implement.",
         cta1: 'Introduce your business',
         cta2: 'How we help',
         reassurance: "Not a volume business. Only for companies with existing revenue and structure."
@@ -258,7 +258,7 @@
         s4_tag: 'Digitalization & AI', s4_h: 'AI systems built for your business.', s4_p: 'Company-specific, built and implemented by us.'
       },
       warum: {
-        label: 'WHY LUSIDE',
+        label: 'WHY LUSIDES',
         h2: 'A partner who actually gets hands-on.',
         p: "We're not outside consultants — we work alongside you.",
         w1_name: 'We get hands-on', w1_desc: "Not just advice — we take on responsibility with you.",
@@ -285,7 +285,7 @@
         label: 'FAQ',
         h2: 'Frequently asked questions',
         p: 'What to know before an introductory call.',
-        q1: 'When is Luside worth it for you?',
+        q1: 'When is Lusides worth it for you?',
         a1: 'When your business already has revenue and structure, but processes, marketing, or digitalization are holding back the next step.',
         q2: 'What kind of businesses is this a fit for?',
         a2: 'For established, owner-run businesses with existing revenue and a grown structure — not for start-ups or early-stage ideas.',
@@ -316,14 +316,14 @@
         form_error: 'Something went wrong. Please try again or email us directly.'
       },
       footer: {
-        copyright: '© 2026 Luside. All rights reserved.',
+        copyright: '© 2026 Lusides. All rights reserved.',
         impressum: 'Legal Notice',
         datenschutz: 'Privacy Policy'
       },
       team_page: {
-        meta_title: 'Team — Luside',
-        eyebrow: 'TEAM — LUSIDE',
-        h1: 'The people behind Luside.',
+        meta_title: 'Team — Lusides',
+        eyebrow: 'TEAM — LUSIDES',
+        h1: 'The people behind Lusides.',
         sub: 'Business owners who implement themselves — not just advise.',
         role_pending: 'Role to be announced',
         r_richard: 'Marketing, sales, business development, process design',
@@ -333,7 +333,7 @@
         cta_btn: 'Introduce your business'
       },
       seminar_page: {
-        meta_title: 'Seminar: Processes, Systems, Marketing — Vienna | Luside',
+        meta_title: 'Seminar: Processes, Systems, Marketing — Vienna | Lusides',
         eyebrow: 'SEMINAR — VIENNA',
         h1: 'Processes, systems, marketing: two days that move your business forward.',
         sub: 'A 2-day hands-on seminar for business owners who want to take their processes, systems, and marketing to the next level.',
@@ -390,7 +390,7 @@
         trust: "Not a volume business. Limited number of spots."
       },
       impressum_page: {
-        meta_title: 'Legal Notice — Luside',
+        meta_title: 'Legal Notice — Lusides',
         eyebrow: 'LEGAL NOTICE',
         h1: 'Legal Notice',
         sub: 'Information pursuant to §5 ECG and §25 MedienG (Austria).',
@@ -408,12 +408,12 @@
         last_updated: 'Last updated: August 2026'
       },
       privacy_page: {
-        meta_title: 'Privacy Policy — Luside',
+        meta_title: 'Privacy Policy — Lusides',
         eyebrow: 'PRIVACY POLICY',
         h1: 'Privacy Policy',
         sub: 'Last updated: August 2026. This policy describes what personal data we collect on this website, why we use it, and what rights you have.',
         h_controller: 'Data Controller',
-        p_controller: 'The controller responsible for data processing on this website is Luside GmbH, Royerstraße 7, 2482 Münchendorf, Austria. Email: inquiry@luside.com, Phone: +43 660 3607188.',
+        p_controller: 'The controller responsible for data processing on this website is Lusides GmbH, Royerstraße 7, 2482 Münchendorf, Austria. Email: inquiry@luside.com, Phone: +43 660 3607188.',
         h_data: 'What data we collect',
         h_contact_form: 'Contact form',
         p_contact_form: 'When you fill out our contact form, we collect: name, company, number of employees, annual revenue (each as a size bracket), what you need from us, phone number (optional), and email address. We use this data solely to process your request. The legal basis is Art. 6(1)(b) GDPR (handling a request in the pre-contractual stage).',
@@ -477,11 +477,11 @@
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
 
-    localStorage.setItem('luside_lang', lang);
-    window.dispatchEvent(new CustomEvent('luside:langchange', { detail: { lang: lang } }));
+    localStorage.setItem('lusides_lang', lang);
+    window.dispatchEvent(new CustomEvent('lusides:langchange', { detail: { lang: lang } }));
   }
 
-  window.lusideI18n = { translations: TRANSLATIONS, applyLang: applyLang, resolve: resolve };
+  window.lusidesI18n = { translations: TRANSLATIONS, applyLang: applyLang, resolve: resolve };
 
   document.querySelectorAll('.lang-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
@@ -489,6 +489,6 @@
     });
   });
 
-  var savedLang = localStorage.getItem('luside_lang') || 'de';
+  var savedLang = localStorage.getItem('lusides_lang') || 'de';
   applyLang(savedLang);
 })();
