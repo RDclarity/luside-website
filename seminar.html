@@ -106,12 +106,43 @@
   /* ---------- HERO (dark, split: value prop + form) ---------- */
   .hero{ position:relative; background: var(--ink); color: var(--paper); overflow:hidden; padding: 56px 0 72px; }
   .hero::before{
-    content:''; position:absolute; inset:0; pointer-events:none;
+    content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
     background:
-      radial-gradient(900px 520px at -6% -14%, rgba(192,138,46,0.22), transparent 60%),
-      radial-gradient(700px 500px at 108% 8%, rgba(217,169,78,0.14), transparent 55%);
+      radial-gradient(900px 520px at -6% -14%, rgba(192,138,46,0.16), transparent 60%),
+      radial-gradient(700px 500px at 108% 8%, rgba(217,169,78,0.1), transparent 55%);
   }
-  .hero-grid{ position:relative; display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items:start; }
+  /* Bespoke "systems" motif: a slow-drifting blueprint grid + a small
+     network of nodes with light traveling along the connections — ties
+     directly to the seminar's Prozesse/Systeme theme instead of a
+     generic blurred-blob gradient. */
+  .grid-bg{
+    position:absolute; inset:-2px; pointer-events:none; z-index:0; opacity:0.5;
+    background-image:
+      linear-gradient(rgba(217,169,78,0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(217,169,78,0.09) 1px, transparent 1px);
+    background-size: 56px 56px;
+    animation: gridDrift 50s linear infinite;
+    mask-image: radial-gradient(80% 70% at 30% 30%, #000 40%, transparent 90%);
+    -webkit-mask-image: radial-gradient(80% 70% at 30% 30%, #000 40%, transparent 90%);
+  }
+  @keyframes gridDrift{ from{ background-position: 0 0, 0 0; } to{ background-position: 56px 84px, 56px 84px; } }
+  @media (prefers-reduced-motion: reduce){ .grid-bg{ animation: none; } }
+  .network-bg{ position:absolute; inset:0; pointer-events:none; z-index:0; opacity:0.8; }
+  .network-bg circle{ fill: var(--accent-light); }
+  .network-bg .node{ animation: nodePulse 4.5s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  .network-bg .node:nth-child(2){ animation-delay: .6s; }
+  .network-bg .node:nth-child(4){ animation-delay: 1.3s; }
+  .network-bg .node:nth-child(6){ animation-delay: 2.1s; }
+  .network-bg .node:nth-child(8){ animation-delay: 2.8s; }
+  @keyframes nodePulse{ 0%,100%{ opacity:0.45; transform:scale(1); } 50%{ opacity:1; transform:scale(1.5); } }
+  .network-bg .link{ stroke: rgba(217,169,78,0.28); stroke-width:1; fill:none; }
+  .network-bg .pulse{ stroke: var(--accent-light); stroke-width:1.6; fill:none; stroke-dasharray: 8 220; animation: pulseTravel 5.5s linear infinite; }
+  .network-bg .pulse:nth-child(6){ animation-delay: 1.4s; }
+  .network-bg .pulse:nth-child(7){ animation-delay: 2.9s; }
+  @keyframes pulseTravel{ from{ stroke-dashoffset: 228; } to{ stroke-dashoffset: -228; } }
+  @media (prefers-reduced-motion: reduce){ .network-bg .node, .network-bg .pulse{ animation: none; } .network-bg .pulse{ opacity:0; } }
+  @media (max-width: 640px){ .grid-bg{ opacity:0.32; } .network-bg{ opacity:0.5; } }
+  .hero-grid{ position:relative; z-index:1; display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items:start; }
   @media (max-width: 900px){ .hero-grid{ grid-template-columns: 1fr; gap: 40px; } }
 
   .hero-item{ opacity: 0; transform: translateY(14px); animation: heroIn .8s cubic-bezier(.16,1,.3,1) forwards; }
@@ -257,6 +288,27 @@
 </header>
 
 <section class="hero" id="top">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <svg class="network-bg" aria-hidden="true" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice">
+    <line class="link" x1="120" y1="90" x2="340" y2="180"/>
+    <line class="link" x1="340" y1="180" x2="580" y2="60"/>
+    <line class="link" x1="340" y1="180" x2="150" y2="340"/>
+    <line class="link" x1="580" y1="60" x2="780" y2="220"/>
+    <line class="link" x1="780" y1="220" x2="980" y2="120"/>
+    <line class="link" x1="780" y1="220" x2="900" y2="380"/>
+    <line class="link" x1="150" y1="340" x2="450" y2="380"/>
+    <line class="link" x1="450" y1="380" x2="900" y2="380"/>
+    <line class="pulse" x1="340" y1="180" x2="580" y2="60"/>
+    <line class="pulse" x1="450" y1="380" x2="900" y2="380"/>
+    <circle class="node" cx="120" cy="90" r="3"/>
+    <circle class="node" cx="340" cy="180" r="3.5"/>
+    <circle class="node" cx="580" cy="60" r="3"/>
+    <circle class="node" cx="780" cy="220" r="4"/>
+    <circle class="node" cx="980" cy="120" r="3"/>
+    <circle class="node" cx="150" cy="340" r="3"/>
+    <circle class="node" cx="450" cy="380" r="3.5"/>
+    <circle class="node" cx="900" cy="380" r="3"/>
+  </svg>
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow mono hero-item" data-i18n="seminar_page.eyebrow">SEMINAR — WIEN</span>
