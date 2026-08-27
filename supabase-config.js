@@ -1,7 +1,7 @@
 // Fill these in from Supabase → Project Settings → API.
 // Both values are meant to be public (safe to ship in client-side code) —
 // access control is enforced by the Row Level Security policies in Supabase, not by hiding these.
-window.CLARITY_SUPABASE = {
+window.LUSIDE_SUPABASE = {
   url: 'https://knuktzuqqmrrkpkusren.supabase.co',
   anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtudWt0enVxcW1ycmtwa3VzcmVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3MzkxNjEsImV4cCI6MjEwMDMxNTE2MX0.pWHzfjP7DvvAsTgevaFpp9BM46kyciCgFJIfZd4KeWw'
 };
@@ -11,12 +11,12 @@ window.CLARITY_SUPABASE = {
 // The supabase-js CDN script can occasionally still be loading when this runs,
 // so this polls briefly instead of assuming it's already available.
 (function initClient(attempt){
-  if(window.CLARITY_SUPABASE_CLIENT) return;
-  if(window.CLARITY_SUPABASE.url.indexOf('YOUR_SUPABASE') !== -1) return;
+  if(window.LUSIDE_SUPABASE_CLIENT) return;
+  if(window.LUSIDE_SUPABASE.url.indexOf('YOUR_SUPABASE') !== -1) return;
   if(window.supabase){
-    window.CLARITY_SUPABASE_CLIENT = window.supabase.createClient(
-      window.CLARITY_SUPABASE.url,
-      window.CLARITY_SUPABASE.anonKey
+    window.LUSIDE_SUPABASE_CLIENT = window.supabase.createClient(
+      window.LUSIDE_SUPABASE.url,
+      window.LUSIDE_SUPABASE.anonKey
     );
     return;
   }
@@ -24,14 +24,14 @@ window.CLARITY_SUPABASE = {
 })();
 
 // Call back once the shared client is ready (or null if it never became available).
-window.claritySupabaseReady = function(callback){
-  if(window.CLARITY_SUPABASE_CLIENT){ callback(window.CLARITY_SUPABASE_CLIENT); return; }
+window.lusideSupabaseReady = function(callback){
+  if(window.LUSIDE_SUPABASE_CLIENT){ callback(window.LUSIDE_SUPABASE_CLIENT); return; }
   var tries = 0;
   var timer = setInterval(function(){
     tries++;
-    if(window.CLARITY_SUPABASE_CLIENT){
+    if(window.LUSIDE_SUPABASE_CLIENT){
       clearInterval(timer);
-      callback(window.CLARITY_SUPABASE_CLIENT);
+      callback(window.LUSIDE_SUPABASE_CLIENT);
     } else if(tries > 60){
       clearInterval(timer);
       callback(null);

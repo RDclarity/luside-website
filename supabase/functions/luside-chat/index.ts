@@ -4,7 +4,7 @@ import { corsHeaders, handlePreflight, json } from "../_shared/cors.ts";
 // OpenAI-Key serverseitig (Edge-Function-Secret) — ein Key im Browser-Code
 // wäre für jeden im Seitenquelltext lesbar und missbrauchbar.
 //
-// Bewusst kein Shared Secret nötig (wie bei claritylab-lead-intake): die
+// Bewusst kein Shared Secret nötig (wie bei luside-rima-sync): die
 // einzige mögliche Nebenwirkung eines missbräuchlichen Aufrufs sind Kosten
 // auf dem OpenAI-Key selbst, kein Datenzugriff. Dagegen begrenzen wir grob
 // die Nachrichtenlänge/-anzahl pro Request.
@@ -100,7 +100,7 @@ Deno.serve(async (req) => {
     const reply = data.choices?.[0]?.message?.content ?? "";
     return json({ reply });
   } catch (err) {
-    console.error("claritylab-chat error:", err);
+    console.error("luside-chat error:", err);
     return json({ error: "chat request failed" }, 502);
   }
 });

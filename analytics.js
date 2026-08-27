@@ -1,5 +1,5 @@
 (function(){
-  if(!window.claritySupabaseReady) return;
+  if(!window.lusideSupabaseReady) return;
 
   function detectDevice(){
     var ua = navigator.userAgent || '';
@@ -18,23 +18,23 @@
 
   var sessionId = genId();
   var startTime = Date.now();
-  window.CLARITY_SESSION_ID = sessionId;
+  window.LUSIDE_SESSION_ID = sessionId;
 
-  window.clarityLogConversion = function(eventType){
-    if(!window.CLARITY_SUPABASE) return;
-    fetch(window.CLARITY_SUPABASE.url + '/rest/v1/conversion_events', {
+  window.lusideLogConversion = function(eventType){
+    if(!window.LUSIDE_SUPABASE) return;
+    fetch(window.LUSIDE_SUPABASE.url + '/rest/v1/conversion_events', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'apikey': window.CLARITY_SUPABASE.anonKey,
-        'Authorization': 'Bearer ' + window.CLARITY_SUPABASE.anonKey
+        'apikey': window.LUSIDE_SUPABASE.anonKey,
+        'Authorization': 'Bearer ' + window.LUSIDE_SUPABASE.anonKey
       },
       body: JSON.stringify({ session_id: sessionId, event_type: eventType, page: location.pathname }),
       keepalive: true
     }).catch(function(){});
   };
 
-  window.claritySupabaseReady(function(client){
+  window.lusideSupabaseReady(function(client){
     if(!client) return;
     client.from('page_visits').insert({
       session_id: sessionId,
@@ -49,12 +49,12 @@
   function sendDuration(){
     var duration = Math.round((Date.now() - startTime) / 1000);
     if(duration < 1) return;
-    fetch(window.CLARITY_SUPABASE.url + '/rest/v1/page_visit_durations', {
+    fetch(window.LUSIDE_SUPABASE.url + '/rest/v1/page_visit_durations', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'apikey': window.CLARITY_SUPABASE.anonKey,
-        'Authorization': 'Bearer ' + window.CLARITY_SUPABASE.anonKey
+        'apikey': window.LUSIDE_SUPABASE.anonKey,
+        'Authorization': 'Bearer ' + window.LUSIDE_SUPABASE.anonKey
       },
       body: JSON.stringify({ session_id: sessionId, duration_seconds: duration }),
       keepalive: true
@@ -68,6 +68,6 @@
 
   // Track clicks on any booking button present on the page
   document.querySelectorAll('.booking-btn').forEach(function(el){
-    el.addEventListener('click', function(){ window.clarityLogConversion('booking_click'); });
+    el.addEventListener('click', function(){ window.lusideLogConversion('booking_click'); });
   });
 })();

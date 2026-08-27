@@ -1,6 +1,6 @@
 (function(){
   var BOOKING_URL = 'https://outlook.office.com/bookwithme/user/dc79bf543acd4612bd3cd71f5b078ae2@tischlerkultur.onmicrosoft.com/meetingtype/Lf7qqrACrkGmDArzLF0Lvw2?anonymous&ismsaljsauthenabled&ep=mlink';
-  var CRM_INTAKE_URL = 'https://nbnpeoiqiakwnnkorxim.supabase.co/functions/v1/claritylab-lead-intake';
+  var CRM_INTAKE_URL = 'https://knuktzuqqmrrkpkusren.supabase.co/functions/v1/luside-rima-sync';
 
   var UI = {
     de: {
@@ -222,7 +222,7 @@
   var leadSteps = ['first_name', 'last_name', 'phone', 'postal_code', 'email'];
 
   function getLang(){
-    return localStorage.getItem('clarity_lang') || 'de';
+    return localStorage.getItem('luside_lang') || 'de';
   }
 
   function ui(){ return UI[getLang()] || UI.de; }
@@ -281,7 +281,7 @@
     bookingChip.type = 'button';
     bookingChip.textContent = ui().bookingChip;
     bookingChip.addEventListener('click', function(){
-      if(window.clarityLogConversion) window.clarityLogConversion('booking_click');
+      if(window.lusideLogConversion) window.lusideLogConversion('booking_click');
       window.open(BOOKING_URL, '_blank', 'noopener');
     });
     chipsEl.appendChild(bookingChip);
@@ -333,15 +333,21 @@
     var d = leadState.data;
     var strings = ui();
 
+    var crmHeaders = { 'Content-Type': 'application/json' };
+    if(window.LUSIDE_SUPABASE && window.LUSIDE_SUPABASE.anonKey){
+      crmHeaders.apikey = window.LUSIDE_SUPABASE.anonKey;
+      crmHeaders.Authorization = 'Bearer ' + window.LUSIDE_SUPABASE.anonKey;
+    }
     fetch(CRM_INTAKE_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: crmHeaders,
       body: JSON.stringify({
         first_name: d.first_name,
         last_name: d.last_name,
         email: d.email,
         phone: d.phone || null,
-        postal_code: d.postal_code || null
+        postal_code: d.postal_code || null,
+        biggest_challenge: 'Chat-Anfrage'
       })
     }).catch(function(err){ console.warn('CRM forward failed (non-blocking):', err); });
 
@@ -349,8 +355,8 @@
     // not a full Promise — chaining .catch() directly on it throws
     // "...catch is not a function". Always go through .then(res => ...) and
     // inspect res.error instead (matches the pattern in contact-form.js).
-    if(window.claritySupabaseReady){
-      window.claritySupabaseReady(function(client){
+    if(window.lusideSupabaseReady){
+      window.lusideSupabaseReady(function(client){
         if(!client) return;
         try {
           client.from('contacts').insert({
@@ -388,12 +394,12 @@
     link.rel = 'noopener noreferrer';
     link.textContent = strings.bookingChip + ' →';
     link.addEventListener('click', function(){
-      if(window.clarityLogConversion) window.clarityLogConversion('booking_click');
+      if(window.lusideLogConversion) window.lusideLogConversion('booking_click');
     });
     followup.appendChild(link);
     messagesEl.appendChild(followup);
     messagesEl.scrollTop = messagesEl.scrollHeight;
-    if(window.clarityLogConversion) window.clarityLogConversion('form_submit');
+    if(window.lusideLogConversion) window.lusideLogConversion('form_submit');
   }
 
   function handleLeadStep(text){
@@ -432,8 +438,8 @@
     if(aiHistory.length > 12) aiHistory = aiHistory.slice(-12);
 
     var typingEl = showTyping();
-    var configured = window.CLARITY_SUPABASE && window.CLARITY_SUPABASE.url && window.CLARITY_SUPABASE.anonKey
-      && window.CLARITY_SUPABASE.url.indexOf('YOUR_SUPABASE') === -1;
+    var configured = window.LUSIDE_SUPABASE && window.LUSIDE_SUPABASE.url && window.LUSIDE_SUPABASE.anonKey
+      && window.LUSIDE_SUPABASE.url.indexOf('YOUR_SUPABASE') === -1;
 
     if(!configured){
       typingEl.remove();
@@ -441,12 +447,12 @@
       return;
     }
 
-    fetch(window.CLARITY_SUPABASE.url + '/functions/v1/claritylab-chat', {
+    fetch(window.LUSIDE_SUPABASE.url + '/functions/v1/luside-chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'apikey': window.CLARITY_SUPABASE.anonKey,
-        'Authorization': 'Bearer ' + window.CLARITY_SUPABASE.anonKey
+        'apikey': window.LUSIDE_SUPABASE.anonKey,
+        'Authorization': 'Bearer ' + window.LUSIDE_SUPABASE.anonKey
       },
       body: JSON.stringify({ messages: aiHistory, lang: getLang() })
     }).then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); })
@@ -521,7 +527,7 @@
     }
   });
 
-  window.addEventListener('clarity:langchange', function(){
+  window.addEventListener('luside:langchange', function(){
     applyChrome();
     if(initialized) renderMenu();
   });

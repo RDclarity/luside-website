@@ -13,9 +13,9 @@
     var firstName = parts.shift();
     var lastName = parts.join(' ') || null;
     var headers = { 'Content-Type': 'application/json' };
-    if(window.CLARITY_SUPABASE && window.CLARITY_SUPABASE.anonKey){
-      headers.apikey = window.CLARITY_SUPABASE.anonKey;
-      headers.Authorization = 'Bearer ' + window.CLARITY_SUPABASE.anonKey;
+    if(window.LUSIDE_SUPABASE && window.LUSIDE_SUPABASE.anonKey){
+      headers.apikey = window.LUSIDE_SUPABASE.anonKey;
+      headers.Authorization = 'Bearer ' + window.LUSIDE_SUPABASE.anonKey;
     }
     fetch(CRM_INTAKE_URL, {
       method: 'POST',
@@ -32,8 +32,8 @@
   }
 
   function currentStrings(){
-    var lang = localStorage.getItem('clarity_lang') || 'de';
-    var dict = (window.clarityI18n && window.clarityI18n.translations[lang]) || {};
+    var lang = localStorage.getItem('luside_lang') || 'de';
+    var dict = (window.lusideI18n && window.lusideI18n.translations[lang]) || {};
     return (dict.seminar_page) || {};
   }
 
@@ -59,7 +59,7 @@
 
       if(!name || !email) return;
 
-      if(!window.claritySupabaseReady){
+      if(!window.lusideSupabaseReady){
         console.warn('Supabase is not configured yet — see supabase-config.js');
         showNote(currentStrings().form_error || 'Configuration missing.', true);
         return;
@@ -67,7 +67,7 @@
 
       submitBtn.disabled = true;
 
-      window.claritySupabaseReady(function(client){
+      window.lusideSupabaseReady(function(client){
         if(!client){
           showNote(currentStrings().form_error || 'Configuration missing.', true);
           submitBtn.disabled = false;
@@ -95,7 +95,7 @@
           forwardToCrm({ name: name, email: email, phone: phone, company: company });
           form.reset();
           showNote(currentStrings().form_success || 'Thank you.', false);
-          if(window.clarityLogConversion) window.clarityLogConversion('form_submit');
+          if(window.lusideLogConversion) window.lusideLogConversion('form_submit');
         }).catch(function(err){
           console.error(err);
           showNote(currentStrings().form_error || 'Something went wrong.', true);

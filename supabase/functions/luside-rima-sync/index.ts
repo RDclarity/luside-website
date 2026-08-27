@@ -5,7 +5,7 @@ import { corsHeaders, handlePreflight, json } from "../_shared/cors.ts";
 // (contact_submissions, tagged source_company='luside').
 //
 // Bewusst kein Shared Secret zum Browser hin nötig (wie bei
-// claritylab-chat): der Aufrufer kann hier nur ein einziges Ding tun —
+// luside-chat): der Aufrufer kann hier nur ein einziges Ding tun —
 // einen Lead für Luside anlegen. Die eigentliche Absicherung liegt auf
 // der RIMA-Seite: nur wer LUSIDE_SYNC_SECRET kennt (serverseitig, nie im
 // Browser) darf dort source_company='luside' setzen. Ohne dieses Secret

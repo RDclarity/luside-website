@@ -477,11 +477,11 @@
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
 
-    localStorage.setItem('clarity_lang', lang);
-    window.dispatchEvent(new CustomEvent('clarity:langchange', { detail: { lang: lang } }));
+    localStorage.setItem('luside_lang', lang);
+    window.dispatchEvent(new CustomEvent('luside:langchange', { detail: { lang: lang } }));
   }
 
-  window.clarityI18n = { translations: TRANSLATIONS, applyLang: applyLang, resolve: resolve };
+  window.lusideI18n = { translations: TRANSLATIONS, applyLang: applyLang, resolve: resolve };
 
   document.querySelectorAll('.lang-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
@@ -489,6 +489,6 @@
     });
   });
 
-  var savedLang = localStorage.getItem('clarity_lang') || 'de';
+  var savedLang = localStorage.getItem('luside_lang') || 'de';
   applyLang(savedLang);
 })();
