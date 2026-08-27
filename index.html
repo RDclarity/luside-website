@@ -6,15 +6,24 @@
 <meta name="description" content="Luside ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI.">
 <link rel="canonical" href="https://rdclarity.github.io/luside-website/index.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#F7F5F0">
 <meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
 <meta property="og:site_name" content="Luside">
 <meta property="og:title" content="Luside — Du musst dein Unternehmen nicht allein tragen">
 <meta property="og:description" content="Wir beraten nicht nur — wir bauen mit dir die Prozesse, Systeme, das Marketing und die KI-Lösungen, die dein Unternehmen wirklich braucht.">
 <meta property="og:url" content="https://rdclarity.github.io/luside-website/index.html">
+<meta property="og:image" content="https://rdclarity.github.io/luside-website/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Luside — Unternehmensberatung und Entwicklung">
 <meta property="og:locale" content="de_AT">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Luside — Du musst dein Unternehmen nicht allein tragen">
 <meta name="twitter:description" content="Wir beraten nicht nur — wir bauen mit dir die Prozesse, Systeme, das Marketing und die KI-Lösungen, die dein Unternehmen wirklich braucht.">
+<meta name="twitter:image" content="https://rdclarity.github.io/luside-website/og-image.jpg">
 <title data-i18n="meta.title">Luside — Du musst dein Unternehmen nicht allein tragen</title>
 <script type="application/ld+json">
 {
@@ -374,6 +383,7 @@
           <a href="#ablauf" data-i18n="nav.ablauf">Ablauf</a>
           <a href="#faq" data-i18n="nav.faq">FAQ</a>
           <a href="team.html" data-i18n="nav.team">Team</a>
+          <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
         </nav>
         <div class="lang-switch">
           <button type="button" class="lang-btn" data-lang="de">DE</button>
@@ -448,7 +458,7 @@
         <div class="section-label mono" data-i18n="leistungen.label">LEISTUNGEN</div>
         <h2 class="display" data-i18n="leistungen.h2">Wo wir konkret mit anpacken</h2>
       </div>
-      <p data-i18n="leistungen.p">Fünf Bereiche. Ein Ziel: dass du nicht mehr alles allein tragen musst.</p>
+      <p data-i18n="leistungen.p">Vier Bereiche. Ein Ziel: dass du nicht mehr alles allein tragen musst.</p>
     </div>
   </div>
   <div class="wrap">
@@ -881,12 +891,12 @@
     sectionEls.forEach(el => navIo.observe(el));
   }
 </script>
-<script src="i18n.js"></script>
+<script src="i18n.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" defer></script>
+<script src="supabase-config.js" defer></script>
 <script src="chatbot.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js"></script>
-<script src="supabase-config.js"></script>
-<script src="contact-form.js"></script>
-<script src="analytics.js"></script>
+<script src="contact-form.js" defer></script>
+<script src="analytics.js" defer></script>
 
 </body>
 </html>

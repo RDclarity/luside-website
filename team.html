@@ -6,16 +6,49 @@
 <meta name="description" content="Lerne das Team hinter Luside kennen — Unternehmer, die selbst umsetzen.">
 <link rel="canonical" href="https://rdclarity.github.io/luside-website/team.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#F7F5F0">
 <meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
 <meta property="og:site_name" content="Luside">
 <meta property="og:title" content="Team — Luside">
 <meta property="og:description" content="Lerne das Team hinter Luside kennen — Unternehmer, die selbst umsetzen.">
 <meta property="og:url" content="https://rdclarity.github.io/luside-website/team.html">
+<meta property="og:image" content="https://rdclarity.github.io/luside-website/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Luside — Unternehmensberatung und Entwicklung">
 <meta property="og:locale" content="de_AT">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Team — Luside">
 <meta name="twitter:description" content="Lerne das Team hinter Luside kennen — Unternehmer, die selbst umsetzen.">
+<meta name="twitter:image" content="https://rdclarity.github.io/luside-website/og-image.jpg">
 <title data-i18n="team_page.meta_title">Team — Luside</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "Person",
+      "position": 1,
+      "name": "Richard Dobrohruschka",
+      "jobTitle": "Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau",
+      "worksFor": { "@type": "Organization", "name": "Luside" },
+      "url": "https://rdclarity.github.io/luside-website/team.html"
+    },
+    {
+      "@type": "Person",
+      "position": 2,
+      "name": "Marko Katalan",
+      "jobTitle": "Strategie, Organisation, Unternehmensentwicklung, Wachstum",
+      "worksFor": { "@type": "Organization", "name": "Luside" },
+      "url": "https://rdclarity.github.io/luside-website/team.html"
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -402,6 +435,7 @@
           <a href="index.html#ablauf" data-i18n="nav.ablauf">Ablauf</a>
           <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
           <a href="team.html" class="current" data-i18n="nav.team">Team</a>
+          <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
         </nav>
         <div class="lang-switch">
           <button type="button" class="lang-btn" data-lang="de">DE</button>
@@ -565,11 +599,11 @@
     });
   }
 </script>
-<script src="i18n.js"></script>
+<script src="i18n.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" defer></script>
+<script src="supabase-config.js" defer></script>
 <script src="chatbot.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js"></script>
-<script src="supabase-config.js"></script>
-<script src="analytics.js"></script>
+<script src="analytics.js" defer></script>
 
 </body>
 </html>

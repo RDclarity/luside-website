@@ -7,6 +7,9 @@
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://rdclarity.github.io/luside-website/impressum.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#F7F5F0">
 <title data-i18n="impressum_page.meta_title">Impressum — Luside</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,6 +110,7 @@
           <a href="index.html#ablauf" data-i18n="nav.ablauf">Ablauf</a>
           <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
           <a href="team.html" data-i18n="nav.team">Team</a>
+          <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
         </nav>
         <div class="lang-switch">
           <button type="button" class="lang-btn" data-lang="de">DE</button>
@@ -192,11 +196,11 @@
     window.addEventListener('resize', () => { if(window.innerWidth > 780) closeMobileMenu(); });
   }
 </script>
-<script src="i18n.js"></script>
+<script src="i18n.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" defer></script>
+<script src="supabase-config.js" defer></script>
 <script src="chatbot.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js"></script>
-<script src="supabase-config.js"></script>
-<script src="analytics.js"></script>
+<script src="analytics.js" defer></script>
 
 </body>
 </html>

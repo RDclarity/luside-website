@@ -5,6 +5,7 @@
 ## Seiten
 
 - [Startseite](https://rdclarity.github.io/luside-website/index.html): Leistungen (Prozesse & Systeme, Marketing, Finanzielle Angelegenheiten, Digitalisierung & KI), Warum Luside, Ablauf, FAQ, Kontaktformular
+- [Seminar](https://rdclarity.github.io/luside-website/seminar.html): 2-tägiges Praxisseminar zu Prozessen, Systemen und Marketing, voraussichtlich November/Dezember 2026 in Wien, mit Marko Katalan und Richard Dobrohruschka (weitere Vortragende folgen)
 - [Team](https://rdclarity.github.io/luside-website/team.html): Richard Dobrohruschka (Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau), Marko Katalan (Strategie, Organisation, Unternehmensentwicklung, Wachstum)
 - [Datenschutz](https://rdclarity.github.io/luside-website/datenschutz.html): Datenschutzerklärung
 - [Impressum](https://rdclarity.github.io/luside-website/impressum.html): Impressum
@@ -14,4 +15,3 @@
 - E-Mail: inquiry@luside.com
 - Telefon: +43 660 3607188
 - Adresse: Royerstraße 7, 2482 Münchendorf, Österreich
-- Erstgespräch: Formular im Kontakt-Bereich der Startseite
