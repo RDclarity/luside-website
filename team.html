@@ -403,16 +403,14 @@
   .team-cta .btn-primary:hover{ background: var(--accent); color:#fff; }
 
   /* ---------- FOOTER ---------- */
-  footer{ padding: 44px 0; border-top: 1px solid var(--line); }
-  .footer-inner{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap: 16px;
-    font-size: 0.8rem;
-    color: var(--slate);
-  }
+  footer{ padding: 44px 0 24px; border-top: 1px solid var(--line); }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap: 32px; font-size: 0.85rem; color: var(--slate); }
+  .footer-cols{ display:flex; gap:56px; flex-wrap:wrap; }
+  .footer-col-title{ font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; color: var(--slate-light); margin-bottom:14px; }
+  .footer-col a{ display:block; padding:4px 0; transition: color .2s ease; }
+  .footer-col a:hover{ color: var(--accent); }
+  .footer-bottom{ max-width:1160px; margin:28px auto 0; padding:0 32px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:0.8rem; color: var(--slate); }
+  @media (max-width: 640px){ .footer-bottom{ padding:0 22px; } }
   .footer-links{ display:flex; gap: 22px; }
 </style>
 </head>
@@ -490,7 +488,26 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span data-i18n="footer.copyright">© 2026 Lusides. Alle Rechte vorbehalten.</span>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="nav.leistungen">Leistungen</div>
+        <a href="leistungen-prozesse-systeme.html" data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</a>
+        <a href="leistungen-marketing.html" data-i18n="leistungen.s2_tag">Marketing</a>
+        <a href="leistungen-finanzen.html" data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</a>
+        <a href="leistungen-digitalisierung-ki.html" data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer.col_unternehmen">Unternehmen</div>
+        <a href="index.html" data-i18n="footer.col_home">Startseite</a>
+        <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
+      </div>
+    </div>
+    <div>
+      <span data-i18n="footer.copyright">© 2026 Lusides. Alle Rechte vorbehalten.</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span></span>
     <div class="footer-links">
       <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
       <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>

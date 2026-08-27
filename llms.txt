@@ -1,14 +1,18 @@
-# Luside
+# Lusides
 
-> Luside ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Voraussetzung: das Unternehmen hat bereits Umsatz und eine gewachsene Struktur. Ablauf: Analyse, Aufbau, Umsetzung.
+> Lusides ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Voraussetzung: das Unternehmen hat bereits Umsatz und eine gewachsene Struktur. Ablauf: Analyse, Aufbau, Umsetzung.
 
 ## Seiten
 
-- [Startseite](https://rdclarity.github.io/luside-website/index.html): Leistungen (Prozesse & Systeme, Marketing, Finanzielle Angelegenheiten, Digitalisierung & KI), Warum Luside, Ablauf, FAQ, Kontaktformular
+- [Startseite](https://rdclarity.github.io/luside-website/index.html): Leistungen (Prozesse & Systeme, Marketing, Finanzielle Angelegenheiten, Digitalisierung & KI), Warum Lusides, Ablauf, FAQ, Kontaktformular
+- [Prozesse & Systeme](https://rdclarity.github.io/luside-website/leistungen-prozesse-systeme.html): Aufbau klarer Abläufe, dokumentierter Standards und eindeutiger Verantwortlichkeiten, damit ein Unternehmen nicht mehr an einer einzigen Person hängt
+- [Marketing](https://rdclarity.github.io/luside-website/leistungen-marketing.html): Positionierung, Kampagnenstruktur, Leadgenerierung und Vertriebsanbindung, die zusammenspielen
+- [Finanzielle Angelegenheiten](https://rdclarity.github.io/luside-website/leistungen-finanzen.html): Controlling, Reporting, Kennzahlen-Dashboards und Liquiditätsplanung für fundierte Entscheidungen
+- [Digitalisierung & KI](https://rdclarity.github.io/luside-website/leistungen-digitalisierung-ki.html): Firmenspezifische KI-Systeme und Automatisierung, selbst entwickelt und implementiert
 - [Seminar](https://rdclarity.github.io/luside-website/seminar.html): 2-tägiges Praxisseminar zu Prozessen, Systemen und Marketing, voraussichtlich November/Dezember 2026 in Wien, mit Marko Katalan und Richard Dobrohruschka (weitere Vortragende folgen)
 - [Team](https://rdclarity.github.io/luside-website/team.html): Richard Dobrohruschka (Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau), Marko Katalan (Strategie, Organisation, Unternehmensentwicklung, Wachstum)
-- [Datenschutz](https://rdclarity.github.io/luside-website/datenschutz.html): Datenschutzerklärung
 - [Impressum](https://rdclarity.github.io/luside-website/impressum.html): Impressum
+- [Datenschutz](https://rdclarity.github.io/luside-website/datenschutz.html): Datenschutzerklärung
 
 ## Kontakt
 
