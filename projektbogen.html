@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Projektbogen zur Erstberatung: ein paar gezielte Fragen zu eurer Situation, damit Marko Katalan sich vorbereiten kann.">
+<link rel="canonical" href="https://rdclarity.github.io/luside-website/projektbogen.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#F6F1EA">
+<meta name="robots" content="noindex, follow">
+<title data-i18n="projektbogen_page.meta_title">Projektbogen — Lusides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F6F1EA;
+    --paper-dim: #ECE3D6;
+    --ink: #211814;
+    --slate: #6E5B4C;
+    --slate-light: #A6907C;
+    --line: #E2D5C3;
+    --accent: #A8451F;
+    --accent-dim: #F1DDD0;
+    --accent-ink: #6E2C11;
+    --radius: 2px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{ font-family:'Fraunces', serif; font-optical-sizing: auto; }
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background: var(--accent); color:#fff; }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap{ max-width: 720px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px){ .wrap{ padding: 0 22px; } }
+
+  header{ border-bottom: 1px solid var(--line); }
+  .nav{ max-width: 1160px; margin: 0 auto; padding: 20px 32px; display:flex; align-items:center; justify-content:space-between; }
+  @media (max-width: 640px){ .nav{ padding: 18px 22px; } }
+  .brand{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; font-size:1.28rem; letter-spacing:-0.01em; }
+
+  .hero{ padding: 64px 0 8px; }
+  .eyebrow{ font-size: 0.78rem; color: var(--accent-ink); display:flex; align-items:center; gap:10px; margin-bottom: 22px; }
+  .eyebrow::before{ content:''; width:26px; height:1px; background: var(--accent-ink); display:inline-block; }
+  .hero h1{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-size: clamp(1.9rem, 4.4vw, 2.7rem); font-weight: 500; line-height: 1.18; letter-spacing: -0.01em; }
+  .hero-sub{ margin-top: 18px; font-size: 1.04rem; color: var(--slate); max-width: 56ch; }
+  .lead-summary{ margin-top: 22px; font-size: 0.9rem; color: var(--accent-ink); background: var(--accent-dim); display:inline-block; padding: 8px 14px; border-radius: var(--radius); display:none; }
+  .lead-summary.show{ display:inline-block; }
+
+  form{ padding: 40px 0 96px; display:flex; flex-direction:column; gap: 22px; }
+  .field{ display:flex; flex-direction:column; gap: 7px; }
+  .field label{ font-size: 0.86rem; color: var(--ink); font-weight: 500; }
+  .field .hint{ font-size: 0.8rem; color: var(--slate-light); font-weight: 400; }
+  .field input, .field select, .field textarea{
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 13px 14px;
+    font-family: inherit;
+    font-size: 0.96rem;
+    color: var(--ink);
+  }
+  .field select{ cursor:pointer; }
+  .field textarea{ resize:vertical; min-height:92px; }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline:none; border-color: var(--accent); }
+  .checkbox-group{ display:flex; flex-direction:column; gap: 10px; }
+  .checkbox-group label{ display:flex; align-items:flex-start; gap: 10px; font-size: 0.94rem; font-weight: 400; color: var(--ink); cursor:pointer; }
+  .checkbox-group input{ margin-top: 3px; width: 17px; height: 17px; accent-color: var(--accent); flex-shrink: 0; }
+  .field-checkbox label{ display:flex; align-items:flex-start; gap: 10px; font-size: 0.9rem; color: var(--slate); cursor:pointer; }
+  .field-checkbox input{ margin-top: 3px; width: 17px; height: 17px; accent-color: var(--accent); flex-shrink: 0; }
+  .two-col{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 560px){ .two-col{ grid-template-columns: 1fr; } }
+
+  .submit-btn{ margin-top: 6px; background: var(--ink); color: var(--paper); padding: 16px 28px; border: none; border-radius: var(--radius); font-family: inherit; font-size: 0.96rem; cursor:pointer; transition: background .2s ease; }
+  .submit-btn:hover{ background: var(--accent); }
+  .submit-btn:disabled{ opacity: 0.6; cursor: not-allowed; }
+  .form-note{ font-size: 0.92rem; color: var(--slate); display:none; padding: 16px 18px; background: var(--accent-dim); border-radius: var(--radius); }
+  .form-note.show{ display:block; }
+  .form-note.error{ background: #F7DDD6; color: #7A2A14; }
+
+  footer{ padding: 32px 0; border-top: 1px solid var(--line); text-align:center; font-size: 0.8rem; color: var(--slate); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand">Lusides</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <span class="eyebrow mono" data-i18n="projektbogen_page.eyebrow">PROJEKTBOGEN</span>
+    <h1 class="display" data-i18n="projektbogen_page.h1">Bevor wir uns treffen, ein paar Fragen zu eurer Situation.</h1>
+    <p class="hero-sub" data-i18n="projektbogen_page.sub">Damit Marko Katalan sich gezielt auf euer Gespräch vorbereiten kann. Dauert etwa fünf Minuten.</p>
+    <div class="lead-summary" id="leadSummary"></div>
+  </section>
+
+  <form id="projektbogenForm" novalidate>
+    <div class="two-col">
+      <div class="field">
+        <label for="pb-name" data-i18n="kontakt.form_name">Name</label>
+        <input id="pb-name" name="name" type="text" required>
+      </div>
+      <div class="field">
+        <label for="pb-company" data-i18n="kontakt.form_company">Unternehmen</label>
+        <input id="pb-company" name="company" type="text" required>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="field">
+        <label for="pb-email" data-i18n="kontakt.form_email">E-Mail</label>
+        <input id="pb-email" name="email" type="email" required>
+      </div>
+      <div class="field">
+        <label for="pb-phone" data-i18n="kontakt.form_phone">Telefon</label>
+        <input id="pb-phone" name="phone" type="tel">
+      </div>
+    </div>
+
+    <div class="field">
+      <label data-i18n="projektbogen_page.f_bereich">Welcher Bereich betrifft eure größte Herausforderung? <span class="hint" data-i18n="projektbogen_page.f_multi">(Mehrfachauswahl möglich)</span></label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="bereich" value="Prozesse & Systeme"><span data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</span></label>
+        <label><input type="checkbox" name="bereich" value="Marketing"><span data-i18n="leistungen.s2_tag">Marketing</span></label>
+        <label><input type="checkbox" name="bereich" value="Finanzielle Angelegenheiten"><span data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</span></label>
+        <label><input type="checkbox" name="bereich" value="Digitalisierung & KI"><span data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</span></label>
+        <label><input type="checkbox" name="bereich" value="Sonstiges"><span data-i18n="projektbogen_page.f_bereich_other">Sonstiges</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="pb-situation" data-i18n="projektbogen_page.f_situation">Wie sieht eure aktuelle Situation aus?</label>
+      <textarea id="pb-situation" name="situation" rows="4" required></textarea>
+    </div>
+
+    <div class="field">
+      <label for="pb-versucht" data-i18n="projektbogen_page.f_versucht">Was habt ihr bereits versucht? <span class="hint" data-i18n="projektbogen_page.f_optional">(optional)</span></label>
+      <textarea id="pb-versucht" name="versucht" rows="3"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="pb-ziel" data-i18n="projektbogen_page.f_ziel">Was soll am Ende des Gesprächs für euch herauskommen?</label>
+      <textarea id="pb-ziel" name="ziel" rows="3" required></textarea>
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <label for="pb-dringlichkeit" data-i18n="projektbogen_page.f_dringlichkeit">Dringlichkeit</label>
+        <select id="pb-dringlichkeit" name="dringlichkeit" required>
+          <option value="" data-i18n="kontakt.form_select_placeholder">Bitte wählen</option>
+          <option value="In den nächsten Wochen" data-i18n="projektbogen_page.f_dringlichkeit_1">In den nächsten Wochen</option>
+          <option value="In den nächsten 3 Monaten" data-i18n="projektbogen_page.f_dringlichkeit_2">In den nächsten 3 Monaten</option>
+          <option value="Noch offen" data-i18n="projektbogen_page.f_dringlichkeit_3">Noch offen</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="pb-employees" data-i18n="kontakt.form_employees">Mitarbeiterzahl</label>
+        <select id="pb-employees" name="employee_count" required>
+          <option value="" data-i18n="kontakt.form_select_placeholder">Bitte wählen</option>
+          <option value="1-5">1–5</option>
+          <option value="6-15">6–15</option>
+          <option value="16-50">16–50</option>
+          <option value="50+">50+</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="pb-revenue" data-i18n="kontakt.form_revenue">Jahresumsatz</label>
+      <select id="pb-revenue" name="annual_revenue" required>
+        <option value="" data-i18n="kontakt.form_select_placeholder">Bitte wählen</option>
+        <option value="<250k">&lt; 250.000 €</option>
+        <option value="250k-500k">250.000–500.000 €</option>
+        <option value="500k-1m">500.000 €–1 Mio €</option>
+        <option value=">1m">&gt; 1 Mio €</option>
+      </select>
+    </div>
+
+    <div class="field field-checkbox">
+      <label>
+        <input type="checkbox" name="entscheidung">
+        <span data-i18n="projektbogen_page.f_entscheidung">Ich kann diese Entscheidung selbst treffen oder bin maßgeblich daran beteiligt.</span>
+      </label>
+    </div>
+
+    <button type="submit" class="submit-btn" data-i18n="projektbogen_page.submit">Projektbogen absenden</button>
+    <div class="form-note" id="formNote"></div>
+  </form>
+</div>
+
+<footer>
+  <span data-i18n="footer.copyright">© 2026 Lusides. Alle Rechte vorbehalten.</span>
+</footer>
+
+<script src="i18n.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" defer></script>
+<script src="supabase-config.js" defer></script>
+<script src="projektbogen-form.js" defer></script>
+
+</body>
+</html>
