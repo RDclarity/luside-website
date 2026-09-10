@@ -78,7 +78,7 @@
       kontakt: {
         label: 'ERSTGESPRÄCH',
         h2: 'Erzähl uns von deinem Unternehmen.',
-        copy: 'Zwei Minuten Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.',
+        copy: 'Eine Minute Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.',
         book_btn: 'Termin jetzt buchen',
         email_label: 'E-Mail',
         phone_label: 'Telefon',
@@ -92,6 +92,7 @@
         form_email: 'E-Mail',
         form_select_placeholder: 'Bitte wählen',
         form_newsletter: 'Ich möchte den Newsletter erhalten.',
+        form_trust: 'Direkt mit den Gründern · Antwort innerhalb von 2 Werktagen',
         form_submit: 'Kontakt aufnehmen',
         form_success: 'Danke! Wir melden uns innerhalb von zwei Werktagen. Du kannst aber auch gleich einen Termin wählen:',
         form_error: 'Da ist etwas schiefgelaufen. Bitte versuche es erneut oder schreib uns direkt per E-Mail.'
@@ -408,6 +409,9 @@
         eyebrow: 'PROJEKTBOGEN',
         h1: 'Bevor wir uns treffen, ein paar Fragen zu eurer Situation.',
         sub: 'Damit Marko Katalan sich gezielt auf euer Gespräch vorbereiten kann. Dauert etwa fünf Minuten.',
+        h1_generic: 'Noch ein paar Fragen zu eurer Situation.',
+        sub_generic: 'Damit wir eure Anfrage von Anfang an richtig einordnen können. Dauert etwa fünf Minuten.',
+        form_success_generic: 'Danke! Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.',
         f_bereich: 'Welcher Bereich betrifft eure größte Herausforderung?',
         f_multi: '(Mehrfachauswahl möglich)',
         f_bereich_other: 'Sonstiges',
@@ -559,7 +563,7 @@
       kontakt: {
         label: 'INTRODUCTORY CALL',
         h2: 'Tell us about your business.',
-        copy: "Two minutes to fill out. We'll get back to you within two business days — only if we can genuinely help.",
+        copy: "One minute to fill out. We'll get back to you within two business days — only if we can genuinely help.",
         book_btn: 'Book a meeting now',
         email_label: 'Email',
         phone_label: 'Phone',
@@ -573,6 +577,7 @@
         form_email: 'Email',
         form_select_placeholder: 'Please select',
         form_newsletter: 'I would like to receive the newsletter.',
+        form_trust: 'Straight to the founders · Reply within 2 business days',
         form_submit: 'Get in touch',
         form_success: "Thanks! We'll get back to you within two business days. Or pick a time right now:",
         form_error: 'Something went wrong. Please try again or email us directly.'
@@ -889,6 +894,9 @@
         eyebrow: 'PROJECT BRIEF',
         h1: 'Before we meet, a few questions about your situation.',
         sub: 'So Marko Katalan can prepare specifically for your call. Takes about five minutes.',
+        h1_generic: 'A few more questions about your situation.',
+        sub_generic: "So we can place your inquiry correctly from the start. Takes about five minutes.",
+        form_success_generic: "Thanks! We'll get back to you within two business days — only if we can genuinely help.",
         f_bereich: 'Which area is your biggest challenge in?',
         f_multi: '(multiple selection possible)',
         f_bereich_other: 'Other',

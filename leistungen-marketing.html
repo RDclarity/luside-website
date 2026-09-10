@@ -293,6 +293,7 @@
   .qualify-form .field-checkbox label{ display:flex; align-items:flex-start; gap: 8px; font-size: 0.85rem; color: #9BA3AB; cursor:pointer; }
   .qualify-form .field-checkbox input{ margin-top: 3px; width: 16px; height: 16px; accent-color: var(--accent); flex-shrink: 0; }
   .qualify-form .submit-btn{ margin-top: 6px; background: var(--accent); color: #fff; padding: 16px 28px; border: none; border-radius: var(--radius); font-family: inherit; font-size: 0.94rem; cursor:pointer; transition: background .2s ease; width:100%; }
+  .form-trust{ margin-top: -6px; font-size: 0.8rem; color: #9BA3AB; text-align: center; }
   .qualify-form .submit-btn:hover{ background: #3a68ec; }
   .qualify-form .submit-btn:disabled{ opacity: 0.6; cursor: not-allowed; }
   .qualify-form .form-note{ font-size: 0.86rem; color: #C7CCD1; margin-top: 4px; display:none; }
@@ -319,7 +320,7 @@
   .footer-links{ display:flex; gap: 22px; }
 </style>
 </head>
-<body>
+<body data-lead-source="Marketing">
 
 <div class="bg-stone" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
@@ -572,7 +573,7 @@
     <div class="reveal">
       <div class="section-label mono" data-i18n="kontakt.label">KOSTENLOSE ANALYSE</div>
       <h2 data-i18n="kontakt.h2">Erzähl uns von deinem Unternehmen.</h2>
-      <p class="kontakt-copy" data-i18n="kontakt.copy">Zwei Minuten Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.</p>
+      <p class="kontakt-copy" data-i18n="kontakt.copy">Eine Minute Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.</p>
 
       <div class="qualify-form">
         <form id="kontaktForm" novalidate>
@@ -585,28 +586,8 @@
             <input id="cf-name" name="name" type="text" required>
           </div>
           <div class="field">
-            <label for="cf-employees" data-i18n="kontakt.form_employees">Mitarbeiterzahl</label>
-            <select id="cf-employees" name="employee_count" required>
-              <option value="" data-i18n="kontakt.form_select_placeholder">Bitte wählen</option>
-              <option value="1-5">1–5</option>
-              <option value="6-15">6–15</option>
-              <option value="16-50">16–50</option>
-              <option value="50+">50+</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="cf-revenue" data-i18n="kontakt.form_revenue">Jahresumsatz</label>
-            <select id="cf-revenue" name="annual_revenue" required>
-              <option value="" data-i18n="kontakt.form_select_placeholder">Bitte wählen</option>
-              <option value="<250k">&lt; 250.000 €</option>
-              <option value="250k-500k">250.000–500.000 €</option>
-              <option value="500k-1m">500.000 €–1 Mio €</option>
-              <option value=">1m">&gt; 1 Mio €</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="cf-challenge" data-i18n="kontakt.form_challenge">Größte Herausforderung</label>
-            <textarea id="cf-challenge" name="biggest_challenge" rows="3" required></textarea>
+            <label for="cf-message" data-i18n="erstberatung_page.form_message">Kurz, worum es geht (optional)</label>
+            <textarea id="cf-message" name="message" rows="3"></textarea>
           </div>
           <div class="field">
             <label for="cf-phone" data-i18n="kontakt.form_phone">Telefon</label>
@@ -622,11 +603,9 @@
               <span data-i18n="kontakt.form_newsletter">Ich möchte den Newsletter erhalten.</span>
             </label>
           </div>
-          <button type="submit" class="submit-btn" data-i18n="kontakt.form_submit">Analyse anfragen</button>
+          <p class="form-trust" data-i18n="kontakt.form_trust">Direkt mit den Gründern &middot; Antwort innerhalb von 2 Werktagen</p>
+          <button type="submit" class="submit-btn" data-i18n="kontakt.form_submit">Kontakt aufnehmen</button>
           <div class="form-note" id="formNote"></div>
-          <div class="booking-followup" id="bookingFollowup">
-            <a href="https://outlook.office.com/bookwithme/user/dc79bf543acd4612bd3cd71f5b078ae2@tischlerkultur.onmicrosoft.com/meetingtype/Lf7qqrACrkGmDArzLF0Lvw2?anonymous&ismsaljsauthenabled&ep=mlink" target="_blank" rel="noopener noreferrer" class="btn-primary booking-btn" data-i18n="kontakt.book_btn">Termin jetzt buchen</a>
-          </div>
         </form>
       </div>
 

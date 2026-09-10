@@ -14,6 +14,8 @@
     if(raw) lead = JSON.parse(raw);
   } catch(err){ console.warn('sessionStorage unavailable (non-blocking):', err); }
 
+  var isErstberatung = !!(lead && lead.durationLabel);
+
   if(lead){
     if(lead.name) form.name.value = lead.name;
     if(lead.company) form.company.value = lead.company;
@@ -28,6 +30,27 @@
       summaryEl.textContent = parts.join(' · ');
       summaryEl.classList.add('show');
     }
+  }
+
+  // Two arrival paths land here: a booked Erstberatung request (has
+  // durationLabel — Marko needs to prepare for a real call) or a free-form
+  // Kontaktformular inquiry (no duration — nothing is booked yet). The
+  // default copy in the HTML assumes the former; swap to the generic
+  // variant for the latter — and re-apply on every language switch, since
+  // i18n.js's applyLang() re-resolves the original data-i18n keys and would
+  // otherwise silently revert this override back to the Erstberatung copy.
+  function applyGenericCopy(){
+    var lang = localStorage.getItem('lusides_lang') || 'de';
+    var dict = (window.lusidesI18n && window.lusidesI18n.translations[lang]) || {};
+    var strings = dict.projektbogen_page || {};
+    var h1El = document.querySelector('.hero h1');
+    var subEl = document.querySelector('.hero-sub');
+    if(h1El && strings.h1_generic) h1El.textContent = strings.h1_generic;
+    if(subEl && strings.sub_generic) subEl.textContent = strings.sub_generic;
+  }
+  if(!isErstberatung){
+    window.addEventListener('load', applyGenericCopy);
+    window.addEventListener('lusides:langchange', applyGenericCopy);
   }
 
   // Best-effort: forwards the completed brief into the RIMA Equity CRM.
@@ -102,7 +125,7 @@
 
     var durationLabel = lead && lead.durationLabel ? lead.durationLabel : null;
     var lines = [
-      'Projektbogen zur Erstberatung' + (durationLabel ? ' (' + durationLabel + ')' : ''),
+      durationLabel ? 'Projektbogen zur Erstberatung (' + durationLabel + ')' : 'Projektbogen (vertiefende Angaben zur Anfrage)',
       '',
       'Themenbereich(e): ' + (bereich.length ? bereich.join(', ') : '(keine Angabe)'),
       'Aktuelle Situation: ' + situation,
@@ -139,7 +162,8 @@
         try { sessionStorage.removeItem('lusidesErstberatungLead'); } catch(err){}
         form.reset();
         form.querySelectorAll('input, textarea, select, button').forEach(function(el){ el.disabled = true; });
-        showNote(currentStrings().form_success || 'Thank you.', false);
+        var strings = currentStrings();
+        showNote((isErstberatung ? strings.form_success : strings.form_success_generic) || 'Thank you.', false);
       }).catch(function(err){
         console.error(err);
         showNote(currentStrings().form_error || 'Something went wrong.', true);

@@ -3,10 +3,16 @@
   if(!form) return;
 
   var CRM_INTAKE_URL = 'https://knuktzuqqmrrkpkusren.supabase.co/functions/v1/lusides-rima-sync';
+  var LEAD_SOURCE = document.body.getAttribute('data-lead-source') || 'Kontaktformular';
 
-  // Best-effort: forwards the lead into the RIMA Equity CRM. Never blocks or
-  // fails the user-facing submission — the local Supabase insert above is
-  // the source of truth either way.
+  // Forwards the lead into the RIMA Equity CRM. Never fails the user-facing
+  // submission — but this form redirects to projektbogen.html right after
+  // submitting (short first-contact form now, deeper qualification on the
+  // next page — shorter forms convert meaningfully better for a first
+  // touch), and a truly fire-and-forget fetch() gets cancelled by the
+  // browser when the page navigates away before the request completes. So
+  // callers await the returned promise (with a timeout race) before
+  // redirecting — see withTimeout below.
   function forwardToCrm(fields){
     var parts = fields.name.split(' ');
     var firstName = parts.shift();
@@ -16,7 +22,7 @@
       headers.apikey = window.LUSIDES_SUPABASE.anonKey;
       headers.Authorization = 'Bearer ' + window.LUSIDES_SUPABASE.anonKey;
     }
-    fetch(CRM_INTAKE_URL, {
+    return fetch(CRM_INTAKE_URL, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify({
@@ -25,15 +31,19 @@
         email: fields.email,
         phone: fields.phone || null,
         lead_company: fields.company || null,
-        employee_count: fields.employeeCount || null,
-        annual_revenue: fields.annualRevenue || null,
-        biggest_challenge: fields.biggestChallenge || null
+        biggest_challenge: fields.biggestChallenge
       })
     }).catch(function(err){ console.warn('CRM forward failed (non-blocking):', err); });
   }
 
+  function withTimeout(promise, ms){
+    return Promise.race([
+      promise,
+      new Promise(function(resolve){ setTimeout(resolve, ms); })
+    ]);
+  }
+
   var noteEl = document.getElementById('formNote');
-  var followup = document.getElementById('bookingFollowup');
   var submitBtn = form.querySelector('button[type="submit"]');
 
   function currentStrings(){
@@ -54,14 +64,12 @@
 
     var company = form.company ? form.company.value.trim() : '';
     var name = form.name.value.trim();
-    var employeeCount = form.employee_count ? form.employee_count.value : '';
-    var annualRevenue = form.annual_revenue ? form.annual_revenue.value : '';
-    var biggestChallenge = form.biggest_challenge ? form.biggest_challenge.value.trim() : '';
+    var message = form.message ? form.message.value.trim() : '';
     var phone = form.phone.value.trim();
     var email = form.email.value.trim();
     var newsletter = form.newsletter.checked;
 
-    if(!name || !email) return;
+    if(!name || !company || !email) return;
 
     if(!window.lusidesSupabaseReady){
       console.warn('Supabase is not configured yet — see supabase-config.js');
@@ -70,6 +78,8 @@
     }
 
     submitBtn.disabled = true;
+
+    var biggestChallenge = (LEAD_SOURCE + ' — Anfrage') + (message ? '\n\n' + message : '');
 
     window.lusidesSupabaseReady(function(client){
       if(!client){
@@ -84,8 +94,6 @@
         email: email,
         newsletter_opt_in: newsletter,
         company: company,
-        employee_count: employeeCount,
-        annual_revenue: annualRevenue,
         biggest_challenge: biggestChallenge
       }).then(function(res){
         if(res.error) throw res.error;
@@ -98,15 +106,19 @@
             });
         }
       }).then(function(){
-        forwardToCrm({ name: name, email: email, phone: phone, company: company, employeeCount: employeeCount, annualRevenue: annualRevenue, biggestChallenge: biggestChallenge });
-        form.reset();
-        showNote(currentStrings().form_success || 'Thank you.', false);
-        if(followup) followup.classList.add('show');
+        var crmForward = forwardToCrm({ name: name, email: email, phone: phone, company: company, biggestChallenge: biggestChallenge });
+        return withTimeout(crmForward, 2500);
+      }).then(function(){
         if(window.lusidesLogConversion) window.lusidesLogConversion('form_submit');
+        try {
+          sessionStorage.setItem('lusidesErstberatungLead', JSON.stringify({
+            name: name, email: email, phone: phone, company: company
+          }));
+        } catch(err){ console.warn('sessionStorage unavailable (non-blocking):', err); }
+        window.location.href = 'projektbogen.html';
       }).catch(function(err){
         console.error(err);
         showNote(currentStrings().form_error || 'Something went wrong.', true);
-      }).finally(function(){
         submitBtn.disabled = false;
       });
     });
