@@ -1,0 +1,27 @@
+-- Generic live mirror to RIMA Equity's admin (part of consolidating
+-- Luside/Richard Atelier/Tischlerkultur/Pontis data into one shared
+-- backend — view-only from RIMA for now, nothing writes back).
+--
+-- DELIBERATELY NOT AN EXECUTABLE MIGRATION — see the equivalent file in
+-- the tischlerkultur-relaunch repo for why: a version of that file with
+-- a placeholder secret instead of the real one got applied to that live
+-- database once and silently broke the mirror there. This file stays
+-- prose-only on purpose so the same can't happen here.
+--
+-- What's actually live (deployed via the Supabase Management API
+-- directly, not from this file): pg_net enabled, plus one trigger
+-- function public.mirror_to_rima(), attached to every table in this
+-- project's public schema (contacts, conversion_events,
+-- newsletter_subscribers, page_visit_durations, page_visits) via a
+-- DO-block loop over pg_tables. On each INSERT/UPDATE/DELETE it forwards
+-- the row to
+-- https://vkiwbxayraxgrachjaoc.supabase.co/functions/v1/mirror-ingest
+-- with header x-mirror-secret set to this project's share of
+-- MIRROR_SECRET_LUSIDE (kept only in Supabase secrets on both sides,
+-- never in git). See rima-equity/supabase/functions/mirror-ingest/index.ts
+-- for the receiving end, and rima-equity/admin/src/components/Mirror.tsx
+-- for the browsing UI (Companies tab).
+--
+-- New tables created after this was set up need the trigger attached
+-- manually (re-run the DO-block loop with the live secret filled in, via
+-- the Management API — not by applying this file).
