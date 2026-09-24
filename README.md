@@ -11,6 +11,7 @@ Static site for Lusides, served via GitHub Pages.
 
 - `index.html` — homepage (hero, problem, model, services, why us, process, FAQ, contact form).
 - `team.html`, `datenschutz.html`, `impressum.html`, `admin.html` — subpages.
+- `termin.html` + `termin-booking.js` — online booking for the free 15-minute video call (calendar + form). Backend: `supabase/migrations/20260924120000_appointments.sql`, e-mails via `supabase/functions/lusides-appointment-notify`, bookings visible in `admin.html` → Termine. Setup steps: `TERMINBUCHUNG-SETUP.md`.
 - `seminar.html` — standalone paid-traffic landing page (Meta ads) for the in-person seminar; own form(s), no exit navigation.
 - `i18n.js` — DE/EN translations, applied via `data-i18n` attributes.
 - `chatbot.js` — bottom-right chat widget (FAQ keyword matching + OpenAI fallback + guided lead capture).

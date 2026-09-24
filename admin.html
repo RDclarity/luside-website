@@ -163,6 +163,19 @@
   .tag-yes{ color: var(--accent-ink); }
   .tag-no{ color: var(--slate-light); }
   .empty-row td{ color: var(--slate-light); text-align:center; padding:24px; }
+  tbody td a{ color: var(--accent-ink); text-decoration:none; }
+  tbody td a:hover{ text-decoration:underline; }
+  .appt-filter{ display:flex; gap:6px; margin-bottom:16px; }
+  .appt-filter button{ background:none; border:1px solid var(--line); color: var(--slate); padding:6px 12px; border-radius: var(--radius); font-family:inherit; font-size:0.8rem; cursor:pointer; }
+  .appt-filter button.active{ border-color: var(--accent); color: var(--accent-ink); background: var(--accent-dim); }
+  .status{ font-size:0.76rem; padding:2px 8px; border-radius: 10px; white-space:nowrap; }
+  .status-booked{ background: var(--accent-dim); color: var(--accent-ink); }
+  .status-done{ background: #E4F2E7; color: #1E6B34; }
+  .status-cancelled{ background: var(--paper-dim); color: var(--slate-light); text-decoration: line-through; }
+  .row-actions{ display:flex; gap:6px; flex-wrap:wrap; }
+  .row-actions button{ background:none; border:1px solid var(--line); color: var(--slate); padding:4px 10px; border-radius: var(--radius); font-family:inherit; font-size:0.76rem; cursor:pointer; white-space:nowrap; }
+  .row-actions button:hover{ border-color: var(--accent); color: var(--accent); }
+  .table-scroll{ overflow-x:auto; }
   .loading-row td{ color: var(--slate-light); text-align:center; padding:24px; }
 </style>
 </head>
@@ -192,6 +205,29 @@
   </div>
 
   <div id="dashboardView">
+    <div class="panel-block">
+      <div class="panel-head">
+        <h2 class="display">Termine (kostenloses 15-Min-Gespräch)</h2>
+        <button class="export-btn" type="button" id="exportAppointmentsBtn">Als Excel exportieren</button>
+      </div>
+      <div class="count" id="appointmentsCount"></div>
+      <div class="appt-filter" id="apptFilter">
+        <button type="button" data-filter="upcoming" class="active">Anstehend</button>
+        <button type="button" data-filter="past">Vergangen</button>
+        <button type="button" data-filter="all">Alle</button>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Termin</th><th>Name</th><th>Angebot</th><th>Anliegen</th><th>Telefon</th><th>E-Mail</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody id="appointmentsBody">
+          <tr class="loading-row"><td colspan="8">Lade…</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
     <div class="panel-block">
       <div class="panel-head">
         <h2 class="display">Kontaktanfragen</h2>
@@ -272,6 +308,104 @@
 
   var contactsData = [];
   var newsletterData = [];
+  var appointmentsData = [];
+  var apptFilter = 'upcoming';
+  var STATUS_LABELS = { booked: 'Gebucht', done: 'Erledigt', cancelled: 'Abgesagt' };
+
+  function fmtSlot(iso){
+    try{
+      var start = new Date(iso);
+      var end = new Date(start.getTime() + 15 * 60000);
+      var day = start.toLocaleDateString('de-AT', { timeZone:'Europe/Vienna', weekday:'short', day:'2-digit', month:'2-digit', year:'numeric' });
+      var t = function(d){ return d.toLocaleTimeString('de-AT', { timeZone:'Europe/Vienna', hour:'2-digit', minute:'2-digit' }); };
+      return day + ', ' + t(start) + '–' + t(end);
+    } catch(e){ return iso; }
+  }
+
+  function filteredAppointments(){
+    var now = Date.now();
+    var rows = appointmentsData.filter(function(r){
+      var ts = new Date(r.slot_start).getTime();
+      if(apptFilter === 'upcoming') return ts + 15 * 60000 >= now && r.status !== 'cancelled';
+      if(apptFilter === 'past') return ts + 15 * 60000 < now || r.status === 'cancelled';
+      return true;
+    });
+    rows.sort(function(a, b){
+      var d = new Date(a.slot_start) - new Date(b.slot_start);
+      return apptFilter === 'upcoming' ? d : -d;
+    });
+    return rows;
+  }
+
+  function renderAppointments(){
+    var rows = filteredAppointments();
+    var body = document.getElementById('appointmentsBody');
+    var upcoming = appointmentsData.filter(function(r){ return r.status === 'booked' && new Date(r.slot_start).getTime() >= Date.now(); }).length;
+    document.getElementById('appointmentsCount').textContent = appointmentsData.length + ' Termine gesamt · ' + upcoming + ' anstehend';
+    if(rows.length === 0){
+      body.innerHTML = '<tr class="empty-row"><td colspan="8">Keine Termine.</td></tr>';
+      return;
+    }
+    body.innerHTML = rows.map(function(r){
+      var actions = '';
+      if(r.status === 'booked'){
+        actions = '<button type="button" data-id="' + r.id + '" data-status="done">Erledigt</button>'
+          + '<button type="button" data-id="' + r.id + '" data-status="cancelled">Absagen</button>';
+      } else {
+        actions = '<button type="button" data-id="' + r.id + '" data-status="booked">Wiederherstellen</button>';
+      }
+      return '<tr>'
+        + '<td style="white-space:nowrap">' + escapeHtml(fmtSlot(r.slot_start)) + '</td>'
+        + '<td>' + escapeHtml(r.first_name + ' ' + r.last_name) + '</td>'
+        + '<td>' + escapeHtml(r.offer) + '</td>'
+        + '<td>' + escapeHtml(r.message) + '</td>'
+        + '<td><a href="tel:' + escapeHtml(r.phone) + '">' + escapeHtml(r.phone) + '</a></td>'
+        + '<td><a href="mailto:' + escapeHtml(r.email) + '">' + escapeHtml(r.email) + '</a></td>'
+        + '<td><span class="status status-' + escapeHtml(r.status) + '">' + escapeHtml(STATUS_LABELS[r.status] || r.status) + '</span></td>'
+        + '<td><div class="row-actions">' + actions + '</div></td>'
+        + '</tr>';
+    }).join('');
+  }
+
+  document.getElementById('apptFilter').addEventListener('click', function(e){
+    var btn = e.target.closest('button');
+    if(!btn) return;
+    apptFilter = btn.getAttribute('data-filter');
+    document.querySelectorAll('#apptFilter button').forEach(function(b){ b.classList.toggle('active', b === btn); });
+    renderAppointments();
+  });
+
+  document.getElementById('appointmentsBody').addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-status]');
+    if(!btn || !client) return;
+    var status = btn.getAttribute('data-status');
+    if(status === 'cancelled' && !confirm('Termin wirklich absagen? Der Slot wird dann wieder frei. Bitte die Person zusätzlich selbst informieren.')) return;
+    btn.disabled = true;
+    client.from('appointments').update({ status: status }).eq('id', btn.getAttribute('data-id')).then(function(res){
+      if(res.error){
+        // 23505: Slot wurde inzwischen neu gebucht — Wiederherstellen nicht möglich
+        alert(res.error.code === '23505' ? 'Dieser Slot ist inzwischen neu gebucht.' : 'Speichern fehlgeschlagen.');
+        btn.disabled = false;
+        return;
+      }
+      appointmentsData.forEach(function(r){ if(r.id === btn.getAttribute('data-id')) r.status = status; });
+      renderAppointments();
+    });
+  });
+
+  document.getElementById('exportAppointmentsBtn').addEventListener('click', function(){
+    downloadCSV('termine.csv', filteredAppointments(), [
+      { label: 'Termin', get: function(r){ return fmtSlot(r.slot_start); } },
+      { label: 'Vorname', get: function(r){ return r.first_name; } },
+      { label: 'Nachname', get: function(r){ return r.last_name; } },
+      { label: 'Angebot', get: function(r){ return r.offer; } },
+      { label: 'Anliegen', get: function(r){ return r.message; } },
+      { label: 'Telefon', get: function(r){ return r.phone; } },
+      { label: 'E-Mail', get: function(r){ return r.email; } },
+      { label: 'Status', get: function(r){ return STATUS_LABELS[r.status] || r.status; } },
+      { label: 'Gebucht am', get: function(r){ return fmtDate(r.created_at); } }
+    ]);
+  });
 
   function csvEscape(val){
     var str = val == null ? '' : String(val);
@@ -397,6 +531,16 @@
   }
 
   function loadData(){
+    client.from('appointments').select('*').order('slot_start', { ascending:true })
+      .then(function(res){
+        if(res.error) throw res.error;
+        appointmentsData = res.data || [];
+        renderAppointments();
+      }).catch(function(err){
+        console.error(err);
+        document.getElementById('appointmentsBody').innerHTML = '<tr class="empty-row"><td colspan="8">Fehler beim Laden (Migration 20260924120000_appointments.sql schon eingespielt?).</td></tr>';
+      });
+
     client.from('contacts').select('*').order('created_at', { ascending:false })
       .then(function(res){
         if(res.error) throw res.error;

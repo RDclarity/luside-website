@@ -37,6 +37,12 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://rdclarity.github.io/luside-website/termin.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://rdclarity.github.io/luside-website/seminar.html</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>

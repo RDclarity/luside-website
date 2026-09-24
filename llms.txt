@@ -10,6 +10,7 @@
 - [Finanzielle Angelegenheiten](https://rdclarity.github.io/luside-website/leistungen-finanzen.html): Controlling, Reporting, Kennzahlen-Dashboards und Liquiditätsplanung für fundierte Entscheidungen
 - [Digitalisierung & KI](https://rdclarity.github.io/luside-website/leistungen-digitalisierung-ki.html): Firmenspezifische KI-Systeme und Automatisierung, selbst entwickelt und implementiert
 - [Erstberatung](https://rdclarity.github.io/luside-website/erstberatung.html): Kostenpflichtige Erstberatung mit Marko Katalan per Microsoft Teams — 30 Minuten für 250 € oder 60 Minuten für 450 €; nach der Anfrage folgt ein Projektbogen mit vertiefenden Fragen zur Situation
+- [Termin buchen](https://rdclarity.github.io/luside-website/termin.html): Kostenloses 15-Minuten-Gespräch per Videocall, direkt online buchbar (Montag, Dienstag, Donnerstag, 07:00–12:00 und 17:00–21:00 Uhr Wiener Zeit)
 - [Seminar](https://rdclarity.github.io/luside-website/seminar.html): 2-tägiges Praxisseminar zu Prozessen, Systemen und Marketing, voraussichtlich November/Dezember 2026 in Wien, mit Marko Katalan und Richard Dobrohruschka (weitere Vortragende folgen)
 - [Team](https://rdclarity.github.io/luside-website/team.html): Richard Dobrohruschka (Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau), Marko Katalan (Strategie, Organisation, Unternehmensentwicklung, Wachstum)
 - [Impressum](https://rdclarity.github.io/luside-website/impressum.html): Impressum
