@@ -8,7 +8,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#F6F1EA">
+<meta name="theme-color" content="#F4F8FC">
 <meta property="og:type" content="website">
 <meta name="robots" content="index, follow">
 <meta property="og:site_name" content="Lusides">
@@ -81,15 +81,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper: #F6F1EA;
-    --paper-dim: #ECE3D6;
-    --ink: #211814;
-    --slate: #6E5B4C;
-    --slate-light: #A6907C;
-    --line: #E2D5C3;
-    --accent: #A8451F;
-    --accent-dim: #F1DDD0;
-    --accent-ink: #6E2C11;
+    --paper: #F4F8FC;
+    --paper-dim: #E3EEF9;
+    --ink: #0B1F3A;
+    --slate: #4A5F7A;
+    --slate-light: #8DA2BC;
+    --line: #D3E2F2;
+    --accent: #1E6FD9;
+    --accent-dim: #DCEBFC;
+    --accent-ink: #0F3D7A;
     --radius: 2px;
   }
 
@@ -115,8 +115,8 @@
   .bg-stone{
     position: fixed; inset: 0; z-index: -1; pointer-events: none;
     background:
-      radial-gradient(1100px 620px at 14% -8%, rgba(63,90,69,0.07), transparent 60%),
-      radial-gradient(900px 640px at 104% 18%, rgba(63,90,69,0.05), transparent 55%);
+      radial-gradient(1100px 620px at 14% -8%, rgba(30,111,217,0.07), transparent 60%),
+      radial-gradient(900px 640px at 104% 18%, rgba(30,111,217,0.05), transparent 55%);
   }
 
   .grain{
@@ -130,8 +130,8 @@
   .aurora{ position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
   .aurora span{ position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.16; }
   .aurora span:nth-child(1){ width: 480px; height: 480px; background: var(--accent); top: -200px; left: -140px; animation: auroraA 24s ease-in-out infinite alternate; }
-  .aurora span:nth-child(2){ width: 380px; height: 380px; background: #C9A94A; bottom: -200px; left: 32%; opacity: 0.1; animation: auroraB 28s ease-in-out infinite alternate; }
-  .aurora span:nth-child(3){ width: 340px; height: 340px; background: #8FA07A; top: 8%; right: -140px; animation: auroraC 20s ease-in-out infinite alternate; }
+  .aurora span:nth-child(2){ width: 380px; height: 380px; background: #5AB4F0; bottom: -200px; left: 32%; opacity: 0.1; animation: auroraB 28s ease-in-out infinite alternate; }
+  .aurora span:nth-child(3){ width: 340px; height: 340px; background: #7FB8E6; top: 8%; right: -140px; animation: auroraC 20s ease-in-out infinite alternate; }
   @keyframes auroraA{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(50px,40px) scale(1.12); } }
   @keyframes auroraB{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(-40px,-30px) scale(0.92); } }
   @keyframes auroraC{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(-30px,50px) scale(1.08); } }
@@ -140,7 +140,7 @@
 
   #progress{ position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--accent); z-index: 100; transition: width .08s linear; }
 
-  header{ position: sticky; top: 0; z-index: 50; background: rgba(247,245,240,0.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  header{ position: sticky; top: 0; z-index: 50; background: rgba(244,248,252,0.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
   .nav{ display:flex; align-items:center; justify-content:space-between; padding-top: 20px; padding-bottom: 20px; transition: padding-top .3s cubic-bezier(.2,.7,.2,1), padding-bottom .3s cubic-bezier(.2,.7,.2,1); }
   header.scrolled .nav{ padding-top: 13px; padding-bottom: 13px; }
   .brand{ display:flex; align-items:baseline; gap:8px; font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; font-size:1.28rem; letter-spacing:-0.01em; }
@@ -156,6 +156,10 @@
   .nav-links a.current::after{ transform: scaleX(1); transform-origin: left; }
   .nav-cta{ font-size: 0.82rem; padding: 10px 18px; background: var(--ink); color: var(--paper); border-radius: var(--radius); transition: background .2s ease; }
   .nav-cta:hover{ background: var(--accent); }
+  .nav-cta-book{ display:inline-flex; flex-direction:column; align-items:center; line-height:1.25; background: var(--accent); color:#fff; padding: 8px 18px; white-space:nowrap; }
+  .nav-cta-book:hover{ background: var(--accent-ink); }
+  .nav-cta-book small{ font-size:0.68rem; opacity:0.85; letter-spacing:0.01em; }
+  @media (max-width: 420px){ .nav-cta-book{ padding: 7px 12px; } .nav-cta-book span{ font-size:0.76rem; } }
   .lang-switch{ display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.04em; }
   .lang-btn{ background:none; border:none; padding:4px 2px; color: var(--slate); cursor:pointer; font: inherit; transition: color .2s ease; }
   .lang-btn:hover{ color: var(--ink); }
@@ -192,8 +196,8 @@
   @media (prefers-reduced-motion: reduce){ .hero-item{ animation: none; opacity:1; transform:none; } }
   .hero-sub{ margin-top: 24px; max-width: 56ch; font-size: 1.1rem; color: var(--slate); }
   .hero-cta{ margin-top: 38px; display:flex; align-items:center; gap: 28px; flex-wrap: wrap; }
-  .btn-primary{ background: var(--ink); color: var(--paper); padding: 16px 28px; font-size: 0.94rem; border-radius: var(--radius); transition: background .2s ease, transform .2s ease, box-shadow .2s ease; display:inline-block; cursor:pointer; border:none; font-family:inherit; box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 10px 20px -12px rgba(27,26,23,0.35); }
-  .btn-primary:hover{ background: var(--accent); transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 16px 26px -12px rgba(63,90,69,0.4); }
+  .btn-primary{ background: var(--ink); color: var(--paper); padding: 16px 28px; font-size: 0.94rem; border-radius: var(--radius); transition: background .2s ease, transform .2s ease, box-shadow .2s ease; display:inline-block; cursor:pointer; border:none; font-family:inherit; box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 10px 20px -12px rgba(11,31,58,0.35); }
+  .btn-primary:hover{ background: var(--accent); transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 16px 26px -12px rgba(30,111,217,0.4); }
   .link-secondary{ font-size: 0.9rem; color: var(--ink); border-bottom: 1px solid var(--slate-light); padding-bottom: 2px; transition: border-color .2s ease, color .2s ease; display: inline-flex; align-items: center; gap: 6px; }
   .link-secondary:hover{ border-color: var(--accent); color: var(--accent); }
   .link-secondary .arrow{ display:inline-block; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
@@ -213,8 +217,8 @@
 
   .problem-list{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   @media (max-width: 720px){ .problem-list{ grid-template-columns: 1fr; } }
-  .problem-item{ background: var(--paper); padding: 26px 28px; display:flex; gap:16px; align-items:flex-start; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 1px 0 rgba(27,26,23,0.03); transition: box-shadow .3s ease, transform .3s cubic-bezier(.2,.7,.2,1); }
-  .problem-item:hover{ box-shadow: 0 14px 28px -18px rgba(27,26,23,0.22); transform: translateY(-2px); }
+  .problem-item{ background: var(--paper); padding: 26px 28px; display:flex; gap:16px; align-items:flex-start; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 1px 0 rgba(11,31,58,0.03); transition: box-shadow .3s ease, transform .3s cubic-bezier(.2,.7,.2,1); }
+  .problem-item:hover{ box-shadow: 0 14px 28px -18px rgba(11,31,58,0.22); transform: translateY(-2px); }
   .problem-item .mark{ color: var(--accent); font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; flex-shrink:0; font-size:1.1rem; }
   .problem-item p{ font-size: 0.98rem; }
 
@@ -222,7 +226,7 @@
   @media (max-width: 900px){ .services{ grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 600px){ .services{ grid-template-columns: 1fr; } }
   .service{ background: var(--paper); padding: 32px 28px; border: 1px solid var(--line); border-radius: var(--radius); transition: background .3s ease, box-shadow .3s ease; }
-  .service:hover{ background: var(--accent-dim); box-shadow: 0 20px 36px -22px rgba(27,26,23,0.28); }
+  .service:hover{ background: var(--accent-dim); box-shadow: 0 20px 36px -22px rgba(11,31,58,0.28); }
   .service .num{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; font-size: 0.82rem; color: var(--accent); margin-bottom: 18px; display:block; }
   .service .tag{ font-size: 0.72rem; color: var(--slate-light); margin-bottom: 12px; display:block; text-transform:uppercase; letter-spacing:0.04em; }
   .service h3{ font-size: 1.08rem; font-weight:500; margin-bottom: 10px; }
@@ -233,7 +237,7 @@
   .why-item::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
   .why-item:hover::before{ transform: scaleY(1); }
   .why-item:last-child{ border-bottom: 1px solid var(--line); }
-  .why-item:hover{ padding-left: 20px; background: rgba(63,90,69,0.05); }
+  .why-item:hover{ padding-left: 20px; background: rgba(30,111,217,0.05); }
   .why-item .w-name{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; font-size:1rem; transition: color .3s ease; flex-shrink:0; }
   .why-item:hover .w-name{ color: var(--accent); }
   .why-item .w-desc{ color: var(--slate); font-size: 0.9rem; max-width: 42ch; text-align:right; }
@@ -245,14 +249,14 @@
   .steps{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   @media (max-width: 820px){ .steps{ grid-template-columns: 1fr; } }
   .step{ background: var(--paper-dim); padding: 40px 32px 44px; border: 1px solid var(--line); border-radius: var(--radius); transition: background .3s ease, box-shadow .3s ease; position: relative; }
-  .step:hover{ background: var(--paper); box-shadow: 0 20px 36px -22px rgba(27,26,23,0.22); }
+  .step:hover{ background: var(--paper); box-shadow: 0 20px 36px -22px rgba(11,31,58,0.22); }
   .step .num{ font-size: 0.82rem; color: var(--accent); margin-bottom: 22px; display:block; }
   .step h3{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-size: 1.3rem; font-weight:600; margin-bottom: 14px; }
   .step p{ color: var(--slate); font-size: 0.94rem; }
 
   .mid-cta{ background: var(--ink); color: var(--paper); text-align:center; padding: 80px 0; }
   .mid-cta h2{ color: var(--paper); font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom:14px; }
-  .mid-cta p{ color: #C7CCD1; font-size:1rem; margin-bottom:32px; }
+  .mid-cta p{ color: #C5D6EA; font-size:1rem; margin-bottom:32px; }
   .mid-cta .btn-primary{ background: var(--paper); color: var(--ink); }
   .mid-cta .btn-primary:hover{ background: var(--accent); color:#fff; }
 
@@ -269,17 +273,17 @@
   .kontakt-inner{ max-width: 480px; margin: 0 auto; text-align: center; }
   .kontakt .section-label{ color: var(--slate-light); }
   .kontakt h2{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight:600; letter-spacing:-0.01em; color: var(--paper); }
-  .kontakt-copy{ margin-top: 18px; color: #C7CCD1; font-size: 1.02rem; }
+  .kontakt-copy{ margin-top: 18px; color: #C5D6EA; font-size: 1.02rem; }
 
   .qualify-form{ max-width: 440px; margin: 44px auto 0; text-align: left; }
   .qualify-form form{ display:flex; flex-direction:column; gap: 16px; }
   .qualify-form .field{ display:flex; flex-direction:column; gap: 6px; }
-  .qualify-form .field label{ font-size: 0.78rem; color: #9BA3AB; }
+  .qualify-form .field label{ font-size: 0.78rem; color: #93AAC6; }
   .qualify-form .field input,
   .qualify-form .field select,
   .qualify-form .field textarea{
-    background: #1F242A;
-    border: 1px solid #33383D;
+    background: #13294A;
+    border: 1px solid #24406A;
     border-radius: var(--radius);
     padding: 13px 14px;
     font-family: inherit;
@@ -288,15 +292,15 @@
   }
   .qualify-form .field select{ cursor:pointer; }
   .qualify-form .field textarea{ resize:vertical; min-height:76px; }
-  .qualify-form .field input::placeholder, .qualify-form .field textarea::placeholder{ color: #6b7278; }
+  .qualify-form .field input::placeholder, .qualify-form .field textarea::placeholder{ color: #647D9C; }
   .qualify-form .field input:focus, .qualify-form .field select:focus, .qualify-form .field textarea:focus{ outline: none; border-color: var(--accent); }
-  .qualify-form .field-checkbox label{ display:flex; align-items:flex-start; gap: 8px; font-size: 0.85rem; color: #9BA3AB; cursor:pointer; }
+  .qualify-form .field-checkbox label{ display:flex; align-items:flex-start; gap: 8px; font-size: 0.85rem; color: #93AAC6; cursor:pointer; }
   .qualify-form .field-checkbox input{ margin-top: 3px; width: 16px; height: 16px; accent-color: var(--accent); flex-shrink: 0; }
   .qualify-form .submit-btn{ margin-top: 6px; background: var(--accent); color: #fff; padding: 16px 28px; border: none; border-radius: var(--radius); font-family: inherit; font-size: 0.94rem; cursor:pointer; transition: background .2s ease; width:100%; }
-  .form-trust{ margin-top: -6px; font-size: 0.8rem; color: #9BA3AB; text-align: center; }
-  .qualify-form .submit-btn:hover{ background: #3a68ec; }
+  .form-trust{ margin-top: -6px; font-size: 0.8rem; color: #93AAC6; text-align: center; }
+  .qualify-form .submit-btn:hover{ background: #3D8BEA; }
   .qualify-form .submit-btn:disabled{ opacity: 0.6; cursor: not-allowed; }
-  .qualify-form .form-note{ font-size: 0.86rem; color: #C7CCD1; margin-top: 4px; display:none; }
+  .qualify-form .form-note{ font-size: 0.86rem; color: #C5D6EA; margin-top: 4px; display:none; }
   .qualify-form .form-note.show{ display:block; }
   .qualify-form .form-note.error{ color: #FF9B8A; }
   .booking-followup{ margin-top:16px; display:none; }
@@ -304,10 +308,10 @@
   .booking-followup .btn-primary{ background: var(--paper); color: var(--ink); }
   .booking-followup .btn-primary:hover{ background: var(--accent); color:#fff; }
 
-  .kontakt-direct{ margin: 40px auto 0; font-size: 0.88rem; width: fit-content; text-align:left; color:#9BA3AB; }
+  .kontakt-direct{ margin: 40px auto 0; font-size: 0.88rem; width: fit-content; text-align:left; color:#93AAC6; }
   .kontakt-direct div{ margin-bottom: 8px; }
-  .kontakt-direct span{ color: #6b7278; display:inline-block; width: 90px; }
-  .kontakt-direct a{ color:#C7CCD1; }
+  .kontakt-direct span{ color: #647D9C; display:inline-block; width: 90px; }
+  .kontakt-direct a{ color:#C5D6EA; }
 
   footer{ padding: 44px 0 24px; border-top: 1px solid var(--line); }
   .footer-inner{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap: 32px; font-size: 0.85rem; color: var(--slate); }
@@ -349,12 +353,12 @@
           <button type="button" class="lang-btn" data-lang="en">EN</button>
         </div>
       </div>
-      <a href="#kontakt" class="nav-cta" data-i18n="nav.cta">Erstgespräch</a>
+      <a href="termin.html" class="nav-cta nav-cta-book"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_sub">1 Std. Erstgespräch · 350 €</small></a>
     </div>
   </div>
 </header>
 
-<section class="hero" data-bg="#F6F1EA">
+<section class="hero" data-bg="#F4F8FC">
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="wrap">
     <nav class="breadcrumb hero-item" aria-label="Breadcrumb">
@@ -376,7 +380,7 @@
 
 <div class="hr" aria-hidden="true"></div>
 
-<section id="ueberblick" data-bg="#ECE3D6">
+<section id="ueberblick" data-bg="#E3EEF9">
   <div class="wrap">
     <div class="section-head reveal">
       <div>
@@ -396,7 +400,7 @@
   </div>
 </section>
 
-<section id="aufbau" data-bg="#F6F1EA">
+<section id="aufbau" data-bg="#F4F8FC">
   <div class="wrap">
     <div class="section-head reveal">
       <div>
@@ -442,7 +446,22 @@
 
 <div class="hr" aria-hidden="true"></div>
 
-<section id="fuer-wen" data-bg="#ECE3D6">
+<section id="onlineshop" data-bg="#E3EEF9">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-label mono" data-i18n="svc_shop.teaser_label">UNTERBEREICH</div>
+        <h2 class="display" data-i18n="svc_shop.teaser_h2">Onlineshop-Entwicklung &amp; Web</h2>
+      </div>
+      <p data-i18n="svc_shop.teaser_p">Onlineshops, Webseiten und Web-Apps mit Anbindung an Warenwirtschaft, Zahlung, Versand und KI, entwickelt und betreut aus einer Hand.</p>
+    </div>
+    <div class="reveal">
+      <a href="leistungen-onlineshop-entwicklung.html" class="btn-primary" data-i18n="svc_shop.teaser_link">Zur Onlineshop-Entwicklung</a>
+    </div>
+  </div>
+</section>
+
+<section id="fuer-wen" data-bg="#F4F8FC">
   <div class="wrap">
     <div class="section-head reveal">
       <div>
@@ -471,7 +490,7 @@
   </div>
 </section>
 
-<section id="ablauf" data-bg="#F6F1EA">
+<section id="ablauf" data-bg="#F4F8FC">
   <div class="wrap">
     <div class="section-head reveal">
       <div>
@@ -500,7 +519,7 @@
   </div>
 </section>
 
-<section class="mid-cta" data-bg="#211814">
+<section class="mid-cta" data-bg="#0B1F3A">
   <div class="wrap reveal">
     <h2 class="display" data-i18n="svc_digital.midcta_h2">Kostet euch Digitalisierung mehr Zeit, als sie spart?</h2>
     <p data-i18n="svc_digital.midcta_p">Zwei Minuten Formular. Wir melden uns, wenn wir wirklich weiterhelfen können.</p>
@@ -508,7 +527,7 @@
   </div>
 </section>
 
-<section id="verwandt" data-bg="#F6F1EA">
+<section id="verwandt" data-bg="#F4F8FC">
   <div class="wrap">
     <div class="section-head reveal">
       <div>
@@ -539,7 +558,7 @@
   </div>
 </section>
 
-<section id="faq" data-bg="#ECE3D6">
+<section id="faq" data-bg="#E3EEF9">
   <div class="wrap">
     <div class="section-head reveal">
       <div>
@@ -568,7 +587,7 @@
   </div>
 </section>
 
-<section id="kontakt" class="kontakt" data-bg="#211814">
+<section id="kontakt" class="kontakt" data-bg="#0B1F3A">
   <div class="wrap kontakt-inner">
     <div class="reveal">
       <div class="section-label mono" data-i18n="kontakt.label">KOSTENLOSE ANALYSE</div>
@@ -618,7 +637,7 @@
   </div>
 </section>
 
-<footer data-bg="#F6F1EA">
+<footer data-bg="#F4F8FC">
   <div class="wrap footer-inner">
     <div class="footer-cols">
       <div class="footer-col">
@@ -627,6 +646,7 @@
         <a href="leistungen-marketing.html" data-i18n="leistungen.s2_tag">Marketing</a>
         <a href="leistungen-finanzen.html" data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</a>
         <a href="leistungen-digitalisierung-ki.html" data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</a>
+        <a href="leistungen-onlineshop-entwicklung.html" data-i18n="svc_shop.tag">Onlineshop-Entwicklung</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title" data-i18n="footer.col_unternehmen">Unternehmen</div>

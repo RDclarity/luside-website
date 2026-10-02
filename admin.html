@@ -11,15 +11,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper: #F6F7F4;
-    --paper-dim: #EEF0EC;
-    --ink: #15191C;
-    --slate: #5B6570;
-    --slate-light: #8B949C;
-    --line: #D9DED9;
-    --accent: #2456E5;
-    --accent-dim: #E6EBFB;
-    --accent-ink: #16337E;
+    --paper: #F4F8FC;
+    --paper-dim: #E3EEF9;
+    --ink: #0B1F3A;
+    --slate: #4A5F7A;
+    --slate-light: #8DA2BC;
+    --line: #D3E2F2;
+    --accent: #1E6FD9;
+    --accent-dim: #DCEBFC;
+    --accent-ink: #0F3D7A;
     --radius: 2px;
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
@@ -61,7 +61,7 @@
   }
   #logoutBtn:hover{ border-color: var(--accent); color: var(--accent); }
 
-  main{ max-width: 1040px; margin: 0 auto; padding: 48px 32px; }
+  main{ max-width: 1280px; margin: 0 auto; padding: 48px 32px; }
 
   /* ---------- LOGIN ---------- */
   #loginView{ max-width: 360px; margin: 60px auto 0; }
@@ -164,6 +164,112 @@
   .tag-no{ color: var(--slate-light); }
   .empty-row td{ color: var(--slate-light); text-align:center; padding:24px; }
   .loading-row td{ color: var(--slate-light); text-align:center; padding:24px; }
+
+  /* ---------- TERMINKALENDER ---------- */
+  .cal-wrap{ background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .cal-toolbar{ display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .cal-toolbar .today-btn{ background:#fff; border:1px solid var(--line); border-radius:6px; padding:7px 14px; font:inherit; font-size:0.85rem; cursor:pointer; color:var(--ink); }
+  .cal-toolbar .today-btn:hover{ background: var(--paper-dim); }
+  .cal-nav{ width:32px; height:32px; border-radius:50%; border:none; background:none; font-size:1.2rem; cursor:pointer; color:var(--slate); }
+  .cal-nav:hover{ background: var(--paper-dim); color: var(--ink); }
+  .cal-title{ font-family:'Space Grotesk', sans-serif; font-size:1.15rem; font-weight:600; margin-left:4px; flex:1; min-width:160px; }
+  .view-switch{ display:inline-flex; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+  .view-switch button{ background:#fff; border:none; padding:7px 14px; font:inherit; font-size:0.85rem; cursor:pointer; color:var(--slate); }
+  .view-switch button + button{ border-left:1px solid var(--line); }
+  .view-switch button.active{ background: var(--accent-dim); color: var(--accent-ink); font-weight:600; }
+  .cal-legend{ display:flex; gap:14px; flex-wrap:wrap; font-size:0.75rem; color:var(--slate); padding:8px 16px; border-bottom:1px solid var(--line); }
+  .cal-legend i{ display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+
+  .st-gebucht{ --ev:#1E6FD9; } .st-bestaetigt{ --ev:#0B8043; } .st-erledigt{ --ev:#7986A0; } .st-abgesagt{ --ev:#C5221F; }
+
+  /* Woche */
+  .wk{ display:grid; grid-template-columns: 56px repeat(7, 1fr); }
+  .wk-head{ position:sticky; top:0; background:#fff; z-index:2; border-bottom:1px solid var(--line); }
+  .wk-dh{ text-align:center; padding:8px 0 10px; font-size:0.72rem; color:var(--slate); text-transform:uppercase; letter-spacing:0.04em; }
+  .wk-dh .dn{ display:block; font-family:'Space Grotesk', sans-serif; font-size:1.4rem; color:var(--ink); text-transform:none; margin-top:2px; width:40px; height:40px; line-height:40px; border-radius:50%; margin-left:auto; margin-right:auto; cursor:pointer; }
+  .wk-dh.is-today{ color: var(--accent); }
+  .wk-dh.is-today .dn{ background: var(--accent); color:#fff; }
+  .wk-body{ max-height: 640px; overflow-y:auto; }
+  .wk-hours{ position:relative; }
+  .wk-hour-label{ height:48px; font-size:0.68rem; color:var(--slate-light); text-align:right; padding-right:8px; transform: translateY(-7px); }
+  .wk-col{ position:relative; border-left:1px solid var(--line); }
+  .wk-col .slot-line{ height:48px; border-bottom:1px solid #EDF2F8; }
+  .wk-col.is-today{ background: rgba(30,111,217,0.03); }
+  .ev{ position:absolute; left:3px; right:5px; background: var(--ev); color:#fff; border-radius:6px; padding:4px 7px; font-size:0.76rem; line-height:1.25; overflow:hidden; box-shadow:0 1px 2px rgba(11,31,58,0.2); cursor:pointer; }
+  .ev:hover{ filter: brightness(1.08); }
+  .ev .ev-name{ font-weight:600; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-decoration:underline; text-decoration-color: rgba(255,255,255,0.45); }
+  .ev .ev-time{ opacity:0.9; }
+  .st-abgesagt.ev{ text-decoration: line-through; opacity:0.6; }
+  .now-line{ position:absolute; left:0; right:0; height:2px; background:#EA4335; z-index:1; }
+  .now-line::before{ content:''; position:absolute; left:-5px; top:-4px; width:10px; height:10px; border-radius:50%; background:#EA4335; }
+
+  /* Monat */
+  .mo{ display:grid; grid-template-columns: repeat(7, 1fr); }
+  .mo-dow{ text-align:center; font-size:0.72rem; color:var(--slate); text-transform:uppercase; padding:8px 0; border-bottom:1px solid var(--line); }
+  .mo-cell{ min-height:112px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:4px 4px 6px; overflow:hidden; }
+  .mo-cell:nth-child(7n){ border-right:none; }
+  .mo-cell.out{ background: #FAFCFE; }
+  .mo-cell.out .mo-num{ color: var(--slate-light); }
+  .mo-num{ display:block; text-align:center; font-size:0.78rem; width:26px; height:26px; line-height:26px; border-radius:50%; margin:0 auto 4px; cursor:pointer; }
+  .mo-num:hover{ background: var(--paper-dim); }
+  .mo-cell.is-today .mo-num{ background: var(--accent); color:#fff; }
+  .chip{ display:flex; align-items:center; gap:5px; width:100%; background:none; border:none; font:inherit; font-size:0.74rem; text-align:left; padding:2px 4px; border-radius:4px; cursor:pointer; color: var(--ink); white-space:nowrap; overflow:hidden; }
+  .chip:hover{ background: var(--paper-dim); }
+  .chip::before{ content:''; width:8px; height:8px; border-radius:50%; background: var(--ev); flex-shrink:0; }
+  .chip b{ font-weight:600; overflow:hidden; text-overflow:ellipsis; }
+  .chip.st-abgesagt b{ text-decoration: line-through; color: var(--slate-light); }
+  .more{ font-size:0.72rem; color: var(--slate); padding:2px 4px; cursor:pointer; background:none; border:none; font-family:inherit; }
+
+  /* Jahr */
+  .yr{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 22px 26px; padding: 20px; }
+  @media (max-width: 1000px){ .yr{ grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px){ .yr{ grid-template-columns: repeat(2, 1fr); } }
+  .yr-m h4{ font-family:'Space Grotesk', sans-serif; font-size:0.92rem; margin-bottom:6px; cursor:pointer; }
+  .yr-m h4:hover{ color: var(--accent); }
+  .yr-g{ display:grid; grid-template-columns: repeat(7, 1fr); gap:2px; text-align:center; }
+  .yr-g .d{ font-size:0.68rem; color:var(--slate-light); }
+  .yr-g button{ font:inherit; font-size:0.72rem; border:none; background:none; aspect-ratio:1; border-radius:50%; cursor:pointer; color: var(--ink); position:relative; }
+  .yr-g button:hover{ background: var(--paper-dim); }
+  .yr-g button.has{ background: var(--accent-dim); color: var(--accent-ink); font-weight:700; }
+  .yr-g button.today{ background: var(--accent); color:#fff; }
+  .yr-sum{ font-size:0.72rem; color: var(--slate); margin-top:4px; }
+
+  /* Liste kommender Termine */
+  .upcoming{ margin-top:18px; }
+  .upcoming h3{ font-size:0.95rem; margin-bottom:8px; }
+  .name-link{ background:none; border:none; padding:0; font:inherit; color: var(--accent-ink); font-weight:600; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
+  .status-pill{ display:inline-flex; align-items:center; gap:6px; font-size:0.78rem; }
+  .status-pill::before{ content:''; width:8px; height:8px; border-radius:50%; background: var(--ev); }
+
+  /* Detail-Dialog */
+  .modal-bg{ position:fixed; inset:0; background: rgba(11,31,58,0.45); display:none; align-items:center; justify-content:center; z-index:100; padding:16px; }
+  .modal-bg.show{ display:flex; }
+  .modal{ background:#fff; border-radius:12px; width:min(560px, 100%); max-height: calc(100vh - 32px); overflow-y:auto; box-shadow: 0 30px 60px -20px rgba(11,31,58,0.5); }
+  .modal-top{ display:flex; align-items:flex-start; gap:12px; padding:20px 22px 12px; border-top: 6px solid var(--ev); border-radius:12px 12px 0 0; }
+  .modal-top h3{ font-family:'Space Grotesk', sans-serif; font-size:1.35rem; flex:1; }
+  .modal-top .sub{ font-size:0.86rem; color: var(--slate); margin-top:4px; }
+  .modal-close{ background:none; border:none; font-size:1.5rem; line-height:1; cursor:pointer; color: var(--slate); }
+  .modal-body{ padding: 4px 22px 18px; }
+  .kv{ display:grid; grid-template-columns: 110px 1fr; gap: 8px 12px; font-size:0.9rem; margin-bottom: 16px; }
+  .kv dt{ color: var(--slate); }
+  .kv dd{ word-break: break-word; white-space: pre-wrap; }
+  .modal .field{ margin-bottom: 12px; }
+  .modal .field input, .modal .field select, .modal .field textarea{ background:#fff; border:1px solid var(--line); border-radius:6px; padding:10px 12px; font-family:inherit; font-size:0.9rem; color:var(--ink); }
+  .modal .field textarea{ min-height:70px; resize:vertical; }
+  .row2{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+  .chk{ display:flex; gap:8px; align-items:center; font-size:0.88rem; margin: 2px 0 14px; }
+  .modal-actions{ display:flex; gap:8px; flex-wrap:wrap; padding: 14px 22px 20px; border-top:1px solid var(--line); }
+  .btn{ border-radius:6px; padding:9px 14px; font-family:inherit; font-size:0.85rem; cursor:pointer; border:1px solid var(--line); background:#fff; color: var(--ink); text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+  .btn:hover{ border-color: var(--accent); color: var(--accent); }
+  .btn-primary{ background: var(--accent); border-color: var(--accent); color:#fff; }
+  .btn-primary:hover{ background: var(--accent-ink); border-color: var(--accent-ink); color:#fff; }
+  .btn-teams{ background:#5B5FC7; border-color:#5B5FC7; color:#fff; }
+  .btn-teams:hover{ background:#4A4EB0; color:#fff; border-color:#4A4EB0; }
+  .btn-danger{ color:#B3261E; }
+  .btn-danger:hover{ border-color:#B3261E; color:#B3261E; }
+  .modal-msg{ font-size:0.82rem; color: var(--accent-ink); padding: 0 22px 14px; display:none; }
+  .modal-msg.show{ display:block; }
+  .modal-msg.err{ color:#B3261E; }
 </style>
 </head>
 <body>
@@ -192,6 +298,40 @@
   </div>
 
   <div id="dashboardView">
+    <div class="panel-block" id="termine">
+      <div class="panel-head">
+        <h2 class="display">Termine · Erstgespräche (Teams)</h2>
+        <button class="export-btn" type="button" id="exportApptsBtn">Als Excel exportieren</button>
+      </div>
+      <div class="count" id="apptsCount"></div>
+      <div class="cal-wrap">
+        <div class="cal-toolbar">
+          <button type="button" class="today-btn" id="calToday">Heute</button>
+          <button type="button" class="cal-nav" id="calPrev" aria-label="Zurück">‹</button>
+          <button type="button" class="cal-nav" id="calNext" aria-label="Weiter">›</button>
+          <div class="cal-title" id="calTitle"></div>
+          <div class="view-switch" role="tablist">
+            <button type="button" data-view="week" class="active">Woche</button>
+            <button type="button" data-view="month">Monat</button>
+            <button type="button" data-view="year">Jahr</button>
+          </div>
+        </div>
+        <div class="cal-legend">
+          <span class="st-gebucht"><i style="background:var(--ev)"></i>Gebucht</span>
+          <span class="st-bestaetigt"><i style="background:var(--ev)"></i>Bestätigt (Teams-Link versendet)</span>
+          <span class="st-erledigt"><i style="background:var(--ev)"></i>Erledigt</span>
+          <span class="st-abgesagt"><i style="background:var(--ev)"></i>Abgesagt</span>
+        </div>
+        <div id="calView"></div>
+      </div>
+      <div class="upcoming">
+        <h3 class="display">Nächste Termine</h3>
+        <table>
+          <thead><tr><th>Termin</th><th>Name</th><th>Unternehmen</th><th>Thema</th><th>Status</th><th>Bezahlt</th></tr></thead>
+          <tbody id="upcomingBody"><tr class="loading-row"><td colspan="6">Lade…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
     <div class="panel-block">
       <div class="panel-head">
         <h2 class="display">Kontaktanfragen</h2>
@@ -239,8 +379,54 @@
   </div>
 </main>
 
+<div class="modal-bg" id="apptModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mName">
+    <div class="modal-top" id="mTop">
+      <div style="flex:1">
+        <h3 id="mName"></h3>
+        <div class="sub" id="mWhen"></div>
+      </div>
+      <button type="button" class="modal-close" id="mClose" aria-label="Schließen">×</button>
+    </div>
+    <div class="modal-body">
+      <dl class="kv" id="mInfo"></dl>
+      <div class="row2">
+        <div class="field">
+          <label for="mStatus">Status</label>
+          <select id="mStatus">
+            <option value="gebucht">Gebucht</option>
+            <option value="bestaetigt">Bestätigt (Teams-Link versendet)</option>
+            <option value="erledigt">Erledigt</option>
+            <option value="abgesagt">Abgesagt</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Zahlung (350 €)</label>
+          <label class="chk"><input type="checkbox" id="mPaid"> Bezahlt</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="mTeams">Microsoft-Teams-Link</label>
+        <input id="mTeams" type="url" placeholder="https://teams.microsoft.com/l/meetup-join/…">
+      </div>
+      <div class="field">
+        <label for="mNotes">Interne Notizen</label>
+        <textarea id="mNotes"></textarea>
+      </div>
+    </div>
+    <div class="modal-msg" id="mMsg"></div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-primary" id="mSave">Speichern</button>
+      <a class="btn btn-teams" id="mTeamsCreate" target="_blank" rel="noopener">Teams-Meeting erstellen</a>
+      <a class="btn" id="mMail">Einladung per E-Mail</a>
+      <a class="btn" id="mJoin" target="_blank" rel="noopener">Teams beitreten</a>
+      <button type="button" class="btn btn-danger" id="mDelete">Löschen</button>
+    </div>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js"></script>
 <script src="supabase-config.js"></script>
+<script src="admin-calendar.js"></script>
 <script>
   var loginView = document.getElementById('loginView');
   var dashboardView = document.getElementById('dashboardView');
@@ -297,6 +483,7 @@
     URL.revokeObjectURL(url);
   }
 
+  window.lusidesAdminDownloadCSV = downloadCSV;
   document.getElementById('exportContactsBtn').addEventListener('click', function(){
     downloadCSV('kontaktanfragen.csv', contactsData, [
       { label: 'Unternehmen', get: function(r){ return r.company; } },
@@ -397,6 +584,7 @@
   }
 
   function loadData(){
+    if(window.lusidesAdminCalendar) window.lusidesAdminCalendar.load(client);
     client.from('contacts').select('*').order('created_at', { ascending:false })
       .then(function(res){
         if(res.error) throw res.error;

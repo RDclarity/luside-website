@@ -8,7 +8,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#F6F1EA">
+<meta name="theme-color" content="#F4F8FC">
 <meta property="og:type" content="website">
 <meta name="robots" content="index, follow">
 <meta property="og:site_name" content="Lusides">
@@ -54,15 +54,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper: #F6F1EA;
-    --paper-dim: #ECE3D6;
-    --ink: #211814;
-    --slate: #6E5B4C;
-    --slate-light: #A6907C;
-    --line: #E2D5C3;
-    --accent: #A8451F;
-    --accent-dim: #F1DDD0;
-    --accent-ink: #6E2C11;
+    --paper: #F4F8FC;
+    --paper-dim: #E3EEF9;
+    --ink: #0B1F3A;
+    --slate: #4A5F7A;
+    --slate-light: #8DA2BC;
+    --line: #D3E2F2;
+    --accent: #1E6FD9;
+    --accent-dim: #DCEBFC;
+    --accent-ink: #0F3D7A;
     --radius: 2px;
   }
 
@@ -109,8 +109,8 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(1100px 620px at 14% -8%, rgba(63,90,69,0.07), transparent 60%),
-      radial-gradient(900px 640px at 104% 18%, rgba(63,90,69,0.05), transparent 55%);
+      radial-gradient(1100px 620px at 14% -8%, rgba(30,111,217,0.07), transparent 60%),
+      radial-gradient(900px 640px at 104% 18%, rgba(30,111,217,0.05), transparent 55%);
   }
   @media (prefers-reduced-motion: reduce){
     .bg-stone{ animation: none; }
@@ -124,7 +124,7 @@
   .aurora{ position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
   .aurora span{ position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.16; }
   .aurora span:nth-child(1){ width: 420px; height: 420px; background: var(--accent); top: -180px; left: -120px; animation: auroraA 24s ease-in-out infinite alternate; }
-  .aurora span:nth-child(2){ width: 320px; height: 320px; background: #C9A94A; bottom: -220px; left: 40%; opacity: 0.1; animation: auroraB 28s ease-in-out infinite alternate; }
+  .aurora span:nth-child(2){ width: 320px; height: 320px; background: #5AB4F0; bottom: -220px; left: 40%; opacity: 0.1; animation: auroraB 28s ease-in-out infinite alternate; }
   @keyframes auroraA{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(50px,40px) scale(1.12); } }
   @keyframes auroraB{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(-40px,-30px) scale(0.92); } }
   @media (prefers-reduced-motion: reduce){ .aurora span{ animation: none; } }
@@ -145,7 +145,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(247,245,240,0.88);
+    background: rgba(244,248,252,0.88);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
@@ -213,6 +213,10 @@
     transition: background .2s ease;
   }
   .nav-cta:hover{ background: var(--accent); }
+  .nav-cta-book{ display:inline-flex; flex-direction:column; align-items:center; line-height:1.25; background: var(--accent); color:#fff; padding: 8px 18px; white-space:nowrap; }
+  .nav-cta-book:hover{ background: var(--accent-ink); }
+  .nav-cta-book small{ font-size:0.68rem; opacity:0.85; letter-spacing:0.01em; }
+  @media (max-width: 420px){ .nav-cta-book{ padding: 7px 12px; } .nav-cta-book span{ font-size:0.76rem; } }
   .lang-switch{
     display:flex;
     align-items:center;
@@ -352,9 +356,9 @@
   }
   .team-card:hover{
     background: var(--paper-dim);
-    box-shadow: 0 20px 36px -22px rgba(27,26,23,0.24);
+    box-shadow: 0 20px 36px -22px rgba(11,31,58,0.24);
   }
-  .team-card::before{ content:''; position:absolute; inset:0; opacity:0; transition: opacity .35s ease; pointer-events:none; background: radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(63,90,69,0.14), transparent 70%); }
+  .team-card::before{ content:''; position:absolute; inset:0; opacity:0; transition: opacity .35s ease; pointer-events:none; background: radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(30,111,217,0.14), transparent 70%); }
   .team-card:hover::before{ opacity:1; }
   .avatar{
     width: 64px;
@@ -390,7 +394,7 @@
     text-align:center;
   }
   .team-cta h2{ color: var(--paper); margin: 0 auto 12px; }
-  .team-cta .cta-sub{ color: #9BA3AB; font-size: 0.9rem; margin-bottom: 22px; }
+  .team-cta .cta-sub{ color: #93AAC6; font-size: 0.9rem; margin-bottom: 22px; }
   .team-cta .btn-primary{
     background: var(--paper);
     color: var(--ink);
@@ -443,7 +447,7 @@
           <button type="button" class="lang-btn" data-lang="en">EN</button>
         </div>
       </div>
-      <a href="index.html#kontakt" class="nav-cta" data-i18n="nav.cta">Erstgespräch</a>
+      <a href="termin.html" class="nav-cta nav-cta-book"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_sub">1 Std. Erstgespräch · 350 €</small></a>
     </div>
   </div>
 </header>
@@ -496,6 +500,7 @@
         <a href="leistungen-marketing.html" data-i18n="leistungen.s2_tag">Marketing</a>
         <a href="leistungen-finanzen.html" data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</a>
         <a href="leistungen-digitalisierung-ki.html" data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</a>
+        <a href="leistungen-onlineshop-entwicklung.html" data-i18n="svc_shop.tag">Onlineshop-Entwicklung</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title" data-i18n="footer.col_unternehmen">Unternehmen</div>
