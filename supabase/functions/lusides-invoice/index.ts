@@ -165,7 +165,10 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
   if (inv?.tax_note) notes.push(inv.tax_note);
   if (isOrder) { notes.push(t.notInvoice); notes.push(t.terms); notes.push(t.tzNote); }
   else if (inv.kind !== "storno") {
-    if (s.iban) { notes.push(t.pay); notes.push(`IBAN ${s.iban}${s.bic ? " · BIC " + s.bic : ""}${s.bank ? " · " + s.bank : ""}`); }
+    if (cur === "USD" && s.us_account && s.us_routing) {
+      notes.push(t.pay);
+      notes.push(`${s.us_account_name ? s.us_account_name + " · " : ""}Account ${s.us_account} · Routing (ABA) ${s.us_routing}${s.us_bank ? " · " + s.us_bank : ""}`);
+    } else if (s.iban) { notes.push(t.pay); notes.push(`IBAN ${s.iban}${s.bic ? " · BIC " + s.bic : ""}${s.bank ? " · " + s.bank : ""}`); }
     else notes.push(t.payNoBank);
   }
   notes.push(t.thanks);

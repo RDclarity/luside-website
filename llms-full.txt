@@ -11,7 +11,7 @@ URL: https://rdclarity.github.io/luside-website/index.html
 
 Unternehmensberatung & Entwicklung · Wien
 ## Wachstum mit System.
-Prozesse, Marketing, Finanzen und KI für inhabergeführte Unternehmen. Wir beraten nicht nur, wir setzen um.
+Prozesse, Marketing, Finanzen und KI für inhabergeführte Unternehmen. Wir beraten, wir setzen um.
 Erstgespräch buchen Leistungen
 01 — Haltung
 Du hast dein Unternehmen aufgebaut. Wir sorgen dafür, dass es auch ohne dich läuft — mit klaren Prozessen, starkem Marketing und Systemen, die mitwachsen.
@@ -42,7 +42,7 @@ Wir setzen mit euch um, bis es im Alltag läuft.
 ### Direkt mit den Gründern.
 Keine Junior-Berater. Ihr arbeitet mit den Menschen, die Lusides führen.
 MK
-Marko Katalan Strategie · Organisation · Wachstum
+Marko Katalan Regulatory, International Finance Advisory
 INHABER
 RD
 Richard Dobrohruschka Marketing · Vertrieb · Prozesse
@@ -61,7 +61,7 @@ Wir bleiben bei der Umsetzung dabei, statt nur eine Strategie zu übergeben. Kei
 **Frage:** Müssen wir uns auf alle vier Bereiche gleichzeitig einlassen?
 Nein. Im Erstgespräch klären wir, wo aktuell der größte Hebel liegt, und beginnen dort.
 #### Lieber schreiben?
-Wir melden uns innerhalb von zwei Werktagen.
+Im nächsten Schritt folgt ein kurzes Projektdatenblatt – wir melden uns innerhalb von zwei Werktagen.
 
 ---
 
@@ -508,17 +508,20 @@ Wien · New York Unternehmen aufgebaut
 3 Köpfe, ein Team
 MK Inhaber
 ### Marko Katalan
-Strategie · Organisation · Recht
-Jurist und Unternehmer. Seit rund zehn Jahren berät er Unternehmerinnen und Unternehmer und hat mehrere Unternehmen in Wien und New York mit aufgebaut – mit dem Blick für Struktur, Verträge und nachhaltiges Wachstum.
-- Jurist (Mag. iur.)
-- Geschäftsführer der Legatech GmbH & Co KG
-- Unternehmensaufbau in Wien und New York
+Regulatory, International Finance Advisory
+Marko Katalan ist Senior-Berater für M&A und strategische Beratung mit über 15 Jahren Erfahrung. Er begleitet Gründerinnen und Gründer, Family Offices, Privatinvestoren und Unternehmen bei grenzüberschreitenden Transaktionen, Restrukturierungen und komplexen Wachstumssituationen – von Akquisitionen, Verkäufen und Joint Ventures über Carve-outs bis zu Minderheitsbeteiligungen, mit klarem Fokus auf Deals zwischen Europa und den USA.
+Er verbindet tiefe Transaktionserfahrung mit einem seltenen interdisziplinären Hintergrund aus Recht, Finanzen und globaler Strategie. Seine Mandate reichen über Energie, Infrastruktur, Technologie, Professional Services, Konsumgüter und Sondersituationen – oft mit mehreren Rechtsordnungen, regulatorischer Komplexität und sensiblen Interessenlagen. Seine Stärke: Deals von der frühen Strategie und Strukturierung über die Verhandlung bis zum Abschluss zu führen und dabei rechtliche, finanzielle und kommerzielle Aspekte in Einklang zu bringen.
+Vor und neben seiner Beratungstätigkeit war er in leitenden Funktionen in Banking, Corporate Finance und als Jurist tätig und berät seit zwei Jahrzehnten Gesellschafter und Aufsichtsgremien zu Governance, Treuepflichten, Kapitalstrategie und Risikomanagement. Besonders gefragt ist er dort, wo Diskretion, Urteilsvermögen und langfristiges Denken zählen – bei Familienunternehmen, Nachfolgeregelungen und gründergeführten Unternehmen vor entscheidenden Weichenstellungen.
+Ausgebildet in Europa und den USA, unter anderem an der Columbia Law School, bewegt er sich sicher zwischen Rechtssystemen, Kulturen und Kapitalmärkten. Er berät pragmatisch und mit Investorenblick – mit dem Ziel, nicht nur Transaktionen abzuschließen, sondern Werte, Beziehungen und strategische Optionen langfristig zu sichern.
+- Über 15 Jahre M&A und strategische Beratung
+- Columbia Law School
+- Grenzüberschreitende Deals Europa – USA
 RD Inhaber
 ### Richard Dobrohruschka
 Marketing · Vertrieb · Prozesse
-Geprüfter Tischlermeister und Unternehmer. Er führt in dritter Generation den 1935 gegründeten Familienbetrieb Tischlerkultur und hat mit Richards Atelier ein eigenes Interior-Unternehmen aufgebaut – Projekte von Wien bis New York.
-- Übernahme und Ausbau des Familienbetriebs seit 2016
-- Gründer von Richards Atelier (Interior & Komplettsanierung)
+Geprüfter Tischlermeister und Unternehmer. Seit 2016 in der Führung des 1935 gegründeten Familienunternehmens Tischlerkultur und Mitgründer von Richard Atelier – mit Projekten von Wien bis New York.
+- Seit 2016 in der Führung eines Familienunternehmens
+- Mitgründer von Richard Atelier
 - Mehrfacher Unternehmensaufbau in Wien und New York
 MS Technik
 ### Mihai Suta

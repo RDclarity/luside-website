@@ -436,6 +436,12 @@
         <div class="field full"><label for="s-iban">IBAN</label><input id="s-iban" name="iban"></div>
         <div class="field"><label for="s-bic">BIC</label><input id="s-bic" name="bic"></div>
         <div class="field"><label for="s-bank">Bank</label><input id="s-bank" name="bank"></div>
+        <h3>US-Bankverbindung (Rechnungen in USD)</h3>
+        <div class="field full"><label for="s-us-name">Kontoinhaber</label><input id="s-us-name" name="us_account_name" maxlength="120" placeholder="Legatech GmbH &amp; Co KG"></div>
+        <div class="field"><label for="s-us-acc">Account Number</label><input id="s-us-acc" name="us_account" inputmode="numeric" pattern="[0-9]{4,17}" maxlength="17"></div>
+        <div class="field"><label for="s-us-rt">Routing Number (ABA)</label><input id="s-us-rt" name="us_routing" inputmode="numeric" pattern="[0-9]{9}" maxlength="9"></div>
+        <div class="field full"><label for="s-us-bank">Bank</label><input id="s-us-bank" name="us_bank" maxlength="120" placeholder="JPMorgan Chase Bank, N.A."></div>
+        <p class="hint full">Erscheint auf Rechnungen in USD statt der IBAN. Fehlt sie, wird die IBAN angedruckt.</p>
         <h3>Preise &amp; Steuer</h3>
         <div class="field"><label for="s-eur">Preis Erstgespräch EUR (brutto)</label><input id="s-eur" name="price_eur_gross" type="number" step="0.01" min="0"></div>
         <div class="field"><label for="s-usd">Preis Erstgespräch USD</label><input id="s-usd" name="price_usd" type="number" step="0.01" min="0"></div>

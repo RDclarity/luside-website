@@ -32,8 +32,8 @@
 
 ## Team
 
-- [Marko Katalan](https://rdclarity.github.io/luside-website/team.html): Inhaber, Jurist (Mag. iur.), Geschäftsführer der Legatech GmbH & Co KG. Schwerpunkte Strategie, Organisation und Recht; Unternehmensaufbau in Wien und New York.
-- [Richard Dobrohruschka](https://rdclarity.github.io/luside-website/team.html): Inhaber, geprüfter Tischlermeister und Unternehmer; führt den 1935 gegründeten Familienbetrieb Tischlerkultur in dritter Generation und gründete Richards Atelier. Schwerpunkte Marketing, Vertrieb und Prozesse.
+- [Marko Katalan](https://rdclarity.github.io/luside-website/team.html): Inhaber; Regulatory, International Finance Advisory. Über 15 Jahre M&A und strategische Beratung für Gründer, Family Offices, Investoren und Unternehmen – grenzüberschreitende Transaktionen, Restrukturierungen, Governance und Nachfolge, Schwerpunkt Europa – USA. Ausbildung in Europa und den USA, u. a. Columbia Law School.
+- [Richard Dobrohruschka](https://rdclarity.github.io/luside-website/team.html): Inhaber, geprüfter Tischlermeister und Unternehmer; seit 2016 in der Führung des 1935 gegründeten Familienunternehmens Tischlerkultur, Mitgründer von Richard Atelier. Schwerpunkte Marketing, Vertrieb und Prozesse.
 - [Mihai Suta](https://rdclarity.github.io/luside-website/team.html): Softwareentwickler und Mitgeschäftsführer der Legatech-Gruppe; verantwortet Software, KI und Onlineshops.
 
 ## Seminar

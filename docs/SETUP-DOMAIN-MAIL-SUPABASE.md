@@ -64,7 +64,8 @@ Projekt: `knuktzuqqmrrkpkusren`
    2. `supabase/migrations/20261003100000_billing.sql` (Bestellschein, Rechnungen, Nummernkreise)
    3. `supabase/migrations/20261003120000_security.sql` (Admin-Rechte, Missbrauchsschutz, Härtung)
    4. `supabase/migrations/20261004100000_project_sheets.sql` (Projektdatenblatt nach dem Anfrageformular)
-   5. Admins freischalten:
+   5. `supabase/migrations/20261005100000_us_bank.sql` (US-Bankverbindung für USD-Rechnungen)
+   6. Admins freischalten:
       ```sql
       insert into public.admin_users (user_id, note)
       select id, email from auth.users where email in ('ADMIN1@…', 'ADMIN2@…')
@@ -83,7 +84,7 @@ Projekt: `knuktzuqqmrrkpkusren`
    - optional `MAIL_FROM` = `Lusides <invoice@lusides.com>`
    - optional `MAIL_NOTIFY` = `inquiry@lusides.com` (bekommt auch jedes Projektdatenblatt als Kopie)
    - optional `MAIL_FROM_INFO` = `Lusides <inquiry@lusides.com>` (Absender der Projektdatenblatt-Mail)
-5. **Admin → Einstellungen** auf der Website: UID-Nummer, IBAN, BIC und Bank eintragen. Sie erscheinen dann auf jeder Rechnung.
+5. **Admin → Einstellungen** auf der Website: UID-Nummer, IBAN, BIC und Bank eintragen, außerdem unter „US-Bankverbindung“ Account Number, Routing Number und Bank. Die IBAN erscheint auf Euro-Rechnungen, das US-Konto auf Rechnungen in USD. Kontonummern bewusst nicht im Repository speichern, weil es öffentlich ist.
 6. **Nicht** `appointments`/`invoices` an den RIMA-Mirror hängen – das würde Rechnungsdaten (Adressen, UID) in ein zweites System kopieren.
 7. OpenAI: im OpenAI-Projekt ein monatliches Ausgabenlimit setzen (Kostenschutz für den Chat).
 
