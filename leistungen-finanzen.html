@@ -2,8 +2,13 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://knuktzuqqmrrkpkusren.supabase.co wss://knuktzuqqmrrkpkusren.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="geo.region" content="AT-9">
+<meta name="geo.placename" content="Wien">
+<meta name="author" content="Lusides">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Finanzielle Angelegenheiten von Lusides: Controlling, Reporting und Kennzahlen, auf die man sich verlassen kann — Struktur für fundierte Entscheidungen.">
+<meta name="description" content="Controlling und Reporting für inhabergeführte Unternehmen in Wien: Kennzahlen, Dashboards und Liquiditätsplanung für fundierte Entscheidungen.">
 <link rel="canonical" href="https://rdclarity.github.io/luside-website/leistungen-finanzen.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.ico">
@@ -12,19 +17,19 @@
 <meta property="og:type" content="website">
 <meta name="robots" content="index, follow">
 <meta property="og:site_name" content="Lusides">
-<meta property="og:title" content="Finanzielle Angelegenheiten — Lusides">
-<meta property="og:description" content="Controlling und Reporting, die dir echte Entscheidungsgrundlagen liefern — statt Bauchgefühl.">
+<meta property="og:title" content="Controlling, Reporting &amp; Finanzberatung für KMU Wien | Lusides">
+<meta property="og:description" content="Controlling und Reporting für inhabergeführte Unternehmen in Wien: Kennzahlen, Dashboards und Liquiditätsplanung für fundierte Entscheidungen.">
 <meta property="og:url" content="https://rdclarity.github.io/luside-website/leistungen-finanzen.html">
 <meta property="og:image" content="https://rdclarity.github.io/luside-website/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Lusides — Finanzielle Angelegenheiten">
 <meta property="og:locale" content="de_AT">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Finanzielle Angelegenheiten — Lusides">
-<meta name="twitter:description" content="Controlling und Reporting, die dir echte Entscheidungsgrundlagen liefern — statt Bauchgefühl.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Controlling, Reporting &amp; Finanzberatung für KMU Wien | Lusides">
+<meta name="twitter:description" content="Controlling und Reporting für inhabergeführte Unternehmen in Wien: Kennzahlen, Dashboards und Liquiditätsplanung für fundierte Entscheidungen.">
 <meta name="twitter:image" content="https://rdclarity.github.io/luside-website/og-image.jpg">
-<title data-i18n="svc_finanzen.meta_title">Finanzielle Angelegenheiten — Lusides</title>
+<title data-i18n="svc_finanzen.meta_title">Controlling, Reporting &amp; Finanzberatung für KMU Wien | Lusides</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,8 +37,8 @@
   "serviceType": "Finanzcontrolling-Beratung",
   "name": "Finanzielle Angelegenheiten",
   "description": "Aufbau von Controlling, Reporting und Kennzahlen-Struktur für fundierte unternehmerische Entscheidungen.",
-  "provider": { "@type": "Organization", "name": "Lusides", "url": "https://rdclarity.github.io/luside-website/index.html" },
-  "areaServed": "AT",
+  "provider": { "@type": "Organization", "@id": "https://rdclarity.github.io/luside-website/#organization", "name": "Lusides", "url": "https://rdclarity.github.io/luside-website/index.html" },
+  "areaServed": ["AT", "DE", "CH", "US"],
   "audience": { "@type": "BusinessAudience", "audienceType": "Etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und Struktur" }
 }
 </script>
@@ -76,9 +81,7 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
     --paper: #F4F8FC;
@@ -583,7 +586,7 @@
       <p class="kontakt-copy" data-i18n="kontakt.copy">Eine Minute Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.</p>
 
       <div class="qualify-form">
-        <form id="kontaktForm" novalidate>
+        <form id="kontaktForm" method="post" action="#" novalidate>
           <div class="field">
             <label for="cf-company" data-i18n="kontakt.form_company">Unternehmen</label>
             <input id="cf-company" name="company" type="text" required>
@@ -814,13 +817,13 @@
   }
 </script>
 <script src="i18n.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
 <script src="supabase-config.js" defer></script>
 <script src="chatbot.js" defer></script>
 <script src="contact-form.js" defer></script>
 <script src="analytics.js" defer></script>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
 <script src="site.js" defer></script>
 </body>
 </html>

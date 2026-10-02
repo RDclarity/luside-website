@@ -1,22 +1,57 @@
 # Lusides
 
-> Lusides ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Voraussetzung: das Unternehmen hat bereits Umsatz und eine gewachsene Struktur. Ablauf: Analyse, Aufbau, Umsetzung.
+> Lusides ist eine Unternehmensberatung in Wien (Österreich) für etablierte, inhabergeführte Unternehmen. Lusides berät und setzt selbst um: Prozesse & Systeme, Marketing, Finanzen, Digitalisierung & KI sowie Onlineshop-Entwicklung. Inhaber sind Marko Katalan und Richard Dobrohruschka, die Technik verantwortet Mihai Suta. Rechtsträger ist die Legatech GmbH & Co KG (FN 614735 y, Handelsgericht Wien). Ein 60-minütiges Erstgespräch per Microsoft Teams kostet 350 € (für Kunden in den USA 390 USD) und ist online buchbar.
 
-## Seiten
+## Kurzprofil
 
-- [Startseite](https://rdclarity.github.io/luside-website/index.html): Leistungen (Prozesse & Systeme, Marketing, Finanzielle Angelegenheiten, Digitalisierung & KI), Warum Lusides, Ablauf, FAQ, Kontaktformular
-- [Prozesse & Systeme](https://rdclarity.github.io/luside-website/leistungen-prozesse-systeme.html): Aufbau klarer Abläufe, dokumentierter Standards und eindeutiger Verantwortlichkeiten, damit ein Unternehmen nicht mehr an einer einzigen Person hängt
-- [Marketing](https://rdclarity.github.io/luside-website/leistungen-marketing.html): Positionierung, Kampagnenstruktur, Leadgenerierung und Vertriebsanbindung, die zusammenspielen
-- [Finanzielle Angelegenheiten](https://rdclarity.github.io/luside-website/leistungen-finanzen.html): Controlling, Reporting, Kennzahlen-Dashboards und Liquiditätsplanung für fundierte Entscheidungen
-- [Digitalisierung & KI](https://rdclarity.github.io/luside-website/leistungen-digitalisierung-ki.html): Firmenspezifische KI-Systeme und Automatisierung, selbst entwickelt und implementiert
-- [Erstberatung](https://rdclarity.github.io/luside-website/erstberatung.html): Kostenpflichtige Erstberatung mit Marko Katalan per Microsoft Teams — 30 Minuten für 250 € oder 60 Minuten für 450 €; nach der Anfrage folgt ein Projektbogen mit vertiefenden Fragen zur Situation
-- [Seminar](https://rdclarity.github.io/luside-website/seminar.html): 2-tägiges Praxisseminar zu Prozessen, Systemen und Marketing, voraussichtlich Februar/März 2027 in Wien, mit Marko Katalan und Richard Dobrohruschka (weitere Vortragende folgen)
-- [Team](https://rdclarity.github.io/luside-website/team.html): Richard Dobrohruschka (Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau), Marko Katalan (Strategie, Organisation, Unternehmensentwicklung, Wachstum)
-- [Impressum](https://rdclarity.github.io/luside-website/impressum.html): Impressum
-- [Datenschutz](https://rdclarity.github.io/luside-website/datenschutz.html): Datenschutzerklärung
+- Name: Lusides (Rechtsträger: Legatech GmbH & Co KG)
+- Art: Unternehmensberatung und Umsetzungspartner (Beratung + Entwicklung)
+- Standort: Endresstraße 50/V3, 1230 Wien, Österreich
+- Zielgruppe: etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und gewachsener Struktur (KMU); nicht für Start-ups in der Frühphase
+- Region: Österreich, Deutschland, Schweiz und USA (Beratung per Microsoft Teams)
+- Sprachen: Deutsch, Englisch
+- Erfahrung: rund 10 Jahre Unternehmensberatung; die Inhaber haben mehrere Unternehmen in Wien und New York mit aufgebaut
+- Arbeitsweise: Analyse → Aufbau → Umsetzung; Lusides bleibt bei der Umsetzung dabei, statt nur Konzepte zu liefern
+- Kontakt: inquiry@luside.com, +43 660 3607188
 
-## Kontakt
+## Leistungen
 
-- E-Mail: inquiry@luside.com
-- Telefon: +43 660 3607188
-- Adresse: Endresstraße 50/V3, 1230 Wien, Österreich
+- [Prozesse & Systeme](https://rdclarity.github.io/luside-website/leistungen-prozesse-systeme.html): Prozessoptimierung und Organisationsentwicklung – klare Abläufe, dokumentierte Standards und eindeutige Verantwortlichkeiten, damit das Unternehmen nicht an einer einzelnen Person hängt.
+- [Marketing](https://rdclarity.github.io/luside-website/leistungen-marketing.html): Marketingberatung für KMU – Positionierung, Kampagnen, Leadgenerierung und Vertriebsanbindung.
+- [Finanzielle Angelegenheiten](https://rdclarity.github.io/luside-website/leistungen-finanzen.html): Controlling, Reporting, Kennzahlen-Dashboards und Liquiditätsplanung.
+- [Digitalisierung & KI](https://rdclarity.github.io/luside-website/leistungen-digitalisierung-ki.html): KI-Beratung und firmenspezifische KI-Systeme sowie Automatisierung, von Lusides selbst entwickelt und implementiert.
+- [Onlineshop-Entwicklung](https://rdclarity.github.io/luside-website/leistungen-onlineshop-entwicklung.html): Onlineshops (Shopify, WooCommerce oder individuell), Webseiten und Web-Apps mit Anbindung an Warenwirtschaft, Zahlung, Versand und KI.
+
+## Erstgespräch & Preise
+
+- [Termin buchen](https://rdclarity.github.io/luside-website/termin.html): 60 Minuten per Microsoft Teams.
+- Preis: 350 € inkl. 20 % USt (Kunden in Österreich und Privatkunden in der EU); Unternehmen in anderen EU-Staaten mit UID: 291,67 € netto (Reverse Charge); Kunden in den USA: 390 USD.
+- Buchbar: Montag bis Freitag; für EU-Kunden 9–17 Uhr Wiener Zeit, für US-Kunden 9–12 Uhr New Yorker Zeit.
+- Nach der Buchung erhält der Kunde automatisch Bestellschein und Rechnung per E-Mail; den Teams-Link vor dem Termin.
+- Kostenlose Umbuchung oder Absage bis 24 Stunden vor dem Termin.
+
+## Team
+
+- [Marko Katalan](https://rdclarity.github.io/luside-website/team.html): Inhaber, Jurist (Mag. iur.), Geschäftsführer der Legatech GmbH & Co KG. Schwerpunkte Strategie, Organisation und Recht; Unternehmensaufbau in Wien und New York.
+- [Richard Dobrohruschka](https://rdclarity.github.io/luside-website/team.html): Inhaber, geprüfter Tischlermeister und Unternehmer; führt den 1935 gegründeten Familienbetrieb Tischlerkultur in dritter Generation und gründete Richards Atelier. Schwerpunkte Marketing, Vertrieb und Prozesse.
+- [Mihai Suta](https://rdclarity.github.io/luside-website/team.html): Softwareentwickler und Mitgeschäftsführer der Legatech-Gruppe; verantwortet Software, KI und Onlineshops.
+
+## Seminar
+
+- [Seminar „Prozesse, Systeme, Marketing“](https://rdclarity.github.io/luside-website/seminar.html): 2-tägiges Praxisseminar in Wien, voraussichtlich Februar/März 2027, mit Marko Katalan und Richard Dobrohruschka. Interessensbekundung unverbindlich über die Seite.
+
+## Häufige Fragen
+
+- Für wen ist Lusides geeignet? Für etablierte, inhabergeführte Unternehmen, bei denen Prozesse, Marketing oder Digitalisierung das weitere Wachstum bremsen.
+- Was unterscheidet Lusides von klassischen Unternehmensberatungen? Lusides bleibt bei der Umsetzung dabei und baut Systeme gemeinsam mit dem Kunden, statt nur Strategiepapiere zu übergeben.
+- Muss man alle Bereiche gleichzeitig beauftragen? Nein. Im Erstgespräch wird geklärt, wo der größte Hebel liegt; dort wird begonnen.
+- Wo findet die Beratung statt? Erstgespräche per Microsoft Teams; Projekte vor Ort in Wien/Österreich oder remote.
+
+## Rechtliches
+
+- [Impressum](https://rdclarity.github.io/luside-website/impressum.html)
+- [Datenschutz](https://rdclarity.github.io/luside-website/datenschutz.html)
+
+## Optional
+
+- [Ausführliche Fassung für KI-Systeme](https://rdclarity.github.io/luside-website/llms-full.txt)

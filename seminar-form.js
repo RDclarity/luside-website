@@ -3,7 +3,7 @@
   if(!forms.length) return;
 
   var CRM_INTAKE_URL = 'https://knuktzuqqmrrkpkusren.supabase.co/functions/v1/lusides-rima-sync';
-  var SEMINAR_TAG = 'Seminar-Interesse: Prozesse, Systeme, Marketing (Wien, Nov/Dez 2026 vorauss.)';
+  var SEMINAR_TAG = 'Seminar-Interesse: Prozesse, Systeme, Marketing (Wien, Feb/März 2027 vorauss.)';
 
   // Best-effort: forwards the lead into the RIMA Equity CRM. Never blocks or
   // fails the user-facing submission — the local Supabase insert is the
@@ -32,7 +32,7 @@
   }
 
   function currentStrings(){
-    var lang = localStorage.getItem('lusides_lang') || 'de';
+    var lang = ((window.lusidesI18n && window.lusidesI18n.currentLang) ? window.lusidesI18n.currentLang() : 'de');
     var dict = (window.lusidesI18n && window.lusidesI18n.translations[lang]) || {};
     return (dict.seminar_page) || {};
   }

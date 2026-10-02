@@ -2,8 +2,13 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://knuktzuqqmrrkpkusren.supabase.co wss://knuktzuqqmrrkpkusren.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="geo.region" content="AT-9">
+<meta name="geo.placename" content="Wien">
+<meta name="author" content="Lusides">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Lusides ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI.">
+<meta name="description" content="Lusides ist Unternehmensberatung in Wien für inhabergeführte Unternehmen: Prozesse, Marketing, Finanzen, KI und Onlineshops – wir beraten und setzen um. Erstgespräch 60 Min. per Teams.">
 <link rel="canonical" href="https://rdclarity.github.io/luside-website/index.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.ico">
@@ -12,46 +17,282 @@
 <meta property="og:type" content="website">
 <meta name="robots" content="index, follow">
 <meta property="og:site_name" content="Lusides">
-<meta property="og:title" content="Lusides — Du musst dein Unternehmen nicht allein tragen">
-<meta property="og:description" content="Wir beraten nicht nur — wir bauen mit dir die Prozesse, Systeme, das Marketing und die KI-Lösungen, die dein Unternehmen wirklich braucht.">
+<meta property="og:title" content="Unternehmensberatung Wien für inhabergeführte Unternehmen | Lusides">
+<meta property="og:description" content="Lusides ist Unternehmensberatung in Wien für inhabergeführte Unternehmen: Prozesse, Marketing, Finanzen, KI und Onlineshops – wir beraten und setzen um. Erstgespräch 60 Min. per Teams.">
 <meta property="og:url" content="https://rdclarity.github.io/luside-website/index.html">
 <meta property="og:image" content="https://rdclarity.github.io/luside-website/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Lusides — Unternehmensberatung und Entwicklung">
 <meta property="og:locale" content="de_AT">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lusides — Du musst dein Unternehmen nicht allein tragen">
-<meta name="twitter:description" content="Wir beraten nicht nur — wir bauen mit dir die Prozesse, Systeme, das Marketing und die KI-Lösungen, die dein Unternehmen wirklich braucht.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Unternehmensberatung Wien für inhabergeführte Unternehmen | Lusides">
+<meta name="twitter:description" content="Lusides ist Unternehmensberatung in Wien für inhabergeführte Unternehmen: Prozesse, Marketing, Finanzen, KI und Onlineshops – wir beraten und setzen um. Erstgespräch 60 Min. per Teams.">
 <meta name="twitter:image" content="https://rdclarity.github.io/luside-website/og-image.jpg">
-<title data-i18n="meta.title">Lusides — Du musst dein Unternehmen nicht allein tragen</title>
+<title data-i18n="meta.title">Unternehmensberatung Wien für inhabergeführte Unternehmen | Lusides</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Lusides",
-  "legalName": "Legatech GmbH & Co KG",
-  "founder": [{ "@type": "Person", "name": "Marko Katalan" }, { "@type": "Person", "name": "Richard Dobrohruschka" }],
-  "description": "Lusides ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI.",
-  "url": "https://rdclarity.github.io/luside-website/index.html",
-  "email": "inquiry@luside.com",
-  "telephone": "+43 660 3607188",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Endresstraße 50/V3",
-    "postalCode": "1230",
-    "addressLocality": "Wien",
-    "addressCountry": "AT"
-  },
-  "areaServed": "AT",
-  "sameAs": [],
-  "makesOffer": [
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Prozesse & Systeme", "url": "https://rdclarity.github.io/luside-website/leistungen-prozesse-systeme.html" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing", "url": "https://rdclarity.github.io/luside-website/leistungen-marketing.html" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Finanzielle Angelegenheiten", "url": "https://rdclarity.github.io/luside-website/leistungen-finanzen.html" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digitalisierung & KI", "url": "https://rdclarity.github.io/luside-website/leistungen-digitalisierung-ki.html" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Onlineshop-Entwicklung", "url": "https://rdclarity.github.io/luside-website/leistungen-onlineshop-entwicklung.html" } },
-    { "@type": "Offer", "price": "350", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Erstgespräch (60 Minuten, Microsoft Teams)", "url": "https://rdclarity.github.io/luside-website/termin.html" } }
+  "@graph": [
+    {
+      "@type": [
+        "Organization",
+        "ProfessionalService"
+      ],
+      "@id": "https://rdclarity.github.io/luside-website/#organization",
+      "name": "Lusides",
+      "legalName": "Legatech GmbH & Co KG",
+      "alternateName": "Lusides Unternehmensberatung",
+      "description": "Lusides ist eine Unternehmensberatung in Wien für etablierte, inhabergeführte Unternehmen. Schwerpunkte: Prozesse & Systeme, Marketing, Finanzen, Digitalisierung & KI sowie Onlineshop-Entwicklung. Lusides berät und setzt selbst um. Erstgespräche finden per Microsoft Teams statt und sind auch aus den USA buchbar.",
+      "url": "https://rdclarity.github.io/luside-website/index.html",
+      "logo": "https://rdclarity.github.io/luside-website/logo.svg",
+      "image": "https://rdclarity.github.io/luside-website/og-image.jpg",
+      "email": "inquiry@luside.com",
+      "telephone": "+43 660 3607188",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Endresstraße 50/V3",
+        "postalCode": "1230",
+        "addressLocality": "Wien",
+        "addressRegion": "Wien",
+        "addressCountry": "AT"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Österreich"
+        },
+        {
+          "@type": "Country",
+          "name": "Deutschland"
+        },
+        {
+          "@type": "Country",
+          "name": "Schweiz"
+        },
+        {
+          "@type": "Country",
+          "name": "Vereinigte Staaten"
+        }
+      ],
+      "availableLanguage": [
+        "de",
+        "en"
+      ],
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR, USD",
+      "paymentAccepted": "Überweisung",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      ],
+      "founder": [
+        {
+          "@id": "https://rdclarity.github.io/luside-website/team.html#marko-katalan"
+        },
+        {
+          "@id": "https://rdclarity.github.io/luside-website/team.html#richard-dobrohruschka"
+        }
+      ],
+      "employee": [
+        {
+          "@id": "https://rdclarity.github.io/luside-website/team.html#marko-katalan"
+        },
+        {
+          "@id": "https://rdclarity.github.io/luside-website/team.html#richard-dobrohruschka"
+        },
+        {
+          "@id": "https://rdclarity.github.io/luside-website/team.html#mihai-suta"
+        }
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "Firmenbuchnummer",
+        "value": "FN 614735 y"
+      },
+      "knowsAbout": [
+        "Unternehmensberatung",
+        "Prozessoptimierung",
+        "Organisationsentwicklung",
+        "Marketingberatung",
+        "Leadgenerierung",
+        "Controlling",
+        "Reporting",
+        "Digitalisierung",
+        "Künstliche Intelligenz",
+        "KI-Beratung",
+        "Automatisierung",
+        "Onlineshop-Entwicklung",
+        "Shopify",
+        "WooCommerce",
+        "Unternehmensaufbau"
+      ],
+      "slogan": "Wachstum mit System.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Leistungen",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Prozesse & Systeme",
+              "description": "Prozessoptimierung, Standards, Verantwortlichkeiten und Organisationsentwicklung",
+              "url": "https://rdclarity.github.io/luside-website/leistungen-prozesse-systeme.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Marketing",
+              "description": "Positionierung, Kampagnen, Leadgenerierung und Vertrieb",
+              "url": "https://rdclarity.github.io/luside-website/leistungen-marketing.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Finanzielle Angelegenheiten",
+              "description": "Controlling, Reporting, Kennzahlen und Liquiditätsplanung",
+              "url": "https://rdclarity.github.io/luside-website/leistungen-finanzen.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Digitalisierung & KI",
+              "description": "Firmenspezifische KI-Systeme und Automatisierung",
+              "url": "https://rdclarity.github.io/luside-website/leistungen-digitalisierung-ki.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Onlineshop-Entwicklung",
+              "description": "Onlineshops, Webseiten und Web-Apps mit Anbindung an Warenwirtschaft, Zahlung und Versand",
+              "url": "https://rdclarity.github.io/luside-website/leistungen-onlineshop-entwicklung.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Erstgespräch 60 Minuten (Microsoft Teams)",
+            "price": "350.00",
+            "priceCurrency": "EUR",
+            "url": "https://rdclarity.github.io/luside-website/termin.html",
+            "availability": "https://schema.org/InStock",
+            "eligibleRegion": [
+              "AT",
+              "DE",
+              "CH",
+              "LI"
+            ],
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "350.00",
+              "priceCurrency": "EUR",
+              "valueAddedTaxIncluded": true
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Initial consultation 60 minutes (Microsoft Teams)",
+            "price": "390.00",
+            "priceCurrency": "USD",
+            "url": "https://rdclarity.github.io/luside-website/termin.html",
+            "availability": "https://schema.org/InStock",
+            "eligibleRegion": "US"
+          }
+        ]
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rdclarity.github.io/luside-website/#website",
+      "url": "https://rdclarity.github.io/luside-website/index.html",
+      "name": "Lusides",
+      "inLanguage": [
+        "de-AT",
+        "en"
+      ],
+      "publisher": {
+        "@id": "https://rdclarity.github.io/luside-website/#organization"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://rdclarity.github.io/luside-website/team.html#marko-katalan",
+      "name": "Marko Katalan",
+      "honorificPrefix": "Mag.",
+      "jobTitle": "Inhaber & Geschäftsführer",
+      "worksFor": {
+        "@id": "https://rdclarity.github.io/luside-website/#organization"
+      },
+      "knowsAbout": [
+        "Unternehmensstrategie",
+        "Organisationsentwicklung",
+        "Wirtschaftsrecht",
+        "Unternehmensaufbau"
+      ],
+      "workLocation": [
+        "Wien",
+        "New York"
+      ],
+      "url": "https://rdclarity.github.io/luside-website/team.html"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://rdclarity.github.io/luside-website/team.html#richard-dobrohruschka",
+      "name": "Richard Dobrohruschka",
+      "jobTitle": "Inhaber",
+      "worksFor": {
+        "@id": "https://rdclarity.github.io/luside-website/#organization"
+      },
+      "hasCredential": "Tischlermeister",
+      "knowsAbout": [
+        "Marketing",
+        "Vertrieb",
+        "Prozessaufbau",
+        "Unternehmensentwicklung",
+        "Interior Design"
+      ],
+      "workLocation": [
+        "Wien",
+        "New York"
+      ],
+      "url": "https://rdclarity.github.io/luside-website/team.html"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://rdclarity.github.io/luside-website/team.html#mihai-suta",
+      "name": "Mihai Suta",
+      "jobTitle": "Softwareentwicklung & Technik",
+      "worksFor": {
+        "@id": "https://rdclarity.github.io/luside-website/#organization"
+      },
+      "knowsAbout": [
+        "Softwareentwicklung",
+        "Künstliche Intelligenz",
+        "Automatisierung",
+        "Webentwicklung",
+        "Onlineshops"
+      ],
+      "url": "https://rdclarity.github.io/luside-website/team.html"
+    }
   ]
 }
 </script>
@@ -95,9 +336,7 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{ --night:#050B18; --blue:#2F6BFF; --ice:#8EC5FF; --paper:#F4F7FB; --ink:#0A1428; --slate:#56677F; --line:#DCE5F0; }
   *{ margin:0; padding:0; box-sizing:border-box; }
@@ -308,6 +547,7 @@
     <h1 data-split>
       <span class="line"><span data-i18n="home2.h1a">Wachstum</span></span>
       <span class="line"><span><span data-i18n="home2.h1b">mit</span> <em data-i18n="home2.h1c">System.</em></span></span>
+      <span class="sr-only" data-i18n="home2.h1_seo"> – Unternehmensberatung in Wien für inhabergeführte Unternehmen</span>
     </h1>
     <div class="h-foot fade-up">
       <p data-i18n="home2.sub">Prozesse, Marketing, Finanzen und KI für inhabergeführte Unternehmen. Wir beraten nicht nur, wir setzen um.</p>
@@ -441,7 +681,7 @@
     <div class="contact-card ls-reveal" data-delay="1">
       <h3 data-i18n="home2.form_h">Lieber schreiben?</h3>
       <p data-i18n="home2.form_p">Wir melden uns innerhalb von zwei Werktagen.</p>
-      <form id="kontaktForm" class="cf" novalidate>
+      <form id="kontaktForm" class="cf" method="post" action="#" novalidate>
         <div><label for="cf-name" data-i18n="kontakt.form_name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required></div>
         <div><label for="cf-company" data-i18n="kontakt.form_company">Unternehmen</label><input id="cf-company" name="company" type="text" autocomplete="organization" required></div>
         <div><label for="cf-email" data-i18n="kontakt.form_email">E-Mail</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
@@ -477,9 +717,9 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
 <script src="i18n.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
 <script src="supabase-config.js" defer></script>
 <script src="chatbot.js" defer></script>
 <script src="contact-form.js" defer></script>

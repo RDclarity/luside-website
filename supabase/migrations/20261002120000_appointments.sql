@@ -1,7 +1,9 @@
 -- Terminbuchung: 1 Stunde Erstgespräch per Microsoft Teams (350 €).
 --
 -- Einmalig im Supabase-Dashboard ausführen (SQL Editor → diesen Inhalt
--- einfügen → Run). Idempotent, darf also mehrfach laufen.
+-- einfügen → Run). NUR EINMAL und VOR 20261003100000_billing.sql ausführen –
+-- ein erneuter Lauf danach würde die gehärtete Buchungsfunktion überschreiben.
+-- Reihenfolge: appointments → billing → security.
 --
 -- Sicherheitsmodell:
 --   * Besucher (anon) haben KEINEN direkten Zugriff auf die Tabelle.

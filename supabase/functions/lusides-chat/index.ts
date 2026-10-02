@@ -1,4 +1,5 @@
 import { corsHeaders, handlePreflight, json } from "../_shared/cors.ts";
+import { allow, clientIp } from "../_shared/ratelimit.ts";
 
 // Öffentlicher Chat-Proxy für den Website-Chatbot (unten rechts). Hält den
 // OpenAI-Key serverseitig (Edge-Function-Secret) — ein Key im Browser-Code
@@ -53,6 +54,9 @@ Deno.serve(async (req) => {
   if (preflight) return preflight;
   if (req.method !== "POST") return json({ error: "Method not allowed" }, 405);
 
+  // Kostenbremse: max. 30 Chat-Anfragen pro IP und Stunde.
+  if (!(await allow("chat:" + clientIp(req), 30))) return json({ error: "too many requests" }, 429);
+
   const apiKey = Deno.env.get("OPENAI_API_KEY");
   if (!apiKey) return json({ error: "OPENAI_API_KEY missing" }, 500);
 
@@ -71,7 +75,10 @@ Deno.serve(async (req) => {
 
   const sanitized = messages
     .filter((m) => m.role === "user" || m.role === "assistant")
-    .map((m) => ({ role: m.role, content: String(m.content || "").slice(0, 1000) }));
+    .map((m) => ({ role: m.role, content: String(m.content || "").slice(0, m.role === "assistant" ? 600 : 1000) }));
+  // Der Browser darf keine Assistenten-Antworten "vorgeben", die den Bot umprogrammieren:
+  // nur die letzte Nutzernachricht zählt als aktuelle Frage, ältere Assistenten-Turns sind gekürzt.
+  if (sanitized.length === 0 || sanitized[sanitized.length - 1].role !== "user") return json({ error: "last message must be from user" }, 400);
 
   const systemPrompt = body.lang === "en" ? SYSTEM_PROMPT_EN : SYSTEM_PROMPT_DE;
 

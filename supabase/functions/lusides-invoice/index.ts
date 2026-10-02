@@ -28,10 +28,13 @@ const admin = createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: 
 
 type Row = Record<string, any>;
 
-const COUNTRY: Record<string, [string, string]> = {
-  AT: ["Österreich", "Austria"], DE: ["Deutschland", "Germany"], CH: ["Schweiz", "Switzerland"],
-  US: ["USA", "United States"], LI: ["Liechtenstein", "Liechtenstein"], IT: ["Italien", "Italy"],
-};
+// HTML-Escaping für alles, was aus Kundeneingaben in E-Mails landet.
+const h = (v: unknown) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
+const oneLine = (v: unknown) => String(v ?? "").replace(/[\r\n]+/g, " ").slice(0, 120);
+function countryName(code: string | null | undefined, lang: string) {
+  if (!code) return "";
+  try { return new Intl.DisplayNames([lang === "en" ? "en" : "de"], { type: "region" }).of(code) ?? code; } catch { return code; }
+}
 
 function T(lang: string) {
   const en = lang === "en";
@@ -113,8 +116,8 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
   // Empfänger
   const isOrder = kind === "order";
   const cust = isOrder
-    ? [a.billing_company, a.billing_name, a.billing_street, [a.billing_zip, a.billing_city].filter(Boolean).join(" "), COUNTRY[a.billing_country]?.[lang === "en" ? 1 : 0] ?? a.billing_country]
-    : [inv.customer_company, inv.customer_name, inv.customer_street, [inv.customer_zip, inv.customer_city].filter(Boolean).join(" "), COUNTRY[inv.customer_country]?.[lang === "en" ? 1 : 0] ?? inv.customer_country];
+    ? [a.billing_company, a.billing_name, a.billing_street, [a.billing_zip, a.billing_city].filter(Boolean).join(" "), countryName(a.billing_country, lang)]
+    : [inv.customer_company, inv.customer_name, inv.customer_street, [inv.customer_zip, inv.customer_city].filter(Boolean).join(" "), countryName(inv.customer_country, lang)];
   text(page, `${s.legal_name} · ${s.street} · ${s.zip} ${s.city}`, M, 700, 7, font, slate);
   cust.filter(Boolean).forEach((l, i) => text(page, String(l), M, 682 - i * 13, 10.5, i === 0 ? bold : font));
 
@@ -141,7 +144,7 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
   const desc = isOrder ? (lang === "en" ? "Initial consultation, 60 minutes, via Microsoft Teams" : "Erstgespräch, 60 Minuten, per Microsoft Teams") : inv.description;
   text(page, "1", M + 8, y, 10); text(page, desc, M + 46, y, 10, bold);
   text(page, `${t.appt}: ${dateTimeFmt(a?.start_at ?? inv.service_date, lang)}`, M + 46, y - 14, 8.5, font, slate);
-  right(page, String(qty), 370, y, 10); right(page, money(Math.abs(net) / qty, cur, lang), 460, y, 10); right(page, money(net, cur, lang), W - M - 8, y, 10);
+  right(page, String(qty), 370, y, 10); right(page, money(net / qty, cur, lang), 460, y, 10); right(page, money(net, cur, lang), W - M - 8, y, 10);
   y -= 34;
   page.drawLine({ start: { x: M, y }, end: { x: W - M, y }, thickness: 0.6, color: rgb(0.86, 0.9, 0.94) });
 
@@ -190,7 +193,7 @@ async function load(appointmentId: string) {
   const [{ data: s }, { data: a }, { data: inv }] = await Promise.all([
     admin.from("billing_settings").select("*").eq("id", true).single(),
     admin.from("appointments").select("*").eq("id", appointmentId).single(),
-    admin.from("invoices").select("*").eq("appointment_id", appointmentId).eq("kind", "rechnung").order("created_at").limit(1).maybeSingle(),
+    admin.from("invoices").select("*").eq("appointment_id", appointmentId).eq("kind", "rechnung").neq("status", "storniert").order("created_at").limit(1).maybeSingle(),
   ]);
   return { s, a, inv };
 }
@@ -206,13 +209,13 @@ async function sendMails(s: Row, a: Row, inv: Row) {
     ? `Your Lusides booking ${a.order_no} – invoice ${inv.invoice_no}`
     : `Ihre Buchung bei Lusides ${a.order_no} – Rechnung ${inv.invoice_no}`;
   const html = en
-    ? `<p>Hello ${a.name},</p><p>thank you for booking your initial consultation with Lusides.</p>
-       <p><strong>${when}</strong> (Vienna time) · 60 minutes · Microsoft Teams</p>
-       <p>Attached you will find your order confirmation <strong>${a.order_no}</strong> and invoice <strong>${inv.invoice_no}</strong> (${amount}).
+    ? `<p>Hello ${h(a.name)},</p><p>thank you for booking your initial consultation with Lusides.</p>
+       <p><strong>${h(when)}</strong> (Vienna time) · 60 minutes · Microsoft Teams</p>
+       <p>Attached you will find your order confirmation <strong>${h(a.order_no)}</strong> and invoice <strong>${h(inv.invoice_no)}</strong> (${h(amount)}).
        We will send you the Microsoft Teams link before the appointment.</p><p>Kind regards<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`
-    : `<p>Hallo ${a.name},</p><p>vielen Dank für Ihre Buchung eines Erstgesprächs bei Lusides.</p>
-       <p><strong>${when}</strong> · 60 Minuten · Microsoft Teams</p>
-       <p>Im Anhang finden Sie Ihren Bestellschein <strong>${a.order_no}</strong> und die Rechnung <strong>${inv.invoice_no}</strong> (${amount}).
+    : `<p>Guten Tag ${h(a.name)},</p><p>vielen Dank für Ihre Buchung eines Erstgesprächs bei Lusides.</p>
+       <p><strong>${h(when)}</strong> · 60 Minuten · Microsoft Teams</p>
+       <p>Im Anhang finden Sie Ihren Bestellschein <strong>${h(a.order_no)}</strong> und die Rechnung <strong>${h(inv.invoice_no)}</strong> (${h(amount)}).
        Den Microsoft-Teams-Link senden wir Ihnen vor dem Termin.</p><p>Beste Grüße<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`;
   const attachments = [
     { filename: `${en ? "Order" : "Bestellschein"}-${a.order_no}.pdf`, content: b64(order) },
@@ -225,20 +228,25 @@ async function sendMails(s: Row, a: Row, inv: Row) {
   }).then(async (r) => { if (!r.ok) throw new Error(`Resend ${r.status}: ${await r.text()}`); });
 
   await send({ from: MAIL_FROM, to: [a.email], reply_to: s.email_contact, subject, html, attachments });
-  await send({
-    from: MAIL_FROM, to: [MAIL_NOTIFY], subject: `Neue Buchung: ${a.name} – ${when}`,
-    html: `<p><strong>${a.name}</strong>${a.company ? " (" + a.company + ")" : ""} hat ein Erstgespräch gebucht.</p>
-           <p>${when} · ${a.email}${a.phone ? " · " + a.phone : ""}<br>Thema: ${a.topic ?? "-"}<br>${a.message ?? ""}</p>
-           <p>Bestellschein ${a.order_no} · Rechnung ${inv.invoice_no} · ${amount}</p>`,
-    attachments,
-  });
+  // Interne Kopie: Fehler hier dürfen die (bereits erfolgte) Kundenmail nicht als gescheitert markieren.
+  try {
+    await send({
+      from: MAIL_FROM, to: [MAIL_NOTIFY], subject: `Neue Buchung: ${oneLine(a.name)} – ${oneLine(when)}`,
+      html: `<p><strong>${h(a.name)}</strong>${a.company ? " (" + h(a.company) + ")" : ""} hat ein Erstgespräch gebucht.</p>
+             <p>${h(when)} · ${h(a.email)}${a.phone ? " · " + h(a.phone) : ""}<br>Thema: ${h(a.topic ?? "-")}<br>${h(a.message ?? "").replace(/\n/g, "<br>")}</p>
+             <p>Bestellschein ${h(a.order_no)} · Rechnung ${h(inv.invoice_no)} · ${h(amount)}</p>`,
+      attachments,
+    });
+  } catch (e) { console.error("notify failed", e); }
 }
 
 async function requireAdmin(req: Request) {
   const auth = req.headers.get("Authorization") ?? "";
   const userClient = createClient(SUPABASE_URL, ANON_KEY, { global: { headers: { Authorization: auth } } });
   const { data } = await userClient.auth.getUser();
-  return !!data?.user;
+  if (!data?.user || (data.user as Row).is_anonymous) return false;
+  const { data: row } = await admin.from("admin_users").select("user_id").eq("user_id", data.user.id).maybeSingle();
+  return !!row;
 }
 
 Deno.serve(async (req) => {
@@ -249,11 +257,13 @@ Deno.serve(async (req) => {
   try {
     if (body.action === "send") {
       const { s, a, inv } = await load(body.appointment_id);
-      if (!a || !inv || a.booking_token !== body.token) return json({ error: "not found" }, 404);
-      if (a.mail_status === "gesendet") return json({ ok: true, already: true });
+      if (!a || !inv || typeof body.token !== "string" || a.booking_token !== body.token) return json({ error: "not found" }, 404);
+      // Atomar beanspruchen: nur ein einziger Aufruf darf versenden (kein Mail-Bombing durch Wiederholen).
+      const { data: claim } = await admin.from("appointments").update({ mail_status: "gesendet" })
+        .eq("id", a.id).eq("booking_token", body.token).eq("mail_status", "offen").select("id");
+      if (!claim?.length) return json({ ok: true, already: true });
       try {
         await sendMails(s!, a, inv);
-        await admin.from("appointments").update({ mail_status: "gesendet", mail_error: null }).eq("id", a.id);
         await admin.from("invoices").update({ sent_at: new Date().toISOString() }).eq("id", inv.id);
         return json({ ok: true });
       } catch (e) {

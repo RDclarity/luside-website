@@ -76,10 +76,13 @@
   function onScroll(){
     var y = window.scrollY;
     if(header && !header.classList.contains('menu-open')){
-      header.classList.toggle('is-hidden', y > 260 && y > lastY + 4);
-      if(y < lastY - 4 || y < 260) header.classList.remove('is-hidden');
+      // Richtung erst ab 6 px Bewegung werten – sanftes Scrollen liefert viele Mini-Schritte.
+      if(y < 260){ header.classList.remove('is-hidden'); lastY = y; }
+      else if(y - lastY > 6){ header.classList.add('is-hidden'); lastY = y; }
+      else if(lastY - y > 6){ header.classList.remove('is-hidden'); lastY = y; }
+    } else {
+      lastY = y;
     }
-    lastY = y;
     if(progress){
       var h = document.documentElement.scrollHeight - window.innerHeight;
       progress.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
@@ -121,7 +124,7 @@
 
   // ---------- Hero: Zeilen gleiten aus der Maske ----------
   document.querySelectorAll('[data-split]').forEach(function(el){
-    whenIntroOpen(function(){ setTimeout(function(){ requestAnimationFrame(function(){ el.classList.add('is-in'); }); }, introRunning ? 0 : 350); });
+    whenIntroOpen(function(){ setTimeout(function(){ requestAnimationFrame(function(){ el.classList.add('is-in'); }); }, 350); });
   });
 
   // ---------- Magnetische Buttons ----------

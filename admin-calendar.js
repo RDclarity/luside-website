@@ -4,7 +4,10 @@
   var client = null;
   var appts = [];
   var view = 'week';
-  var cursor = startOfDay(new Date());
+  // Alle Anzeigen in Wiener Zeit – auch wenn der Admin in New York sitzt.
+  function wall(d){ return new Date(new Date(d).toLocaleString('en-US', { timeZone: 'Europe/Vienna' })); }
+  function nowWall(){ return wall(new Date()); }
+  var cursor = startOfDay(nowWall());
   var current = null; // im Dialog geöffneter Termin
 
   var HOUR_FROM = 7, HOUR_TO = 20, HOUR_PX = 48;
@@ -14,7 +17,7 @@
 
   var $ = function(id){ return document.getElementById(id); };
 
-  function esc(str){ var d = document.createElement('div'); d.textContent = str == null ? '' : String(str); return d.innerHTML; }
+  function esc(str){ return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function startOfDay(d){ var x = new Date(d); x.setHours(0, 0, 0, 0); return x; }
   function addDays(d, n){ var x = new Date(d); x.setDate(x.getDate() + n); return x; }
   function startOfWeek(d){ var x = startOfDay(d); var w = (x.getDay() + 6) % 7; return addDays(x, -w); }
@@ -25,7 +28,7 @@
 
   function byDay(){
     var map = {};
-    appts.forEach(function(a){ var k = dayKey(a._start); (map[k] = map[k] || []).push(a); });
+    appts.forEach(function(a){ if(a.status === 'abgesagt') return; var k = dayKey(a._start); (map[k] = map[k] || []).push(a); });
     Object.keys(map).forEach(function(k){ map[k].sort(function(x, y){ return x._start - y._start; }); });
     return map;
   }
@@ -44,7 +47,7 @@
     $('calTitle').textContent = start.getMonth() === end.getMonth()
       ? MONTHS[start.getMonth()] + ' ' + start.getFullYear()
       : MONTHS[start.getMonth()].slice(0, 3) + ' – ' + MONTHS[end.getMonth()].slice(0, 3) + ' ' + end.getFullYear();
-    var today = new Date();
+    var today = nowWall();
     var map = byDay();
     var head = '<div class="wk wk-head"><div></div>';
     for(var i = 0; i < 7; i++){
@@ -85,7 +88,7 @@
     $('calTitle').textContent = MONTHS[first.getMonth()] + ' ' + first.getFullYear();
     var gridStart = startOfWeek(first);
     var map = byDay();
-    var today = new Date();
+    var today = nowWall();
     var html = '<div class="mo">';
     DOW.forEach(function(d){ html += '<div class="mo-dow">' + d + '</div>'; });
     for(var i = 0; i < 42; i++){
@@ -108,7 +111,7 @@
     var y = cursor.getFullYear();
     $('calTitle').textContent = String(y);
     var map = byDay();
-    var today = new Date();
+    var today = nowWall();
     var html = '<div class="yr">';
     for(var m = 0; m < 12; m++){
       var first = new Date(y, m, 1);
@@ -120,7 +123,7 @@
       for(var b = 0; b < lead; b++) html += '<span></span>';
       for(var d = 1; d <= days; d++){
         var date = new Date(y, m, d);
-        var list = (map[dayKey(date)] || []).filter(function(a){ return a.status !== 'abgesagt'; });
+        var list = map[dayKey(date)] || [];
         count += list.length;
         var title = list.map(function(a){ return hm(a._start) + ' ' + a.name; }).join('\n');
         html += '<button type="button" class="' + (sameDay(date, today) ? 'today' : (list.length ? 'has' : '')) + '" data-goto="' + date.toISOString() + '"' + (title ? ' title="' + esc(title) + '"' : '') + '>' + d + '</button>';
@@ -133,9 +136,10 @@
 
   function renderUpcoming(){
     var now = Date.now();
-    var list = appts.filter(function(a){ return a._end.getTime() >= now && a.status !== 'abgesagt'; }).slice(0, 15);
+    var list = appts.filter(function(a){ return a._endReal.getTime() >= now && a.status !== 'abgesagt'; }).slice(0, 15);
     var active = appts.filter(function(a){ return a.status !== 'abgesagt'; });
-    var upcoming = appts.filter(function(a){ return a._end.getTime() >= now && a.status !== 'abgesagt'; });
+    var upcoming = appts.filter(function(a){ return a._endReal.getTime() >= now && a.status !== 'abgesagt'; });
+    var badgeEl = $('bTermine'); if(badgeEl){ badgeEl.hidden = !upcoming.length; badgeEl.textContent = upcoming.length; }
     $('apptsCount').textContent = active.length + ' Termine gesamt · ' + upcoming.length + ' anstehend · ' + active.filter(function(a){ return a.paid; }).length + ' bezahlt';
     if(!list.length){ $('upcomingBody').innerHTML = '<tr class="empty-row"><td colspan="6">Keine anstehenden Termine.</td></tr>'; return; }
     $('upcomingBody').innerHTML = list.map(function(a){
@@ -151,26 +155,25 @@
   function teamsCreateUrl(a){
     var p = new URLSearchParams({
       subject: 'Erstgespräch Lusides – ' + a.name + (a.company ? ' (' + a.company + ')' : ''),
-      startTime: a._start.toISOString(),
-      endTime: a._end.toISOString(),
-      content: 'Erstgespräch (60 Min, 350 €)' + (a.topic ? ' · Thema: ' + a.topic : ''),
+      startTime: a._startReal.toISOString(),
+      endTime: a._endReal.toISOString(),
+      content: 'Erstgespräch (60 Min)' + (a.topic ? ' · Thema: ' + a.topic : ''),
       attendees: a.email
     });
     return 'https://teams.microsoft.com/l/meeting/new?' + p.toString().replace(/\+/g, '%20');
   }
   function mailUrl(a, link){
-    var when = longDate(a._start) + ', ' + hm(a._start) + '–' + hm(a._end) + ' Uhr';
-    var body = 'Hallo ' + a.name + ',\n\n'
-      + 'vielen Dank für deine Buchung. Hier die Details zu unserem Erstgespräch:\n\n'
-      + 'Termin: ' + when + '\n'
-      + 'Dauer: 60 Minuten\n'
-      + 'Ort: Microsoft Teams (Video)\n'
-      + 'Link: ' + (link || '[Teams-Link einfügen]') + '\n\n'
-      + 'Die Rechnung über 350 € erhältst du separat.\n\n'
-      + 'Bis bald!\nLusides';
-    return 'mailto:' + encodeURIComponent(a.email)
-      + '?subject=' + encodeURIComponent('Dein Erstgespräch mit Lusides am ' + a._start.toLocaleDateString('de-AT') + ' (Microsoft Teams)')
-      + '&body=' + encodeURIComponent(body);
+    var en = a.lang === 'en';
+    var when = en
+      ? a._startReal.toLocaleString('en-US', { timeZone: 'Europe/Vienna', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' }) + ' (Vienna time, CET/CEST)'
+      : longDate(a._start) + ', ' + hm(a._start) + '–' + hm(a._end) + ' Uhr (Wiener Zeit)';
+    var body = en
+      ? 'Hello ' + a.name + ',\n\nthank you for your booking. Here are the details of our initial consultation:\n\n'
+        + 'Date: ' + when + '\nDuration: 60 minutes\nLocation: Microsoft Teams (video)\nLink: ' + (link || '[insert Teams link]') + '\n\nKind regards\nLusides'
+      : 'Guten Tag ' + a.name + ',\n\nvielen Dank für Ihre Buchung. Hier die Details zu unserem Erstgespräch:\n\n'
+        + 'Termin: ' + when + '\nDauer: 60 Minuten\nOrt: Microsoft Teams (Video)\nLink: ' + (link || '[Teams-Link einfügen]') + '\n\nBeste Grüße\nLusides';
+    var subject = en ? 'Your initial consultation with Lusides (Microsoft Teams)' : 'Ihr Erstgespräch mit Lusides am ' + a._start.toLocaleDateString('de-AT') + ' (Microsoft Teams)';
+    return 'mailto:' + encodeURIComponent(a.email) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   }
   function setMsg(text, isErr){ var m = $('mMsg'); m.textContent = text || ''; m.classList.toggle('show', !!text); m.classList.toggle('err', !!isErr); }
 
@@ -191,15 +194,15 @@
     $('mWhen').textContent = longDate(a._start) + ' · ' + hm(a._start) + '–' + hm(a._end) + ' · Microsoft Teams';
     var rows = [
       ['Unternehmen', esc(a.company || '—')],
-      ['E-Mail', '<a href="mailto:' + esc(a.email) + '">' + esc(a.email) + '</a>'],
-      ['Telefon', a.phone ? '<a href="tel:' + esc(a.phone.replace(/\s+/g, '')) + '">' + esc(a.phone) + '</a>' : '—'],
+      ['E-Mail', '<a href="mailto:' + esc(encodeURIComponent(a.email || '')) + '">' + esc(a.email) + '</a>'],
+      ['Telefon', a.phone ? '<a href="tel:' + esc(String(a.phone).replace(/[^\d+]/g, '')) + '">' + esc(a.phone) + '</a>' : '—'],
       ['Thema', esc(a.topic || '—')],
       ['Nachricht', esc(a.message || '—')],
-      ['Preis', esc(new Intl.NumberFormat('de-AT', { style: 'currency', currency: a.currency || 'EUR' }).format(a.price_eur || 350))],
+      ['Preis', esc(priceLabel(a))],
       ['Bestellung', esc(a.order_no || '—')],
       ['Rechnung', esc(invoiceLabel(a))],
       ['Rechnungsadr.', esc([a.billing_company, a.billing_street, [a.billing_zip, a.billing_city].filter(Boolean).join(' '), a.billing_country, a.billing_uid].filter(Boolean).join(', ') || '—')],
-      ['Gebucht am', esc(new Date(a.created_at).toLocaleString('de-AT', { dateStyle: 'medium', timeStyle: 'short' }))]
+      ['Gebucht am', esc(new Date(a.created_at).toLocaleString('de-AT', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Vienna' }))]
     ];
     $('mInfo').innerHTML = rows.map(function(r){ return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('');
     $('mStatus').value = a.status;
@@ -229,10 +232,23 @@
     client.from('appointments').update(patch).eq('id', current.id).select().then(function(res){
       $('mSave').disabled = false;
       if(res.error){ setMsg(/appointments_active_slot|duplicate/.test(res.error.message) ? 'Dieser Slot ist bereits durch einen anderen Termin belegt.' : 'Speichern fehlgeschlagen: ' + res.error.message, true); return; }
+      var prev = Object.assign({}, current);
       Object.assign(current, patch);
       $('mTop').className = 'modal-top st-' + current.status;
       setMsg('Gespeichert.');
       render(); renderUpcoming();
+      var inv = docs() && docs().invoiceFor(current.id);
+      if(inv && prev.paid !== patch.paid && inv.status !== 'storniert'){
+        client.from('invoices').update(patch.paid ? { status: 'bezahlt', paid_at: new Date().toISOString() } : { status: 'offen', paid_at: null }).eq('id', inv.id)
+          .then(function(){ if(docs().reload) docs().reload(); });
+      }
+      if(inv && patch.status === 'abgesagt' && prev.status !== 'abgesagt' && inv.status !== 'storniert'
+         && confirm('Termin abgesagt. Soll die Rechnung ' + inv.invoice_no + ' jetzt storniert werden?')){
+        client.rpc('cancel_invoice', { p_invoice: inv.id }).then(function(r){
+          setMsg(r.error ? 'Storno fehlgeschlagen: ' + r.error.message : 'Gespeichert. Stornorechnung ' + r.data + ' erstellt.', !!r.error);
+          if(docs().reload) docs().reload();
+        });
+      }
     });
   }
   function remove(){
@@ -240,13 +256,20 @@
     if(!confirm('Termin von ' + current.name + ' endgültig löschen? Tipp: Status „Abgesagt“ behält den Verlauf.')) return;
     var id = current.id;
     client.from('appointments').delete().eq('id', id).select().then(function(res){
-      if(res.error || !res.data || !res.data.length){ setMsg('Löschen nicht möglich: Zu diesem Termin gibt es eine Rechnung. Bitte Status „Abgesagt“ setzen und die Rechnung stornieren.', true); return; }
+      if(res.error){ setMsg('Löschen fehlgeschlagen: ' + res.error.message, true); return; }
+      if(!res.data || !res.data.length){ setMsg('Löschen nicht möglich: Zu diesem Termin gibt es eine Rechnung (gesetzliche Aufbewahrung). Bitte Status „Abgesagt“ setzen – die Rechnung wird dabei storniert.', true); return; }
       appts = appts.filter(function(a){ return a.id !== id; });
       closeModal(); render(); renderUpcoming();
     });
   }
 
   function docs(){ return window.lusidesAdminDocs; }
+  function priceLabel(a){
+    var inv = docs() && docs().invoiceFor(a.id);
+    var amount = inv ? Number(inv.gross_amount) : (a.price != null ? Number(a.price) : a.price_eur);
+    if(amount == null || isNaN(amount)) return '—';
+    try{ return new Intl.NumberFormat('de-AT', { style: 'currency', currency: (inv && inv.currency) || a.currency || 'EUR' }).format(amount); }catch(e){ return String(amount); }
+  }
   function invoiceLabel(a){
     var inv = docs() && docs().invoiceFor(a.id);
     if(!inv) return '—';
@@ -283,7 +306,7 @@
   function bind(){
     $('calPrev').addEventListener('click', function(){ move(-1); });
     $('calNext').addEventListener('click', function(){ move(1); });
-    $('calToday').addEventListener('click', function(){ cursor = startOfDay(new Date()); render(); });
+    $('calToday').addEventListener('click', function(){ cursor = startOfDay(nowWall()); render(); });
     document.querySelectorAll('.view-switch button').forEach(function(b){
       b.addEventListener('click', function(){ view = b.getAttribute('data-view'); render(); });
     });
@@ -320,7 +343,7 @@
           $('upcomingBody').innerHTML = '<tr class="empty-row"><td colspan="6">Fehler beim Laden.</td></tr>';
           return;
         }
-        appts = (res.data || []).map(function(a){ a._start = new Date(a.start_at); a._end = new Date(a.end_at); return a; });
+        appts = (res.data || []).map(function(a){ a._startReal = new Date(a.start_at); a._endReal = new Date(a.end_at); a._start = wall(a.start_at); a._end = wall(a.end_at); return a; });
         render(); renderUpcoming();
       });
     }

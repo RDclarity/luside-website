@@ -2,6 +2,11 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://knuktzuqqmrrkpkusren.supabase.co wss://knuktzuqqmrrkpkusren.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="geo.region" content="AT-9">
+<meta name="geo.placename" content="Wien">
+<meta name="author" content="Lusides">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Datenschutzerklärung von Lusides — welche Daten wir erheben, warum, und welche Rechte Sie nach der DSGVO haben.">
 <link rel="canonical" href="https://rdclarity.github.io/luside-website/datenschutz.html">
@@ -21,9 +26,7 @@
 <meta property="og:image:alt" content="Lusides — Unternehmensberatung und Entwicklung">
 <meta property="og:locale" content="de_AT">
 <title data-i18n="privacy_page.meta_title">Datenschutz — Lusides</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
     --paper: #F4F8FC;
@@ -324,7 +327,7 @@
     <p data-i18n="privacy_page.p_newsletter">Wenn Sie beim Absenden des Formulars die Newsletter-Checkbox aktivieren, speichern wir Ihren Namen und Ihre E-Mail-Adresse zusätzlich in einer separaten Liste für den Newsletter-Versand. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie jederzeit formlos per E-Mail an inquiry@luside.com widerrufen können.</p>
 
     <h3 class="display" data-i18n="privacy_page.h_booking">Terminbuchung</h3>
-    <p data-i18n="privacy_page.p_booking">Nach dem Absenden des Formulars führt Sie der Button „Termin jetzt buchen" zu Microsoft Bookings, einem externen Dienst von Microsoft. Dort eingegebene Daten unterliegen den Datenschutzbestimmungen von Microsoft. Wir haben auf diese externe Seite keinen Einfluss.</p>
+    <p data-i18n="privacy_page.p_booking">Wenn Sie über die Seite „Termin buchen“ ein Erstgespräch buchen, verarbeiten wir Name, E-Mail-Adresse, optional Telefonnummer und Unternehmen, Ihre Rechnungsadresse (Straße, PLZ, Ort, Land), optional Ihre UID-Nummer, das gewählte Thema und Ihre Nachricht sowie den gewählten Termin. Zweck ist die Durchführung des Gesprächs sowie die Erstellung von Bestellschein und Rechnung (Rechtsgrundlage: Vertragserfüllung, Art. 6 Abs. 1 lit. b DSGVO, und gesetzliche Pflichten nach UStG/BAO, Art. 6 Abs. 1 lit. c DSGVO). Bestellschein und Rechnung werden automatisch erstellt und über den E-Mail-Dienst Resend (Resend, Inc., Versand über Server in der EU) an Sie versendet. Das Gespräch findet über Microsoft Teams statt; dafür gelten zusätzlich die Datenschutzbestimmungen von Microsoft. Die Zeitzone Ihres Browsers verwenden wir nur, um Uhrzeiten und Währung (EUR/USD) passend anzuzeigen.</p>
 
     <h3 class="display" data-i18n="privacy_page.h_analytics">Website-Analyse</h3>
     <p data-i18n="privacy_page.p_analytics">Um zu verstehen, wie unsere Website genutzt wird, erfassen wir bei jedem Seitenaufruf: die aufgerufene Seite, die verweisende Seite (Referrer), den Gerätetyp (Mobil/Tablet/Desktop), die ungefähre Verweildauer und eine zufällig erzeugte Sitzungs-ID. Diese Sitzungs-ID verknüpft mehrere Seitenaufrufe miteinander und ist daher als pseudonyme Angabe zu behandeln. Unsere Anwendung selbst speichert dabei keine IP-Adressen oder Standortdaten; unser Hosting- und Datenbankanbieter verarbeitet IP-Adressen jedoch technisch bedingt kurzzeitig als übliche Server-Logdaten zur Sicherheit und Missbrauchsabwehr. Es werden keine Cookies gesetzt. Rechtsgrundlage ist unser berechtigtes Interesse an der Verbesserung unseres Angebots (Art. 6 Abs. 1 lit. f DSGVO).</p>
@@ -336,10 +339,10 @@
     <p data-i18n="privacy_page.p_language">Ihre Auswahl zwischen Deutsch und Englisch speichern wir lokal in Ihrem Browser (localStorage), damit sie bei Ihrem nächsten Besuch erhalten bleibt. Diese Information verlässt Ihr Gerät nicht.</p>
 
     <h2 class="display" data-i18n="privacy_page.h_providers">Hosting und Dienstleister</h2>
-    <p data-i18n="privacy_page.p_providers">Diese Website wird über GitHub Pages gehostet. Formular- und Analysedaten werden bei Supabase gespeichert, mit Serverstandort in Frankfurt (EU). Beide Anbieter fungieren als Auftragsverarbeiter und verarbeiten Daten ausschließlich in unserem Auftrag.</p>
+    <p data-i18n="privacy_page.p_providers">Diese Website wird über GitHub Pages gehostet. Formular-, Buchungs-, Rechnungs- und Analysedaten werden bei Supabase gespeichert (Serverstandort Frankfurt, EU). Für den Versand von Bestellscheinen und Rechnungen nutzen wir Resend, für Videogespräche Microsoft Teams und für den Chat-Assistenten OpenAI. Diese Anbieter sind als Auftragsverarbeiter tätig; soweit Daten in die USA übermittelt werden, erfolgt dies auf Grundlage des EU-US Data Privacy Framework bzw. von Standardvertragsklauseln. Schriften werden direkt von dieser Website ausgeliefert (keine Google-Server). Zwei Programmbibliotheken werden über das Content-Delivery-Netzwerk jsDelivr geladen; dabei wird Ihre IP-Adresse an diesen Anbieter übertragen.</p>
 
     <h2 class="display" data-i18n="privacy_page.h_retention">Speicherdauer</h2>
-    <p data-i18n="privacy_page.p_retention">Wir speichern personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck erforderlich ist: Anfragen bis zur vollständigen Bearbeitung und einer angemessenen Nachfrist, Newsletter-Daten bis zu Ihrem Widerruf. Auf Anfrage löschen wir Ihre Daten früher, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+    <p data-i18n="privacy_page.p_retention">Wir speichern personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck erforderlich ist: Anfragen bis zur vollständigen Bearbeitung und einer angemessenen Nachfrist, Newsletter-Daten bis zu Ihrem Widerruf. Rechnungen, Bestellscheine und die dazugehörigen Buchungsdaten bewahren wir nach § 132 BAO sieben Jahre auf; sie können in dieser Zeit nicht gelöscht, sondern nur storniert werden.</p>
 
     <h2 class="display" data-i18n="privacy_page.h_rights">Ihre Rechte</h2>
     <p data-i18n="privacy_page.p_rights_intro">Nach der DSGVO haben Sie das Recht auf:</p>
@@ -415,12 +418,12 @@
   }
 </script>
 <script src="i18n.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
 <script src="supabase-config.js" defer></script>
 <script src="chatbot.js" defer></script>
 <script src="analytics.js" defer></script>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
 <script src="site.js" defer></script>
 </body>
 </html>

@@ -2,15 +2,15 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src https://knuktzuqqmrrkpkusren.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#050B18">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Admin — Lusides</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
     --night:#050B18; --paper:#F4F7FB; --paper-dim:#E8EFF8; --ink:#0A1428; --slate:#56677F; --slate-light:#8E9EB5;
@@ -391,7 +391,7 @@
     <!-- EINSTELLUNGEN -->
     <section class="pane" id="pane-einstellungen">
       <div class="pane-head"><div><h2>Einstellungen</h2><div class="count">Firmendaten für Bestellschein und Rechnung</div></div></div>
-      <form class="settings" id="settingsForm">
+      <form class="settings" id="settingsForm" method="post" action="#">
         <h3>Unternehmen</h3>
         <div class="field"><label for="s-legal">Firmenwortlaut</label><input id="s-legal" name="legal_name"></div>
         <div class="field"><label for="s-brand">Marke</label><input id="s-brand" name="brand"></div>
@@ -468,7 +468,7 @@
     </div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous"></script>
 <script src="supabase-config.js"></script>
 <script src="admin-calendar.js"></script>
 <script src="admin.js"></script>

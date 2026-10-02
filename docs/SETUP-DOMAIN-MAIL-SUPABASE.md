@@ -58,20 +58,31 @@ Richard
 
 Projekt: `knuktzuqqmrrkpkusren`
 
-1. **SQL Editor** → nacheinander ausführen:
+1. **Sicherheit zuerst:** Authentication → Sign In / Providers → „Allow new users to sign up“ **AUS**, „Anonymous sign-ins“ **AUS**. Admin-Konten (Marko, Richard) unter Authentication → Users → „Invite user“ anlegen.
+2. **SQL Editor** → genau in dieser Reihenfolge, jeweils einmal:
    1. `supabase/migrations/20261002120000_appointments.sql` (Termine)
    2. `supabase/migrations/20261003100000_billing.sql` (Bestellschein, Rechnungen, Nummernkreise)
-2. **Edge Function** `lusides-invoice` deployen:
+   3. `supabase/migrations/20261003120000_security.sql` (Admin-Rechte, Missbrauchsschutz, Härtung)
+   4. Admins freischalten:
+      ```sql
+      insert into public.admin_users (user_id, note)
+      select id, email from auth.users where email in ('ADMIN1@…', 'ADMIN2@…')
+      on conflict do nothing;
+      ```
+3. **Edge Functions** deployen (`lusides-invoice`, außerdem die aktualisierten `lusides-chat` und `lusides-rima-sync` mit Missbrauchsbremse):
    ```
    supabase functions deploy lusides-invoice --project-ref knuktzuqqmrrkpkusren --no-verify-jwt
+   supabase functions deploy lusides-chat --project-ref knuktzuqqmrrkpkusren --no-verify-jwt
+   supabase functions deploy lusides-rima-sync --project-ref knuktzuqqmrrkpkusren --no-verify-jwt
    ```
    (`--no-verify-jwt`, weil die Buchungsseite die Funktion ohne Login aufruft. Die Funktion prüft selbst den Buchungs-Token bzw. den Admin-Login.)
-3. **Secrets** (Edge Functions → Secrets):
+4. **Secrets** (Edge Functions → Secrets):
    - `RESEND_API_KEY` = Key aus Resend
    - optional `MAIL_FROM` = `Lusides <invoice@lusides.com>`
    - optional `MAIL_NOTIFY` = `inquiry@lusides.com`
-4. **Admin → Einstellungen** auf der Website: UID-Nummer, IBAN, BIC und Bank eintragen. Sie erscheinen dann auf jeder Rechnung.
-5. Neue Tabellen an den RIMA-Mirror hängen (siehe `20260910130000_mirror_to_rima.sql`), falls gewünscht.
+5. **Admin → Einstellungen** auf der Website: UID-Nummer, IBAN, BIC und Bank eintragen. Sie erscheinen dann auf jeder Rechnung.
+6. **Nicht** `appointments`/`invoices` an den RIMA-Mirror hängen – das würde Rechnungsdaten (Adressen, UID) in ein zweites System kopieren.
+7. OpenAI: im OpenAI-Projekt ein monatliches Ausgabenlimit setzen (Kostenschutz für den Chat).
 
 ## 3. Rechnungslogik (Österreich)
 

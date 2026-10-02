@@ -2,8 +2,13 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://knuktzuqqmrrkpkusren.supabase.co wss://knuktzuqqmrrkpkusren.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="geo.region" content="AT-9">
+<meta name="geo.placename" content="Wien">
+<meta name="author" content="Lusides">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Lerne das Team hinter Lusides kennen — Unternehmer, die selbst umsetzen.">
+<meta name="description" content="Das Team hinter Lusides: die Inhaber Marko Katalan und Richard Dobrohruschka und Softwareentwickler Mihai Suta – seit 10 Jahren Unternehmensaufbau in Wien und New York.">
 <link rel="canonical" href="https://rdclarity.github.io/luside-website/team.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.ico">
@@ -12,46 +17,131 @@
 <meta property="og:type" content="website">
 <meta name="robots" content="index, follow">
 <meta property="og:site_name" content="Lusides">
-<meta property="og:title" content="Team — Lusides">
-<meta property="og:description" content="Lerne das Team hinter Lusides kennen — Unternehmer, die selbst umsetzen.">
+<meta property="og:title" content="Team: Marko Katalan, Richard Dobrohruschka &amp; Mihai Suta | Lusides">
+<meta property="og:description" content="Das Team hinter Lusides: die Inhaber Marko Katalan und Richard Dobrohruschka und Softwareentwickler Mihai Suta – seit 10 Jahren Unternehmensaufbau in Wien und New York.">
 <meta property="og:url" content="https://rdclarity.github.io/luside-website/team.html">
 <meta property="og:image" content="https://rdclarity.github.io/luside-website/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Lusides — Unternehmensberatung und Entwicklung">
 <meta property="og:locale" content="de_AT">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Team — Lusides">
-<meta name="twitter:description" content="Lerne das Team hinter Lusides kennen — Unternehmer, die selbst umsetzen.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Team: Marko Katalan, Richard Dobrohruschka &amp; Mihai Suta | Lusides">
+<meta name="twitter:description" content="Das Team hinter Lusides: die Inhaber Marko Katalan und Richard Dobrohruschka und Softwareentwickler Mihai Suta – seit 10 Jahren Unternehmensaufbau in Wien und New York.">
 <meta name="twitter:image" content="https://rdclarity.github.io/luside-website/og-image.jpg">
-<title data-i18n="team_page.meta_title">Team — Lusides</title>
+<title data-i18n="team_page.meta_title">Team: Marko Katalan, Richard Dobrohruschka &amp; Mihai Suta | Lusides</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  "itemListElement": [
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "https://rdclarity.github.io/luside-website/team.html",
+      "url": "https://rdclarity.github.io/luside-website/team.html",
+      "name": "Team – Lusides",
+      "about": {
+        "@id": "https://rdclarity.github.io/luside-website/#organization"
+      },
+      "mainEntity": [
+        {
+          "@id": "https://rdclarity.github.io/luside-website/team.html#marko-katalan"
+        },
+        {
+          "@id": "https://rdclarity.github.io/luside-website/team.html#richard-dobrohruschka"
+        },
+        {
+          "@id": "https://rdclarity.github.io/luside-website/team.html#mihai-suta"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://rdclarity.github.io/luside-website/#organization",
+      "name": "Lusides",
+      "legalName": "Legatech GmbH & Co KG",
+      "url": "https://rdclarity.github.io/luside-website/index.html"
+    },
     {
       "@type": "Person",
-      "position": 1,
-      "name": "Richard Dobrohruschka",
-      "jobTitle": "Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau",
-      "worksFor": { "@type": "Organization", "name": "Lusides" },
+      "@id": "https://rdclarity.github.io/luside-website/team.html#marko-katalan",
+      "name": "Marko Katalan",
+      "honorificPrefix": "Mag.",
+      "jobTitle": "Inhaber & Geschäftsführer",
+      "worksFor": {
+        "@id": "https://rdclarity.github.io/luside-website/#organization"
+      },
+      "knowsAbout": [
+        "Unternehmensstrategie",
+        "Organisationsentwicklung",
+        "Wirtschaftsrecht",
+        "Unternehmensaufbau"
+      ],
+      "workLocation": [
+        "Wien",
+        "New York"
+      ],
       "url": "https://rdclarity.github.io/luside-website/team.html"
     },
     {
       "@type": "Person",
-      "position": 2,
-      "name": "Marko Katalan",
-      "jobTitle": "Strategie, Organisation, Unternehmensentwicklung, Wachstum",
-      "worksFor": { "@type": "Organization", "name": "Lusides" },
+      "@id": "https://rdclarity.github.io/luside-website/team.html#richard-dobrohruschka",
+      "name": "Richard Dobrohruschka",
+      "jobTitle": "Inhaber",
+      "worksFor": {
+        "@id": "https://rdclarity.github.io/luside-website/#organization"
+      },
+      "hasCredential": "Tischlermeister",
+      "knowsAbout": [
+        "Marketing",
+        "Vertrieb",
+        "Prozessaufbau",
+        "Unternehmensentwicklung",
+        "Interior Design"
+      ],
+      "workLocation": [
+        "Wien",
+        "New York"
+      ],
       "url": "https://rdclarity.github.io/luside-website/team.html"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://rdclarity.github.io/luside-website/team.html#mihai-suta",
+      "name": "Mihai Suta",
+      "jobTitle": "Softwareentwicklung & Technik",
+      "worksFor": {
+        "@id": "https://rdclarity.github.io/luside-website/#organization"
+      },
+      "knowsAbout": [
+        "Softwareentwicklung",
+        "Künstliche Intelligenz",
+        "Automatisierung",
+        "Webentwicklung",
+        "Onlineshops"
+      ],
+      "url": "https://rdclarity.github.io/luside-website/team.html"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Lusides",
+          "item": "https://rdclarity.github.io/luside-website/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Team",
+          "item": "https://rdclarity.github.io/luside-website/team.html"
+        }
+      ]
     }
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
     --paper: #F4F8FC;
@@ -503,41 +593,41 @@
     </div>
     <div class="tm-grid">
       <article class="tm ls-reveal" data-spotlight>
-        <div class="tm-visual a"><span class="tm-mono">M<em>K</em></span><span class="tm-tag" data-i18n="team_page.marko_tag"></span></div>
+        <div class="tm-visual a"><span class="tm-mono">M<em>K</em></span><span class="tm-tag" data-i18n="team_page.marko_tag">Inhaber</span></div>
         <div class="tm-body">
           <h2>Marko Katalan</h2>
-          <p class="tm-role" data-i18n="team_page.marko_role"></p>
-          <p class="tm-bio" data-i18n="team_page.marko_bio"></p>
+          <p class="tm-role" data-i18n="team_page.marko_role">Strategie · Organisation · Recht</p>
+          <p class="tm-bio" data-i18n="team_page.marko_bio">Jurist und Unternehmer. Seit rund zehn Jahren berät er Unternehmerinnen und Unternehmer und hat mehrere Unternehmen in Wien und New York mit aufgebaut – mit dem Blick für Struktur, Verträge und nachhaltiges Wachstum.</p>
           <ul class="tm-facts">
-            <li data-i18n="team_page.marko_f1"></li>
-            <li data-i18n="team_page.marko_f2"></li>
-            <li data-i18n="team_page.marko_f3"></li>
+            <li data-i18n="team_page.marko_f1">Jurist (Mag. iur.)</li>
+            <li data-i18n="team_page.marko_f2">Geschäftsführer der Legatech GmbH &amp; Co KG</li>
+            <li data-i18n="team_page.marko_f3">Unternehmensaufbau in Wien und New York</li>
           </ul>
         </div>
       </article>
       <article class="tm ls-reveal" data-spotlight>
-        <div class="tm-visual b"><span class="tm-mono">R<em>D</em></span><span class="tm-tag" data-i18n="team_page.richard_tag"></span></div>
+        <div class="tm-visual b"><span class="tm-mono">R<em>D</em></span><span class="tm-tag" data-i18n="team_page.richard_tag">Inhaber</span></div>
         <div class="tm-body">
           <h2>Richard Dobrohruschka</h2>
-          <p class="tm-role" data-i18n="team_page.richard_role"></p>
-          <p class="tm-bio" data-i18n="team_page.richard_bio"></p>
+          <p class="tm-role" data-i18n="team_page.richard_role">Marketing · Vertrieb · Prozesse</p>
+          <p class="tm-bio" data-i18n="team_page.richard_bio">Geprüfter Tischlermeister und Unternehmer. Er führt in dritter Generation den 1935 gegründeten Familienbetrieb Tischlerkultur und hat mit Richards Atelier ein eigenes Interior-Unternehmen aufgebaut – Projekte von Wien bis New York.</p>
           <ul class="tm-facts">
-            <li data-i18n="team_page.richard_f1"></li>
-            <li data-i18n="team_page.richard_f2"></li>
-            <li data-i18n="team_page.richard_f3"></li>
+            <li data-i18n="team_page.richard_f1">Übernahme und Ausbau des Familienbetriebs seit 2016</li>
+            <li data-i18n="team_page.richard_f2">Gründer von Richards Atelier (Interior &amp; Komplettsanierung)</li>
+            <li data-i18n="team_page.richard_f3">Mehrfacher Unternehmensaufbau in Wien und New York</li>
           </ul>
         </div>
       </article>
       <article class="tm ls-reveal" data-spotlight>
-        <div class="tm-visual c"><span class="tm-mono">M<em>S</em></span><span class="tm-tag" data-i18n="team_page.mihai_tag"></span></div>
+        <div class="tm-visual c"><span class="tm-mono">M<em>S</em></span><span class="tm-tag" data-i18n="team_page.mihai_tag">Technik</span></div>
         <div class="tm-body">
           <h2>Mihai Suta</h2>
-          <p class="tm-role" data-i18n="team_page.mihai_role"></p>
-          <p class="tm-bio" data-i18n="team_page.mihai_bio"></p>
+          <p class="tm-role" data-i18n="team_page.mihai_role">Software · KI · Digitalisierung</p>
+          <p class="tm-bio" data-i18n="team_page.mihai_bio">Hochspezialisierter Programmierer und Mitgeschäftsführer der Legatech-Gruppe. Er verantwortet bei Lusides die technische Umsetzung – von individueller Software über Onlineshops bis zu KI-Systemen.</p>
           <ul class="tm-facts">
-            <li data-i18n="team_page.mihai_f1"></li>
-            <li data-i18n="team_page.mihai_f2"></li>
-            <li data-i18n="team_page.mihai_f3"></li>
+            <li data-i18n="team_page.mihai_f1">Individuelle Software- und Web-Entwicklung</li>
+            <li data-i18n="team_page.mihai_f2">KI, Automatisierung und Datenverarbeitung</li>
+            <li data-i18n="team_page.mihai_f3">Mitgeschäftsführer der Legatech-Gruppe</li>
           </ul>
         </div>
       </article>
@@ -672,12 +762,12 @@
   }
 </script>
 <script src="i18n.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
 <script src="supabase-config.js" defer></script>
 <script src="chatbot.js" defer></script>
 <script src="analytics.js" defer></script>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
 <script src="site.js" defer></script>
 </body>
 </html>

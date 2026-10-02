@@ -2,6 +2,11 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://knuktzuqqmrrkpkusren.supabase.co wss://knuktzuqqmrrkpkusren.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="geo.region" content="AT-9">
+<meta name="geo.placename" content="Wien">
+<meta name="author" content="Lusides">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Impressum von Lusides (Legatech GmbH &amp; Co KG) gemäß §5 ECG und §25 MedienG.">
 <meta name="robots" content="noindex, follow">
@@ -11,9 +16,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#050B18">
 <title data-i18n="impressum_page.meta_title">Impressum — Lusides</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
     --paper: #F4F8FC; --paper-dim: #E3EEF9; --ink: #0B1F3A; --slate: #4A5F7A;
@@ -84,6 +87,8 @@
   .legal p{ margin-bottom: 12px; max-width: 68ch; }
   .legal .row{ display:flex; gap:8px; margin-bottom:6px; }
   .legal .row span:first-child{ color: var(--slate); min-width:180px; flex-shrink:0; }
+  @media (max-width: 520px){ .legal .row{ flex-direction: column; gap: 0; margin-bottom: 12px; } .legal .row span:first-child{ min-width: 0; font-size: .85rem; } }
+  .legal .row span{ overflow-wrap: anywhere; }
   .legal .pending{ color: var(--slate-light); font-style:italic; }
   .legal .meta{ color: var(--slate-light); font-size:0.82rem; margin-top:48px; }
   footer{ padding: 44px 0; border-top: 1px solid var(--line); }
@@ -217,12 +222,12 @@
   }
 </script>
 <script src="i18n.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
 <script src="supabase-config.js" defer></script>
 <script src="chatbot.js" defer></script>
 <script src="analytics.js" defer></script>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
 <script src="site.js" defer></script>
 </body>
 </html>

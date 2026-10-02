@@ -1,4 +1,5 @@
 import { corsHeaders, handlePreflight, json } from "../_shared/cors.ts";
+import { allow, clientIp } from "../_shared/ratelimit.ts";
 
 // Public lead-intake for the Lusides website (main contact form + the
 // seminar page's signup form). Forwards into RIMA Equity's shared CRM
@@ -28,6 +29,9 @@ Deno.serve(async (req) => {
   if (preflight) return preflight;
   if (req.method !== "POST") return json({ error: "Method not allowed" }, 405);
 
+  // Spam-Bremse: max. 10 Leads pro IP und Stunde.
+  if (!(await allow("lead:" + clientIp(req), 10))) return json({ error: "too many requests" }, 429);
+
   let body: {
     first_name?: string;
     last_name?: string;
@@ -47,6 +51,15 @@ Deno.serve(async (req) => {
     return json({ error: "invalid JSON" }, 400);
   }
 
+  // Alle Felder hart begrenzen, bevor sie ins CRM gehen.
+  const cut = (v: unknown, n: number) => (typeof v === "string" ? v.slice(0, n) : undefined);
+  body = {
+    ...body,
+    first_name: cut(body.first_name, 80), last_name: cut(body.last_name, 80), email: cut(body.email, 254),
+    phone: cut(body.phone, 40), lead_company: cut(body.lead_company, 160), employee_count: cut(body.employee_count, 40),
+    annual_revenue: cut(body.annual_revenue, 40), biggest_challenge: cut(body.biggest_challenge, 4000),
+    postal_code: cut(body.postal_code, 20), channel: cut(body.channel, 100), locale: cut(body.locale, 5),
+  };
   const first_name = body.first_name?.trim() ?? "";
   const last_name = body.last_name?.trim() ?? "";
   const name = [first_name, last_name].filter(Boolean).join(" ").trim() || null;

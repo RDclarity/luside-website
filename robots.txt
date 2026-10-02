@@ -1,5 +1,92 @@
+# Lusides – Crawler-Regeln
+# Suchmaschinen und KI-Assistenten sind ausdrücklich willkommen (Ausnahme: Admin- und Formular-Folgeseiten).
+# Hinweis: Wirksam erst, wenn die Seite unter eigener Domain (lusides.com) im Wurzelverzeichnis liegt.
+
 User-agent: *
 Allow: /
 Disallow: /admin.html
+Disallow: /projektbogen.html
+
+# Suchmaschinen
+User-agent: Googlebot
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+# KI-Suche & KI-Assistenten
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: Claude-User
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: Applebot
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
+
+User-agent: CCBot
+Allow: /
+Disallow: /admin.html
+Disallow: /projektbogen.html
 
 Sitemap: https://rdclarity.github.io/luside-website/sitemap.xml

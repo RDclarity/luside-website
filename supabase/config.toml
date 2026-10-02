@@ -1,1 +1,10 @@
 project_id = "luside-website"
+
+# Nur eingeladene Admins dürfen sich anmelden – keine Selbstregistrierung,
+# keine anonymen Logins (siehe 20261003120000_security.sql).
+[auth]
+enable_signup = false
+enable_anonymous_sign_ins = false
+
+[auth.email]
+enable_signup = false

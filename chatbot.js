@@ -1,5 +1,5 @@
 (function(){
-  var BOOKING_URL = 'https://outlook.office.com/bookwithme/user/dc79bf543acd4612bd3cd71f5b078ae2@tischlerkultur.onmicrosoft.com/meetingtype/Lf7qqrACrkGmDArzLF0Lvw2?anonymous&ismsaljsauthenabled&ep=mlink';
+  var BOOKING_URL = 'termin.html';
   var CRM_INTAKE_URL = 'https://knuktzuqqmrrkpkusren.supabase.co/functions/v1/lusides-rima-sync';
 
   var UI = {
@@ -13,7 +13,7 @@
       bookingChip: 'Termin buchen',
       contactChip: 'Kontakt aufnehmen',
       greeting: 'Hallo! Ich bin der Lusides Assistent. Frag mich etwas über Lusides — oder wähl unten eine Frage.',
-      fallback: 'Das habe ich leider nicht ganz verstanden. Wähle unten eine Frage aus, oder vereinbare direkt ein unverbindliches Erstgespräch.',
+      fallback: 'Das habe ich leider nicht ganz verstanden. Wähle unten eine Frage aus, oder buche direkt ein Erstgespräch (60 Min. per Teams).',
       aiError: 'Da ist gerade etwas schiefgelaufen. Bitte versuche es nochmal oder nimm über das Formular Kontakt auf.',
       thinking: '…',
       leadIntro: 'Gerne! Lass uns kurz deine Kontaktdaten aufnehmen.',
@@ -44,7 +44,7 @@
       bookingChip: 'Book a meeting',
       contactChip: 'Get in touch',
       greeting: "Hello! I'm the Lusides Assistant. Ask me something about Lusides — or pick a question below.",
-      fallback: "Sorry, I didn't quite catch that. Pick a question below, or schedule a free, no-obligation consultation directly.",
+      fallback: "Sorry, I didn't quite catch that. Pick a question below, or book a 60-minute initial call via Teams directly.",
       aiError: 'Something went wrong there. Please try again, or get in touch via the form.',
       thinking: '…',
       leadIntro: "Sure! Let's grab your contact details.",
@@ -103,7 +103,7 @@
         label: 'Termin vereinbaren',
         hideChip: true,
         keywords: ['termin', 'buchen', 'meeting', 'gespräch', 'vereinbaren', 'erstgespräch'],
-        answer: 'Am schnellsten über den „Kontakt aufnehmen"-Button unten — danach kannst du direkt einen Termin wählen: <a href="' + BOOKING_URL + '" target="_blank" rel="noopener noreferrer">Termin-Kalender öffnen →</a>'
+        answer: 'Am schnellsten über den „Kontakt aufnehmen"-Button unten — danach kannst du direkt einen Termin wählen: <a href="' + BOOKING_URL + '">Termin-Kalender öffnen →</a>'
       }
     ],
     en: [
@@ -141,7 +141,7 @@
         label: 'Schedule an appointment',
         hideChip: true,
         keywords: ['appointment', 'book', 'meeting', 'schedule', 'consultation'],
-        answer: 'Fastest way is the "Get in touch" button below — afterwards you can pick a time directly: <a href="' + BOOKING_URL + '" target="_blank" rel="noopener noreferrer">Open booking calendar →</a>'
+        answer: 'Fastest way is the "Get in touch" button below — afterwards you can pick a time directly: <a href="' + BOOKING_URL + '">Open booking calendar →</a>'
       }
     ]
   };
@@ -222,7 +222,7 @@
   var leadSteps = ['first_name', 'last_name', 'phone', 'postal_code', 'email'];
 
   function getLang(){
-    return localStorage.getItem('lusides_lang') || 'de';
+    return ((window.lusidesI18n && window.lusidesI18n.currentLang) ? window.lusidesI18n.currentLang() : 'de');
   }
 
   function ui(){ return UI[getLang()] || UI.de; }
@@ -282,7 +282,7 @@
     bookingChip.textContent = ui().bookingChip;
     bookingChip.addEventListener('click', function(){
       if(window.lusidesLogConversion) window.lusidesLogConversion('booking_click');
-      window.open(BOOKING_URL, '_blank', 'noopener');
+      window.location.href = BOOKING_URL;
     });
     chipsEl.appendChild(bookingChip);
   }
@@ -308,7 +308,7 @@
   function showConsentStep(){
     var strings = ui();
     var html = '<p>' + strings.consentIntro + '</p>'
-      + '<label><input type="checkbox" class="cl-consent-privacy"><span>' + strings.consentPrivacy + ' <a href="datenschutz.html" target="_blank">' + strings.consentPrivacyLink + '</a></span></label>'
+      + '<label><input type="checkbox" class="cl-consent-privacy"><span>' + strings.consentPrivacy + ' <a href="datenschutz.html" target="_blank" rel="noopener">' + strings.consentPrivacyLink + '</a></span></label>'
       + '<label><input type="checkbox" class="cl-consent-newsletter"><span>' + strings.consentNewsletter + '</span></label>'
       + '<button type="button" class="cl-consent-submit">' + strings.consentSubmit + '</button>'
       + '<div class="cl-consent-error"></div>';
@@ -390,7 +390,6 @@
     followup.className = 'cl-msg bot';
     var link = document.createElement('a');
     link.href = BOOKING_URL;
-    link.target = '_blank';
     link.rel = 'noopener noreferrer';
     link.textContent = strings.bookingChip + ' →';
     link.addEventListener('click', function(){

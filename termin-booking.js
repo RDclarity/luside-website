@@ -36,7 +36,10 @@
   var selectedSlot = null;  // Date
   var viewYear, viewMonth;  // angezeigter Monat (0-basiert)
 
-  function lang(){ return localStorage.getItem('lusides_lang') === 'en' ? 'en' : 'de'; }
+  function lang(){
+    if(window.lusidesI18n && window.lusidesI18n.currentLang) return window.lusidesI18n.currentLang();
+    try{ return localStorage.getItem('lusides_lang') === 'en' ? 'en' : 'de'; }catch(e){ return 'de'; }
+  }
   function locale(){ return lang() === 'en' ? 'en-GB' : 'de-AT'; }
   function str(key, fallback){
     var dict = window.lusidesI18n && window.lusidesI18n.translations[lang()];
@@ -243,6 +246,8 @@
     if(name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
       showNote(str('err_fields', 'Bitte Name und eine gültige E-Mail-Adresse angeben.'), true); return;
     }
+    if(!form.country.value){ showNote(str('err_country', 'Bitte wähle das Land.'), true); return; }
+    if(REGION === 'US' && EU.indexOf(form.country.value) !== -1){ showNote(str('region_mismatch', 'EU: Euro-Preis.'), true); updateRegionNote(); return; }
     if(form.street.value.trim().length < 3 || form.city.value.trim().length < 2){ showNote(str('err_billing', 'Bitte Straße und Ort für die Rechnung angeben.'), true); return; }
     if(!form.consent.checked){ showNote(str('err_consent', 'Bitte bestätige die Buchung.'), true); return; }
     if(!window.lusidesSupabaseReady){ showNote(str('err_generic', 'Buchung gerade nicht möglich. Bitte versuche es später erneut.'), true); return; }
@@ -257,7 +262,7 @@
       street: form.street.value.trim(),
       zip: form.zip.value.trim(),
       city: form.city.value.trim(),
-      country: form.country.value === 'XX' ? '' : form.country.value,
+      country: form.country.value,
       uid: form.uid.value.trim()
     };
     window.lusidesSupabaseReady(function(client){
@@ -268,11 +273,21 @@
         p_company: fields.company || null, p_phone: fields.phone || null,
         p_message: fields.message || null, p_topic: fields.topic, p_lang: lang(),
         p_region: REGION, p_street: fields.street, p_zip: fields.zip || null, p_city: fields.city,
-        p_country: fields.country || (REGION === 'US' ? 'US' : null), p_uid: fields.uid || null
+        p_country: fields.country, p_uid: fields.uid || null
       }).then(function(res){
         if(res.error){
-          if(/billing_required/.test(res.error.message || '')){ showNote(str('err_billing', 'Bitte Straße und Ort angeben.'), true); bookBtn.disabled = false; return; }
-          var taken = /slot_taken|invalid_slot/.test(res.error.message || '');
+          var msg = res.error.message || '';
+          var known = [['billing_required', 'err_billing'], ['already_booked', 'err_already'], ['rate_limited', 'err_rate'],
+                       ['invalid_uid', 'err_uid'], ['invalid_input', 'err_input'], ['region_mismatch', 'region_mismatch'], ['invalid_slot', 'err_slot_gone']];
+          for(var k = 0; k < known.length; k++){
+            if(msg.indexOf(known[k][0]) !== -1){
+              showNote(str(known[k][1], 'Bitte prüfe deine Angaben.'), true);
+              bookBtn.disabled = false;
+              if(known[k][0] === 'invalid_slot'){ selectedSlot = null; loadBooked().then(function(){ renderCalendar(); renderSlots(); renderChosen(); }); }
+              return;
+            }
+          }
+          var taken = /slot_taken/.test(msg);
           showNote(taken ? str('err_taken', 'Dieser Termin wurde gerade vergeben. Bitte wähle einen anderen.') : str('err_generic', 'Buchung gerade nicht möglich. Bitte versuche es später erneut.'), true);
           if(taken){
             booked[selectedSlot.toISOString()] = true;
@@ -286,6 +301,8 @@
         lastBooking = { start: selectedSlot, name: fields.name };
         forwardToCrm(fields);
         sendDocuments(res.data, fields.email);
+        // Projektbogen im Anschluss vorausfüllen
+        try{ sessionStorage.setItem('lusidesErstberatungLead', JSON.stringify({ name: fields.name, email: fields.email, phone: fields.phone, company: fields.company, durationLabel: 'Erstgespräch 60 Min (gebucht)' })); }catch(e){}
         if(window.lusidesLogConversion) window.lusidesLogConversion('appointment_booked');
         document.getElementById('successWhen').textContent = fields.when + ' · Microsoft Teams';
         planner.style.display = 'none';
@@ -303,8 +320,8 @@
     if(window.LUSIDES_SUPABASE){ headers.apikey = window.LUSIDES_SUPABASE.anonKey; headers.Authorization = 'Bearer ' + window.LUSIDES_SUPABASE.anonKey; }
     fetch(INVOICE_URL, { method: 'POST', headers: headers, body: JSON.stringify({ action: 'send', appointment_id: booking.id, token: booking.token }) })
       .then(function(r){ if(!r.ok) throw new Error('mail ' + r.status); })
-      .then(function(){ if(okP) okP.textContent = str('ok_mail', 'Sent to {email}.').replace('{email}', email); })
-      .catch(function(err){ console.warn(err); if(okP) okP.textContent = str('ok_mail_fail', 'Your documents will follow by email.'); });
+      .then(function(){ if(okP){ okP.removeAttribute('data-i18n'); okP.textContent = str('ok_mail', 'Sent to {email}.').replace('{email}', email); } })
+      .catch(function(err){ console.warn(err); if(okP){ okP.removeAttribute('data-i18n'); okP.textContent = str('ok_mail_fail', 'Your documents will follow by email.'); } });
   }
 
   // --- .ics-Datei für den eigenen Kalender ------------------------------------
@@ -329,7 +346,46 @@
   });
 
   // --- Start -----------------------------------------------------------------
-  if(REGION === 'US' && form.country) form.country.value = 'US';
+  // ---------- Länderliste (alle Länder, lokalisiert) + Region/Währung ----------
+  var EU = ['AT','BE','BG','CY','CZ','DE','DK','EE','ES','FI','FR','GR','HR','HU','IE','IT','LT','LU','LV','MT','NL','PL','PT','RO','SE','SI','SK'];
+  var ISO = 'AD AE AF AG AL AM AO AR AT AU AZ BA BB BD BE BF BG BH BI BJ BN BO BR BS BT BW BY BZ CA CD CF CG CH CI CL CM CN CO CR CU CV CY CZ DE DJ DK DM DO DZ EC EE EG ER ES ET FI FJ FM FR GA GB GD GE GH GM GN GQ GR GT GW GY HK HN HR HT HU ID IE IL IN IQ IR IS IT JM JO JP KE KG KH KI KM KN KP KR KW KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MG MH MK ML MM MN MO MR MT MU MV MW MX MY MZ NA NE NG NI NL NO NP NR NZ OM PA PE PG PH PK PL PR PS PT PW PY QA RO RS RU RW SA SB SC SD SE SG SI SK SL SM SN SO SR SS ST SV SY SZ TD TG TH TJ TL TM TN TO TR TT TV TW TZ UA UG US UY UZ VA VC VE VN VU WS XK YE ZA ZM ZW'.split(' ');
+  function fillCountries(){
+    var sel = form.country, keep = sel.value, names;
+    try{ names = new Intl.DisplayNames([lang() === 'en' ? 'en' : 'de'], { type: 'region' }); }catch(e){ names = null; }
+    var nm = function(c){ try{ return names ? names.of(c) : c; }catch(e){ return c; } };
+    var pinned = ['AT', 'DE', 'CH', 'US'];
+    var rest = ISO.filter(function(c){ return pinned.indexOf(c) === -1; }).sort(function(a, b){ return nm(a).localeCompare(nm(b)); });
+    var html = '<option value="">' + str('country_pick', 'Bitte wählen') + '</option>';
+    pinned.forEach(function(c){ html += '<option value="' + c + '">' + nm(c) + '</option>'; });
+    html += '<option disabled>──────────</option>';
+    rest.forEach(function(c){ html += '<option value="' + c + '">' + nm(c) + '</option>'; });
+    sel.innerHTML = html;
+    sel.value = keep;
+  }
+  var US_TZ = /^(America\/(New_York|Detroit|Chicago|Denver|Phoenix|Los_Angeles|Anchorage|Boise|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak|Menominee|Indiana\/.*|Kentucky\/.*|North_Dakota\/.*)|Pacific\/Honolulu)$/;
+  var TZ_COUNTRY = { 'Europe/Vienna': 'AT', 'Europe/Berlin': 'DE', 'Europe/Busingen': 'DE', 'Europe/Zurich': 'CH', 'Europe/Vaduz': 'LI' };
+  function regionUrl(r){ var u = location.pathname + '?region=' + r; return u; }
+  function updateRegionNote(){
+    var note = document.getElementById('regionNote'), c = form.country.value;
+    if(REGION === 'US' && EU.indexOf(c) !== -1){
+      note.hidden = false;
+      note.innerHTML = str('region_mismatch', 'EU: Euro-Preis.') + ' <a href="' + regionUrl('eu') + '">' + str('region_switch_eur', 'Euro') + '</a>';
+    } else if(REGION === 'EU' && c === 'US'){
+      note.hidden = false;
+      note.innerHTML = '<a href="' + regionUrl('us') + '">' + str('region_switch_usd', 'USD') + '</a>';
+    } else { note.hidden = true; note.textContent = ''; }
+  }
+  function updateCurrencySwitch(){
+    var el = document.getElementById('currencySwitch'); if(!el) return;
+    el.innerHTML = (REGION === 'US' ? str('region_now_usd', 'USD.') : str('region_now_eur', 'EUR.')) + ' <a href="' + regionUrl(REGION === 'US' ? 'eu' : 'us') + '">'
+      + (REGION === 'US' ? str('region_switch_eur', 'EUR') : str('region_switch_usd', 'USD')) + '</a>';
+  }
+  fillCountries();
+  if(REGION === 'US' && US_TZ.test(LOCAL_TZ)) form.country.value = 'US';
+  else if(REGION === 'EU' && TZ_COUNTRY[LOCAL_TZ]) form.country.value = TZ_COUNTRY[LOCAL_TZ];
+  form.country.addEventListener('change', updateRegionNote);
+  updateCurrencySwitch();
+  window.addEventListener('lusides:langchange', function(){ fillCountries(); updateRegionNote(); updateCurrencySwitch(); });
   updateTzNote();
   slotsHead.textContent = str('loading', 'Lade freie Termine…');
   loadBooked().then(function(){

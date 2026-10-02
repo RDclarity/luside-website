@@ -1,16 +1,21 @@
 // Lusides Admin: Login, Tabs, Rechnungen, Anfragen, Newsletter, Besucher, Einstellungen.
 // Der Terminkalender steckt in admin-calendar.js.
 (function(){
+  if(window.top !== window.self){ try{ window.top.location = window.self.location; }catch(e){ document.documentElement.style.display = 'none'; } return; }
   var $ = function(id){ return document.getElementById(id); };
   var client = null;
   var INVOICE_URL = window.LUSIDES_SUPABASE.url + '/functions/v1/lusides-invoice';
   var data = { contacts: [], newsletter: [], invoices: [], appointments: {} };
 
   // ---------- Hilfen ----------
-  function esc(str){ var d = document.createElement('div'); d.textContent = str == null ? '' : String(str); return d.innerHTML; }
+  function esc(str){ return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function fmtDate(iso, withTime){
     if(!iso) return '—';
-    try{ return new Date(iso).toLocaleString('de-AT', withTime === false ? { dateStyle: 'medium' } : { dateStyle: 'medium', timeStyle: 'short' }); }catch(e){ return iso; }
+    try{
+      // Reine Datumsangaben (YYYY-MM-DD) nicht als Zeitpunkt interpretieren – sonst springt das Datum in Amerika um einen Tag.
+      if(/^\d{4}-\d{2}-\d{2}$/.test(iso)) return new Date(iso + 'T12:00:00Z').toLocaleDateString('de-AT', { dateStyle: 'medium', timeZone: 'UTC' });
+      return new Date(iso).toLocaleString('de-AT', withTime === false ? { dateStyle: 'medium', timeZone: 'Europe/Vienna' } : { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Vienna' });
+    }catch(e){ return iso; }
   }
   function money(v, cur){ try{ return new Intl.NumberFormat('de-AT', { style: 'currency', currency: cur || 'EUR' }).format(v); }catch(e){ return v + ' ' + cur; } }
   function fmtDuration(sec){ if(sec == null) return '—'; var m = Math.floor(sec / 60), s = sec % 60; return m > 0 ? (m + ' min ' + s + 's') : (s + 's'); }
@@ -22,7 +27,7 @@
   function badge(id, n){ var b = $(id); if(!b) return; b.hidden = !n; b.textContent = n; }
   function csvEscape(val){
     var str = val == null ? '' : String(val);
-    if(/^[=+\-@\t\r]/.test(str)) str = "'" + str;
+    if(/^[=+\-@\t\r]/.test(str) && !/^-?\d+([.,]\d+)?$/.test(str)) str = "'" + str;
     if(/[",\n;]/.test(str)) return '"' + str.replace(/"/g, '""') + '"';
     return str;
   }
@@ -63,8 +68,12 @@
     }).catch(function(e){ console.error(e); toast('Versand fehlgeschlagen (RESEND_API_KEY gesetzt?)', true); });
   }
   window.lusidesAdminDocs = {
-    invoiceFor: function(apptId){ return data.invoices.filter(function(i){ return i.appointment_id === apptId && i.kind === 'rechnung'; })[0] || null; },
-    openPdf: openPdf, resend: resend
+    invoiceFor: function(apptId){
+      var list = data.invoices.filter(function(i){ return i.appointment_id === apptId && i.kind === 'rechnung'; });
+      return list.filter(function(i){ return i.status !== 'storniert'; })[0] || list[0] || null;
+    },
+    openPdf: openPdf, resend: resend,
+    reload: function(){ loadInvoices(); if(window.lusidesAdminCalendar) window.lusidesAdminCalendar.load(client); }
   };
 
   // ---------- Tabs ----------
@@ -103,7 +112,7 @@
       if(i.kind === 'rechnung' && i.appointment_id) actions += '<button class="btn btn-sm" data-act="order" data-id="' + i.id + '">Bestellschein</button>';
       if(i.kind === 'rechnung' && i.status === 'offen') actions += '<button class="btn btn-sm" data-act="paid" data-id="' + i.id + '">Bezahlt</button>';
       if(i.kind === 'rechnung' && i.status === 'bezahlt') actions += '<button class="btn btn-sm" data-act="unpaid" data-id="' + i.id + '">Offen</button>';
-      if(i.kind === 'rechnung' && i.appointment_id) actions += '<button class="btn btn-sm" data-act="resend" data-appt="' + i.appointment_id + '">Senden</button>';
+      if(i.kind === 'rechnung' && i.appointment_id && i.status !== 'storniert') actions += '<button class="btn btn-sm" data-act="resend" data-appt="' + i.appointment_id + '">Senden</button>';
       if(i.kind === 'rechnung' && i.status !== 'storniert') actions += '<button class="btn btn-sm btn-danger" data-act="storno" data-id="' + i.id + '" data-no="' + esc(i.invoice_no) + '">Storno</button>';
       var mail = i.sent_at ? '<span class="pill gesendet">gesendet</span>' : (appt.mail_status === 'fehler' ? '<span class="pill fehler" title="' + esc(appt.mail_error || '') + '">Fehler</span>' : '<span class="pill">offen</span>');
       return '<tr>'
@@ -135,15 +144,15 @@
       client.from('invoices').update(act === 'paid' ? { status: 'bezahlt', paid_at: new Date().toISOString() } : { status: 'offen', paid_at: null }).eq('id', id).then(function(res){
         if(res.error){ toast('Speichern fehlgeschlagen: ' + res.error.message, true); return; }
         var inv = data.invoices.filter(function(i){ return i.id === id; })[0];
-        if(inv && inv.appointment_id) client.from('appointments').update({ paid: act === 'paid' }).eq('id', inv.appointment_id).then(function(){});
-        loadInvoices(); toast(act === 'paid' ? 'Als bezahlt markiert.' : 'Wieder offen.');
+        var done = function(){ window.lusidesAdminDocs.reload(); toast(act === 'paid' ? 'Als bezahlt markiert.' : 'Wieder offen.'); };
+        if(inv && inv.appointment_id) client.from('appointments').update({ paid: act === 'paid' }).eq('id', inv.appointment_id).then(done); else done();
       });
     }
     if(act === 'storno'){
       if(!confirm('Rechnung ' + b.getAttribute('data-no') + ' stornieren? Es wird eine Stornorechnung mit eigener Nummer erstellt.')) return;
       client.rpc('cancel_invoice', { p_invoice: id }).then(function(res){
         if(res.error){ toast('Storno fehlgeschlagen: ' + res.error.message, true); return; }
-        toast('Stornorechnung ' + res.data + ' erstellt.'); loadInvoices();
+        toast('Stornorechnung ' + res.data + ' erstellt.'); window.lusidesAdminDocs.reload();
       });
     }
   });
@@ -191,8 +200,8 @@
         + '<td class="primary" data-label="Name">' + esc(r.name) + '</td>'
         + '<td data-label="Unternehmen">' + esc(r.company || '—') + '</td>'
         + '<td data-label="Anliegen">' + esc(r.biggest_challenge || '—') + '</td>'
-        + '<td class="nowrap" data-label="Telefon">' + (r.phone ? '<a href="tel:' + esc(r.phone.replace(/\s+/g, '')) + '">' + esc(r.phone) + '</a>' : '—') + '</td>'
-        + '<td data-label="E-Mail"><a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a></td>'
+        + '<td class="nowrap" data-label="Telefon">' + (r.phone ? '<a href="tel:' + esc(String(r.phone).replace(/[^\d+]/g, '')) + '">' + esc(r.phone) + '</a>' : '—') + '</td>'
+        + '<td data-label="E-Mail"><a href="mailto:' + esc(encodeURIComponent(r.email || '')) + '">' + esc(r.email) + '</a></td>'
         + '<td data-label="Newsletter" class="' + (r.newsletter_opt_in ? 'tag-yes' : 'tag-no') + '">' + (r.newsletter_opt_in ? 'Ja' : 'Nein') + '</td>'
         + '<td class="nowrap" data-label="Datum">' + fmtDate(r.created_at) + '</td></tr>';
     }).join('');
@@ -202,7 +211,7 @@
     $('newsletterCount').textContent = rows.length + ' Abonnenten';
     if(!rows.length){ $('newsletterBody').innerHTML = '<tr class="empty-row"><td colspan="3">Noch keine Abonnenten.</td></tr>'; return; }
     $('newsletterBody').innerHTML = rows.map(function(r){
-      return '<tr><td class="primary" data-label="Name">' + esc(r.name || '—') + '</td><td data-label="E-Mail"><a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a></td><td class="nowrap" data-label="Datum">' + fmtDate(r.created_at) + '</td></tr>';
+      return '<tr><td class="primary" data-label="Name">' + esc(r.name || '—') + '</td><td data-label="E-Mail"><a href="mailto:' + esc(encodeURIComponent(r.email || '')) + '">' + esc(r.email) + '</a></td><td class="nowrap" data-label="Datum">' + fmtDate(r.created_at) + '</td></tr>';
     }).join('');
   }
   function renderAnalytics(visits, durations, conversions){
@@ -240,7 +249,10 @@
   var settingsForm = $('settingsForm');
   function loadSettings(){
     client.from('billing_settings').select('*').eq('id', true).maybeSingle().then(function(res){
-      if(res.error || !res.data){ settingsForm.querySelector('h3').insertAdjacentHTML('afterend', '<p class="hint full">Noch nicht verfügbar – Migration 20261003100000_billing.sql ausführen.</p>'); return; }
+      if(res.error || !res.data){
+        if(!settingsForm.querySelector('.hint-missing')) settingsForm.querySelector('h3').insertAdjacentHTML('afterend', '<p class="hint full hint-missing">Noch nicht verfügbar – Migrationen ausführen und Benutzer in admin_users eintragen.</p>');
+        return;
+      }
       Object.keys(res.data).forEach(function(k){ var el = settingsForm.elements[k]; if(el) el.value = res.data[k] == null ? '' : res.data[k]; });
     });
   }

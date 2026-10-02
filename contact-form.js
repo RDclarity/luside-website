@@ -47,7 +47,7 @@
   var submitBtn = form.querySelector('button[type="submit"]');
 
   function currentStrings(){
-    var lang = localStorage.getItem('lusides_lang') || 'de';
+    var lang = ((window.lusidesI18n && window.lusidesI18n.currentLang) ? window.lusidesI18n.currentLang() : 'de');
     var dict = (window.lusidesI18n && window.lusidesI18n.translations[lang]) || {};
     return (dict.kontakt) || {};
   }

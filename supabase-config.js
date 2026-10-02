@@ -14,9 +14,14 @@ window.LUSIDES_SUPABASE = {
   if(window.LUSIDES_SUPABASE_CLIENT) return;
   if(window.LUSIDES_SUPABASE.url.indexOf('YOUR_SUPABASE') !== -1) return;
   if(window.supabase){
+    // Admin-Login nur für die Dauer des Tabs merken (sessionStorage) – so bleibt
+    // kein Token dauerhaft im Browser bzw. für andere Seiten derselben Origin liegen.
+    var isAdmin = /admin\.html$/.test(location.pathname);
     window.LUSIDES_SUPABASE_CLIENT = window.supabase.createClient(
       window.LUSIDES_SUPABASE.url,
-      window.LUSIDES_SUPABASE.anonKey
+      window.LUSIDES_SUPABASE.anonKey,
+      isAdmin ? { auth: { storage: window.sessionStorage, storageKey: 'lusides-admin-auth' } }
+              : { auth: { persistSession: false, autoRefreshToken: false } }
     );
     return;
   }

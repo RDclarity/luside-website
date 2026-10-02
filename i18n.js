@@ -1,7 +1,7 @@
 (function(){
   var TRANSLATIONS = {
     de: {
-      meta: { title: 'Lusides — Du musst dein Unternehmen nicht allein tragen' },
+      meta: { title: "Unternehmensberatung Wien für inhabergeführte Unternehmen | Lusides" },
       nav: { leistungen: 'Leistungen', warum: 'Warum wir', ablauf: 'Ablauf', faq: 'FAQ', team: 'Team', seminar: 'Seminar', erstberatung: 'Erstberatung', cta: 'Erstgespräch', home_short: 'Lusides', book: 'Jetzt Termin buchen', book_sub: '1 Std. Erstgespräch · {price}', kontakt: 'Kontakt', book_short: '60 MIN · {price}' },
       hero: {
         eyebrow: 'LUSIDES',
@@ -134,7 +134,7 @@
         mihai_f1: "Individuelle Software- und Web-Entwicklung",
         mihai_f2: "KI, Automatisierung und Datenverarbeitung",
         mihai_f3: "Mitgeschäftsführer der Legatech-Gruppe",
-        meta_title: 'Team — Lusides',
+        meta_title: "Team: Marko Katalan, Richard Dobrohruschka & Mihai Suta | Lusides",
         eyebrow: 'TEAM — LUSIDES',
         h1: 'Die Menschen hinter Lusides.',
         sub: "Unternehmer, die selbst aufbauen und umsetzen – seit zehn Jahren, in Wien und New York.",
@@ -147,7 +147,7 @@
       },
       seminar_page: {
         nav_badge: 'FEB/MÄR 2027 · WIEN',
-        meta_title: 'Seminar: Prozesse, Systeme, Marketing — Wien | Lusides',
+        meta_title: "Seminar Prozesse, Systeme & Marketing – Wien, Feb/März 2027 | Lusides",
         eyebrow: 'SEMINAR — WIEN',
         h1: 'Prozesse, Systeme, Marketing: zwei Tage, die dein Unternehmen weiterbringen.',
         sub: 'Ein 2-tägiges Praxisseminar für Unternehmer, die ihre Prozesse, Systeme und ihr Marketing auf das nächste Level heben wollen.',
@@ -204,7 +204,7 @@
         trust: 'Kein Massengeschäft. Begrenzte Teilnehmerzahl.'
       },
       svc_prozesse: {
-        meta_title: 'Prozesse & Systeme — Lusides',
+        meta_title: "Prozessoptimierung & Organisationsentwicklung Wien | Lusides",
         tag: 'Prozesse & Systeme',
         eyebrow: 'LEISTUNG · 01',
         h1: 'Ein Unternehmen, das auch ohne dich am Laufen bleibt.',
@@ -249,7 +249,7 @@
         faq_q4: 'Arbeitet ihr mit unserem bestehenden Team?', faq_a4: 'Ja. Wir bauen die Systeme gemeinsam mit euren Mitarbeitenden auf, damit sie im Alltag auch wirklich genutzt werden — nicht an ihnen vorbei.'
       },
       svc_marketing: {
-        meta_title: 'Marketing — Lusides',
+        meta_title: "Marketingberatung & Leadgenerierung für KMU in Wien | Lusides",
         tag: 'Marketing',
         eyebrow: 'LEISTUNG · 02',
         h1: 'Sichtbarkeit, die tatsächlich zu Umsatz wird.',
@@ -294,7 +294,7 @@
         faq_q4: 'Funktioniert das auch ohne bestehende Website oder Social-Media-Präsenz?', faq_a4: 'Ja, im Erstgespräch klären wir, wo ihr aktuell steht und was zuerst aufgebaut werden muss.'
       },
       svc_finanzen: {
-        meta_title: 'Finanzielle Angelegenheiten — Lusides',
+        meta_title: "Controlling, Reporting & Finanzberatung für KMU Wien | Lusides",
         tag: 'Finanzielle Angelegenheiten',
         eyebrow: 'LEISTUNG · 03',
         h1: 'Kennzahlen, auf die man sich verlassen kann.',
@@ -339,6 +339,7 @@
         faq_q4: 'Für welche Entscheidungen hilft besseres Controlling konkret?', faq_a4: 'Zum Beispiel bei Investitionsentscheidungen, Preisgestaltung, Personalplanung oder der Frage, welche Bereiche eures Unternehmens tatsächlich rentabel sind.'
       },
       home2: {
+        h1_seo: " – Unternehmensberatung in Wien für inhabergeführte Unternehmen",
         badge: "Unternehmensberatung & Entwicklung · Wien",
         h1a: "Wachstum",
         h1b: "mit",
@@ -390,7 +391,7 @@
         owners: "Inhaber"
       },
       svc_shop: {
-        meta_title: "Onlineshop-Entwicklung — Lusides",
+        meta_title: "Onlineshop-Entwicklung Wien – Shopify, WooCommerce & individuell | Lusides",
         tag: "Onlineshop-Entwicklung",
         eyebrow: "DIGITALISIERUNG & KI · ONLINESHOP & WEB",
         h1: "Onlineshops, die verkaufen — und sich in euren Betrieb einfügen.",
@@ -453,18 +454,30 @@
         teaser_link: "Zur Onlineshop-Entwicklung"
       },
       termin_page: {
+        region_now_usd: "Preise in US-Dollar.",
+        region_now_eur: "Preise in Euro.",
+        region_switch_usd: "Preise in US-Dollar anzeigen (Kunden in den USA)",
+        region_switch_eur: "Zu den Euro-Preisen wechseln",
+        region_mismatch: "Für Kunden in der EU gilt der Euro-Preis inkl. USt.",
+        err_slot_gone: "Dieser Termin ist nicht mehr buchbar (Vorlaufzeit 12 Stunden). Bitte wähle einen anderen.",
+        err_input: "Bitte prüfe deine Angaben (Name, E-Mail, Telefon).",
+        err_uid: "Die UID-Nummer passt nicht zum gewählten Land (z. B. DE… für Deutschland).",
+        err_rate: "Gerade gehen sehr viele Buchungen ein. Bitte versuche es in einigen Minuten erneut.",
+        err_already: "Für diese E-Mail-Adresse gibt es bereits einen offenen Termin. Bitte melde dich bei uns, wenn du umbuchen möchtest.",
+        err_country: "Bitte wähle das Land für die Rechnungsadresse.",
+        country_pick: "Bitte wählen",
         billing_h: "Rechnungsadresse",
         f_street: "Straße und Hausnummer *",
         f_zip: "PLZ",
         f_city: "Ort *",
-        f_country: "Land",
+        f_country: "Land *",
         f_uid: "UID-Nummer (optional, für Firmen)",
         country_other: "Anderes Land",
         tz_local: "Alle Zeiten in deiner Ortszeit ({tz}).",
         err_billing: "Bitte Straße und Ort für die Rechnung angeben.",
         ok_mail: "Bestellschein und Rechnung sind unterwegs an {email}. Den Microsoft-Teams-Link senden wir dir vor dem Termin.",
         ok_mail_fail: "Deine Buchung ist bestätigt. Bestellschein und Rechnung senden wir dir in Kürze per E-Mail.",
-        meta_title: "Termin buchen — Lusides",
+        meta_title: "Erstgespräch buchen – 60 Min. per Microsoft Teams | Lusides",
         eyebrow: "ERSTGESPRÄCH · MICROSOFT TEAMS",
         h1: "Jetzt Termin buchen.",
         sub: "Eine Stunde, volle Aufmerksamkeit für dein Unternehmen. Wähle einen freien Termin, das Gespräch findet per Video über Microsoft Teams statt.",
@@ -487,7 +500,7 @@
         f_topic: "Thema",
         topic_other: "Sonstiges",
         f_message: "Worum soll es gehen? (optional)",
-        consent: "Ich buche ein kostenpflichtiges Erstgespräch ({price}) und akzeptiere die <a href=\"datenschutz.html\" target=\"_blank\">Datenschutzerklärung</a>.",
+        consent: "Ich buche ein kostenpflichtiges Erstgespräch ({price}) und akzeptiere die <a href=\"datenschutz.html\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung</a>.",
         submit: "Verbindlich buchen · {price}",
         ok_h2: "Termin gebucht!",
         ok_p: "Danke! Du erhältst in Kürze eine Bestätigung mit dem Microsoft-Teams-Link und der Rechnung per E-Mail.",
@@ -503,7 +516,7 @@
         err_generic: "Buchung gerade nicht möglich. Bitte versuche es später erneut oder ruf uns an: +43 660 3607188."
       },
       svc_digital: {
-        meta_title: 'Digitalisierung & KI — Lusides',
+        meta_title: "Digitalisierung & KI-Beratung für Unternehmen in Wien | Lusides",
         tag: 'Digitalisierung & KI',
         eyebrow: 'LEISTUNG · 04',
         h1: 'KI-Systeme, die zu deinem Unternehmen passen — nicht umgekehrt.',
@@ -548,7 +561,7 @@
         faq_q4: 'Muss unser Team technisches Vorwissen haben?', faq_a4: 'Nein. Wir entwickeln und implementieren die Systeme selbst und übergeben sie so, dass euer Team sie im Alltag ohne technisches Vorwissen nutzen kann.'
       },
       erstberatung_page: {
-        meta_title: 'Erstberatung mit Marko Katalan — Lusides',
+        meta_title: "Erstberatung für Unternehmer – Wien & online | Lusides",
         nav_cta: 'Jetzt anfragen',
         eyebrow: 'ERSTBERATUNG',
         h1: 'Ein fokussiertes Erstgespräch mit Marko Katalan.',
@@ -651,7 +664,7 @@
         h_newsletter: 'Newsletter-Anmeldung',
         p_newsletter: 'Wenn Sie beim Absenden des Formulars die Newsletter-Checkbox aktivieren, speichern wir Ihren Namen und Ihre E-Mail-Adresse zusätzlich in einer separaten Liste für den Newsletter-Versand. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie jederzeit formlos per E-Mail an inquiry@luside.com widerrufen können.',
         h_booking: 'Terminbuchung',
-        p_booking: 'Nach dem Absenden des Formulars führt Sie der Button „Termin jetzt buchen" zu Microsoft Bookings, einem externen Dienst von Microsoft. Dort eingegebene Daten unterliegen den Datenschutzbestimmungen von Microsoft. Wir haben auf diese externe Seite keinen Einfluss.',
+        p_booking: "Wenn Sie über die Seite „Termin buchen“ ein Erstgespräch buchen, verarbeiten wir Name, E-Mail-Adresse, optional Telefonnummer und Unternehmen, Ihre Rechnungsadresse (Straße, PLZ, Ort, Land), optional Ihre UID-Nummer, das gewählte Thema und Ihre Nachricht sowie den gewählten Termin. Zweck ist die Durchführung des Gesprächs sowie die Erstellung von Bestellschein und Rechnung (Rechtsgrundlage: Vertragserfüllung, Art. 6 Abs. 1 lit. b DSGVO, und gesetzliche Pflichten nach UStG/BAO, Art. 6 Abs. 1 lit. c DSGVO). Bestellschein und Rechnung werden automatisch erstellt und über den E-Mail-Dienst Resend (Resend, Inc., Versand über Server in der EU) an Sie versendet. Das Gespräch findet über Microsoft Teams statt; dafür gelten zusätzlich die Datenschutzbestimmungen von Microsoft. Die Zeitzone Ihres Browsers verwenden wir nur, um Uhrzeiten und Währung (EUR/USD) passend anzuzeigen.",
         h_analytics: 'Website-Analyse',
         p_analytics: 'Um zu verstehen, wie unsere Website genutzt wird, erfassen wir bei jedem Seitenaufruf: die aufgerufene Seite, die verweisende Seite (Referrer), den Gerätetyp (Mobil/Tablet/Desktop), die ungefähre Verweildauer und eine zufällig erzeugte Sitzungs-ID. Diese Sitzungs-ID verknüpft mehrere Seitenaufrufe miteinander und ist daher als pseudonyme Angabe zu behandeln. Unsere Anwendung selbst speichert dabei keine IP-Adressen oder Standortdaten; unser Hosting- und Datenbankanbieter verarbeitet IP-Adressen jedoch technisch bedingt kurzzeitig als übliche Server-Logdaten zur Sicherheit und Missbrauchsabwehr. Es werden keine Cookies gesetzt. Rechtsgrundlage ist unser berechtigtes Interesse an der Verbesserung unseres Angebots (Art. 6 Abs. 1 lit. f DSGVO).',
         h_chatbot: 'Chat-Assistent',
@@ -659,9 +672,9 @@
         h_language: 'Spracheinstellung',
         p_language: 'Ihre Auswahl zwischen Deutsch und Englisch speichern wir lokal in Ihrem Browser (localStorage), damit sie bei Ihrem nächsten Besuch erhalten bleibt. Diese Information verlässt Ihr Gerät nicht.',
         h_providers: 'Hosting und Dienstleister',
-        p_providers: 'Diese Website wird über GitHub Pages gehostet. Formular- und Analysedaten werden bei Supabase gespeichert, mit Serverstandort in Frankfurt (EU). Beide Anbieter fungieren als Auftragsverarbeiter und verarbeiten Daten ausschließlich in unserem Auftrag.',
+        p_providers: "Diese Website wird über GitHub Pages gehostet. Formular-, Buchungs-, Rechnungs- und Analysedaten werden bei Supabase gespeichert (Serverstandort Frankfurt, EU). Für den Versand von Bestellscheinen und Rechnungen nutzen wir Resend, für Videogespräche Microsoft Teams und für den Chat-Assistenten OpenAI. Diese Anbieter sind als Auftragsverarbeiter tätig; soweit Daten in die USA übermittelt werden, erfolgt dies auf Grundlage des EU-US Data Privacy Framework bzw. von Standardvertragsklauseln. Schriften werden direkt von dieser Website ausgeliefert (keine Google-Server). Zwei Programmbibliotheken werden über das Content-Delivery-Netzwerk jsDelivr geladen; dabei wird Ihre IP-Adresse an diesen Anbieter übertragen.",
         h_retention: 'Speicherdauer',
-        p_retention: 'Wir speichern personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck erforderlich ist: Anfragen bis zur vollständigen Bearbeitung und einer angemessenen Nachfrist, Newsletter-Daten bis zu Ihrem Widerruf. Auf Anfrage löschen wir Ihre Daten früher, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen.',
+        p_retention: "Wir speichern personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck erforderlich ist: Anfragen bis zur vollständigen Bearbeitung und einer angemessenen Nachfrist, Newsletter-Daten bis zu Ihrem Widerruf. Rechnungen, Bestellscheine und die dazugehörigen Buchungsdaten bewahren wir nach § 132 BAO sieben Jahre auf; sie können in dieser Zeit nicht gelöscht, sondern nur storniert werden.",
         h_rights: 'Ihre Rechte',
         p_rights_intro: 'Nach der DSGVO haben Sie das Recht auf:',
         right1: 'Auskunft über Ihre gespeicherten Daten',
@@ -678,7 +691,7 @@
       }
     },
     en: {
-      meta: { title: "Lusides — You Don't Have to Carry Your Business Alone" },
+      meta: { title: "Management consultancy in Vienna for owner-run businesses | Lusides" },
       nav: { leistungen: 'Services', warum: 'Why us', ablauf: 'Process', faq: 'FAQ', team: 'Team', seminar: 'Seminar', erstberatung: 'Initial consultation', cta: 'Get in touch', home_short: 'Lusides', book: 'Book a call now', book_sub: '1-hour initial call · {price}', kontakt: 'Contact', book_short: '60 MIN · {price}' },
       hero: {
         eyebrow: 'LUSIDES',
@@ -811,7 +824,7 @@
         mihai_f1: "Custom software and web development",
         mihai_f2: "AI, automation and data processing",
         mihai_f3: "Co-managing director of the Legatech group",
-        meta_title: 'Team — Lusides',
+        meta_title: "Team: Marko Katalan, Richard Dobrohruschka & Mihai Suta | Lusides",
         eyebrow: 'TEAM — LUSIDES',
         h1: 'The people behind Lusides.',
         sub: "Entrepreneurs who build and implement – for ten years, in Vienna and New York.",
@@ -824,7 +837,7 @@
       },
       seminar_page: {
         nav_badge: 'FEB/MAR 2027 · VIENNA',
-        meta_title: 'Seminar: Processes, Systems, Marketing — Vienna | Lusides',
+        meta_title: "Seminar: processes, systems & marketing – Vienna, Feb/Mar 2027 | Lusides",
         eyebrow: 'SEMINAR — VIENNA',
         h1: 'Processes, systems, marketing: two days that move your business forward.',
         sub: 'A 2-day hands-on seminar for business owners who want to take their processes, systems, and marketing to the next level.',
@@ -881,7 +894,7 @@
         trust: "Not a volume business. Limited number of spots."
       },
       svc_prozesse: {
-        meta_title: 'Processes & Systems — Lusides',
+        meta_title: "Process optimisation & organisational development, Vienna | Lusides",
         tag: 'Processes & Systems',
         eyebrow: 'SERVICE · 01',
         h1: 'A business that keeps running without you.',
@@ -926,7 +939,7 @@
         faq_q4: 'Do you work with our existing team?', faq_a4: "Yes. We build the systems together with your employees so they're actually used day to day — not around them."
       },
       svc_marketing: {
-        meta_title: 'Marketing — Lusides',
+        meta_title: "Marketing consulting & lead generation for SMEs, Vienna | Lusides",
         tag: 'Marketing',
         eyebrow: 'SERVICE · 02',
         h1: 'Visibility that actually turns into revenue.',
@@ -971,7 +984,7 @@
         faq_q4: 'Does this work without an existing website or social media presence?', faq_a4: "Yes, in the introductory call we clarify where you currently stand and what needs to be built first."
       },
       svc_finanzen: {
-        meta_title: 'Financial Matters — Lusides',
+        meta_title: "Controlling, reporting & financial advisory for SMEs, Vienna | Lusides",
         tag: 'Financial Matters',
         eyebrow: 'SERVICE · 03',
         h1: 'Numbers you can rely on.',
@@ -1016,6 +1029,7 @@
         faq_q4: 'What decisions does better controlling actually help with?', faq_a4: 'For example investment decisions, pricing, staffing plans, or figuring out which parts of your business are actually profitable.'
       },
       home2: {
+        h1_seo: " – management consultancy in Vienna for owner-run businesses",
         badge: "Consulting & development · Vienna",
         h1a: "Growth,",
         h1b: "by",
@@ -1067,7 +1081,7 @@
         owners: "Owners"
       },
       svc_shop: {
-        meta_title: "Online shop development — Lusides",
+        meta_title: "Online shop development Vienna – Shopify, WooCommerce & custom | Lusides",
         tag: "Online shop development",
         eyebrow: "DIGITALISATION & AI · ONLINE SHOP & WEB",
         h1: "Online shops that sell and fit into how you run your business.",
@@ -1130,18 +1144,30 @@
         teaser_link: "Explore online shop development"
       },
       termin_page: {
+        region_now_usd: "Prices in US dollars.",
+        region_now_eur: "Prices in euros.",
+        region_switch_usd: "Show prices in US dollars (customers in the USA)",
+        region_switch_eur: "Switch to euro prices",
+        region_mismatch: "Customers in the EU are billed the euro price incl. VAT.",
+        err_slot_gone: "This slot can no longer be booked (12 hours lead time). Please choose another one.",
+        err_input: "Please check your details (name, email, phone).",
+        err_uid: "The VAT ID does not match the selected country (e.g. DE… for Germany).",
+        err_rate: "We are receiving a lot of bookings right now. Please try again in a few minutes.",
+        err_already: "There is already an open booking for this email address. Please contact us if you would like to reschedule.",
+        err_country: "Please choose the country of your billing address.",
+        country_pick: "Please choose",
         billing_h: "Billing address",
         f_street: "Street address *",
         f_zip: "ZIP / postal code",
         f_city: "City *",
-        f_country: "Country",
+        f_country: "Country *",
         f_uid: "VAT ID (optional, for companies)",
         country_other: "Other country",
         tz_local: "All times shown in your local time ({tz}).",
         err_billing: "Please enter street and city for the invoice.",
         ok_mail: "Your order confirmation and invoice are on their way to {email}. We will send the Microsoft Teams link before the call.",
         ok_mail_fail: "Your booking is confirmed. We will email your order confirmation and invoice shortly.",
-        meta_title: "Book a call — Lusides",
+        meta_title: "Book an initial consultation – 60 min via Microsoft Teams | Lusides",
         eyebrow: "INITIAL CALL · MICROSOFT TEAMS",
         h1: "Book your call now.",
         sub: "One hour of full attention for your business. Pick a free slot. The call takes place by video on Microsoft Teams.",
@@ -1164,7 +1190,7 @@
         f_topic: "Topic",
         topic_other: "Other",
         f_message: "What would you like to discuss? (optional)",
-        consent: "I am booking a paid initial call ({price}) and accept the <a href=\"datenschutz.html\" target=\"_blank\">privacy policy</a>.",
+        consent: "I am booking a paid initial call ({price}) and accept the <a href=\"datenschutz.html\" target=\"_blank\" rel=\"noopener\">privacy policy</a>.",
         submit: "Book now · {price}",
         ok_h2: "You're booked!",
         ok_p: "Thank you! You will shortly receive a confirmation with the Microsoft Teams link and the invoice by email.",
@@ -1180,7 +1206,7 @@
         err_generic: "Booking is not possible right now. Please try again later or call us: +43 660 3607188."
       },
       svc_digital: {
-        meta_title: 'Digitalization & AI — Lusides',
+        meta_title: "Digitalisation & AI consulting for companies, Vienna | Lusides",
         tag: 'Digitalization & AI',
         eyebrow: 'SERVICE · 04',
         h1: 'AI systems built for your business — not the other way around.',
@@ -1225,7 +1251,7 @@
         faq_q4: 'Does our team need technical background?', faq_a4: "No. We build and implement the systems ourselves and hand them over so your team can use them day to day without technical background."
       },
       erstberatung_page: {
-        meta_title: 'Initial Consultation with Marko Katalan — Lusides',
+        meta_title: "Initial consultation for business owners – Vienna & online | Lusides",
         nav_cta: 'Request now',
         eyebrow: 'INITIAL CONSULTATION',
         h1: 'A focused introductory call with Marko Katalan.',
@@ -1328,7 +1354,7 @@
         h_newsletter: 'Newsletter sign-up',
         p_newsletter: 'If you tick the newsletter checkbox when submitting the form, we additionally store your name and email address in a separate list for sending the newsletter. The legal basis is your consent (Art. 6(1)(a) GDPR), which you can withdraw at any time, informally, by emailing inquiry@luside.com.',
         h_booking: 'Booking an appointment',
-        p_booking: 'After submitting the form, the "Book a meeting now" button takes you to Microsoft Bookings, an external service operated by Microsoft. Data entered there is subject to Microsoft\'s own privacy policy. We have no influence over that external page.',
+        p_booking: "When you book an initial consultation on the “Book a call” page, we process your name, email address, optionally your phone number and company, your billing address (street, postal code, city, country), optionally your VAT ID, the chosen topic, your message and the selected appointment. We use this data to hold the call and to issue the order confirmation and invoice (legal basis: performance of a contract, Art. 6(1)(b) GDPR, and legal obligations under Austrian VAT and tax law, Art. 6(1)(c) GDPR). The order confirmation and invoice are created automatically and sent to you via the email service Resend (Resend, Inc., sending via servers in the EU). The call takes place on Microsoft Teams, for which Microsoft’s privacy terms also apply. We use your browser’s time zone only to show times and currency (EUR/USD) correctly.",
         h_analytics: 'Website analytics',
         p_analytics: "To understand how our website is used, we record on each page view: the page visited, the referring page, the device type (mobile/tablet/desktop), the approximate time spent on the page, and a randomly generated session ID. This session ID links multiple page views together and is therefore treated as pseudonymous data. Our application itself does not store IP addresses or location data; our hosting and database provider does, however, process IP addresses briefly as standard server log data for security and abuse prevention. No cookies are set. The legal basis is our legitimate interest in improving our offering (Art. 6(1)(f) GDPR).",
         h_chatbot: 'Chat assistant',
@@ -1336,9 +1362,9 @@
         h_language: 'Language preference',
         p_language: 'We store your choice between German and English locally in your browser (localStorage) so it persists on your next visit. This information never leaves your device.',
         h_providers: 'Hosting and service providers',
-        p_providers: 'This website is hosted via GitHub Pages. Form and analytics data is stored with Supabase, with servers located in Frankfurt (EU). Both providers act as data processors on our behalf only.',
+        p_providers: "This website is hosted on GitHub Pages. Form, booking, invoice and analytics data are stored with Supabase (server location Frankfurt, EU). We use Resend to send order confirmations and invoices, Microsoft Teams for video calls and OpenAI for the chat assistant. These providers act as processors; where data is transferred to the USA, this is based on the EU-US Data Privacy Framework or standard contractual clauses. Fonts are served directly from this website (no Google servers). Two code libraries are loaded via the jsDelivr content delivery network, which transmits your IP address to that provider.",
         h_retention: 'Retention period',
-        p_retention: 'We keep personal data only as long as necessary for its purpose: inquiries until fully handled plus a reasonable follow-up period, newsletter data until you withdraw consent. On request, we delete your data sooner, unless a legal retention obligation applies.',
+        p_retention: "We keep personal data only as long as necessary for the respective purpose: enquiries until fully handled plus a reasonable follow-up period, newsletter data until you withdraw consent. Invoices, order confirmations and the related booking data are retained for seven years under Section 132 of the Austrian Federal Fiscal Code (BAO); during this period they cannot be deleted, only cancelled.",
         h_rights: 'Your rights',
         p_rights_intro: 'Under the GDPR, you have the right to:',
         right1: 'access the data we hold about you',
@@ -1369,7 +1395,9 @@
     if(saved === 'US' || saved === 'EU') return saved;
     var tz = ''; try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }catch(e){}
     var langs = (navigator.languages || [navigator.language || '']).join(',');
-    var region = (/^America\//.test(tz) || (/(^|,)en-US/i.test(langs) && !/^Europe\//.test(tz))) ? 'US' : 'EU';
+    // Nur echte US-Zeitzonen (nicht Kanada, Mexiko, Brasilien …) zählen als USA.
+    var usTz = /^(America\/(New_York|Detroit|Chicago|Denver|Phoenix|Los_Angeles|Anchorage|Boise|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak|Menominee|Indiana\/.*|Kentucky\/.*|North_Dakota\/.*)|Pacific\/Honolulu)$/;
+    var region = (usTz.test(tz) || (!tz && /(^|,)en-US/i.test(langs))) ? 'US' : 'EU';
     store('lusides_region', region);
     return region;
   }
@@ -1430,7 +1458,7 @@
     window.dispatchEvent(new CustomEvent('lusides:langchange', { detail: { lang: lang } }));
   }
 
-  window.lusidesI18n = { translations: TRANSLATIONS, applyLang: applyLang, resolve: resolve };
+  window.lusidesI18n = { translations: TRANSLATIONS, applyLang: applyLang, resolve: resolve, currentLang: function(){ return currentLang; } };
 
   document.querySelectorAll('.lang-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
