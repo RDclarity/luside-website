@@ -2,7 +2,7 @@
   var TRANSLATIONS = {
     de: {
       meta: { title: 'Lusides — Du musst dein Unternehmen nicht allein tragen' },
-      nav: { leistungen: 'Leistungen', warum: 'Warum wir', ablauf: 'Ablauf', faq: 'FAQ', team: 'Team', seminar: 'Seminar', erstberatung: 'Erstberatung', cta: 'Erstgespräch', home_short: 'Lusides', book: 'Jetzt Termin buchen', book_sub: '1 Std. Erstgespräch · 350 €', kontakt: 'Kontakt', book_short: '60 MIN · 350 €' },
+      nav: { leistungen: 'Leistungen', warum: 'Warum wir', ablauf: 'Ablauf', faq: 'FAQ', team: 'Team', seminar: 'Seminar', erstberatung: 'Erstberatung', cta: 'Erstgespräch', home_short: 'Lusides', book: 'Jetzt Termin buchen', book_sub: '1 Std. Erstgespräch · {price}', kontakt: 'Kontakt', book_short: '60 MIN · {price}' },
       hero: {
         eyebrow: 'LUSIDES',
         h1: 'Du hast dein Unternehmen aufgebaut. Nicht, um jetzt allein weiterzukämpfen.',
@@ -110,10 +110,34 @@
         more: 'Mehr erfahren'
       },
       team_page: {
+        stat1_n: "10",
+        stat1_l: "Jahre Unternehmensberatung",
+        stat2_n: "Wien · New York",
+        stat2_l: "Unternehmen mit aufgebaut",
+        stat3_n: "3",
+        stat3_l: "Köpfe, ein Team",
+        marko_tag: "Inhaber",
+        marko_role: "Strategie · Organisation · Recht",
+        marko_bio: "Jurist und Unternehmer. Seit rund zehn Jahren berät er Unternehmerinnen und Unternehmer und hat mehrere Unternehmen in Wien und New York mit aufgebaut – mit dem Blick für Struktur, Verträge und nachhaltiges Wachstum.",
+        marko_f1: "Jurist (Mag. iur.)",
+        marko_f2: "Geschäftsführer der Legatech GmbH & Co KG",
+        marko_f3: "Unternehmensaufbau in Wien und New York",
+        richard_tag: "Inhaber",
+        richard_role: "Marketing · Vertrieb · Prozesse",
+        richard_bio: "Geprüfter Tischlermeister und Unternehmer. Er führt in dritter Generation den 1935 gegründeten Familienbetrieb Tischlerkultur und hat mit Richards Atelier ein eigenes Interior-Unternehmen aufgebaut – Projekte von Wien bis New York.",
+        richard_f1: "Übernahme und Ausbau des Familienbetriebs seit 2016",
+        richard_f2: "Gründer von Richards Atelier (Interior & Komplettsanierung)",
+        richard_f3: "Mehrfacher Unternehmensaufbau in Wien und New York",
+        mihai_tag: "Technik",
+        mihai_role: "Software · KI · Digitalisierung",
+        mihai_bio: "Hochspezialisierter Programmierer und Mitgeschäftsführer der Legatech-Gruppe. Er verantwortet bei Lusides die technische Umsetzung – von individueller Software über Onlineshops bis zu KI-Systemen.",
+        mihai_f1: "Individuelle Software- und Web-Entwicklung",
+        mihai_f2: "KI, Automatisierung und Datenverarbeitung",
+        mihai_f3: "Mitgeschäftsführer der Legatech-Gruppe",
         meta_title: 'Team — Lusides',
         eyebrow: 'TEAM — LUSIDES',
         h1: 'Die Menschen hinter Lusides.',
-        sub: 'Unternehmer, die selbst umsetzen — nicht nur beraten.',
+        sub: "Unternehmer, die selbst aufbauen und umsetzen – seit zehn Jahren, in Wien und New York.",
         role_pending: 'Rolle folgt',
         r_richard: 'Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau',
         r_marko: 'Strategie, Organisation, Unternehmensentwicklung, Wachstum',
@@ -428,6 +452,17 @@
         teaser_link: "Zur Onlineshop-Entwicklung"
       },
       termin_page: {
+        billing_h: "Rechnungsadresse",
+        f_street: "Straße und Hausnummer *",
+        f_zip: "PLZ",
+        f_city: "Ort *",
+        f_country: "Land",
+        f_uid: "UID-Nummer (optional, für Firmen)",
+        country_other: "Anderes Land",
+        tz_local: "Alle Zeiten in deiner Ortszeit ({tz}).",
+        err_billing: "Bitte Straße und Ort für die Rechnung angeben.",
+        ok_mail: "Bestellschein und Rechnung sind unterwegs an {email}. Den Microsoft-Teams-Link senden wir dir vor dem Termin.",
+        ok_mail_fail: "Deine Buchung ist bestätigt. Bestellschein und Rechnung senden wir dir in Kürze per E-Mail.",
         meta_title: "Termin buchen — Lusides",
         eyebrow: "ERSTGESPRÄCH · MICROSOFT TEAMS",
         h1: "Jetzt Termin buchen.",
@@ -439,7 +474,7 @@
         li2: "Konkrete nächste Schritte, auch wenn wir nicht zusammenarbeiten",
         li3: "Direkt mit den Gründern, kein Vertriebsgespräch",
         li4: "Den Teams-Link erhältst du per E-Mail vor dem Termin",
-        fine: "Die Rechnung über 350 € erhältst du per E-Mail. Kostenlose Umbuchung oder Absage bis 24 Stunden vor dem Termin.",
+        fine: "Die Rechnung über {price} erhältst du per E-Mail. Kostenlose Umbuchung oder Absage bis 24 Stunden vor dem Termin.",
         step1: "Datum wählen",
         step2: "Uhrzeit wählen",
         step3: "Deine Daten",
@@ -451,8 +486,8 @@
         f_topic: "Thema",
         topic_other: "Sonstiges",
         f_message: "Worum soll es gehen? (optional)",
-        consent: "Ich buche ein kostenpflichtiges Erstgespräch (350 €) und akzeptiere die <a href=\"datenschutz.html\" target=\"_blank\">Datenschutzerklärung</a>.",
-        submit: "Verbindlich buchen · 350 €",
+        consent: "Ich buche ein kostenpflichtiges Erstgespräch ({price}) und akzeptiere die <a href=\"datenschutz.html\" target=\"_blank\">Datenschutzerklärung</a>.",
+        submit: "Verbindlich buchen · {price}",
         ok_h2: "Termin gebucht!",
         ok_p: "Danke! Du erhältst in Kürze eine Bestätigung mit dem Microsoft-Teams-Link und der Rechnung per E-Mail.",
         ok_ics: "Zum Kalender hinzufügen",
@@ -643,7 +678,7 @@
     },
     en: {
       meta: { title: "Lusides — You Don't Have to Carry Your Business Alone" },
-      nav: { leistungen: 'Services', warum: 'Why us', ablauf: 'Process', faq: 'FAQ', team: 'Team', seminar: 'Seminar', erstberatung: 'Initial consultation', cta: 'Get in touch', home_short: 'Lusides', book: 'Book a call now', book_sub: '1-hour initial call · €350', kontakt: 'Contact', book_short: '60 MIN · €350' },
+      nav: { leistungen: 'Services', warum: 'Why us', ablauf: 'Process', faq: 'FAQ', team: 'Team', seminar: 'Seminar', erstberatung: 'Initial consultation', cta: 'Get in touch', home_short: 'Lusides', book: 'Book a call now', book_sub: '1-hour initial call · {price}', kontakt: 'Contact', book_short: '60 MIN · {price}' },
       hero: {
         eyebrow: 'LUSIDES',
         h1: "You built this business. Not to keep carrying it alone.",
@@ -751,10 +786,34 @@
         more: 'Learn more'
       },
       team_page: {
+        stat1_n: "10",
+        stat1_l: "years of consulting",
+        stat2_n: "Vienna · New York",
+        stat2_l: "companies co-built",
+        stat3_n: "3",
+        stat3_l: "minds, one team",
+        marko_tag: "Owner",
+        marko_role: "Strategy · Organisation · Law",
+        marko_bio: "Lawyer and entrepreneur. For around ten years he has advised business owners and helped build several companies in Vienna and New York – with an eye for structure, contracts and sustainable growth.",
+        marko_f1: "Lawyer by training (Mag. iur.)",
+        marko_f2: "Managing director of Legatech GmbH & Co KG",
+        marko_f3: "Company building in Vienna and New York",
+        richard_tag: "Owner",
+        richard_role: "Marketing · Sales · Processes",
+        richard_bio: "Master carpenter and entrepreneur. He runs Tischlerkultur, a family business founded in 1935, as the third generation, and built his own interior company, Richards Atelier – with projects from Vienna to New York.",
+        richard_f1: "Took over and expanded the family business in 2016",
+        richard_f2: "Founder of Richards Atelier (interiors & full renovation)",
+        richard_f3: "Built multiple companies in Vienna and New York",
+        mihai_tag: "Technology",
+        mihai_role: "Software · AI · Digitalisation",
+        mihai_bio: "Highly specialised software developer and co-managing director of the Legatech group. At Lusides he leads technical delivery – from custom software and online shops to AI systems.",
+        mihai_f1: "Custom software and web development",
+        mihai_f2: "AI, automation and data processing",
+        mihai_f3: "Co-managing director of the Legatech group",
         meta_title: 'Team — Lusides',
         eyebrow: 'TEAM — LUSIDES',
         h1: 'The people behind Lusides.',
-        sub: 'Business owners who implement themselves — not just advise.',
+        sub: "Entrepreneurs who build and implement – for ten years, in Vienna and New York.",
         role_pending: 'Role to be announced',
         r_richard: 'Marketing, sales, business development, process design',
         r_marko: 'Strategy, organization, business development, growth',
@@ -1069,6 +1128,17 @@
         teaser_link: "Explore online shop development"
       },
       termin_page: {
+        billing_h: "Billing address",
+        f_street: "Street address *",
+        f_zip: "ZIP / postal code",
+        f_city: "City *",
+        f_country: "Country",
+        f_uid: "VAT ID (optional, for companies)",
+        country_other: "Other country",
+        tz_local: "All times shown in your local time ({tz}).",
+        err_billing: "Please enter street and city for the invoice.",
+        ok_mail: "Your order confirmation and invoice are on their way to {email}. We will send the Microsoft Teams link before the call.",
+        ok_mail_fail: "Your booking is confirmed. We will email your order confirmation and invoice shortly.",
         meta_title: "Book a call — Lusides",
         eyebrow: "INITIAL CALL · MICROSOFT TEAMS",
         h1: "Book your call now.",
@@ -1080,7 +1150,7 @@
         li2: "Concrete next steps, even if we don't end up working together",
         li3: "Directly with the founders, no sales pitch",
         li4: "You receive the Teams link by email before the call",
-        fine: "You receive the €350 invoice by email. Free rescheduling or cancellation up to 24 hours before the call.",
+        fine: "You receive the {price} invoice by email. Free rescheduling or cancellation up to 24 hours before the call.",
         step1: "Choose a date",
         step2: "Choose a time",
         step3: "Your details",
@@ -1092,8 +1162,8 @@
         f_topic: "Topic",
         topic_other: "Other",
         f_message: "What would you like to discuss? (optional)",
-        consent: "I am booking a paid initial call (€350) and accept the <a href=\"datenschutz.html\" target=\"_blank\">privacy policy</a>.",
-        submit: "Book now · €350",
+        consent: "I am booking a paid initial call ({price}) and accept the <a href=\"datenschutz.html\" target=\"_blank\">privacy policy</a>.",
+        submit: "Book now · {price}",
         ok_h2: "You're booked!",
         ok_p: "Thank you! You will shortly receive a confirmation with the Microsoft Teams link and the invoice by email.",
         ok_ics: "Add to calendar",
@@ -1284,6 +1354,43 @@
     }
   };
 
+  // ---------- Region (EU/US) → Währung, Sprache ----------
+  // US-Besucher (Zeitzone America/… oder Browser en-US) sehen Englisch + US-Dollar,
+  // alle anderen Euro. Testen: ?region=us bzw. ?region=eu an die URL hängen.
+  var PRICING = { EU: { currency: 'EUR', amount: 350 }, US: { currency: 'USD', amount: 390 } };
+  function store(k, v){ try{ localStorage.setItem(k, v); }catch(e){} }
+  function read(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function detectRegion(){
+    var q = (location.search.match(/[?&]region=(us|eu)/i) || [])[1];
+    if(q){ store('lusides_region', q.toUpperCase()); return q.toUpperCase(); }
+    var saved = read('lusides_region');
+    if(saved === 'US' || saved === 'EU') return saved;
+    var tz = ''; try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }catch(e){}
+    var langs = (navigator.languages || [navigator.language || '']).join(',');
+    var region = (/^America\//.test(tz) || (/(^|,)en-US/i.test(langs) && !/^Europe\//.test(tz))) ? 'US' : 'EU';
+    store('lusides_region', region);
+    return region;
+  }
+  function detectLang(region){
+    var saved = read('lusides_lang');
+    if(saved === 'de' || saved === 'en') return saved;
+    if(region === 'US') return 'en';
+    var langs = (navigator.languages || [navigator.language || '']).join(',');
+    var tz = ''; try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }catch(e){}
+    if(/(^|,)de/i.test(langs) || /^Europe\/(Vienna|Berlin|Zurich|Busingen|Vaduz)$/.test(tz)) return 'de';
+    return /(^|,)en/i.test(langs) ? 'en' : 'de';
+  }
+  var REGION = detectRegion();
+  var currentLang = 'de';
+  function priceLabel(){
+    var p = PRICING[REGION];
+    try{
+      return new Intl.NumberFormat(currentLang === 'en' ? 'en-US' : 'de-DE', { style: 'currency', currency: p.currency, maximumFractionDigits: 0 }).format(p.amount);
+    }catch(e){ return p.currency === 'USD' ? '$' + p.amount : p.amount + ' €'; }
+  }
+  window.lusidesRegion = { region: REGION, pricing: PRICING[REGION], label: priceLabel };
+  document.documentElement.setAttribute('data-region', REGION);
+
   function resolve(dict, path){
     return path.split('.').reduce(function(o, k){ return (o || {})[k]; }, dict);
   }
@@ -1293,14 +1400,18 @@
     if(!dict) return;
     document.documentElement.lang = lang;
 
+    currentLang = lang;
+    var price = priceLabel();
+    var fill = function(v){ return typeof v === 'string' ? v.replace(/\{price\}/g, price) : v; };
     document.querySelectorAll('[data-i18n]').forEach(function(el){
       var val = resolve(dict, el.getAttribute('data-i18n'));
-      if(val !== undefined) el.textContent = val;
+      if(val !== undefined) el.textContent = fill(val);
     });
     document.querySelectorAll('[data-i18n-html]').forEach(function(el){
       var val = resolve(dict, el.getAttribute('data-i18n-html'));
-      if(val !== undefined) el.innerHTML = val;
+      if(val !== undefined) el.innerHTML = fill(val);
     });
+    document.querySelectorAll('[data-price]').forEach(function(el){ el.textContent = price; });
     document.querySelectorAll('[data-i18n-suffix]').forEach(function(el){
       var suffix = resolve(dict, el.getAttribute('data-i18n-suffix'));
       if(suffix === undefined) return;
@@ -1313,7 +1424,7 @@
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
 
-    localStorage.setItem('lusides_lang', lang);
+    store('lusides_lang', lang);
     window.dispatchEvent(new CustomEvent('lusides:langchange', { detail: { lang: lang } }));
   }
 
@@ -1325,6 +1436,5 @@
     });
   });
 
-  var savedLang = localStorage.getItem('lusides_lang') || 'de';
-  applyLang(savedLang);
+  applyLang(detectLang(REGION));
 })();

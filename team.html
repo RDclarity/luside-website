@@ -417,13 +417,44 @@
   @media (max-width: 640px){ .footer-bottom{ padding:0 22px; } }
   .footer-links{ display:flex; gap: 22px; }
 </style>
+<style>
+  .tm-section{ padding: 72px 0 120px; }
+  .tm-stats{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-bottom: 40px; }
+  .tm-stats > div{ background:#fff; border:1px solid var(--line); border-radius: 22px; padding: 22px 24px; min-width:0; }
+  .tm-stats b{ display:block; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -0.04em; font-weight: 600; line-height: 1.05; }
+  .tm-stats span{ color: var(--slate); font-size: 15px; }
+  .tm-grid{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; align-items: stretch; }
+  .tm{ position: relative; background:#fff; border:1px solid var(--line); border-radius: 26px; overflow:hidden; display:flex; flex-direction:column; transition: transform .7s var(--ease), box-shadow .7s var(--ease); min-width:0; }
+  .tm:hover{ transform: translateY(-6px); box-shadow: 0 40px 80px -40px rgba(10,20,40,.35); }
+  .tm-visual{ position: relative; height: 240px; display:flex; align-items:flex-end; justify-content:space-between; padding: 24px; overflow:hidden; }
+  .tm-visual.a{ background: linear-gradient(160deg, #0F2A6E, #050B18 75%); }
+  .tm-visual.b{ background: linear-gradient(200deg, #2F6BFF, #0A1F5C 70%); }
+  .tm-visual.c{ background: linear-gradient(150deg, #0A1630, #12306E 60%, #2F6BFF); }
+  .tm-visual::after{ content:''; position:absolute; width: 70%; aspect-ratio:1; right:-20%; top:-30%; border-radius:50%; background: radial-gradient(circle, rgba(142,197,255,.35), transparent 65%); }
+  .tm-mono{ position: relative; z-index:1; font-size: 120px; line-height: .8; letter-spacing: -0.06em; font-weight: 600; color: rgba(255,255,255,.94); }
+  .tm-mono em{ font-family: var(--f-serif); font-weight: 400; color: var(--ice); }
+  .tm-tag{ position: relative; z-index:1; font-family: var(--f-mono); font-size: 11px; letter-spacing: .1em; color:#fff; border: 1px solid rgba(255,255,255,.3); padding: 6px 10px; border-radius: 999px; white-space: nowrap; text-transform: uppercase; }
+  .tm-body{ padding: 26px 26px 30px; display:flex; flex-direction:column; gap: 10px; flex:1; }
+  .tm-body h2{ font-size: 26px; letter-spacing: -0.03em; font-weight: 600; }
+  .tm-role{ color: var(--blue); font-weight: 500; font-size: 15px; }
+  .tm-bio{ color: var(--slate); font-size: 15.5px; line-height: 1.6; }
+  .tm-facts{ list-style:none; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); display:flex; flex-direction:column; gap: 8px; font-size: 14px; }
+  .tm-facts li{ display:flex; gap: 10px; align-items:flex-start; }
+  .tm-facts li::before{ content:''; flex-shrink:0; width: 6px; height: 6px; border-radius:50%; background: var(--blue); margin-top: 8px; }
+  .tm-cta{ margin-top: 64px; display:flex; justify-content:space-between; align-items:center; gap: 24px; flex-wrap: wrap; background: var(--night); color:#fff; border-radius: 28px; padding: 40px; }
+  .tm-cta h2{ font-size: clamp(28px, 3.4vw, 44px); letter-spacing:-0.04em; color:#fff; }
+  .tm-cta .btn-primary{ background:#fff !important; color: var(--night) !important; }
+  @media (max-width: 1024px){ .tm-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 680px){ .tm-grid, .tm-stats{ grid-template-columns: minmax(0,1fr); } .tm-visual{ height: 200px; } .tm-mono{ font-size: 96px; } .tm-cta{ padding: 28px; } .tm-section{ padding-top: 48px; } }
+</style>
 <link rel="stylesheet" href="site.css">
 <style>#progress{ display:none !important; } .bg-stone{ display:none; }</style>
 </head>
 <body>
 <div class="ls-intro" aria-hidden="true">
-  <div class="li-half li-l"><div class="li-content"><svg class="li-logo" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
-  <div class="li-half li-r"><div class="li-content"><svg class="li-logo" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
+  <div class="li-half li-l"><div class="li-content"><div class="li-mark"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path class="li-foot" d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg></div><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
+  <div class="li-half li-r"><div class="li-content"><div class="li-mark"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path class="li-foot" d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg></div><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
+  <div class="li-glow"></div>
   <div class="li-line"></div>
 </div>
 <script>(function(){var h=document.documentElement,home=document.body.classList.contains('home'),seen=null;try{seen=sessionStorage.getItem('ls_intro');}catch(e){}if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||(!home&&seen)){h.classList.add('intro-skip');}else{h.classList.add('intro-on');try{sessionStorage.setItem('ls_intro','1');}catch(e){}}})();</script>
@@ -463,33 +494,58 @@
   </div>
 </section>
 
-<section id="team">
+<section id="team" class="tm-section">
   <div class="wrap">
-    <div class="team-grid reveal" data-stagger>
-      <div class="team-card">
-        <div class="avatar mono">RD</div>
-        <h2 class="display">Richard Dobrohruschka</h2>
-        <span class="role" data-i18n="team_page.r_richard">Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau</span>
-      </div>
-      <div class="team-card">
-        <div class="avatar mono">MK</div>
-        <h2 class="display">Marko Katalan</h2>
-        <span class="role" data-i18n="team_page.r_marko">Strategie, Organisation, Unternehmensentwicklung, Wachstum</span>
-      </div>
-      <div class="team-card">
-        <div class="avatar mono">MS</div>
-        <h2 class="display">Mihai Suta</h2>
-        <span class="role" data-i18n="team_page.role_pending">Rolle folgt</span>
-      </div>
+    <div class="tm-stats ls-reveal">
+      <div><b data-i18n="team_page.stat1_n">10</b><span data-i18n="team_page.stat1_l">Jahre Unternehmensberatung</span></div>
+      <div><b data-i18n="team_page.stat2_n">Wien · New York</b><span data-i18n="team_page.stat2_l">Unternehmen aufgebaut</span></div>
+      <div><b data-i18n="team_page.stat3_n">3</b><span data-i18n="team_page.stat3_l">Köpfe, ein Team</span></div>
     </div>
-  </div>
-</section>
-
-<section class="team-cta">
-  <div class="wrap">
-    <h2 class="display" data-i18n="team_page.cta_h">Bereit für den nächsten Schritt?</h2>
-    <p class="cta-sub" data-i18n="team_page.cta_sub">Erstgespräch · unverbindlich</p>
-    <a href="index.html#kontakt" class="btn-primary" data-i18n="team_page.cta_btn">Unternehmen vorstellen</a>
+    <div class="tm-grid">
+      <article class="tm ls-reveal" data-spotlight>
+        <div class="tm-visual a"><span class="tm-mono">M<em>K</em></span><span class="tm-tag" data-i18n="team_page.marko_tag"></span></div>
+        <div class="tm-body">
+          <h2>Marko Katalan</h2>
+          <p class="tm-role" data-i18n="team_page.marko_role"></p>
+          <p class="tm-bio" data-i18n="team_page.marko_bio"></p>
+          <ul class="tm-facts">
+            <li data-i18n="team_page.marko_f1"></li>
+            <li data-i18n="team_page.marko_f2"></li>
+            <li data-i18n="team_page.marko_f3"></li>
+          </ul>
+        </div>
+      </article>
+      <article class="tm ls-reveal" data-spotlight>
+        <div class="tm-visual b"><span class="tm-mono">R<em>D</em></span><span class="tm-tag" data-i18n="team_page.richard_tag"></span></div>
+        <div class="tm-body">
+          <h2>Richard Dobrohruschka</h2>
+          <p class="tm-role" data-i18n="team_page.richard_role"></p>
+          <p class="tm-bio" data-i18n="team_page.richard_bio"></p>
+          <ul class="tm-facts">
+            <li data-i18n="team_page.richard_f1"></li>
+            <li data-i18n="team_page.richard_f2"></li>
+            <li data-i18n="team_page.richard_f3"></li>
+          </ul>
+        </div>
+      </article>
+      <article class="tm ls-reveal" data-spotlight>
+        <div class="tm-visual c"><span class="tm-mono">M<em>S</em></span><span class="tm-tag" data-i18n="team_page.mihai_tag"></span></div>
+        <div class="tm-body">
+          <h2>Mihai Suta</h2>
+          <p class="tm-role" data-i18n="team_page.mihai_role"></p>
+          <p class="tm-bio" data-i18n="team_page.mihai_bio"></p>
+          <ul class="tm-facts">
+            <li data-i18n="team_page.mihai_f1"></li>
+            <li data-i18n="team_page.mihai_f2"></li>
+            <li data-i18n="team_page.mihai_f3"></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+    <div class="tm-cta ls-reveal">
+      <h2 data-i18n="team_page.cta_h">Bereit für den nächsten Schritt?</h2>
+      <a href="termin.html" class="btn-primary" data-i18n="nav.book">Jetzt Termin buchen</a>
+    </div>
   </div>
 </section>
 

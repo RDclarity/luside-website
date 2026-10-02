@@ -2,169 +2,141 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#050B18">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Admin — Lusides</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper: #F4F8FC;
-    --paper-dim: #E3EEF9;
-    --ink: #0B1F3A;
-    --slate: #4A5F7A;
-    --slate-light: #8DA2BC;
-    --line: #D3E2F2;
-    --accent: #1E6FD9;
-    --accent-dim: #DCEBFC;
-    --accent-ink: #0F3D7A;
-    --radius: 2px;
+    --night:#050B18; --paper:#F4F7FB; --paper-dim:#E8EFF8; --ink:#0A1428; --slate:#56677F; --slate-light:#8E9EB5;
+    --line:#DCE5F0; --accent:#2F6BFF; --accent-dim:#DCEBFF; --accent-ink:#1E4FBF; --radius:12px;
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
-  body{
-    background: var(--paper);
-    color: var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
-    font-size:16px;
-    line-height:1.6;
-    min-height:100vh;
-  }
-  .display{ font-family:'Space Grotesk', sans-serif; }
-  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.04em; }
+  body{ background: var(--paper); color: var(--ink); font-family:'Instrument Sans', system-ui, sans-serif; font-size:15px; line-height:1.55; min-height:100vh; -webkit-font-smoothing:antialiased; }
+  .display{ font-family:'Instrument Sans', sans-serif; letter-spacing:-0.02em; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{ color: var(--accent-ink); }
+  button{ font-family: inherit; }
 
-  header{
-    border-bottom:1px solid var(--line);
-    padding:20px 32px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-  }
-  .brand{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:600;
-    font-size:1.05rem;
-  }
-  .brand .dot{ color: var(--accent); }
-  .brand-sub{ color: var(--slate); font-weight:400; font-size:0.9rem; margin-left:6px; }
-  #logoutBtn{
-    background:none;
-    border:1px solid var(--line);
-    color: var(--slate);
-    padding:8px 16px;
-    border-radius: var(--radius);
-    font-family:inherit;
-    font-size:0.82rem;
-    cursor:pointer;
-    display:none;
-  }
-  #logoutBtn:hover{ border-color: var(--accent); color: var(--accent); }
+  /* Header */
+  .a-head{ position: sticky; top:0; z-index: 40; background: var(--night); color:#fff; padding: 12px 24px; padding-top: calc(12px + env(safe-area-inset-top)); display:flex; align-items:center; justify-content:space-between; gap: 16px; }
+  .a-brand{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:17px; }
+  .a-brand svg{ width:28px; height:28px; }
+  .a-brand small{ font-weight:400; color: rgba(255,255,255,.55); font-size: 13px; }
+  .a-user{ display:flex; align-items:center; gap: 12px; font-size: 13px; color: rgba(255,255,255,.6); min-width:0; }
+  .a-user span{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width: 220px; }
+  #logoutBtn{ background:none; border:1px solid rgba(255,255,255,.25); color:#fff; padding:8px 14px; border-radius:999px; font-size:13px; cursor:pointer; display:none; white-space:nowrap; }
+  #logoutBtn:hover{ border-color:#fff; }
+  @media (max-width: 560px){ .a-user span{ display:none; } .a-head{ padding-left:16px; padding-right:16px; } }
 
-  main{ max-width: 1280px; margin: 0 auto; padding: 48px 32px; }
+  /* Tabs */
+  .tabs{ position: sticky; top: 52px; z-index: 30; background: rgba(244,247,251,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); display:none; }
+  .tabs-inner{ max-width: 1280px; margin: 0 auto; padding: 0 24px; display:flex; gap: 4px; overflow-x:auto; scrollbar-width: none; }
+  .tabs-inner::-webkit-scrollbar{ display:none; }
+  .tab{ background:none; border:none; padding: 14px 14px 12px; font-size: 14px; color: var(--slate); cursor:pointer; border-bottom: 2px solid transparent; white-space: nowrap; display:flex; align-items:center; gap:8px; }
+  .tab:hover{ color: var(--ink); }
+  .tab.active{ color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+  .tab .badge{ background: var(--accent-dim); color: var(--accent-ink); font-size: 11px; border-radius: 999px; padding: 1px 7px; font-weight: 600; }
+  @media (max-width: 560px){ .tabs-inner{ padding: 0 8px; } .tab{ padding: 13px 10px 11px; } }
 
-  /* ---------- LOGIN ---------- */
-  #loginView{ max-width: 360px; margin: 60px auto 0; }
-  #loginView h1{ font-size:1.4rem; font-weight:600; margin-bottom:24px; }
-  .field{ display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
-  .field label{ font-size:0.78rem; color: var(--accent-ink); }
-  .field input{
-    background: var(--paper);
-    border:1px solid var(--line);
-    border-radius: var(--radius);
-    padding:13px 14px;
-    font-family:inherit;
-    font-size:0.94rem;
-    color: var(--ink);
-  }
-  .field input:focus{ outline:none; border-color: var(--accent); }
-  #loginForm button{
-    width:100%;
-    background: var(--ink);
-    color: var(--paper);
-    padding:14px;
-    border:none;
-    border-radius: var(--radius);
-    font-family:inherit;
-    font-size:0.92rem;
-    cursor:pointer;
-    transition: background .2s ease;
-  }
+  main{ max-width: 1280px; margin: 0 auto; padding: 32px 24px 80px; }
+  @media (max-width: 560px){ main{ padding: 20px 12px 64px; } }
+  .pane{ display:none; }
+  .pane.active{ display:block; }
+  .pane-head{ display:flex; justify-content:space-between; align-items:flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+  .pane-head h2{ font-size: 24px; font-weight: 600; letter-spacing:-0.02em; }
+  .pane-head .count{ color: var(--slate); font-size: 13px; margin-top: 2px; }
+  .actions-row{ display:flex; gap: 8px; flex-wrap: wrap; }
+
+  /* Login */
+  #loginView{ max-width: 380px; margin: 64px auto 0; background:#fff; border:1px solid var(--line); border-radius: 18px; padding: 32px; }
+  #loginView h1{ font-size: 24px; font-weight:600; margin-bottom: 20px; }
+  @media (max-width: 480px){ #loginView{ margin: 24px 12px 0; padding: 24px; } }
+  .field{ display:flex; flex-direction:column; gap:6px; margin-bottom: 14px; }
+  .field label{ font-size: 12.5px; color: var(--slate); }
+  .field input, .field select, .field textarea{ background:#fff; border:1px solid var(--line); border-radius: 10px; padding: 11px 12px; font: inherit; font-size: 15px; color: var(--ink); width:100%; }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline:none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(47,107,255,.12); }
+  .field input[type=checkbox]{ width: auto; }
+  .status-pill, .pill{ white-space: nowrap; }
+  .name-link{ text-align: left; }
+  table.rt td .name-link{ font-size: 14px; }
+  .chk{ flex-direction: row !important; align-items: center; justify-content: flex-start; color: var(--ink) !important; font-size: 14px !important; }
+  #loginForm button{ width:100%; background: var(--night); color:#fff; padding: 13px; border:none; border-radius: 999px; font-size: 15px; font-weight:600; cursor:pointer; }
   #loginForm button:hover{ background: var(--accent); }
-  #loginForm button:disabled{ opacity:0.6; cursor:not-allowed; }
-  #loginNote{ font-size:0.85rem; color:#B3261E; margin-top:14px; display:none; }
+  #loginForm button:disabled{ opacity:.6; cursor:not-allowed; }
+  #loginNote{ font-size: 13px; color:#B3261E; margin-top: 12px; display:none; }
   #loginNote.show{ display:block; }
-  #configNote{
-    font-size:0.85rem;
-    color: var(--accent-ink);
-    background: var(--accent-dim);
-    padding:12px 14px;
-    border-radius: var(--radius);
-    margin-bottom:20px;
-    display:none;
-  }
+  #configNote{ font-size: 13px; color: var(--accent-ink); background: var(--accent-dim); padding: 12px; border-radius: 10px; margin-bottom: 16px; display:none; }
   #configNote.show{ display:block; }
-
-  /* ---------- DASHBOARD ---------- */
   #dashboardView{ display:none; }
-  .panel-block{ margin-bottom:56px; }
-  .panel-head{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    gap:16px;
-    margin-bottom:6px;
-  }
-  .panel-block h2{
-    font-size:1.15rem;
-    font-weight:600;
-  }
-  .export-btn{
-    background:none;
-    border:1px solid var(--line);
-    color: var(--accent-ink);
-    padding:7px 14px;
-    border-radius: var(--radius);
-    font-family:inherit;
-    font-size:0.8rem;
-    cursor:pointer;
-    white-space:nowrap;
-  }
-  .export-btn:hover{ border-color: var(--accent); background: var(--accent-dim); }
-  .panel-block .count{ color: var(--slate); font-size:0.85rem; margin-bottom:20px; }
-  .summary-cards{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:20px; }
-  .summary-card{
-    background: var(--paper-dim);
-    padding:14px 18px;
-    border-radius: var(--radius);
-    min-width:140px;
-  }
-  .summary-card .num{ font-family:'Space Grotesk', sans-serif; font-size:1.4rem; font-weight:600; }
-  .summary-card .lbl{ font-size:0.76rem; color: var(--slate); margin-top:2px; }
-  .summary-card.highlight{ background: var(--accent-dim); }
-  .summary-card.highlight .num{ color: var(--accent-ink); }
-  .summary-card.highlight .lbl{ color: var(--accent-ink); }
-  table{ width:100%; border-collapse: collapse; font-size:0.88rem; }
-  thead th{
-    text-align:left;
-    color: var(--slate);
-    font-size:0.74rem;
-    text-transform:uppercase;
-    letter-spacing:0.04em;
-    padding: 10px 12px;
-    border-bottom:1px solid var(--line);
-  }
-  tbody td{
-    padding: 12px;
-    border-bottom:1px solid var(--line);
-    vertical-align:top;
-  }
-  tbody tr:hover{ background: var(--paper-dim); }
-  .tag-yes{ color: var(--accent-ink); }
-  .tag-no{ color: var(--slate-light); }
-  .empty-row td{ color: var(--slate-light); text-align:center; padding:24px; }
-  .loading-row td{ color: var(--slate-light); text-align:center; padding:24px; }
 
+  /* Buttons */
+  .btn{ border-radius: 999px; padding: 8px 14px; font-size: 13px; cursor:pointer; border:1px solid var(--line); background:#fff; color: var(--ink); text-decoration:none; display:inline-flex; align-items:center; gap:6px; white-space: nowrap; }
+  .btn:hover{ border-color: var(--accent); color: var(--accent); }
+  .btn:disabled{ opacity:.5; cursor:not-allowed; }
+  .btn-primary{ background: var(--accent); border-color: var(--accent); color:#fff; }
+  .btn-primary:hover{ background: var(--accent-ink); border-color: var(--accent-ink); color:#fff; }
+  .btn-teams{ background:#5B5FC7; border-color:#5B5FC7; color:#fff; }
+  .btn-teams:hover{ background:#4A4EB0; color:#fff; border-color:#4A4EB0; }
+  .btn-danger{ color:#B3261E; }
+  .btn-danger:hover{ border-color:#B3261E; color:#B3261E; }
+  .btn-sm{ padding: 5px 10px; font-size: 12px; }
+
+  /* Kennzahlen */
+  .stats{ display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .stat{ background:#fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; min-width:0; }
+  .stat .num{ font-size: 22px; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+  .stat .lbl{ font-size: 12px; color: var(--slate); }
+  .stat.hl{ background: var(--accent-dim); border-color: #C3DAFA; }
+  .stat.hl .num{ color: var(--accent-ink); }
+
+  /* Tabellen → auf dem Handy Karten */
+  .card-box{ background:#fff; border:1px solid var(--line); border-radius: 16px; overflow:hidden; }
+  table.rt{ width:100%; border-collapse: collapse; font-size: 14px; }
+  table.rt thead th{ text-align:left; color: var(--slate); font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; padding: 11px 12px; border-bottom: 1px solid var(--line); background: #FAFCFE; white-space: nowrap; font-weight: 600; }
+  table.rt tbody td{ padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: break-word; }
+  table.rt tbody tr:last-child td{ border-bottom: none; }
+  table.rt tbody tr:hover{ background: #FAFCFE; }
+  table.rt td.num{ text-align:right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  table.rt td.nowrap{ white-space: nowrap; }
+  .empty-row td, .loading-row td{ color: var(--slate-light); text-align:center; padding: 28px; }
+  .tag-yes{ color: var(--accent-ink); font-weight: 600; } .tag-no{ color: var(--slate-light); }
+  .pill{ display:inline-flex; align-items:center; gap:6px; font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--paper-dim); white-space: nowrap; }
+  .pill.offen{ background:#FFF4E0; color:#8A5300; } .pill.bezahlt{ background:#E3F6EA; color:#0B6B32; } .pill.storniert{ background:#FDECEC; color:#9F1D1D; }
+  .pill.gesendet{ background:#E3F6EA; color:#0B6B32; } .pill.fehler{ background:#FDECEC; color:#9F1D1D; }
+  .row-actions{ display:flex; gap: 6px; flex-wrap: wrap; justify-content:flex-end; }
+  @media (max-width: 760px){
+    table.rt thead{ display:none; }
+    table.rt, table.rt tbody, table.rt tr, table.rt td{ display:block; width:100%; }
+    table.rt tbody tr{ padding: 12px 14px; border-bottom: 1px solid var(--line); }
+    table.rt tbody td{ border: none; padding: 3px 0; display:flex; gap: 12px; justify-content:space-between; text-align:right; }
+    table.rt tbody td::before{ content: attr(data-label); color: var(--slate); font-size: 12px; text-align:left; flex-shrink:0; }
+    table.rt tbody td[data-label=""]::before{ content: none; }
+    table.rt td.num{ text-align:right; }
+    table.rt tbody td.primary{ font-weight: 600; font-size: 15px; justify-content:flex-start; text-align:left; }
+    table.rt tbody td.primary::before{ content:none; }
+    .row-actions{ justify-content:flex-start; margin-top: 6px; }
+    .empty-row td, .loading-row td{ justify-content:center; }
+    .empty-row td::before, .loading-row td::before{ content:none; }
+  }
+  .filters{ display:flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip-f{ border:1px solid var(--line); background:#fff; border-radius: 999px; padding: 6px 12px; font-size: 13px; cursor:pointer; color: var(--slate); }
+  .chip-f.active{ background: var(--ink); color:#fff; border-color: var(--ink); }
+
+  /* Einstellungen */
+  .settings{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 16px; background:#fff; border:1px solid var(--line); border-radius: 16px; padding: 22px; max-width: 860px; }
+  .settings h3{ grid-column: 1 / -1; font-size: 15px; margin: 6px 0 12px; }
+  .settings .full{ grid-column: 1 / -1; }
+  @media (max-width: 640px){ .settings{ grid-template-columns: 1fr; padding: 16px; } }
+  .hint{ font-size: 12.5px; color: var(--slate); margin-top: -6px; margin-bottom: 14px; }
+  .toast{ position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(30px); background: var(--night); color:#fff; padding: 11px 18px; border-radius: 999px; font-size: 14px; opacity: 0; pointer-events:none; transition: all .3s ease; z-index: 200; max-width: calc(100% - 32px); }
+  .toast.show{ opacity:1; transform: translateX(-50%); }
+  .toast.err{ background:#9F1D1D; }
   /* ---------- TERMINKALENDER ---------- */
   .cal-wrap{ background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
   .cal-toolbar{ display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
@@ -259,126 +231,195 @@
   .row2{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
   .chk{ display:flex; gap:8px; align-items:center; font-size:0.88rem; margin: 2px 0 14px; }
   .modal-actions{ display:flex; gap:8px; flex-wrap:wrap; padding: 14px 22px 20px; border-top:1px solid var(--line); }
-  .btn{ border-radius:6px; padding:9px 14px; font-family:inherit; font-size:0.85rem; cursor:pointer; border:1px solid var(--line); background:#fff; color: var(--ink); text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
-  .btn:hover{ border-color: var(--accent); color: var(--accent); }
-  .btn-primary{ background: var(--accent); border-color: var(--accent); color:#fff; }
-  .btn-primary:hover{ background: var(--accent-ink); border-color: var(--accent-ink); color:#fff; }
-  .btn-teams{ background:#5B5FC7; border-color:#5B5FC7; color:#fff; }
-  .btn-teams:hover{ background:#4A4EB0; color:#fff; border-color:#4A4EB0; }
-  .btn-danger{ color:#B3261E; }
-  .btn-danger:hover{ border-color:#B3261E; color:#B3261E; }
   .modal-msg{ font-size:0.82rem; color: var(--accent-ink); padding: 0 22px 14px; display:none; }
   .modal-msg.show{ display:block; }
   .modal-msg.err{ color:#B3261E; }
+  /* Kalender: Handy & Tablet */
+  @media (max-width: 760px){
+    .cal-toolbar{ padding: 10px 12px; gap: 6px; }
+    .cal-title{ order: -1; flex-basis: 100%; font-size: 1.05rem; margin: 0 0 4px; }
+    .view-switch{ margin-left: auto; }
+    .view-switch button{ padding: 7px 11px; }
+    .cal-legend{ padding: 8px 12px; gap: 10px; }
+    #calView{ overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    #calView .wk{ min-width: 720px; }
+    .mo-cell{ min-height: 64px; padding: 2px 2px 4px; }
+    .mo-num{ width: 24px; height: 24px; line-height: 24px; }
+    .chip{ padding: 2px; justify-content:center; }
+    .chip b{ display:none; }
+    .more{ font-size: 10px; padding: 0; width:100%; }
+    .yr{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; padding: 14px; }
+    .modal-bg{ align-items: flex-end; padding: 0; }
+    .modal{ width: 100%; max-height: 92vh; border-radius: 18px 18px 0 0; }
+    .modal-top{ border-radius: 18px 18px 0 0; }
+    .kv{ grid-template-columns: 96px 1fr; }
+    .row2{ grid-template-columns: 1fr; gap: 0; }
+    .modal-actions{ padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+  }
+  @media (max-width: 420px){ .yr{ grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-
-<header>
-  <div class="brand">Lusides<span class="brand-sub">Admin</span></div>
-  <button id="logoutBtn" type="button">Abmelden</button>
+<header class="a-head">
+  <div class="a-brand"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg>Lusides <small>Admin</small></div>
+  <div class="a-user"><span id="userEmail"></span><button id="logoutBtn" type="button">Abmelden</button></div>
 </header>
-
+<nav class="tabs" id="tabs" aria-label="Bereiche">
+  <div class="tabs-inner" role="tablist">
+    <button class="tab active" data-tab="termine" role="tab">Termine <span class="badge" id="bTermine" hidden></span></button>
+    <button class="tab" data-tab="rechnungen" role="tab">Rechnungen <span class="badge" id="bRechnungen" hidden></span></button>
+    <button class="tab" data-tab="anfragen" role="tab">Anfragen <span class="badge" id="bAnfragen" hidden></span></button>
+    <button class="tab" data-tab="newsletter" role="tab">Newsletter</button>
+    <button class="tab" data-tab="besucher" role="tab">Besucher</button>
+    <button class="tab" data-tab="einstellungen" role="tab">Einstellungen</button>
+  </div>
+</nav>
 <main>
   <div id="loginView">
     <h1 class="display">Anmelden</h1>
     <div id="configNote">Supabase ist noch nicht konfiguriert — trage Project URL und anon key in <span class="mono">supabase-config.js</span> ein.</div>
     <form id="loginForm">
-      <div class="field">
-        <label for="admin-email">E-Mail</label>
-        <input id="admin-email" type="email" required autocomplete="username">
-      </div>
-      <div class="field">
-        <label for="admin-password">Passwort</label>
-        <input id="admin-password" type="password" required autocomplete="current-password">
-      </div>
+      <div class="field"><label for="admin-email">E-Mail</label><input id="admin-email" type="email" required autocomplete="username"></div>
+      <div class="field"><label for="admin-password">Passwort</label><input id="admin-password" type="password" required autocomplete="current-password"></div>
       <button type="submit">Anmelden</button>
       <div id="loginNote"></div>
     </form>
   </div>
 
   <div id="dashboardView">
-    <div class="panel-block" id="termine">
-      <div class="panel-head">
-        <h2 class="display">Termine · Erstgespräche (Teams)</h2>
-        <button class="export-btn" type="button" id="exportApptsBtn">Als Excel exportieren</button>
-      </div>
-      <div class="count" id="apptsCount"></div>
-      <div class="cal-wrap">
-        <div class="cal-toolbar">
-          <button type="button" class="today-btn" id="calToday">Heute</button>
-          <button type="button" class="cal-nav" id="calPrev" aria-label="Zurück">‹</button>
-          <button type="button" class="cal-nav" id="calNext" aria-label="Weiter">›</button>
-          <div class="cal-title" id="calTitle"></div>
-          <div class="view-switch" role="tablist">
-            <button type="button" data-view="week" class="active">Woche</button>
-            <button type="button" data-view="month">Monat</button>
-            <button type="button" data-view="year">Jahr</button>
+    <!-- TERMINE -->
+    <section class="pane active" id="pane-termine">
+      <div id="termine">
+        <div class="pane-head">
+          <div><h2>Termine</h2><div class="count" id="apptsCount"></div></div>
+          <div class="actions-row"><button class="btn" type="button" id="exportApptsBtn">Excel-Export</button></div>
+        </div>
+        <div class="cal-wrap">
+          <div class="cal-toolbar">
+            <button type="button" class="today-btn" id="calToday">Heute</button>
+            <button type="button" class="cal-nav" id="calPrev" aria-label="Zurück">‹</button>
+            <button type="button" class="cal-nav" id="calNext" aria-label="Weiter">›</button>
+            <div class="cal-title" id="calTitle"></div>
+            <div class="view-switch" role="tablist">
+              <button type="button" data-view="week" class="active">Woche</button>
+              <button type="button" data-view="month">Monat</button>
+              <button type="button" data-view="year">Jahr</button>
+            </div>
+          </div>
+          <div class="cal-legend">
+            <span class="st-gebucht"><i style="background:var(--ev)"></i>Gebucht</span>
+            <span class="st-bestaetigt"><i style="background:var(--ev)"></i>Bestätigt</span>
+            <span class="st-erledigt"><i style="background:var(--ev)"></i>Erledigt</span>
+            <span class="st-abgesagt"><i style="background:var(--ev)"></i>Abgesagt</span>
+          </div>
+          <div id="calView"></div>
+        </div>
+        <div class="upcoming">
+          <h3 class="display">Nächste Termine</h3>
+          <div class="card-box">
+            <table class="rt">
+              <thead><tr><th>Name</th><th>Termin</th><th>Unternehmen</th><th>Thema</th><th>Status</th><th>Bezahlt</th></tr></thead>
+              <tbody id="upcomingBody"><tr class="loading-row"><td colspan="6">Lade…</td></tr></tbody>
+            </table>
           </div>
         </div>
-        <div class="cal-legend">
-          <span class="st-gebucht"><i style="background:var(--ev)"></i>Gebucht</span>
-          <span class="st-bestaetigt"><i style="background:var(--ev)"></i>Bestätigt (Teams-Link versendet)</span>
-          <span class="st-erledigt"><i style="background:var(--ev)"></i>Erledigt</span>
-          <span class="st-abgesagt"><i style="background:var(--ev)"></i>Abgesagt</span>
-        </div>
-        <div id="calView"></div>
       </div>
-      <div class="upcoming">
-        <h3 class="display">Nächste Termine</h3>
-        <table>
-          <thead><tr><th>Termin</th><th>Name</th><th>Unternehmen</th><th>Thema</th><th>Status</th><th>Bezahlt</th></tr></thead>
-          <tbody id="upcomingBody"><tr class="loading-row"><td colspan="6">Lade…</td></tr></tbody>
+    </section>
+
+    <!-- RECHNUNGEN -->
+    <section class="pane" id="pane-rechnungen">
+      <div class="pane-head">
+        <div><h2>Rechnungen</h2><div class="count" id="invCount"></div></div>
+        <div class="actions-row"><button class="btn" type="button" id="exportInvBtn">Excel-Export</button></div>
+      </div>
+      <div class="stats" id="invStats"></div>
+      <div class="filters" id="invFilters">
+        <button class="chip-f active" data-f="alle">Alle</button>
+        <button class="chip-f" data-f="offen">Offen</button>
+        <button class="chip-f" data-f="bezahlt">Bezahlt</button>
+        <button class="chip-f" data-f="storniert">Storniert</button>
+      </div>
+      <div class="card-box">
+        <table class="rt">
+          <thead><tr><th>Nummer</th><th>Datum</th><th>Kunde</th><th>Leistungsdatum</th><th style="text-align:right">Betrag</th><th>Steuer</th><th>Status</th><th>Versand</th><th></th></tr></thead>
+          <tbody id="invBody"><tr class="loading-row"><td colspan="9">Lade…</td></tr></tbody>
         </table>
       </div>
-    </div>
-    <div class="panel-block">
-      <div class="panel-head">
-        <h2 class="display">Kontaktanfragen</h2>
-        <button class="export-btn" type="button" id="exportContactsBtn">Als Excel exportieren</button>
-      </div>
-      <div class="count" id="contactsCount"></div>
-      <table>
-        <thead>
-          <tr><th>Unternehmen</th><th>Name</th><th>Mitarbeiter</th><th>Umsatz</th><th>Anliegen</th><th>Telefon</th><th>E-Mail</th><th>Newsletter</th><th>Datum</th></tr>
-        </thead>
-        <tbody id="contactsBody">
-          <tr class="loading-row"><td colspan="9">Lade…</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <p class="hint" style="margin-top:12px">Rechnungen werden bei jeder Buchung automatisch fortlaufend nummeriert (RE-Jahr-Nummer) und können nicht gelöscht oder geändert werden (§132 BAO). Korrekturen nur per Storno, das eine eigene Nummer bekommt.</p>
+    </section>
 
-    <div class="panel-block">
-      <div class="panel-head">
-        <h2 class="display">Newsletter-Abonnenten</h2>
-        <button class="export-btn" type="button" id="exportNewsletterBtn">Als Excel exportieren</button>
+    <!-- ANFRAGEN -->
+    <section class="pane" id="pane-anfragen">
+      <div class="pane-head">
+        <div><h2>Kontaktanfragen</h2><div class="count" id="contactsCount"></div></div>
+        <div class="actions-row"><button class="btn" type="button" id="exportContactsBtn">Excel-Export</button></div>
       </div>
-      <div class="count" id="newsletterCount"></div>
-      <table>
-        <thead>
-          <tr><th>Name</th><th>E-Mail</th><th>Datum</th></tr>
-        </thead>
-        <tbody id="newsletterBody">
-          <tr class="loading-row"><td colspan="3">Lade…</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="card-box">
+        <table class="rt">
+          <thead><tr><th>Name</th><th>Unternehmen</th><th>Anliegen</th><th>Telefon</th><th>E-Mail</th><th>Newsletter</th><th>Datum</th></tr></thead>
+          <tbody id="contactsBody"><tr class="loading-row"><td colspan="7">Lade…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
 
-    <div class="panel-block">
-      <h2 class="display">Website-Besucher</h2>
-      <div class="summary-cards" id="analyticsSummary"></div>
-      <table>
-        <thead>
-          <tr><th>Seite</th><th>Herkunft</th><th>Gerät</th><th>Verweildauer</th><th>Datum</th></tr>
-        </thead>
-        <tbody id="analyticsBody">
-          <tr class="loading-row"><td colspan="5">Lade…</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- NEWSLETTER -->
+    <section class="pane" id="pane-newsletter">
+      <div class="pane-head">
+        <div><h2>Newsletter-Abonnenten</h2><div class="count" id="newsletterCount"></div></div>
+        <div class="actions-row"><button class="btn" type="button" id="exportNewsletterBtn">Excel-Export</button></div>
+      </div>
+      <div class="card-box">
+        <table class="rt">
+          <thead><tr><th>Name</th><th>E-Mail</th><th>Datum</th></tr></thead>
+          <tbody id="newsletterBody"><tr class="loading-row"><td colspan="3">Lade…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- BESUCHER -->
+    <section class="pane" id="pane-besucher">
+      <div class="pane-head"><div><h2>Website-Besucher</h2><div class="count">Letzte 300 Seitenaufrufe</div></div></div>
+      <div class="stats" id="analyticsSummary"></div>
+      <div class="card-box">
+        <table class="rt">
+          <thead><tr><th>Seite</th><th>Herkunft</th><th>Gerät</th><th>Verweildauer</th><th>Datum</th></tr></thead>
+          <tbody id="analyticsBody"><tr class="loading-row"><td colspan="5">Lade…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- EINSTELLUNGEN -->
+    <section class="pane" id="pane-einstellungen">
+      <div class="pane-head"><div><h2>Einstellungen</h2><div class="count">Firmendaten für Bestellschein und Rechnung</div></div></div>
+      <form class="settings" id="settingsForm">
+        <h3>Unternehmen</h3>
+        <div class="field"><label for="s-legal">Firmenwortlaut</label><input id="s-legal" name="legal_name"></div>
+        <div class="field"><label for="s-brand">Marke</label><input id="s-brand" name="brand"></div>
+        <div class="field full"><label for="s-street">Straße</label><input id="s-street" name="street"></div>
+        <div class="field"><label for="s-zip">PLZ</label><input id="s-zip" name="zip"></div>
+        <div class="field"><label for="s-city">Ort</label><input id="s-city" name="city"></div>
+        <div class="field"><label for="s-uid">UID-Nummer</label><input id="s-uid" name="uid" placeholder="ATU…"></div>
+        <div class="field"><label for="s-fn">Firmenbuch</label><input id="s-fn" name="fn"></div>
+        <div class="field"><label for="s-court">Firmenbuchgericht</label><input id="s-court" name="court"></div>
+        <div class="field"><label for="s-phone">Telefon</label><input id="s-phone" name="phone"></div>
+        <div class="field"><label for="s-mail-inv">Absender Rechnungen</label><input id="s-mail-inv" name="email_invoice" type="email"></div>
+        <div class="field"><label for="s-mail">Kontakt-E-Mail</label><input id="s-mail" name="email_contact" type="email"></div>
+        <h3>Bankverbindung</h3>
+        <div class="field full"><label for="s-iban">IBAN</label><input id="s-iban" name="iban"></div>
+        <div class="field"><label for="s-bic">BIC</label><input id="s-bic" name="bic"></div>
+        <div class="field"><label for="s-bank">Bank</label><input id="s-bank" name="bank"></div>
+        <h3>Preise &amp; Steuer</h3>
+        <div class="field"><label for="s-eur">Preis Erstgespräch EUR (brutto)</label><input id="s-eur" name="price_eur_gross" type="number" step="0.01" min="0"></div>
+        <div class="field"><label for="s-usd">Preis Erstgespräch USD</label><input id="s-usd" name="price_usd" type="number" step="0.01" min="0"></div>
+        <div class="field"><label for="s-vat">USt-Satz (%)</label><input id="s-vat" name="vat_rate" type="number" step="0.01" min="0"></div>
+        <div class="field"><label for="s-days">Zahlungsziel (Tage)</label><input id="s-days" name="payment_days" type="number" min="0"></div>
+        <p class="hint full">Die Preise auf der Website stehen zusätzlich in <span class="mono">i18n.js</span> (PRICING) und sollten gleich sein.</p>
+        <div class="full"><button class="btn btn-primary" type="submit">Speichern</button></div>
+      </form>
+    </section>
   </div>
 </main>
-
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="modal-bg" id="apptModal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mName">
     <div class="modal-top" id="mTop">
@@ -401,7 +442,7 @@
           </select>
         </div>
         <div class="field">
-          <label>Zahlung (350 €)</label>
+          <label>Zahlung</label>
           <label class="chk"><input type="checkbox" id="mPaid"> Bezahlt</label>
         </div>
       </div>
@@ -420,6 +461,9 @@
       <a class="btn btn-teams" id="mTeamsCreate" target="_blank" rel="noopener">Teams-Meeting erstellen</a>
       <a class="btn" id="mMail">Einladung per E-Mail</a>
       <a class="btn" id="mJoin" target="_blank" rel="noopener">Teams beitreten</a>
+      <button type="button" class="btn" id="mInvPdf">Rechnung (PDF)</button>
+      <button type="button" class="btn" id="mOrderPdf">Bestellschein (PDF)</button>
+      <button type="button" class="btn" id="mResend">Belege erneut senden</button>
       <button type="button" class="btn btn-danger" id="mDelete">Löschen</button>
     </div>
   </div>
@@ -427,260 +471,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js"></script>
 <script src="supabase-config.js"></script>
 <script src="admin-calendar.js"></script>
-<script>
-  var loginView = document.getElementById('loginView');
-  var dashboardView = document.getElementById('dashboardView');
-  var loginForm = document.getElementById('loginForm');
-  var loginNote = document.getElementById('loginNote');
-  var configNote = document.getElementById('configNote');
-  var logoutBtn = document.getElementById('logoutBtn');
-
-  var client = null;
-  loginForm.querySelector('button').disabled = true;
-
-  function fmtDate(iso){
-    try{
-      return new Date(iso).toLocaleString('de-AT', { dateStyle:'medium', timeStyle:'short' });
-    } catch(e){ return iso; }
-  }
-
-  function escapeHtml(str){
-    var div = document.createElement('div');
-    div.textContent = str == null ? '' : String(str);
-    return div.innerHTML;
-  }
-
-  function fmtDuration(sec){
-    if(sec == null) return '—';
-    var m = Math.floor(sec / 60), s = sec % 60;
-    return m > 0 ? (m + ' min ' + s + 's') : (s + 's');
-  }
-
-  var contactsData = [];
-  var newsletterData = [];
-
-  function csvEscape(val){
-    var str = val == null ? '' : String(val);
-    // Neutralize leading formula characters (CSV/Excel formula injection)
-    if(/^[=+\-@\t\r]/.test(str)) str = "'" + str;
-    if(/[",\n;]/.test(str)) return '"' + str.replace(/"/g, '""') + '"';
-    return str;
-  }
-
-  function downloadCSV(filename, rows, columns){
-    var lines = [columns.map(function(c){ return csvEscape(c.label); }).join(';')];
-    rows.forEach(function(row){
-      lines.push(columns.map(function(c){ return csvEscape(c.get(row)); }).join(';'));
-    });
-    var blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  }
-
-  window.lusidesAdminDownloadCSV = downloadCSV;
-  document.getElementById('exportContactsBtn').addEventListener('click', function(){
-    downloadCSV('kontaktanfragen.csv', contactsData, [
-      { label: 'Unternehmen', get: function(r){ return r.company; } },
-      { label: 'Name', get: function(r){ return r.name; } },
-      { label: 'Mitarbeiterzahl', get: function(r){ return r.employee_count; } },
-      { label: 'Jahresumsatz', get: function(r){ return r.annual_revenue; } },
-      { label: 'Anliegen', get: function(r){ return r.biggest_challenge; } },
-      { label: 'Telefon', get: function(r){ return r.phone; } },
-      { label: 'E-Mail', get: function(r){ return r.email; } },
-      { label: 'Newsletter', get: function(r){ return r.newsletter_opt_in ? 'Ja' : 'Nein'; } },
-      { label: 'Datum', get: function(r){ return fmtDate(r.created_at); } }
-    ]);
-  });
-
-  document.getElementById('exportNewsletterBtn').addEventListener('click', function(){
-    downloadCSV('newsletter-abonnenten.csv', newsletterData, [
-      { label: 'Name', get: function(r){ return r.name; } },
-      { label: 'E-Mail', get: function(r){ return r.email; } },
-      { label: 'Datum', get: function(r){ return fmtDate(r.created_at); } }
-    ]);
-  });
-
-  function renderContacts(rows){
-    contactsData = rows;
-    var body = document.getElementById('contactsBody');
-    document.getElementById('contactsCount').textContent = rows.length + ' Einträge';
-    if(rows.length === 0){
-      body.innerHTML = '<tr class="empty-row"><td colspan="9">Noch keine Anfragen.</td></tr>';
-      return;
-    }
-    body.innerHTML = rows.map(function(r){
-      return '<tr>'
-        + '<td>' + escapeHtml(r.company || '—') + '</td>'
-        + '<td>' + escapeHtml(r.name) + '</td>'
-        + '<td>' + escapeHtml(r.employee_count || '—') + '</td>'
-        + '<td>' + escapeHtml(r.annual_revenue || '—') + '</td>'
-        + '<td>' + escapeHtml(r.biggest_challenge || '—') + '</td>'
-        + '<td>' + escapeHtml(r.phone || '—') + '</td>'
-        + '<td>' + escapeHtml(r.email) + '</td>'
-        + '<td class="' + (r.newsletter_opt_in ? 'tag-yes' : 'tag-no') + '">' + (r.newsletter_opt_in ? 'Ja' : 'Nein') + '</td>'
-        + '<td>' + fmtDate(r.created_at) + '</td>'
-        + '</tr>';
-    }).join('');
-  }
-
-  function renderNewsletter(rows){
-    newsletterData = rows;
-    var body = document.getElementById('newsletterBody');
-    document.getElementById('newsletterCount').textContent = rows.length + ' Abonnenten';
-    if(rows.length === 0){
-      body.innerHTML = '<tr class="empty-row"><td colspan="3">Noch keine Abonnenten.</td></tr>';
-      return;
-    }
-    body.innerHTML = rows.map(function(r){
-      return '<tr>'
-        + '<td>' + escapeHtml(r.name || '—') + '</td>'
-        + '<td>' + escapeHtml(r.email) + '</td>'
-        + '<td>' + fmtDate(r.created_at) + '</td>'
-        + '</tr>';
-    }).join('');
-  }
-
-  function renderAnalytics(visits, durationsBySession, conversions){
-    var summaryEl = document.getElementById('analyticsSummary');
-    var body = document.getElementById('analyticsBody');
-
-    var deviceCounts = {};
-    visits.forEach(function(v){
-      deviceCounts[v.device_type] = (deviceCounts[v.device_type] || 0) + 1;
-    });
-
-    var visitSessions = new Set(visits.map(function(v){ return v.session_id; }));
-    var convertedSessions = new Set((conversions || []).map(function(c){ return c.session_id; }));
-    var conversionRate = visitSessions.size > 0 ? (convertedSessions.size / visitSessions.size * 100) : 0;
-
-    var summaryHtml = '<div class="summary-card"><div class="num">' + visits.length + '</div><div class="lbl">Seitenaufrufe</div></div>';
-    Object.keys(deviceCounts).sort().forEach(function(device){
-      summaryHtml += '<div class="summary-card"><div class="num">' + deviceCounts[device] + '</div><div class="lbl">' + escapeHtml(device) + '</div></div>';
-    });
-    summaryHtml += '<div class="summary-card highlight"><div class="num">' + (conversions || []).length + '</div><div class="lbl">Conversions (Buchung/Formular)</div></div>';
-    summaryHtml += '<div class="summary-card highlight"><div class="num">' + conversionRate.toFixed(1) + '%</div><div class="lbl">Conversion-Rate (Sessions)</div></div>';
-    summaryEl.innerHTML = summaryHtml;
-
-    if(visits.length === 0){
-      body.innerHTML = '<tr class="empty-row"><td colspan="5">Noch keine Besuche.</td></tr>';
-      return;
-    }
-    body.innerHTML = visits.map(function(v){
-      var duration = durationsBySession[v.session_id];
-      return '<tr>'
-        + '<td>' + escapeHtml(v.page) + '</td>'
-        + '<td>' + escapeHtml(v.referrer || 'Direktzugriff') + '</td>'
-        + '<td>' + escapeHtml(v.device_type) + '</td>'
-        + '<td>' + fmtDuration(duration) + '</td>'
-        + '<td>' + fmtDate(v.created_at) + '</td>'
-        + '</tr>';
-    }).join('');
-  }
-
-  function loadData(){
-    if(window.lusidesAdminCalendar) window.lusidesAdminCalendar.load(client);
-    client.from('contacts').select('*').order('created_at', { ascending:false })
-      .then(function(res){
-        if(res.error) throw res.error;
-        renderContacts(res.data || []);
-      }).catch(function(err){
-        console.error(err);
-        document.getElementById('contactsBody').innerHTML = '<tr class="empty-row"><td colspan="9">Fehler beim Laden.</td></tr>';
-      });
-
-    client.from('newsletter_subscribers').select('*').order('created_at', { ascending:false })
-      .then(function(res){
-        if(res.error) throw res.error;
-        renderNewsletter(res.data || []);
-      }).catch(function(err){
-        console.error(err);
-        document.getElementById('newsletterBody').innerHTML = '<tr class="empty-row"><td colspan="3">Fehler beim Laden.</td></tr>';
-      });
-
-    Promise.all([
-      client.from('page_visits').select('*').order('created_at', { ascending:false }).limit(300),
-      client.from('page_visit_durations').select('session_id, duration_seconds'),
-      client.from('conversion_events').select('*').order('created_at', { ascending:false })
-        .then(function(res){ return res; })
-        .catch(function(){ return { data: [], error: null }; })
-    ]).then(function(results){
-      var visitsRes = results[0], durationsRes = results[1], conversionsRes = results[2];
-      if(visitsRes.error) throw visitsRes.error;
-      if(durationsRes.error) throw durationsRes.error;
-      if(conversionsRes.error){ console.warn('conversion_events not available yet', conversionsRes.error); conversionsRes = { data: [] }; }
-      var durationsBySession = {};
-      (durationsRes.data || []).forEach(function(d){
-        var current = durationsBySession[d.session_id] || 0;
-        durationsBySession[d.session_id] = Math.max(current, d.duration_seconds);
-      });
-      renderAnalytics(visitsRes.data || [], durationsBySession, conversionsRes.data || []);
-    }).catch(function(err){
-      console.error(err);
-      document.getElementById('analyticsBody').innerHTML = '<tr class="empty-row"><td colspan="5">Fehler beim Laden.</td></tr>';
-    });
-  }
-
-  function showDashboard(){
-    loginView.style.display = 'none';
-    dashboardView.style.display = 'block';
-    logoutBtn.style.display = 'inline-block';
-    loadData();
-  }
-
-  function showLogin(){
-    loginView.style.display = 'block';
-    dashboardView.style.display = 'none';
-    logoutBtn.style.display = 'none';
-  }
-
-  if(window.lusidesSupabaseReady){
-    window.lusidesSupabaseReady(function(resolvedClient){
-      client = resolvedClient;
-
-      if(!client){
-        configNote.classList.add('show');
-        return;
-      }
-
-      loginForm.querySelector('button').disabled = false;
-
-      client.auth.getSession().then(function(res){
-        if(res.data && res.data.session){ showDashboard(); }
-      });
-
-      loginForm.addEventListener('submit', function(e){
-        e.preventDefault();
-        var email = document.getElementById('admin-email').value.trim();
-        var password = document.getElementById('admin-password').value;
-        var btn = loginForm.querySelector('button');
-        btn.disabled = true;
-        loginNote.classList.remove('show');
-
-        client.auth.signInWithPassword({ email: email, password: password }).then(function(res){
-          if(res.error) throw res.error;
-          showDashboard();
-        }).catch(function(err){
-          loginNote.textContent = 'Anmeldung fehlgeschlagen. E-Mail oder Passwort falsch.';
-          loginNote.classList.add('show');
-        }).finally(function(){
-          btn.disabled = false;
-        });
-      });
-
-      logoutBtn.addEventListener('click', function(){
-        client.auth.signOut().then(function(){ showLogin(); });
-      });
-    });
-  } else {
-    configNote.classList.add('show');
-  }
-</script>
-
+<script src="admin.js"></script>
 </body>
 </html>

@@ -142,6 +142,7 @@
   .form-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   @media (max-width: 640px){ .form-grid{ grid-template-columns: 1fr; } }
   .form-grid .full{ grid-column: 1 / -1; }
+  .billing-head{ margin-top: 8px; padding-top: 14px; border-top: 1px solid var(--line); font-weight: 600; font-size: .92rem; }
   .fld{ display:flex; flex-direction:column; gap:6px; }
   .fld label{ font-size:0.78rem; color: var(--slate); }
   .fld input, .fld select, .fld textarea{ font: inherit; font-size:0.94rem; padding: 12px 13px; border:1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); }
@@ -172,8 +173,9 @@
 </head>
 <body>
 <div class="ls-intro" aria-hidden="true">
-  <div class="li-half li-l"><div class="li-content"><svg class="li-logo" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
-  <div class="li-half li-r"><div class="li-content"><svg class="li-logo" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
+  <div class="li-half li-l"><div class="li-content"><div class="li-mark"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path class="li-foot" d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg></div><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
+  <div class="li-half li-r"><div class="li-content"><div class="li-mark"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path class="li-foot" d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg></div><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
+  <div class="li-glow"></div>
   <div class="li-line"></div>
 </div>
 <script>(function(){var h=document.documentElement,home=document.body.classList.contains('home'),seen=null;try{seen=sessionStorage.getItem('ls_intro');}catch(e){}if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||(!home&&seen)){h.classList.add('intro-skip');}else{h.classList.add('intro-on');try{sessionStorage.setItem('ls_intro','1');}catch(e){}}})();</script>
@@ -216,7 +218,7 @@
   <div class="wrap booking-grid">
     <aside class="card offer">
       <span class="teams-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg><span data-i18n="termin_page.badge">Video-Call · Microsoft Teams</span></span>
-      <div class="price">350 €<small data-i18n="termin_page.price_note">pro Gespräch</small></div>
+      <div class="price"><span data-price>350 €</span><small data-i18n="termin_page.price_note">pro Gespräch</small></div>
       <h2 data-i18n="termin_page.offer_h2">Erstgespräch · 60 Minuten</h2>
       <ul>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg><span data-i18n="termin_page.li1">Analyse deiner aktuellen Situation und der größten Hebel</span></li>
@@ -243,7 +245,7 @@
             <div class="step-title"><span class="n">2</span><span data-i18n="termin_page.step2">Uhrzeit wählen</span></div>
             <div class="slots-head" id="slotsHead"></div>
             <div class="slots" id="slots"></div>
-            <p class="tz-note" data-i18n="termin_page.tz">Alle Zeiten in Wiener Zeit (MEZ/MESZ).</p>
+            <p class="tz-note" id="tzNote" data-i18n="termin_page.tz">Alle Zeiten in Wiener Zeit (MEZ/MESZ).</p>
           </div>
         </div>
 
@@ -256,6 +258,25 @@
               <div class="fld"><label for="bk-company" data-i18n="termin_page.f_company">Unternehmen</label><input id="bk-company" name="company" type="text" autocomplete="organization" maxlength="160"></div>
               <div class="fld"><label for="bk-email" data-i18n="termin_page.f_email">E-Mail *</label><input id="bk-email" name="email" type="email" autocomplete="email" required maxlength="254"></div>
               <div class="fld"><label for="bk-phone" data-i18n="termin_page.f_phone">Telefon</label><input id="bk-phone" name="phone" type="tel" autocomplete="tel" maxlength="40"></div>
+              <div class="fld full billing-head"><span data-i18n="termin_page.billing_h">Rechnungsadresse</span></div>
+              <div class="fld full"><label for="bk-street" data-i18n="termin_page.f_street">Straße und Hausnummer *</label><input id="bk-street" name="street" type="text" autocomplete="street-address" required maxlength="160"></div>
+              <div class="fld"><label for="bk-zip" data-i18n="termin_page.f_zip">PLZ</label><input id="bk-zip" name="zip" type="text" autocomplete="postal-code" maxlength="20"></div>
+              <div class="fld"><label for="bk-city" data-i18n="termin_page.f_city">Ort *</label><input id="bk-city" name="city" type="text" autocomplete="address-level2" required maxlength="80"></div>
+              <div class="fld">
+                <label for="bk-country" data-i18n="termin_page.f_country">Land</label>
+                <select id="bk-country" name="country" autocomplete="country">
+                  <option value="AT">Österreich / Austria</option>
+                  <option value="DE">Deutschland / Germany</option>
+                  <option value="CH">Schweiz / Switzerland</option>
+                  <option value="LI">Liechtenstein</option>
+                  <option value="IT">Italien / Italy</option>
+                  <option value="US">USA / United States</option>
+                  <option value="GB">United Kingdom</option>
+                  <option value="CA">Canada</option>
+                  <option value="XX" data-i18n="termin_page.country_other">Anderes Land</option>
+                </select>
+              </div>
+              <div class="fld"><label for="bk-uid" data-i18n="termin_page.f_uid">UID-Nummer (optional, für Firmen)</label><input id="bk-uid" name="uid" type="text" maxlength="20" placeholder="ATU12345678"></div>
               <div class="fld full">
                 <label for="bk-topic" data-i18n="termin_page.f_topic">Thema</label>
                 <select id="bk-topic" name="topic">
@@ -280,7 +301,7 @@
         <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
         <h2 data-i18n="termin_page.ok_h2">Termin gebucht!</h2>
         <div class="when" id="successWhen"></div>
-        <p data-i18n="termin_page.ok_p">Danke! Du erhältst in Kürze eine Bestätigung mit dem Microsoft-Teams-Link und der Rechnung per E-Mail.</p>
+        <p id="okP" data-i18n="termin_page.ok_p">Danke! Du erhältst in Kürze eine Bestätigung mit dem Microsoft-Teams-Link und der Rechnung per E-Mail.</p>
         <div class="actions">
           <button type="button" class="btn-ghost" id="icsBtn" data-i18n="termin_page.ok_ics">Zum Kalender hinzufügen</button>
           <a href="projektbogen.html" class="btn-ghost" data-i18n="termin_page.ok_prep">Projektbogen ausfüllen (Vorbereitung)</a>

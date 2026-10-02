@@ -139,11 +139,11 @@
     $('apptsCount').textContent = active.length + ' Termine gesamt · ' + upcoming.length + ' anstehend · ' + active.filter(function(a){ return a.paid; }).length + ' bezahlt';
     if(!list.length){ $('upcomingBody').innerHTML = '<tr class="empty-row"><td colspan="6">Keine anstehenden Termine.</td></tr>'; return; }
     $('upcomingBody').innerHTML = list.map(function(a){
-      return '<tr><td>' + esc(longDate(a._start)) + ', ' + hm(a._start) + '</td>'
-        + '<td><button type="button" class="name-link" data-id="' + a.id + '">' + esc(a.name) + '</button></td>'
-        + '<td>' + esc(a.company || '—') + '</td><td>' + esc(a.topic || '—') + '</td>'
-        + '<td><span class="status-pill st-' + a.status + '">' + STATUS_LABEL[a.status] + '</span></td>'
-        + '<td class="' + (a.paid ? 'tag-yes' : 'tag-no') + '">' + (a.paid ? 'Ja' : 'Nein') + '</td></tr>';
+      return '<tr><td class="primary" data-label="Name"><button type="button" class="name-link" data-id="' + a.id + '">' + esc(a.name) + '</button></td>'
+        + '<td data-label="Termin">' + esc(longDate(a._start)) + ', ' + hm(a._start) + '</td>'
+        + '<td data-label="Unternehmen">' + esc(a.company || '—') + '</td><td data-label="Thema">' + esc(a.topic || '—') + '</td>'
+        + '<td data-label="Status"><span class="status-pill st-' + a.status + '">' + STATUS_LABEL[a.status] + '</span></td>'
+        + '<td data-label="Bezahlt" class="' + (a.paid ? 'tag-yes' : 'tag-no') + '">' + (a.paid ? 'Ja' : 'Nein') + '</td></tr>';
     }).join('');
   }
 
@@ -195,7 +195,10 @@
       ['Telefon', a.phone ? '<a href="tel:' + esc(a.phone.replace(/\s+/g, '')) + '">' + esc(a.phone) + '</a>' : '—'],
       ['Thema', esc(a.topic || '—')],
       ['Nachricht', esc(a.message || '—')],
-      ['Preis', esc((a.price_eur || 350) + ' €')],
+      ['Preis', esc(new Intl.NumberFormat('de-AT', { style: 'currency', currency: a.currency || 'EUR' }).format(a.price_eur || 350))],
+      ['Bestellung', esc(a.order_no || '—')],
+      ['Rechnung', esc(invoiceLabel(a))],
+      ['Rechnungsadr.', esc([a.billing_company, a.billing_street, [a.billing_zip, a.billing_city].filter(Boolean).join(' '), a.billing_country, a.billing_uid].filter(Boolean).join(', ') || '—')],
       ['Gebucht am', esc(new Date(a.created_at).toLocaleString('de-AT', { dateStyle: 'medium', timeStyle: 'short' }))]
     ];
     $('mInfo').innerHTML = rows.map(function(r){ return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('');
@@ -204,6 +207,8 @@
     $('mTeams').value = a.teams_link || '';
     $('mNotes').value = a.admin_notes || '';
     $('mTeamsCreate').href = teamsCreateUrl(a);
+    var inv = docs() && docs().invoiceFor(a.id);
+    ['mInvPdf', 'mOrderPdf', 'mResend'].forEach(function(id){ $(id).style.display = inv ? '' : 'none'; });
     setMsg('');
     refreshModalLinks();
     $('apptModal').classList.add('show');
@@ -234,11 +239,18 @@
     if(!current) return;
     if(!confirm('Termin von ' + current.name + ' endgültig löschen? Tipp: Status „Abgesagt“ behält den Verlauf.')) return;
     var id = current.id;
-    client.from('appointments').delete().eq('id', id).then(function(res){
-      if(res.error){ setMsg('Löschen fehlgeschlagen: ' + res.error.message, true); return; }
+    client.from('appointments').delete().eq('id', id).select().then(function(res){
+      if(res.error || !res.data || !res.data.length){ setMsg('Löschen nicht möglich: Zu diesem Termin gibt es eine Rechnung. Bitte Status „Abgesagt“ setzen und die Rechnung stornieren.', true); return; }
       appts = appts.filter(function(a){ return a.id !== id; });
       closeModal(); render(); renderUpcoming();
     });
+  }
+
+  function docs(){ return window.lusidesAdminDocs; }
+  function invoiceLabel(a){
+    var inv = docs() && docs().invoiceFor(a.id);
+    if(!inv) return '—';
+    return inv.invoice_no + ' · ' + inv.status + (inv.sent_at ? ' · gesendet' : (a.mail_status === 'fehler' ? ' · Versandfehler' : ''));
   }
 
   // ---------- Export ----------
@@ -288,6 +300,9 @@
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && current) closeModal(); });
     $('mSave').addEventListener('click', save);
     $('mDelete').addEventListener('click', remove);
+    $('mInvPdf').addEventListener('click', function(){ var inv = current && docs().invoiceFor(current.id); if(inv) docs().openPdf(inv.id, 'invoice'); });
+    $('mOrderPdf').addEventListener('click', function(){ var inv = current && docs().invoiceFor(current.id); if(inv) docs().openPdf(inv.id, 'order'); });
+    $('mResend').addEventListener('click', function(){ if(current) docs().resend(current.id); });
     $('mTeams').addEventListener('input', refreshModalLinks);
     $('exportApptsBtn').addEventListener('click', exportCsv);
   }

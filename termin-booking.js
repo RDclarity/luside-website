@@ -5,8 +5,13 @@
   // Buchbare Zeiten — müssen zu book_appointment() in
   // supabase/migrations/20261002120000_appointments.sql passen.
   var TZ = 'Europe/Vienna';
-  var SLOT_FIRST_HOUR = 9;   // erster Start 09:00
-  var SLOT_LAST_HOUR = 16;   // letzter Start 16:00 (Ende 17:00)
+  var REGION = (window.lusidesRegion && window.lusidesRegion.region) || 'EU';
+  // EU: Start 09–16 Uhr Wiener Zeit. USA: 15–18 Uhr Wiener Zeit (= 9–12 Uhr New York).
+  var SLOT_FIRST_HOUR = REGION === 'US' ? 15 : 9;
+  var SLOT_LAST_HOUR = REGION === 'US' ? 18 : 16;
+  var LOCAL_TZ = (function(){ try{ return Intl.DateTimeFormat().resolvedOptions().timeZone; }catch(e){ return TZ; } })();
+  var SHOW_TZ = REGION === 'US' ? LOCAL_TZ : TZ;
+  var INVOICE_URL = (window.LUSIDES_SUPABASE ? window.LUSIDES_SUPABASE.url : '') + '/functions/v1/lusides-invoice';
   var WORKDAYS = [1, 2, 3, 4, 5];
   var MIN_LEAD_HOURS = 12;
   var MAX_DAYS_AHEAD = 90;
@@ -80,10 +85,15 @@
   }
 
   function fmtTime(date){
-    return date.toLocaleTimeString(locale(), { timeZone: TZ, hour: '2-digit', minute: '2-digit' });
+    return date.toLocaleTimeString(lang() === 'en' && REGION === 'US' ? 'en-US' : locale(), { timeZone: SHOW_TZ, hour: '2-digit', minute: '2-digit' });
   }
   function fmtLong(date){
-    return date.toLocaleDateString(locale(), { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    return date.toLocaleDateString(locale(), { timeZone: SHOW_TZ, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  }
+  function price(){ return window.lusidesRegion ? window.lusidesRegion.label() : '350 €'; }
+  function updateTzNote(){
+    var el = document.getElementById('tzNote');
+    if(el && REGION === 'US') el.textContent = str('tz_local', 'All times shown in your local time ({tz}).').replace('{tz}', LOCAL_TZ.replace(/_/g, ' '));
   }
 
   // --- Belegte Slots laden ---------------------------------------------------
@@ -159,7 +169,7 @@
   function renderChosen(){
     if(!selectedSlot){ details.classList.remove('show'); return; }
     var end = new Date(selectedSlot.getTime() + DURATION_MIN * 60000);
-    chosenEl.textContent = fmtLong(selectedSlot) + ' · ' + fmtTime(selectedSlot) + '–' + fmtTime(end) + ' · Microsoft Teams · 350 €';
+    chosenEl.textContent = fmtLong(selectedSlot) + ' · ' + fmtTime(selectedSlot) + '–' + fmtTime(end) + ' · Microsoft Teams · ' + price();
     details.classList.add('show');
   }
 
@@ -192,7 +202,7 @@
   calNext.addEventListener('click', function(){ viewMonth++; if(viewMonth > 11){ viewMonth = 0; viewYear++; } renderCalendar(); });
   window.addEventListener('lusides:langchange', function(){
     if(viewYear == null) return;
-    renderCalendar(); renderSlots(); renderChosen();
+    renderCalendar(); renderSlots(); renderChosen(); updateTzNote();
   });
 
   // --- Buchen ----------------------------------------------------------------
@@ -217,7 +227,7 @@
         email: fields.email,
         phone: fields.phone || null,
         lead_company: fields.company || null,
-        biggest_challenge: 'Erstgespräch gebucht (Teams, 60 Min, 350 €): ' + fields.when + ' · Thema: ' + fields.topic + (fields.message ? ' · ' + fields.message : '')
+        biggest_challenge: 'Erstgespräch gebucht (Teams, 60 Min, ' + price() + '): ' + fields.when + ' · Thema: ' + fields.topic + (fields.message ? ' · ' + fields.message : '')
       })
     }).catch(function(err){ console.warn('CRM forward failed (non-blocking):', err); });
   }
@@ -233,6 +243,7 @@
     if(name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
       showNote(str('err_fields', 'Bitte Name und eine gültige E-Mail-Adresse angeben.'), true); return;
     }
+    if(form.street.value.trim().length < 3 || form.city.value.trim().length < 2){ showNote(str('err_billing', 'Bitte Straße und Ort für die Rechnung angeben.'), true); return; }
     if(!form.consent.checked){ showNote(str('err_consent', 'Bitte bestätige die Buchung.'), true); return; }
     if(!window.lusidesSupabaseReady){ showNote(str('err_generic', 'Buchung gerade nicht möglich. Bitte versuche es später erneut.'), true); return; }
 
@@ -242,7 +253,12 @@
       company: form.company.value.trim(),
       phone: form.phone.value.trim(),
       topic: form.topic.value,
-      message: form.message.value.trim()
+      message: form.message.value.trim(),
+      street: form.street.value.trim(),
+      zip: form.zip.value.trim(),
+      city: form.city.value.trim(),
+      country: form.country.value === 'XX' ? '' : form.country.value,
+      uid: form.uid.value.trim()
     };
     window.lusidesSupabaseReady(function(client){
       if(!client){ bookBtn.disabled = false; showNote(str('err_generic', 'Buchung gerade nicht möglich.'), true); return; }
@@ -250,9 +266,12 @@
         p_start: selectedSlot.toISOString(),
         p_name: fields.name, p_email: fields.email,
         p_company: fields.company || null, p_phone: fields.phone || null,
-        p_message: fields.message || null, p_topic: fields.topic, p_lang: lang()
+        p_message: fields.message || null, p_topic: fields.topic, p_lang: lang(),
+        p_region: REGION, p_street: fields.street, p_zip: fields.zip || null, p_city: fields.city,
+        p_country: fields.country || (REGION === 'US' ? 'US' : null), p_uid: fields.uid || null
       }).then(function(res){
         if(res.error){
+          if(/billing_required/.test(res.error.message || '')){ showNote(str('err_billing', 'Bitte Straße und Ort angeben.'), true); bookBtn.disabled = false; return; }
           var taken = /slot_taken|invalid_slot/.test(res.error.message || '');
           showNote(taken ? str('err_taken', 'Dieser Termin wurde gerade vergeben. Bitte wähle einen anderen.') : str('err_generic', 'Buchung gerade nicht möglich. Bitte versuche es später erneut.'), true);
           if(taken){
@@ -266,6 +285,7 @@
         fields.when = fmtLong(selectedSlot) + ', ' + fmtTime(selectedSlot);
         lastBooking = { start: selectedSlot, name: fields.name };
         forwardToCrm(fields);
+        sendDocuments(res.data, fields.email);
         if(window.lusidesLogConversion) window.lusidesLogConversion('appointment_booked');
         document.getElementById('successWhen').textContent = fields.when + ' · Microsoft Teams';
         planner.style.display = 'none';
@@ -274,6 +294,18 @@
       });
     });
   });
+
+  // Bestellschein + Rechnung erzeugen und per E-Mail (invoice@lusides.com) zustellen.
+  function sendDocuments(booking, email){
+    var okP = document.getElementById('okP');
+    if(!booking || !booking.id || !booking.token){ return; }
+    var headers = { 'Content-Type': 'application/json' };
+    if(window.LUSIDES_SUPABASE){ headers.apikey = window.LUSIDES_SUPABASE.anonKey; headers.Authorization = 'Bearer ' + window.LUSIDES_SUPABASE.anonKey; }
+    fetch(INVOICE_URL, { method: 'POST', headers: headers, body: JSON.stringify({ action: 'send', appointment_id: booking.id, token: booking.token }) })
+      .then(function(r){ if(!r.ok) throw new Error('mail ' + r.status); })
+      .then(function(){ if(okP) okP.textContent = str('ok_mail', 'Sent to {email}.').replace('{email}', email); })
+      .catch(function(err){ console.warn(err); if(okP) okP.textContent = str('ok_mail_fail', 'Your documents will follow by email.'); });
+  }
 
   // --- .ics-Datei für den eigenen Kalender ------------------------------------
   function icsDate(d){ return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
@@ -297,6 +329,8 @@
   });
 
   // --- Start -----------------------------------------------------------------
+  if(REGION === 'US' && form.country) form.country.value = 'US';
+  updateTzNote();
   slotsHead.textContent = str('loading', 'Lade freie Termine…');
   loadBooked().then(function(){
     firstAvailableMonth();
