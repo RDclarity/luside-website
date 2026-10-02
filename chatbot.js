@@ -97,7 +97,7 @@
       {
         label: 'Kontakt & Adresse',
         keywords: ['kontakt', 'email', 'e-mail', 'telefon', 'adresse', 'erreichen', 'standort'],
-        answer: 'E-Mail: inquiry@luside.com<br>Telefon: +43 660 3607188<br>Adresse: Royerstraße 7, 2482 Münchendorf<br><br>Am schnellsten geht’s über das Formular unten auf der Startseite, oder über den „Kontakt aufnehmen"-Button unten.'
+        answer: 'E-Mail: inquiry@luside.com<br>Telefon: +43 660 3607188<br>Adresse: Endresstraße 50/V3, 1230 Wien<br><br>Am schnellsten geht’s über das Formular unten auf der Startseite, oder über den „Kontakt aufnehmen"-Button unten.'
       },
       {
         label: 'Termin vereinbaren',
@@ -135,7 +135,7 @@
       {
         label: 'Contact & Address',
         keywords: ['contact', 'email', 'phone', 'address', 'reach you', 'location'],
-        answer: 'Email: inquiry@luside.com<br>Phone: +43 660 3607188<br>Address: Royerstraße 7, 2482 Münchendorf, Austria<br><br>Fastest way is the "Get in touch" button below.'
+        answer: 'Email: inquiry@luside.com<br>Phone: +43 660 3607188<br>Address: Endresstraße 50/V3, 1230 Vienna, Austria<br><br>Fastest way is the "Get in touch" button below.'
       },
       {
         label: 'Schedule an appointment',
@@ -150,9 +150,9 @@
     + '.cl-chat-toggle{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--paper);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 28px -12px rgba(20,30,60,0.45);z-index:200;transition:background .2s ease;}'
     + '.cl-chat-toggle:hover{background:var(--accent);}'
     + '.cl-chat-toggle svg{width:24px;height:24px;}'
-    + '.cl-chat-panel{position:fixed;bottom:92px;right:24px;width:min(360px, calc(100vw - 32px));max-height:min(560px, calc(100vh - 140px));background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 20px 48px -20px rgba(20,30,60,0.35);display:none;flex-direction:column;overflow:hidden;z-index:200;font-family:"IBM Plex Sans",sans-serif;}'
+    + '.cl-chat-panel{position:fixed;bottom:92px;right:24px;width:min(360px, calc(100vw - 32px));max-height:min(560px, calc(100vh - 140px));background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 20px 48px -20px rgba(20,30,60,0.35);display:none;flex-direction:column;overflow:hidden;z-index:200;font-family:"Instrument Sans",sans-serif;}'
     + '.cl-chat-panel.open{display:flex;}'
-    + '.cl-chat-header{background:var(--ink);color:var(--paper);padding:14px 16px;padding-top:calc(14px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;font-family:"Fraunces",serif;font-weight:600;font-size:1.02rem;flex-shrink:0;}'
+    + '.cl-chat-header{background:var(--ink);color:var(--paper);padding:14px 16px;padding-top:calc(14px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;font-family:"Instrument Sans",sans-serif;font-weight:600;font-size:1.02rem;flex-shrink:0;}'
     + '.cl-chat-close{background:none;border:none;color:var(--paper);opacity:0.75;font-size:1.2rem;line-height:1;cursor:pointer;padding:0 2px;}'
     + '.cl-chat-close:hover{opacity:1;}'
     + '.cl-chat-messages{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;}'

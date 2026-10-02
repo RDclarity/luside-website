@@ -8,7 +8,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#F4F8FC">
+<meta name="theme-color" content="#050B18">
 <meta property="og:type" content="website">
 <meta name="robots" content="index, follow">
 <meta property="og:site_name" content="Lusides">
@@ -23,7 +23,7 @@
 <title data-i18n="privacy_page.meta_title">Datenschutz — Lusides</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper: #F4F8FC;
@@ -45,14 +45,14 @@
   body{
     background: var(--paper);
     color: var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
+    font-family:'Instrument Sans', sans-serif;
     font-size:16px;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
 
-  .display{ font-family:'Fraunces', serif; font-optical-sizing:auto; }
-  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; }
+  .display{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; }
+  .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.06em; }
 
   a{ color: var(--accent-ink); text-decoration:underline; }
   .brand, .nav-links a, .nav-cta, .lang-btn{ text-decoration:none; }
@@ -130,7 +130,7 @@
     display:flex;
     align-items:baseline;
     gap:8px;
-    font-family:'Fraunces', serif; font-optical-sizing:auto;
+    font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto;
     font-weight:600;
     font-size:1.28rem;
     letter-spacing:-0.01em;
@@ -158,7 +158,7 @@
     display:flex;
     align-items:center;
     gap:6px;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:'JetBrains Mono', monospace;
     font-size:0.76rem;
     letter-spacing:0.04em;
   }
@@ -217,7 +217,7 @@
   }
   .eyebrow::before{ content:''; width:26px; height:1px; background: var(--accent-ink); display:inline-block; }
   .hero h1{
-    font-family:'Fraunces', serif; font-optical-sizing:auto;
+    font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto;
     font-size: clamp(1.9rem, 4vw, 2.6rem);
     font-weight: 500;
     letter-spacing: -0.01em;
@@ -227,7 +227,7 @@
   /* ---------- CONTENT ---------- */
   .legal{ padding: 0 0 100px; }
   .legal h2{
-    font-family:'Fraunces', serif; font-optical-sizing:auto;
+    font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto;
     font-size: 1.3rem;
     font-weight:600;
     margin: 44px 0 14px;
@@ -235,7 +235,7 @@
   }
   .legal h2:first-child{ margin-top:0; }
   .legal h3{
-    font-family:'Fraunces', serif; font-optical-sizing:auto;
+    font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto;
     font-size: 1.05rem;
     font-weight:600;
     margin: 24px 0 8px;
@@ -264,37 +264,33 @@
   .footer-links a{ color: var(--slate); text-decoration:none; }
   .footer-links a:hover{ color: var(--ink); }
 </style>
+<link rel="stylesheet" href="site.css">
+<style>#progress{ display:none !important; } .bg-stone{ display:none; }</style>
 </head>
 <body>
+<div class="ls-progress" aria-hidden="true"></div>
 
 <div class="bg-stone" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 <div id="progress" aria-hidden="true"></div>
 
-<header>
-  <div class="nav">
-    <a href="index.html" class="brand">Lusides</a>
-    <div class="nav-right">
-      <button type="button" class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <div class="nav-collapse">
-        <nav class="nav-links">
-          <a href="index.html#leistungen" data-i18n="nav.leistungen">Leistungen</a>
-          <a href="index.html#warum" data-i18n="nav.warum">Warum wir</a>
-          <a href="index.html#ablauf" data-i18n="nav.ablauf">Ablauf</a>
-          <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
-          <a href="team.html" data-i18n="nav.team">Team</a>
-          <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
-          <a href="erstberatung.html" data-i18n="nav.erstberatung">Erstberatung</a>
-        </nav>
-        <div class="lang-switch">
-          <button type="button" class="lang-btn" data-lang="de">DE</button>
-          <span class="lang-sep">/</span>
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
-        </div>
+<header class="ls-header">
+  <div class="ls-bar">
+    <a href="index.html" class="ls-logo" aria-label="Lusides Startseite"><i aria-hidden="true"></i>Lusides</a>
+    <nav class="ls-links" aria-label="Hauptnavigation">
+      <a href="index.html#leistungen" data-i18n="nav.leistungen">Leistungen</a>
+      <a href="index.html#ablauf" data-i18n="nav.ablauf">Ablauf</a>
+      <a href="team.html" data-i18n="nav.team">Team</a>
+      <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
+      <a href="index.html#kontakt" data-i18n="nav.kontakt">Kontakt</a>
+    </nav>
+    <div class="ls-right">
+      <div class="ls-lang">
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
       </div>
-      <a href="termin.html" class="nav-cta nav-cta-book"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_sub">1 Std. Erstgespräch · 350 €</small></a>
+      <a href="termin.html" class="ls-cta ls-magnetic" data-strength="0.2"><span class="ls-cta-label" data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">60 MIN · 350 €</small></a>
+      <button type="button" class="ls-burger" aria-label="Menü öffnen" aria-expanded="false"><span></span></button>
     </div>
   </div>
 </header>
@@ -310,7 +306,7 @@
 <section class="legal">
   <div class="wrap">
     <h2 class="display" data-i18n="privacy_page.h_controller">Verantwortlicher</h2>
-    <p data-i18n="privacy_page.p_controller">Verantwortlich für die Datenverarbeitung auf dieser Website ist Lusides GmbH, Royerstraße 7, 2482 Münchendorf, Österreich. E-Mail: inquiry@luside.com, Telefon: +43 660 3607188.</p>
+    <p data-i18n="privacy_page.p_controller">Verantwortlich für die Datenverarbeitung auf dieser Website ist Legatech GmbH &amp; Co KG (Marke „Lusides“), Endresstraße 50/V3, 1230 Wien, Österreich. E-Mail: inquiry@luside.com, Telefon: +43 660 3607188.</p>
 
     <h2 class="display" data-i18n="privacy_page.h_data">Welche Daten wir erheben</h2>
 
@@ -358,12 +354,22 @@
   </div>
 </section>
 
-<footer>
-  <div class="footer-inner">
-    <span data-i18n="footer.copyright">© 2026 Lusides. Alle Rechte vorbehalten.</span>
-    <div class="footer-links">
-      <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
-      <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
+<footer class="ls-footer" id="footer">
+  <div class="ls-f-inner">
+    <div class="ls-f-cta ls-reveal">
+      <h2><span data-i18n="ls_footer.cta1">Bereit für den</span><br><em data-i18n="ls_footer.cta2">nächsten Schritt?</em></h2>
+      <a href="termin.html" class="ls-cta ls-magnetic"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">60 MIN · 350 €</small></a>
+    </div>
+    <div class="ls-wordmark ls-reveal" aria-hidden="true">Lusides<span>.</span></div>
+    <div class="ls-f-grid">
+      <div><b data-i18n="ls_footer.contact">Kontakt</b><a href="mailto:inquiry@luside.com">inquiry@luside.com</a><br><a href="tel:+436603607188">+43 660 3607188</a></div>
+      <div><b data-i18n="ls_footer.company">Unternehmen</b>Legatech GmbH &amp; Co KG<br>Endresstraße 50/V3<br>1230 Wien, Österreich</div>
+      <div><b data-i18n="ls_footer.owners">Inhaber</b>Marko Katalan<br>Richard Dobrohruschka</div>
+      <div><b data-i18n="nav.leistungen">Leistungen</b><a href="leistungen-prozesse-systeme.html" data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</a><br><a href="leistungen-marketing.html" data-i18n="leistungen.s2_tag">Marketing</a><br><a href="leistungen-finanzen.html" data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</a><br><a href="leistungen-digitalisierung-ki.html" data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</a><br><a href="leistungen-onlineshop-entwicklung.html" data-i18n="svc_shop.tag">Onlineshop-Entwicklung</a></div>
+    </div>
+    <div class="ls-f-bottom">
+      <span>© 2026 Lusides · Legatech GmbH &amp; Co KG · FN 614735 y</span>
+      <nav aria-label="Rechtliches"><a href="impressum.html" data-i18n="footer.impressum">Impressum</a><a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a></nav>
     </div>
   </div>
 </footer>
@@ -407,5 +413,7 @@
 <script src="chatbot.js" defer></script>
 <script src="analytics.js" defer></script>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="site.js" defer></script>
 </body>
 </html>

@@ -9,11 +9,11 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#F4F8FC">
+<meta name="theme-color" content="#050B18">
 <title data-i18n="termin_page.meta_title">Termin buchen — Lusides</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper: #F4F8FC; --paper-dim: #E3EEF9; --ink: #0B1F3A; --slate: #4A5F7A;
@@ -22,9 +22,9 @@
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
-  body{ background: var(--paper); color: var(--ink); font-family:'IBM Plex Sans', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
-  .display{ font-family:'Fraunces', serif; font-optical-sizing:auto; }
-  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; }
+  body{ background: var(--paper); color: var(--ink); font-family:'Instrument Sans', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .display{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; }
+  .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.06em; }
   a{ color: var(--accent-ink); text-decoration:underline; }
   .brand, .nav-links a, .nav-cta, .lang-btn{ text-decoration:none; }
   ::selection{ background: var(--accent); color:#fff; }
@@ -45,7 +45,7 @@
   header{ position: sticky; top: 0; z-index: 50; background: rgba(244,248,252,0.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
   .nav{ display:flex; align-items:center; justify-content:space-between; padding: 20px 0; max-width: 1160px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
   @media (max-width: 640px){ .nav{ padding-left:22px; padding-right:22px; } }
-  .brand{ display:flex; align-items:baseline; gap:8px; font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; font-size:1.28rem; letter-spacing:-0.01em; color: var(--ink); }
+  .brand{ display:flex; align-items:baseline; gap:8px; font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-weight:600; font-size:1.28rem; letter-spacing:-0.01em; color: var(--ink); }
   .brand .dot{ color: var(--accent); }
   .nav-right{ display:flex; align-items:center; gap:28px; }
   .nav-collapse{ display:flex; align-items:center; gap:28px; }
@@ -58,7 +58,7 @@
   .nav-cta-book:hover{ background: var(--accent-ink); }
   .nav-cta-book small{ font-size:0.68rem; opacity:0.85; letter-spacing:0.01em; }
   @media (max-width: 420px){ .nav-cta-book{ padding: 7px 12px; } .nav-cta-book span{ font-size:0.76rem; } }
-  .lang-switch{ display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.04em; }
+  .lang-switch{ display:flex; align-items:center; gap:6px; font-family:'JetBrains Mono', monospace; font-size:0.76rem; letter-spacing:0.04em; }
   .lang-btn{ background:none; border:none; padding:4px 2px; color: var(--slate); cursor:pointer; font: inherit; }
   .lang-btn:hover{ color: var(--ink); }
   .lang-btn.active{ color: var(--accent); font-weight:600; }
@@ -76,10 +76,10 @@
   .hero{ padding: 64px 0 40px; }
   .eyebrow{ font-size: 0.78rem; color: var(--accent-ink); display:flex; align-items:center; gap:10px; margin-bottom: 20px; }
   .eyebrow::before{ content:''; width:26px; height:1px; background: var(--accent-ink); display:inline-block; }
-  .hero h1{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 500; letter-spacing: -0.01em; }
+  .hero h1{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 500; letter-spacing: -0.01em; }
   .hero-sub{ margin-top:14px; color: var(--slate); font-size:0.9rem; }
   .legal{ padding: 0 0 100px; }
-  .legal h2{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-size: 1.3rem; font-weight:600; margin: 44px 0 14px; letter-spacing: -0.01em; }
+  .legal h2{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-size: 1.3rem; font-weight:600; margin: 44px 0 14px; letter-spacing: -0.01em; }
   .legal h2:first-child{ margin-top:0; }
   .legal p{ margin-bottom: 12px; max-width: 68ch; }
   .legal .row{ display:flex; gap:8px; margin-bottom:6px; }
@@ -101,9 +101,9 @@
   .card{ background:#fff; border:1px solid var(--line); border-radius: 10px; box-shadow: 0 18px 40px -28px rgba(11,31,58,0.35); }
   .offer{ padding: 26px; position: sticky; top: 96px; }
   @media (max-width: 880px){ .offer{ position: static; } }
-  .offer .price{ font-family:'Fraunces', serif; font-size: 2.4rem; font-weight:600; color: var(--accent-ink); line-height:1; }
-  .offer .price small{ font-family:'IBM Plex Sans', sans-serif; font-size: 0.85rem; color: var(--slate); font-weight:400; margin-left:6px; }
-  .offer h2{ font-family:'Fraunces', serif; font-size:1.25rem; font-weight:600; margin: 4px 0 18px; }
+  .offer .price{ font-family:'Instrument Sans', sans-serif; font-size: 2.4rem; font-weight:600; color: var(--accent-ink); line-height:1; }
+  .offer .price small{ font-family:'Instrument Sans', sans-serif; font-size: 0.85rem; color: var(--slate); font-weight:400; margin-left:6px; }
+  .offer h2{ font-family:'Instrument Sans', sans-serif; font-size:1.25rem; font-weight:600; margin: 4px 0 18px; }
   .offer ul{ list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom: 20px; }
   .offer li{ display:flex; gap:10px; align-items:flex-start; font-size:0.9rem; color: var(--ink); }
   .offer li svg{ width:18px; height:18px; flex-shrink:0; color: var(--accent); margin-top:3px; }
@@ -117,7 +117,7 @@
   .planner-cols{ display:grid; grid-template-columns: 1fr 220px; gap: 28px; }
   @media (max-width: 640px){ .planner-cols{ grid-template-columns: 1fr; } }
   .cal-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-  .cal-head .month{ font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; text-transform: capitalize; }
+  .cal-head .month{ font-family:'Instrument Sans', sans-serif; font-weight:600; font-size:1.05rem; text-transform: capitalize; }
   .icon-btn{ width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:#fff; color: var(--ink); cursor:pointer; display:inline-flex; align-items:center; justify-content:center; font-size:1rem; }
   .icon-btn:hover:not(:disabled){ border-color: var(--accent); color: var(--accent); }
   .icon-btn:disabled{ opacity:0.35; cursor:not-allowed; }
@@ -160,44 +160,40 @@
   .success.show{ display:block; }
   .success .check{ width:58px; height:58px; border-radius:50%; background: var(--accent); color:#fff; display:inline-flex; align-items:center; justify-content:center; margin-bottom:16px; }
   .success .check svg{ width:28px; height:28px; }
-  .success h2{ font-family:'Fraunces', serif; font-size:1.6rem; font-weight:600; margin-bottom:8px; }
+  .success h2{ font-family:'Instrument Sans', sans-serif; font-size:1.6rem; font-weight:600; margin-bottom:8px; }
   .success p{ color: var(--slate); max-width: 52ch; margin: 0 auto 10px; }
   .success .when{ color: var(--accent-ink); font-weight:600; font-size:1.05rem; margin: 16px 0; }
   .success .actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top: 20px; }
   .btn-ghost{ border:1px solid var(--accent); color: var(--accent); background:#fff; padding: 12px 18px; border-radius: 6px; font: inherit; font-size:0.9rem; cursor:pointer; text-decoration:none; }
   .btn-ghost:hover{ background: var(--accent-dim); }
 </style>
+<link rel="stylesheet" href="site.css">
+<style>#progress{ display:none !important; } .bg-stone{ display:none; }</style>
 </head>
 <body>
+<div class="ls-progress" aria-hidden="true"></div>
 
 <div class="bg-stone" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 <div id="progress" aria-hidden="true"></div>
 
-<header>
-  <div class="nav">
-    <a href="index.html" class="brand">Lusides</a>
-    <div class="nav-right">
-      <button type="button" class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <div class="nav-collapse">
-        <nav class="nav-links">
-          <a href="index.html#leistungen" data-i18n="nav.leistungen">Leistungen</a>
-          <a href="index.html#warum" data-i18n="nav.warum">Warum wir</a>
-          <a href="index.html#ablauf" data-i18n="nav.ablauf">Ablauf</a>
-          <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
-          <a href="team.html" data-i18n="nav.team">Team</a>
-          <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
-          <a href="erstberatung.html" data-i18n="nav.erstberatung">Erstberatung</a>
-        </nav>
-        <div class="lang-switch">
-          <button type="button" class="lang-btn" data-lang="de">DE</button>
-          <span class="lang-sep">/</span>
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
-        </div>
+<header class="ls-header">
+  <div class="ls-bar">
+    <a href="index.html" class="ls-logo" aria-label="Lusides Startseite"><i aria-hidden="true"></i>Lusides</a>
+    <nav class="ls-links" aria-label="Hauptnavigation">
+      <a href="index.html#leistungen" data-i18n="nav.leistungen">Leistungen</a>
+      <a href="index.html#ablauf" data-i18n="nav.ablauf">Ablauf</a>
+      <a href="team.html" data-i18n="nav.team">Team</a>
+      <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
+      <a href="index.html#kontakt" data-i18n="nav.kontakt">Kontakt</a>
+    </nav>
+    <div class="ls-right">
+      <div class="ls-lang">
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
       </div>
-      <a href="termin.html" class="nav-cta nav-cta-book"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_sub">1 Std. Erstgespräch · 350 €</small></a>
+      <a href="termin.html" class="ls-cta ls-magnetic" data-strength="0.2"><span class="ls-cta-label" data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">60 MIN · 350 €</small></a>
+      <button type="button" class="ls-burger" aria-label="Menü öffnen" aria-expanded="false"><span></span></button>
     </div>
   </div>
 </header>
@@ -288,12 +284,22 @@
   </div>
 </section>
 
-<footer>
-  <div class="footer-inner">
-    <span data-i18n="footer.copyright">© 2026 Lusides. Alle Rechte vorbehalten.</span>
-    <div class="footer-links">
-      <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
-      <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
+<footer class="ls-footer" id="footer">
+  <div class="ls-f-inner">
+    <div class="ls-f-cta ls-reveal">
+      <h2><span data-i18n="ls_footer.cta1">Bereit für den</span><br><em data-i18n="ls_footer.cta2">nächsten Schritt?</em></h2>
+      <a href="termin.html" class="ls-cta ls-magnetic"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">60 MIN · 350 €</small></a>
+    </div>
+    <div class="ls-wordmark ls-reveal" aria-hidden="true">Lusides<span>.</span></div>
+    <div class="ls-f-grid">
+      <div><b data-i18n="ls_footer.contact">Kontakt</b><a href="mailto:inquiry@luside.com">inquiry@luside.com</a><br><a href="tel:+436603607188">+43 660 3607188</a></div>
+      <div><b data-i18n="ls_footer.company">Unternehmen</b>Legatech GmbH &amp; Co KG<br>Endresstraße 50/V3<br>1230 Wien, Österreich</div>
+      <div><b data-i18n="ls_footer.owners">Inhaber</b>Marko Katalan<br>Richard Dobrohruschka</div>
+      <div><b data-i18n="nav.leistungen">Leistungen</b><a href="leistungen-prozesse-systeme.html" data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</a><br><a href="leistungen-marketing.html" data-i18n="leistungen.s2_tag">Marketing</a><br><a href="leistungen-finanzen.html" data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</a><br><a href="leistungen-digitalisierung-ki.html" data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</a><br><a href="leistungen-onlineshop-entwicklung.html" data-i18n="svc_shop.tag">Onlineshop-Entwicklung</a></div>
+    </div>
+    <div class="ls-f-bottom">
+      <span>© 2026 Lusides · Legatech GmbH &amp; Co KG · FN 614735 y</span>
+      <nav aria-label="Rechtliches"><a href="impressum.html" data-i18n="footer.impressum">Impressum</a><a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a></nav>
     </div>
   </div>
 </footer>
@@ -334,5 +340,7 @@
 <script src="analytics.js" defer></script>
 <script src="termin-booking.js" defer></script>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="site.js" defer></script>
 </body>
 </html>

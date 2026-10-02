@@ -8,7 +8,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#F4F8FC">
+<meta name="theme-color" content="#050B18">
 <meta property="og:type" content="website">
 <meta name="robots" content="index, follow">
 <meta property="og:site_name" content="Lusides">
@@ -30,15 +30,17 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Lusides",
+  "legalName": "Legatech GmbH & Co KG",
+  "founder": [{ "@type": "Person", "name": "Marko Katalan" }, { "@type": "Person", "name": "Richard Dobrohruschka" }],
   "description": "Lusides ist Unternehmensberatung und Entwicklungspartner für etablierte, inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI.",
   "url": "https://rdclarity.github.io/luside-website/index.html",
   "email": "inquiry@luside.com",
   "telephone": "+43 660 3607188",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Royerstraße 7",
-    "postalCode": "2482",
-    "addressLocality": "Münchendorf",
+    "streetAddress": "Endresstraße 50/V3",
+    "postalCode": "1230",
+    "addressLocality": "Wien",
     "addressCountry": "AT"
   },
   "areaServed": "AT",
@@ -48,7 +50,8 @@
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing", "url": "https://rdclarity.github.io/luside-website/leistungen-marketing.html" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Finanzielle Angelegenheiten", "url": "https://rdclarity.github.io/luside-website/leistungen-finanzen.html" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digitalisierung & KI", "url": "https://rdclarity.github.io/luside-website/leistungen-digitalisierung-ki.html" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Erstberatung mit Marko Katalan", "url": "https://rdclarity.github.io/luside-website/erstberatung.html" } }
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Onlineshop-Entwicklung", "url": "https://rdclarity.github.io/luside-website/leistungen-onlineshop-entwicklung.html" } },
+    { "@type": "Offer", "price": "350", "priceCurrency": "EUR", "itemOffered": { "@type": "Service", "name": "Erstgespräch (60 Minuten, Microsoft Teams)", "url": "https://rdclarity.github.io/luside-website/termin.html" } }
   ]
 }
 </script>
@@ -60,885 +63,419 @@
     {
       "@type": "Question",
       "name": "Wann lohnt sich Lusides für uns?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Wenn euer Unternehmen bereits Umsatz und Struktur hat, aber Prozesse, Marketing oder Digitalisierung den nächsten Schritt bremsen." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wenn euer Unternehmen bereits Umsatz und Struktur hat, aber Prozesse, Marketing oder Digitalisierung den nächsten Schritt bremsen."
+      }
     },
     {
       "@type": "Question",
       "name": "Für welche Unternehmen eignet sich das?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Für etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und einer gewachsenen Struktur — nicht für Start-ups oder Ideen in der Frühphase." }
-    },
-    {
-      "@type": "Question",
-      "name": "Wie lange dauert ein Projekt?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Das hängt vom Umfang ab. Im Erstgespräch klären wir konkret, wo wir ansetzen würden und wie lange das realistisch dauert." }
-    },
-    {
-      "@type": "Question",
-      "name": "Wie läuft die Zusammenarbeit ab?",
-      "acceptedAnswer": { "@type": "Answer", "text": "In drei Schritten: Analyse eures Unternehmens, gemeinsamer Aufbau der fehlenden Systeme, begleitete Umsetzung." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Für etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und einer gewachsenen Struktur — nicht für Start-ups oder Ideen in der Frühphase."
+      }
     },
     {
       "@type": "Question",
       "name": "Was unterscheidet Lusides von klassischen Unternehmensberatungen?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Wir bleiben bei der Umsetzung dabei, statt nur eine Strategie zu übergeben. Keine Folien-Präsentationen, sondern gemeinsam gebaute Systeme." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wir bleiben bei der Umsetzung dabei, statt nur eine Strategie zu übergeben. Keine Folien-Präsentationen, sondern gemeinsam gebaute Systeme."
+      }
     },
     {
       "@type": "Question",
       "name": "Müssen wir uns auf alle vier Bereiche gleichzeitig einlassen?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Nein. Im Erstgespräch klären wir, wo aktuell der größte Hebel liegt, und beginnen dort." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Im Erstgespräch klären wir, wo aktuell der größte Hebel liegt, und beginnen dort."
+      }
     }
   ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper: #F4F8FC;
-    --paper-dim: #E3EEF9;
-    --ink: #0B1F3A;
-    --slate: #4A5F7A;
-    --slate-light: #8DA2BC;
-    --line: #D3E2F2;
-    --accent: #1E6FD9;
-    --accent-dim: #DCEBFC;
-    --accent-ink: #0F3D7A;
-    --radius: 2px;
-  }
-
+  :root{ --night:#050B18; --blue:#2F6BFF; --ice:#8EC5FF; --paper:#F4F7FB; --ink:#0A1428; --slate:#56677F; --line:#DCE5F0; }
   *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    background: var(--paper);
-    color: var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
-    font-size:16px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  .display{ font-family:'Fraunces', serif; font-optical-sizing: auto; }
-  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; }
-  a{ color:inherit; text-decoration:none; }
+  html{ background: var(--night); }
+  body{ background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.55; overflow-x: hidden; }
+  a{ color: inherit; }
   img{ max-width:100%; display:block; }
-  ::selection{ background: var(--accent); color:#fff; }
-  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
-  .wrap{ max-width: 1160px; margin: 0 auto; padding: 0 32px; }
-  @media (max-width: 640px){ .wrap{ padding: 0 22px; } }
+  .wrap{ max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 640px){ .wrap{ padding: 0 20px; } }
+  .kicker{ font-family: var(--f-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); display:flex; align-items:center; gap:12px; margin-bottom: 22px; }
+  .kicker::before{ content:''; width: 28px; height: 1px; background: currentColor; }
+  .h2{ font-size: clamp(44px, 6.2vw, 92px); line-height: .98; letter-spacing: -0.045em; font-weight: 600; }
+  .h2 em, h1 em{ font-family: var(--f-serif); font-style: italic; font-weight: 400; letter-spacing: -0.015em; }
+  .lead{ color: var(--slate); font-size: 18px; max-width: 360px; }
+  .sec-head{ display:flex; justify-content:space-between; align-items:flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 64px; }
 
-  /* ---------- AMBIENT DEPTH ---------- */
-  .bg-stone{
-    position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    background:
-      radial-gradient(1100px 620px at 14% -8%, rgba(30,111,217,0.07), transparent 60%),
-      radial-gradient(900px 640px at 104% 18%, rgba(30,111,217,0.05), transparent 55%);
-  }
+  /* Buttons */
+  .btn{ display:inline-flex; align-items:center; gap: 14px; border-radius: 999px; padding: 18px 28px; font-weight: 600; font-size: 16px; text-decoration: none; transition: background .3s ease, color .3s ease, border-color .3s ease; white-space: nowrap; }
+  .btn .arr{ display:inline-block; transition: transform .5s var(--ease); }
+  .btn:hover .arr{ transform: translateX(5px); }
+  .btn-light{ background:#fff; color: var(--night); }
+  .btn-light:hover{ background: var(--ice); }
+  .btn-ghost{ border: 1px solid rgba(255,255,255,0.22); color:#fff; }
+  .btn-ghost:hover{ border-color:#fff; }
 
-  /* ---------- FILM GRAIN ---------- */
-  .grain{
-    position: fixed; inset: 0; z-index: 90; pointer-events: none;
-    opacity: 0.035; mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-    background-repeat: repeat; background-size: 140px 140px;
-  }
-  @media (prefers-reduced-motion: reduce){ .grain{ opacity: 0.02; } }
+  /* HERO */
+  .hero{ position: relative; overflow: hidden; background: var(--night); color: #fff; min-height: 100svh; display:flex; flex-direction:column; justify-content:flex-end; padding-top: 140px; }
+  .h-grid{ position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 88px 88px; -webkit-mask-image: radial-gradient(ellipse 70% 60% at 65% 35%, #000 10%, transparent 75%); mask-image: radial-gradient(ellipse 70% 60% at 65% 35%, #000 10%, transparent 75%); }
+  .h-orb{ position:absolute; width: min(70vw, 900px); aspect-ratio: 1; right: -12vw; top: -26vh; border-radius: 50%; background: radial-gradient(circle, rgba(47,107,255,.62) 0%, rgba(47,107,255,.16) 42%, transparent 68%); filter: blur(6px); animation: orbBreath 9s ease-in-out infinite; pointer-events:none; }
+  .h-orb::after{ content:''; position:absolute; inset: 30%; border-radius:50%; background: radial-gradient(circle, rgba(142,197,255,.55), transparent 70%); filter: blur(30px); }
+  @keyframes orbBreath{ 0%,100%{ scale: 1; } 50%{ scale: 1.07; } }
+  .h-ring{ position:absolute; right: 8vw; top: 22vh; width: 340px; height: 340px; border: 1px solid rgba(142,197,255,.22); border-radius: 50%; animation: spin 40s linear infinite; pointer-events:none; }
+  .h-ring::before{ content:''; position:absolute; top:-4px; left: 50%; width: 8px; height: 8px; border-radius:50%; background: var(--ice); box-shadow: 0 0 18px 4px rgba(142,197,255,.7); }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+  @media (max-width: 900px){ .h-ring{ display:none; } }
+  .hero .wrap{ position: relative; width: 100%; }
+  .badge{ display:inline-flex; align-items:center; gap:10px; border:1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 8px 15px; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .08em; color: rgba(255,255,255,.75); text-transform: uppercase; }
+  .badge i{ width:7px; height:7px; border-radius:50%; background:#4ADE80; box-shadow: 0 0 0 0 rgba(74,222,128,.6); animation: ping 2.2s ease-out infinite; }
+  @keyframes ping{ 0%{ box-shadow: 0 0 0 0 rgba(74,222,128,.55); } 100%{ box-shadow: 0 0 0 10px rgba(74,222,128,0); } }
+  .hero h1{ margin-top: 34px; font-size: clamp(68px, 12.4vw, 184px); line-height: .9; letter-spacing: -0.055em; font-weight: 600; }
+  .hero h1 em{ color: var(--ice); }
+  .line{ display:block; overflow:hidden; padding-bottom: .06em; }
+  .line > span{ display:inline-block; transform: translateY(110%); transition: transform 1.3s var(--ease); }
+  [data-split].is-in .line > span{ transform: none; }
+  [data-split].is-in .line:nth-child(2) > span{ transition-delay: .12s; }
+  .h-foot{ display:flex; justify-content:space-between; align-items:flex-end; gap: 40px; flex-wrap: wrap; margin-top: 54px; }
+  .h-foot p{ max-width: 440px; font-size: 20px; color: rgba(255,255,255,.66); }
+  .h-ctas{ display:flex; gap: 12px; flex-wrap: wrap; }
+  .fade-up{ opacity:0; transform: translateY(18px); animation: fadeUp 1.1s var(--ease) .55s forwards; }
+  @keyframes fadeUp{ to{ opacity:1; transform:none; } }
+  .marquee{ position: relative; margin-top: 96px; border-top: 1px solid rgba(255,255,255,.08); padding: 26px 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+  .marquee-track{ display:flex; gap: 56px; width: max-content; white-space: nowrap; font-size: clamp(22px, 2.6vw, 36px); letter-spacing: -0.02em; color: rgba(255,255,255,.34); animation: marquee 40s linear infinite; }
+  .marquee-track b{ color: var(--blue); font-weight: 400; }
+  .marquee:hover .marquee-track{ animation-play-state: paused; }
+  @keyframes marquee{ to{ transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce){ .line > span{ transform:none; transition:none; } .fade-up{ animation:none; opacity:1; transform:none; } .marquee-track, .h-ring, .h-orb{ animation:none; } }
 
-  /* ---------- AURORA (hero) ---------- */
-  .aurora{ position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
-  .aurora span{ position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.16; }
-  .aurora span:nth-child(1){ width: 480px; height: 480px; background: var(--accent); top: -200px; left: -140px; animation: auroraA 24s ease-in-out infinite alternate; }
-  .aurora span:nth-child(2){ width: 380px; height: 380px; background: #5AB4F0; bottom: -200px; left: 32%; opacity: 0.1; animation: auroraB 28s ease-in-out infinite alternate; }
-  .aurora span:nth-child(3){ width: 340px; height: 340px; background: #7FB8E6; top: 8%; right: -140px; animation: auroraC 20s ease-in-out infinite alternate; }
-  @keyframes auroraA{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(50px,40px) scale(1.12); } }
-  @keyframes auroraB{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(-40px,-30px) scale(0.92); } }
-  @keyframes auroraC{ from{ transform: translate(0,0) scale(1); } to{ transform: translate(-30px,50px) scale(1.08); } }
-  @media (prefers-reduced-motion: reduce){ .aurora span{ animation: none; } }
-  @media (max-width: 640px){ .aurora{ opacity: 0.6; } }
+  /* STATEMENT */
+  .statement{ padding: 200px 0 160px; }
+  .statement p{ font-size: clamp(34px, 4.6vw, 68px); line-height: 1.08; letter-spacing: -0.035em; font-weight: 500; max-width: 1120px; }
+  .statement .w{ color: #C3CEDD; transition: color .5s ease; }
+  .statement .w.on{ color: var(--ink); }
 
-  /* ---------- 3D ACCENT ---------- */
-  .cube-scene{
-    position: absolute; top: 50%; right: 4%; width: 190px; height: 190px;
-    transform: translateY(-50%); perspective: 900px; pointer-events: none;
-    opacity: 0.6; z-index: 0;
-  }
-  .cube{
-    width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
-    animation: cubeSpin 34s linear infinite;
-  }
-  .cube .face{
-    position: absolute; inset: 0; border: 1px solid var(--accent-ink); border-radius: 2px;
-    background: rgba(30,111,217,0.025);
-  }
-  .cube .face.front{ transform: translateZ(80px); }
-  .cube .face.back{ transform: translateZ(-80px) rotateY(180deg); }
-  .cube .face.right{ transform: rotateY(90deg) translateZ(80px); }
-  .cube .face.left{ transform: rotateY(-90deg) translateZ(80px); }
-  .cube .face.top{ transform: rotateX(90deg) translateZ(80px); }
-  .cube .face.bottom{ transform: rotateX(-90deg) translateZ(80px); }
-  @keyframes cubeSpin{
-    from{ transform: rotateX(-18deg) rotateY(0deg); }
-    to{ transform: rotateX(-18deg) rotateY(360deg); }
-  }
-  .orbit{ position:absolute; inset:-40px; pointer-events:none; }
-  .orbit span{ position:absolute; top:50%; left:50%; width:6px; height:6px; border-radius:50%; background: var(--accent); box-shadow: 0 0 12px 2px rgba(30,111,217,0.5); animation: orbitSpin 12s linear infinite; }
-  .orbit span:nth-child(2){ animation-duration: 18s; animation-direction: reverse; opacity: 0.55; }
-  @keyframes orbitSpin{
-    from{ transform: rotate(0deg) translateX(135px) rotate(0deg); }
-    to{ transform: rotate(360deg) translateX(135px) rotate(-360deg); }
-  }
-  @media (max-width: 900px){ .cube-scene{ display:none; } }
-  @media (prefers-reduced-motion: reduce){ .cube{ animation: none; transform: rotateX(-18deg) rotateY(28deg); } .orbit span{ animation: none; } }
+  /* LEISTUNGEN */
+  .services{ padding-bottom: 170px; }
+  .bento{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+  .tile{ position: relative; overflow: hidden; border-radius: 28px; padding: 36px; min-height: 320px; display:flex; flex-direction:column; justify-content:space-between; text-decoration:none; background:#fff; border: 1px solid var(--line); color: var(--ink); transition: transform .7s var(--ease), border-color .4s ease, box-shadow .7s var(--ease); isolation: isolate; }
+  .tile::before{ content:''; position:absolute; inset:0; z-index:-1; opacity:0; transition: opacity .4s ease; background: radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(47,107,255,.14), transparent 60%); }
+  .tile:hover{ transform: translateY(-6px); border-color: rgba(47,107,255,.35); box-shadow: 0 40px 80px -40px rgba(10,20,40,.35); }
+  .tile:hover::before{ opacity:1; }
+  .tile .t-top{ display:flex; justify-content:space-between; font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; color: var(--slate); text-transform: uppercase; }
+  .tile h3{ font-size: clamp(26px, 2.3vw, 32px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; }
+  .tile p{ margin-top: 10px; color: var(--slate); font-size: 16px; max-width: 340px; }
+  .tile .go{ position:absolute; right: 30px; bottom: 30px; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); display:flex; align-items:center; justify-content:center; transition: background .4s ease, color .4s ease, transform .6s var(--ease), border-color .4s ease; }
+  .tile:hover .go{ background: var(--blue); border-color: var(--blue); color:#fff; transform: rotate(-45deg); }
+  .tile.big{ grid-column: span 2; min-height: 420px; background: var(--night); color:#fff; border-color: rgba(255,255,255,.06); }
+  .tile.big::before{ background: radial-gradient(520px circle at var(--mx,70%) var(--my,80%), rgba(47,107,255,.55), transparent 60%); opacity: .8; }
+  .tile.big .t-top{ color: var(--ice); }
+  .tile.big h3{ font-size: clamp(34px, 3.8vw, 54px); max-width: 600px; }
+  .tile.big p{ color: rgba(255,255,255,.62); }
+  .tile.big .go{ border-color: rgba(255,255,255,.2); }
+  .tile.tint{ background: #DCEBFF; border-color: #C3DAFA; }
+  .tile.tint p{ color: #3A4E6E; }
+  .tile .icon{ width: 46px; height: 46px; color: var(--blue); }
+  .tile > div:not(.t-top){ padding-right: 60px; }
+  @media (max-width: 960px){ .bento{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 640px){ .bento{ grid-template-columns: 1fr; } .tile.big{ grid-column: auto; min-height: 340px; } .tile{ min-height: 240px; padding: 28px; } }
 
-  /* ---------- PROGRESS ---------- */
-  #progress{ position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--accent); z-index: 100; transition: width .08s linear; }
+  /* ABLAUF */
+  .process{ background: var(--night); color:#fff; padding: 170px 0; position: relative; overflow:hidden; }
+  .process .kicker{ color: var(--ice); }
+  .process .h2 em{ color: var(--ice); }
+  .steps{ position: relative; display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 32px; margin-top: 90px; }
+  .st-line{ position:absolute; left: 0; right: 0; top: 28px; height: 1px; background: rgba(255,255,255,.12); }
+  .st-fill{ position:absolute; inset:0; background: linear-gradient(90deg, var(--blue), var(--ice)); transform-origin: 0 50%; transform: scaleX(0); }
+  .st{ position: relative; }
+  .st .dot{ width: 56px; height: 56px; border-radius: 50%; background: #0F1F44; border: 1px solid rgba(142,197,255,.3); display:flex; align-items:center; justify-content:center; font-family: var(--f-mono); font-size: 14px; transition: background .6s var(--ease), box-shadow .6s var(--ease), border-color .6s ease; }
+  .st.on .dot{ background: var(--blue); border-color: var(--blue); box-shadow: 0 0 0 8px rgba(47,107,255,.15), 0 0 40px rgba(47,107,255,.6); }
+  .st h3{ margin-top: 34px; font-size: clamp(28px, 2.6vw, 38px); letter-spacing: -0.03em; font-weight: 600; transition: color .6s ease; color: rgba(255,255,255,.45); }
+  .st.on h3{ color:#fff; }
+  .st p{ margin-top: 10px; color: rgba(255,255,255,.58); max-width: 320px; }
+  @media (max-width: 820px){ .steps{ grid-template-columns: 1fr; gap: 44px; } .st-line{ left: 28px; right:auto; top: 0; bottom: 0; width: 1px; height:auto; } .st-fill{ transform-origin: 50% 0; } .st{ padding-left: 0; } }
 
-  /* ---------- NAV ---------- */
-  header{ position: sticky; top: 0; z-index: 50; background: rgba(244,248,252,0.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-  .nav{ display:flex; align-items:center; justify-content:space-between; padding-top: 20px; padding-bottom: 20px; transition: padding-top .3s cubic-bezier(.2,.7,.2,1), padding-bottom .3s cubic-bezier(.2,.7,.2,1); }
-  header.scrolled .nav{ padding-top: 13px; padding-bottom: 13px; }
-  .brand{ display:flex; align-items:baseline; gap:8px; font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; font-size:1.28rem; letter-spacing:-0.01em; }
-  .brand .dot{ color: var(--accent); }
-  .nav-right{ display:flex; align-items:center; gap:28px; }
-  .nav-collapse{ display:flex; align-items:center; gap:28px; }
-  .nav-links{ display:flex; gap:36px; font-size:0.88rem; }
-  .nav-links a{ color: var(--slate); transition: color .25s ease; position:relative; padding-bottom: 2px; }
-  .nav-links a::after{ content:''; position:absolute; left:0; bottom:0; width:100%; height:1px; background: var(--accent); transform: scaleX(0); transform-origin: right; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
-  .nav-links a:hover{ color: var(--ink); }
-  .nav-links a:hover::after{ transform: scaleX(1); transform-origin: left; }
-  .nav-links a.current{ color: var(--ink); }
-  .nav-links a.current::after{ transform: scaleX(1); transform-origin: left; }
-  .nav-cta{ font-size: 0.82rem; padding: 10px 18px; background: var(--ink); color: var(--paper); border-radius: var(--radius); transition: background .2s ease; }
-  .nav-cta:hover{ background: var(--accent); }
-  .nav-cta-book{ display:inline-flex; flex-direction:column; align-items:center; line-height:1.25; background: var(--accent); color:#fff; padding: 8px 18px; white-space:nowrap; }
-  .nav-cta-book:hover{ background: var(--accent-ink); }
-  .nav-cta-book small{ font-size:0.68rem; opacity:0.85; letter-spacing:0.01em; }
-  @media (max-width: 420px){ .nav-cta-book{ padding: 7px 12px; } .nav-cta-book span{ font-size:0.76rem; } }
-  .lang-switch{ display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.04em; }
-  .lang-btn{ background:none; border:none; padding:4px 2px; color: var(--slate); cursor:pointer; font: inherit; transition: color .2s ease; }
-  .lang-btn:hover{ color: var(--ink); }
-  .lang-btn.active{ color: var(--accent); font-weight:600; }
-  .lang-sep{ color: var(--line); }
-  .nav-toggle{ display:none; background:none; border:none; padding:6px; margin:-6px; color: var(--ink); cursor:pointer; }
-  .nav-toggle svg{ width:24px; height:24px; display:block; }
-  @media (max-width: 780px){
-    .nav-toggle{ display:block; }
-    .nav-collapse{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background: var(--paper); border-bottom:1px solid var(--line); padding:8px 22px 20px; z-index:50; }
-    .nav-collapse.mobile-open{ display:flex; }
-    .nav-links{ flex-direction:column; gap:0; font-size:0.98rem; }
-    .nav-links a{ padding:14px 0; border-bottom:1px solid var(--line); }
-    .lang-switch{ padding:16px 0; }
-  }
+  /* INHABER */
+  .owners{ padding: 170px 0 120px; }
+  .o-grid{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+  .owner{ border-radius: 28px; overflow:hidden; background:#fff; border: 1px solid var(--line); text-decoration:none; color: var(--ink); display:block; }
+  .o-visual{ position: relative; height: clamp(280px, 30vw, 440px); overflow: hidden; display:flex; align-items:flex-end; padding: 32px; }
+  .o-visual.a{ background: linear-gradient(160deg, #0F2A6E, #050B18 75%); }
+  .o-visual.b{ background: linear-gradient(200deg, #2F6BFF, #0A1F5C 70%); }
+  .o-visual .mono-big{ font-size: clamp(110px, 14vw, 210px); line-height: .8; letter-spacing: -0.06em; font-weight: 600; color: rgba(255,255,255,.92); transition: transform 1.2s var(--ease); }
+  .o-visual .mono-big em{ font-family: var(--f-serif); font-weight: 400; color: var(--ice); }
+  .owner:hover .mono-big{ transform: translateY(-10px) scale(1.03); }
+  .o-visual::after{ content:''; position:absolute; width: 60%; aspect-ratio:1; right:-15%; top:-25%; border-radius:50%; background: radial-gradient(circle, rgba(142,197,255,.35), transparent 65%); }
+  .o-meta{ padding: 26px 30px; display:flex; justify-content:space-between; align-items:center; gap: 16px; }
+  .o-meta b{ display:block; font-size: 24px; letter-spacing: -0.02em; font-weight: 600; }
+  .o-meta span{ color: var(--slate); font-size: 15px; }
+  .o-tag{ font-family: var(--f-mono); font-size: 11px; letter-spacing: .1em; color: var(--blue); border: 1px solid #C3DAFA; padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
+  @media (max-width: 720px){ .o-grid{ grid-template-columns: 1fr; } }
 
-  /* ---------- SECTION DIVIDER ---------- */
-  .hr{ height: 1px; background: var(--line); max-width: 1160px; margin: 0 auto; }
+  /* TERMIN */
+  .book{ padding: 40px 0 150px; }
+  .book-card{ position: relative; overflow:hidden; border-radius: 40px; background: var(--night); color:#fff; padding: clamp(48px, 7vw, 104px); display:flex; justify-content:space-between; align-items:center; gap: 48px; flex-wrap: wrap; }
+  .book-card .b-orb{ position:absolute; width: 760px; aspect-ratio:1; left: -260px; top: -340px; border-radius:50%; background: radial-gradient(circle, rgba(47,107,255,.55), transparent 62%); pointer-events:none; }
+  .chips{ display:flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; position: relative; }
+  .chip{ font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; border: 1px solid rgba(255,255,255,.18); padding: 8px 13px; border-radius: 999px; }
+  .chip.solid{ background: var(--blue); border-color: var(--blue); }
+  .book-card h2{ position: relative; font-size: clamp(48px, 7vw, 100px); line-height: .93; letter-spacing: -0.05em; font-weight: 600; }
+  .book-card h2 em{ color: var(--ice); }
+  .circle-btn{ position: relative; width: clamp(170px, 16vw, 220px); aspect-ratio: 1; border-radius: 50%; background:#fff; color: var(--night); text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 6px; font-weight: 600; font-size: 19px; text-align:center; line-height: 1.15; transition: background .4s ease; }
+  .circle-btn:hover{ background: var(--ice); }
+  .circle-btn .arr{ font-size: 24px; }
 
-  /* ---------- HERO ---------- */
-  .hero{ padding: 128px 0 96px; position:relative; }
-  .hero-item{ opacity: 0; transform: translateY(14px); animation: heroIn .8s cubic-bezier(.16,1,.3,1) forwards; }
-  .hero-item:nth-child(1){ animation-delay: .05s; }
-  .hero-item:nth-child(2){ animation-delay: .14s; }
-  .hero-item:nth-child(3){ animation-delay: .24s; }
-  .hero-item:nth-child(4){ animation-delay: .34s; }
-  .eyebrow{ font-size: 0.78rem; color: var(--accent-ink); display:flex; align-items:center; gap:10px; margin-bottom: 32px; }
-  .eyebrow::before{ content:''; width:26px; height:1px; background: var(--accent-ink); display:inline-block; }
-  .hero h1{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-size: clamp(2.5rem, 5.4vw, 4.4rem); font-weight: 500; line-height: 1.12; letter-spacing: -0.01em; max-width: 18ch; }
-  @keyframes heroIn{ to{ opacity:1; transform: translateY(0); } }
-  @media (prefers-reduced-motion: reduce){ .hero-item{ animation: none; opacity:1; transform:none; } }
-  .hero-sub{ margin-top: 28px; max-width: 50ch; font-size: 1.14rem; color: var(--slate); }
-  .hero-cta{ margin-top: 44px; display:flex; align-items:center; gap: 28px; flex-wrap: wrap; }
-  .hero-reassurance{ margin-top: 18px; font-size: 0.82rem; color: var(--slate-light); }
-  .btn-primary{ background: var(--ink); color: var(--paper); padding: 16px 28px; font-size: 0.94rem; border-radius: var(--radius); transition: background .2s ease, transform .2s ease, box-shadow .2s ease; display:inline-block; cursor:pointer; border:none; font-family:inherit; box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 10px 20px -12px rgba(11,31,58,0.35); }
-  .btn-primary:hover{ background: var(--accent); transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 16px 26px -12px rgba(30,111,217,0.4); }
-  .link-secondary{ font-size: 0.9rem; color: var(--ink); border-bottom: 1px solid var(--slate-light); padding-bottom: 2px; transition: border-color .2s ease, color .2s ease; display: inline-flex; align-items: center; gap: 6px; }
-  .link-secondary:hover{ border-color: var(--accent); color: var(--accent); }
-  .link-secondary .arrow{ display:inline-block; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
-  .link-sub{ display:flex; width:fit-content; margin-top:12px; }
-  .link-secondary:hover .arrow{ transform: translateX(4px); }
-
-  /* ---------- SECTION HEADERS ---------- */
-  section{ padding: 104px 0; }
-  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; }
-  .section-label{ font-size: 0.76rem; color: var(--slate); text-transform: uppercase; margin-bottom: 14px; }
-  .section-head h2{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-size: clamp(1.8rem, 3.2vw, 2.5rem); font-weight: 600; letter-spacing: -0.01em; max-width: 22ch; }
-  .section-head p{ color: var(--slate); max-width: 36ch; font-size: 0.98rem; }
-
-  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.in{ opacity:1; transform:none; }
-  .reveal[data-stagger]{ opacity:1; transform:none; }
-  .reveal[data-stagger] > *{ opacity:0; transform: translateY(16px); transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); }
-  .reveal[data-stagger].in > *{ opacity:1; transform:none; }
-
-  /* ---------- PROBLEM ---------- */
-  .problem-list{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  @media (max-width: 720px){ .problem-list{ grid-template-columns: 1fr; } }
-  .problem-item{ background: var(--paper); padding: 26px 28px; display:flex; gap:16px; align-items:flex-start; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 1px 0 rgba(11,31,58,0.03); transition: box-shadow .3s ease, transform .3s cubic-bezier(.2,.7,.2,1); }
-  .problem-item:hover{ box-shadow: 0 14px 28px -18px rgba(11,31,58,0.22); transform: translateY(-2px); }
-  .problem-item .mark{ color: var(--accent); font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; flex-shrink:0; font-size:1.1rem; }
-  .problem-item p{ font-size: 0.98rem; }
-
-  /* ---------- SOLUTION ---------- */
-  .solution-copy{ max-width: 68ch; font-size: 1.1rem; }
-  .solution-copy strong{ color: var(--accent-ink); }
-
-  /* ---------- LEISTUNGEN ---------- */
-  .services{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  @media (max-width: 900px){ .services{ grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px){ .services{ grid-template-columns: 1fr; } }
-  .service{ background: var(--paper); padding: 36px 30px; border: 1px solid var(--line); border-radius: var(--radius); transition: background .3s ease, box-shadow .3s ease; position: relative; z-index: 1; overflow: hidden; transform-style: preserve-3d; will-change: transform; }
-  .service:hover{ background: var(--accent-dim); box-shadow: 0 20px 36px -22px rgba(11,31,58,0.28); }
-  .service::before{ content:''; position:absolute; inset:0; opacity:0; transition: opacity .35s ease; pointer-events:none; background: radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(30,111,217,0.16), transparent 70%); }
-  .service:hover::before{ opacity:1; }
-  .service .num{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; font-size: 0.82rem; color: var(--accent); margin-bottom: 20px; display:block; }
-  .service .tag{ transition: color .3s ease; font-size: 0.72rem; color: var(--slate-light); margin-bottom: 14px; display:block; text-transform:uppercase; letter-spacing:0.04em; }
-  .service:hover .tag{ color: var(--accent); }
-  .service h3{ font-size: 1.14rem; font-weight:500; margin-bottom: 10px; }
-  .service p{ color: var(--slate); font-size: 0.9rem; margin-bottom: 14px; }
-
-  /* ---------- WARUM (trust) ---------- */
-  .why-grid{ display:flex; flex-direction:column; gap: 0; }
-  .why-item{ padding: 24px 4px; border-top: 1px solid var(--line); display:flex; justify-content:space-between; gap: 20px; position: relative; transition: padding .3s cubic-bezier(.2,.7,.2,1), background .3s ease; }
-  .why-item::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
-  .why-item:hover::before{ transform: scaleY(1); }
-  .why-item:last-child{ border-bottom: 1px solid var(--line); }
-  .why-item:hover{ padding-left: 20px; background: rgba(30,111,217,0.05); }
-  .why-item .w-name{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; font-size:1rem; transition: color .3s ease; flex-shrink:0; }
-  .why-item:hover .w-name{ color: var(--accent); }
-  .why-item .w-desc{ color: var(--slate); font-size: 0.9rem; max-width: 38ch; text-align:right; }
-  @media (max-width: 620px){
-    .why-item{ flex-direction:column; gap:6px; }
-    .why-item .w-desc{ text-align:left; }
-  }
-
-  /* ---------- ABLAUF ---------- */
-  .steps{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  @media (max-width: 820px){ .steps{ grid-template-columns: 1fr; } }
-  .step{ background: var(--paper-dim); padding: 40px 32px 44px; border: 1px solid var(--line); border-radius: var(--radius); transition: background .3s ease, box-shadow .3s ease; position: relative; }
-  .step:hover{ background: var(--paper); box-shadow: 0 20px 36px -22px rgba(11,31,58,0.22); }
-  .step .num{ font-size: 0.82rem; color: var(--accent); margin-bottom: 22px; display:block; }
-  .step h3{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-size: 1.3rem; font-weight:600; margin-bottom: 14px; }
-  .step p{ color: var(--slate); font-size: 0.94rem; }
-
-  /* ---------- MID-PAGE CTA ---------- */
-  .mid-cta{ background: var(--ink); color: var(--paper); text-align:center; padding: 88px 0; }
-  .mid-cta h2{ color: var(--paper); font-size: clamp(1.7rem, 3vw, 2.3rem); margin-bottom:14px; }
-  .mid-cta p{ color: #C5D6EA; font-size:1rem; margin-bottom:32px; }
-  .mid-cta .btn-primary{ background: var(--paper); color: var(--ink); }
-  .mid-cta .btn-primary:hover{ background: var(--accent); color:#fff; }
-
-  /* ---------- FAQ ---------- */
-  .faq-list{ display:flex; flex-direction:column; }
-  .faq-item{ border-top: 1px solid var(--line); padding: 22px 2px; }
-  .faq-item:last-child{ border-bottom: 1px solid var(--line); }
-  .faq-item summary{ cursor:pointer; font-family:'Fraunces', serif; font-optical-sizing:auto; font-weight:600; font-size:1.02rem; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:20px; }
-  .faq-item summary::-webkit-details-marker{ display:none; }
-  .faq-item summary::after{ content:'+'; color: var(--accent); font-size:1.4rem; font-weight:400; flex-shrink:0; }
-  .faq-item[open] summary::after{ content:'−'; }
-  .faq-item p{ margin-top:14px; color: var(--slate); font-size:0.94rem; max-width:64ch; }
-
-  /* ---------- KONTAKT ---------- */
-  .kontakt{ background: var(--ink); color: var(--paper); }
-  .kontakt-inner{ max-width: 480px; margin: 0 auto; text-align: center; }
-  .kontakt .section-label{ color: var(--slate-light); }
-  .kontakt h2{ font-family:'Fraunces', serif; font-optical-sizing:auto; font-size: clamp(2rem, 4.2vw, 2.8rem); font-weight:600; letter-spacing:-0.01em; color: var(--paper); }
-  .kontakt-copy{ margin-top: 18px; color: #C5D6EA; font-size: 1.02rem; }
-
-  .qualify-form{ max-width: 440px; margin: 44px auto 0; text-align: left; }
-  .qualify-form form{ display:flex; flex-direction:column; gap: 16px; }
-  .qualify-form .field{ display:flex; flex-direction:column; gap: 6px; }
-  .qualify-form .field label{ font-size: 0.78rem; color: #93AAC6; }
-  .qualify-form .field input,
-  .qualify-form .field select,
-  .qualify-form .field textarea{
-    background: #13294A;
-    border: 1px solid #24406A;
-    border-radius: var(--radius);
-    padding: 13px 14px;
-    font-family: inherit;
-    font-size: 0.94rem;
-    color: var(--paper);
-  }
-  .qualify-form .field select{ cursor:pointer; }
-  .qualify-form .field textarea{ resize:vertical; min-height:76px; }
-  .qualify-form .field input::placeholder, .qualify-form .field textarea::placeholder{ color: #647D9C; }
-  .qualify-form .field input:focus, .qualify-form .field select:focus, .qualify-form .field textarea:focus{ outline: none; border-color: var(--accent); }
-  .qualify-form .field-checkbox label{ display:flex; align-items:flex-start; gap: 8px; font-size: 0.85rem; color: #93AAC6; cursor:pointer; }
-  .qualify-form .field-checkbox input{ margin-top: 3px; width: 16px; height: 16px; accent-color: var(--accent); flex-shrink: 0; }
-  .qualify-form .submit-btn{ margin-top: 6px; background: var(--accent); color: #fff; padding: 16px 28px; border: none; border-radius: var(--radius); font-family: inherit; font-size: 0.94rem; cursor:pointer; transition: background .2s ease; width:100%; }
-  .form-trust{ margin-top: -6px; font-size: 0.8rem; color: #93AAC6; text-align: center; }
-  .qualify-form .submit-btn:hover{ background: #3D8BEA; }
-  .qualify-form .submit-btn:disabled{ opacity: 0.6; cursor: not-allowed; }
-  .qualify-form .form-note{ font-size: 0.86rem; color: #C5D6EA; margin-top: 4px; display:none; }
-  .qualify-form .form-note.show{ display:block; }
-  .qualify-form .form-note.error{ color: #FF9B8A; }
-  .booking-followup{ margin-top:16px; display:none; }
-  .booking-followup.show{ display:block; }
-  .booking-followup .btn-primary{ background: var(--paper); color: var(--ink); }
-  .booking-followup .btn-primary:hover{ background: var(--accent); color:#fff; }
-
-  .kontakt-direct{ margin: 40px auto 0; font-size: 0.88rem; width: fit-content; text-align:left; color:#93AAC6; }
-  .kontakt-direct div{ margin-bottom: 8px; }
-  .kontakt-direct span{ color: #647D9C; display:inline-block; width: 90px; }
-  .kontakt-direct a{ color:#C5D6EA; }
-
-  /* ---------- FOOTER ---------- */
-  footer{ padding: 44px 0 24px; border-top: 1px solid var(--line); }
-  .footer-inner{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap: 32px; font-size: 0.85rem; color: var(--slate); }
-  .footer-cols{ display:flex; gap:56px; flex-wrap:wrap; }
-  .footer-col-title{ font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; color: var(--slate-light); margin-bottom:14px; }
-  .footer-col a{ display:block; padding:4px 0; transition: color .2s ease; }
-  .footer-col a:hover{ color: var(--accent); }
-  .footer-bottom{ max-width:1160px; margin:28px auto 0; padding:0 32px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:0.8rem; color: var(--slate); }
-  @media (max-width: 640px){ .footer-bottom{ padding:0 22px; } }
-  .footer-links{ display:flex; gap: 22px; }
+  /* FAQ + KONTAKT */
+  .duo{ padding: 0 0 170px; }
+  .duo-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items:start; }
+  @media (max-width: 900px){ .duo-grid{ grid-template-columns: 1fr; gap: 90px; } }
+  .faq details{ border-bottom: 1px solid var(--line); }
+  .faq summary{ list-style:none; cursor:pointer; display:flex; justify-content:space-between; gap: 24px; padding: 26px 0; font-size: 21px; letter-spacing: -0.02em; font-weight: 500; }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary .pm{ flex-shrink:0; width: 32px; height: 32px; border-radius:50%; border:1px solid var(--line); position:relative; transition: transform .5s var(--ease), background .3s ease; }
+  .faq summary .pm::before, .faq summary .pm::after{ content:''; position:absolute; left: 50%; top: 50%; width: 12px; height: 1.5px; background: var(--ink); translate: -50% -50%; }
+  .faq summary .pm::after{ rotate: 90deg; transition: rotate .5s var(--ease); }
+  .faq details[open] summary .pm{ background: var(--blue); border-color: var(--blue); }
+  .faq details[open] summary .pm::before, .faq details[open] summary .pm::after{ background:#fff; }
+  .faq details[open] summary .pm::after{ rotate: 0deg; }
+  .faq details p{ padding: 0 50px 26px 0; color: var(--slate); }
+  .contact-card{ background:#fff; border: 1px solid var(--line); border-radius: 28px; padding: 40px; }
+  .contact-card h3{ font-size: 34px; letter-spacing: -0.035em; font-weight: 600; }
+  .contact-card > p{ color: var(--slate); margin-top: 8px; }
+  .cf{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+  .cf .full{ grid-column: 1 / -1; }
+  .cf label{ display:block; font-size: 13px; color: var(--slate); margin-bottom: 6px; }
+  .cf input[type=text], .cf input[type=email], .cf input[type=tel], .cf textarea{ width:100%; font: inherit; font-size: 16px; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); transition: border-color .2s ease, background .2s ease, box-shadow .2s ease; }
+  .cf input:focus, .cf textarea:focus{ outline: none; border-color: var(--blue); background:#fff; box-shadow: 0 0 0 4px rgba(47,107,255,.12); }
+  .cf textarea{ min-height: 96px; resize: vertical; }
+  .cf .chk{ display:flex; gap: 10px; align-items:center; font-size: 14px; color: var(--slate); }
+  .cf .send{ grid-column: 1 / -1; margin-top: 6px; border:none; cursor:pointer; background: var(--night); color:#fff; border-radius: 999px; padding: 17px; font: inherit; font-weight: 600; font-size: 16px; transition: background .3s ease; }
+  .cf .send:hover{ background: var(--blue); }
+  .cf .send:disabled{ opacity:.6; cursor: not-allowed; }
+  .form-note{ grid-column: 1 / -1; font-size: 14px; display:none; }
+  .form-note.show{ display:block; }
+  .form-note.error{ color:#B3261E; }
+  @media (max-width: 560px){ .cf{ grid-template-columns: 1fr; } .contact-card{ padding: 28px; } }
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
-<body data-lead-source="Startseite">
+<body class="home">
 
-<div class="bg-stone" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-<div id="progress" aria-hidden="true"></div>
-
-<header>
-  <div class="wrap nav">
-    <a href="#" class="brand">Lusides</a>
-    <div class="nav-right">
-      <button type="button" class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <div class="nav-collapse">
-        <nav class="nav-links">
-          <a href="#leistungen" data-i18n="nav.leistungen">Leistungen</a>
-          <a href="#warum" data-i18n="nav.warum">Warum wir</a>
-          <a href="#ablauf" data-i18n="nav.ablauf">Ablauf</a>
-          <a href="#faq" data-i18n="nav.faq">FAQ</a>
-          <a href="team.html" data-i18n="nav.team">Team</a>
-          <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
-          <a href="erstberatung.html" data-i18n="nav.erstberatung">Erstberatung</a>
-        </nav>
-        <div class="lang-switch">
-          <button type="button" class="lang-btn" data-lang="de">DE</button>
-          <span class="lang-sep">/</span>
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
-        </div>
+<div class="ls-progress" aria-hidden="true"></div>
+<header class="ls-header">
+  <div class="ls-bar">
+    <a href="index.html" class="ls-logo" aria-label="Lusides Startseite"><i aria-hidden="true"></i>Lusides</a>
+    <nav class="ls-links" aria-label="Hauptnavigation">
+      <a href="#leistungen" data-i18n="nav.leistungen">Leistungen</a>
+      <a href="#ablauf" data-i18n="nav.ablauf">Ablauf</a>
+      <a href="team.html" data-i18n="nav.team">Team</a>
+      <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
+      <a href="#kontakt" data-i18n="nav.kontakt">Kontakt</a>
+    </nav>
+    <div class="ls-right">
+      <div class="ls-lang">
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
       </div>
-      <a href="termin.html" class="nav-cta nav-cta-book"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_sub">1 Std. Erstgespräch · 350 €</small></a>
+      <a href="termin.html" class="ls-cta ls-magnetic" data-strength="0.2"><span class="ls-cta-label" data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">60 MIN · 350 €</small></a>
+      <button type="button" class="ls-burger" aria-label="Menü öffnen" aria-expanded="false"><span></span></button>
     </div>
   </div>
 </header>
 
-<section class="hero" data-bg="#F4F8FC">
-  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
-  <div class="cube-scene" aria-hidden="true">
-    <div class="orbit"><span></span><span></span></div>
-    <div class="cube">
-      <div class="face front"></div>
-      <div class="face back"></div>
-      <div class="face right"></div>
-      <div class="face left"></div>
-      <div class="face top"></div>
-      <div class="face bottom"></div>
+<main id="top">
+
+<section class="hero" data-spotlight>
+  <div class="h-grid" aria-hidden="true"></div>
+  <div class="h-orb" aria-hidden="true"></div>
+  <div class="h-ring" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="badge fade-up" style="animation-delay:.2s"><i aria-hidden="true"></i><span data-i18n="home2.badge">Unternehmensberatung &amp; Entwicklung · Wien</span></span>
+    <h1 data-split>
+      <span class="line"><span data-i18n="home2.h1a">Wachstum</span></span>
+      <span class="line"><span><span data-i18n="home2.h1b">mit</span> <em data-i18n="home2.h1c">System.</em></span></span>
+    </h1>
+    <div class="h-foot fade-up">
+      <p data-i18n="home2.sub">Prozesse, Marketing, Finanzen und KI für inhabergeführte Unternehmen. Wir beraten nicht nur, wir setzen um.</p>
+      <div class="h-ctas">
+        <a href="termin.html" class="btn btn-light ls-magnetic" data-strength="0.25"><span data-i18n="home2.cta1">Erstgespräch buchen</span><span class="arr" aria-hidden="true">→</span></a>
+        <a href="#leistungen" class="btn btn-ghost" data-i18n="nav.leistungen">Leistungen</a>
+      </div>
     </div>
   </div>
-  <div class="wrap">
-    <span class="eyebrow mono hero-item" data-i18n="hero.eyebrow">LUSIDES</span>
-    <h1 class="display hero-item" data-i18n="hero.h1">Du hast dein Unternehmen aufgebaut. Nicht, um jetzt allein weiterzukämpfen.</h1>
-    <p class="hero-sub hero-item" data-i18n="hero.sub">Lusides ist Unternehmensberatung und Entwicklungspartner für inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Wir beraten nicht nur, wir setzen um.</p>
-    <div class="hero-cta hero-item">
-      <a href="#kontakt" class="btn-primary" data-i18n="hero.cta1">Unternehmen vorstellen</a>
-      <a href="#loesung" class="link-secondary"><span data-i18n="hero.cta2">Wie wir helfen</span><span class="arrow">→</span></a>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Prozesse &amp; Systeme</span><b>✦</b><span>Marketing</span><b>✦</b><span>Finanzen</span><b>✦</b><span>Digitalisierung &amp; KI</span><b>✦</b><span>Onlineshop-Entwicklung</span><b>✦</b>
+      <span>Prozesse &amp; Systeme</span><b>✦</b><span>Marketing</span><b>✦</b><span>Finanzen</span><b>✦</b><span>Digitalisierung &amp; KI</span><b>✦</b><span>Onlineshop-Entwicklung</span><b>✦</b>
     </div>
-    <p class="hero-reassurance hero-item" data-i18n="hero.reassurance">Kein Massengeschäft. Nur für Unternehmen mit bestehendem Umsatz und Struktur.</p>
   </div>
 </section>
 
-<div class="hr" aria-hidden="true"></div>
-
-<section id="problem" data-bg="#E3EEF9">
+<section class="statement">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="kicker ls-reveal" data-i18n="home2.k1">01 — Haltung</div>
+    <p data-scrub data-i18n="home2.statement">Du hast dein Unternehmen aufgebaut. Wir sorgen dafür, dass es auch ohne dich läuft — mit klaren Prozessen, starkem Marketing und Systemen, die mitwachsen.</p>
+  </div>
+</section>
+
+<section class="services" id="leistungen">
+  <div class="wrap">
+    <div class="sec-head">
       <div>
-        <div class="section-label mono" data-i18n="problem.label">KENNST DU DAS?</div>
-        <h2 class="display" data-i18n="problem.h2">Du machst alles richtig. Trotzdem trägst du es allein.</h2>
+        <div class="kicker ls-reveal" data-i18n="home2.k2">02 — Leistungen</div>
+        <h2 class="h2 ls-reveal" data-delay="1"><span data-i18n="home2.svc_h2a">Fünf Hebel.</span><br><em data-i18n="home2.svc_h2b">Ein Partner.</em></h2>
       </div>
-      <p data-i18n="problem.p">Die meisten Unternehmer, mit denen wir sprechen, kennen genau dieses Gefühl:</p>
+      <p class="lead ls-reveal" data-delay="2" data-i18n="home2.svc_lead">Wir starten dort, wo der größte Hebel liegt, und bleiben, bis es läuft.</p>
     </div>
-  </div>
-  <div class="wrap">
-    <div class="problem-list reveal" data-stagger>
-      <div class="problem-item"><span class="mark">→</span><p data-i18n="problem.li1">Du arbeitest mehr als jeder Mitarbeiter — und siehst es kaum am Ergebnis.</p></div>
-      <div class="problem-item"><span class="mark">→</span><p data-i18n="problem.li2">Wachstum hängt nur an dir — ohne dich läuft spürbar weniger.</p></div>
-      <div class="problem-item"><span class="mark">→</span><p data-i18n="problem.li3">Prozesse, Digitalisierung, KI — dafür bleibt neben dem Tagesgeschäft keine Zeit.</p></div>
-      <div class="problem-item"><span class="mark">→</span><p data-i18n="problem.li4">Einen Partner, der wirklich mit anpackt statt nur zu beraten, hast du bisher nicht gefunden.</p></div>
+    <div class="bento">
+      <a href="leistungen-digitalisierung-ki.html" class="tile big ls-reveal" data-spotlight>
+        <div class="t-top"><span>04</span><span data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</span></div>
+        <div>
+          <h3 data-i18n="home2.t4_h">KI-Systeme, gebaut für euer Unternehmen.</h3>
+          <p data-i18n="home2.t4_p">Firmenspezifisch entwickelt und von uns selbst implementiert.</p>
+        </div>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a href="leistungen-onlineshop-entwicklung.html" class="tile ls-reveal" data-delay="1" data-spotlight>
+        <div class="t-top"><span>05</span><span data-i18n="home2.new">Neu</span></div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg>
+          <h3 style="margin-top:18px" data-i18n="svc_shop.tag">Onlineshop-Entwicklung</h3>
+          <p data-i18n="home2.t5_p">Shops, die verkaufen und mit Lager, Zahlung und Versand verbunden sind.</p>
+        </div>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a href="leistungen-prozesse-systeme.html" class="tile ls-reveal" data-spotlight>
+        <div class="t-top"><span>01</span></div>
+        <div><h3 data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</h3><p data-i18n="home2.t1_p">Abläufe, die ohne ständige Eingriffe funktionieren.</p></div>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a href="leistungen-marketing.html" class="tile tint ls-reveal" data-delay="1" data-spotlight>
+        <div class="t-top"><span>02</span></div>
+        <div><h3 data-i18n="leistungen.s2_tag">Marketing</h3><p data-i18n="home2.t2_p">Sichtbarkeit, die zu Umsatz wird.</p></div>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a href="leistungen-finanzen.html" class="tile ls-reveal" data-delay="2" data-spotlight>
+        <div class="t-top"><span>03</span></div>
+        <div><h3 data-i18n="home2.t3_h">Finanzen</h3><p data-i18n="home2.t3_p">Kennzahlen, auf die du dich verlassen kannst.</p></div>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
     </div>
   </div>
 </section>
 
-<section id="loesung" data-bg="#F4F8FC">
-  <div class="wrap reveal">
-    <div class="section-label mono" data-i18n="loesung.label">WIE WIR HELFEN</div>
-    <h2 class="display" style="max-width:26ch; margin-bottom:22px;" data-i18n="loesung.h2">Manchmal reicht Unterstützung. Manchmal steigen wir mit ein.</h2>
-    <p class="solution-copy" data-i18n="loesung.p">Wir beraten dich bei den Prozessen, Systemen, dem Marketing und der KI-Strategie deines Unternehmens — und bleiben, bis es tatsächlich läuft. Keine Folien-Präsentationen, sondern Umsetzung. Voraussetzung: dein Unternehmen hat bereits Umsatz und eine gewachsene Struktur.</p>
+<section class="process" id="ablauf">
+  <div class="wrap">
+    <div class="kicker ls-reveal" data-i18n="home2.k3">03 — Ablauf</div>
+    <h2 class="h2 ls-reveal" data-delay="1"><span data-i18n="home2.proc_h2a">Drei Schritte.</span><br><em data-i18n="home2.proc_h2b">Kein Theater.</em></h2>
+    <div class="steps" data-steps>
+      <div class="st-line" aria-hidden="true"><div class="st-fill"></div></div>
+      <div class="st"><div class="dot">01</div><h3 data-i18n="ablauf.step1_h">Analyse</h3><p data-i18n="home2.s1">Wo verliert ihr Zeit, Geld und Kunden?</p></div>
+      <div class="st"><div class="dot">02</div><h3 data-i18n="ablauf.step2_h">Aufbau</h3><p data-i18n="home2.s2">Systeme, Abläufe und Tools, die zu euch passen.</p></div>
+      <div class="st"><div class="dot">03</div><h3 data-i18n="ablauf.step3_h">Umsetzung</h3><p data-i18n="home2.s3">Wir setzen mit euch um, bis es im Alltag läuft.</p></div>
+    </div>
   </div>
 </section>
 
-<section id="leistungen" data-bg="#F4F8FC">
+<section class="owners" id="inhaber">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="sec-head">
       <div>
-        <div class="section-label mono" data-i18n="leistungen.label">LEISTUNGEN</div>
-        <h2 class="display" data-i18n="leistungen.h2">Wo wir konkret mit anpacken</h2>
+        <div class="kicker ls-reveal" data-i18n="home2.k4">04 — Inhaber</div>
+        <h2 class="h2 ls-reveal" data-delay="1"><span data-i18n="home2.own_h2a">Direkt mit den</span><br><em data-i18n="home2.own_h2b">Gründern.</em></h2>
       </div>
-      <p data-i18n="leistungen.p">Vier Bereiche. Ein Ziel: dass du nicht mehr alles allein tragen musst.</p>
+      <p class="lead ls-reveal" data-delay="2" data-i18n="home2.own_lead">Keine Junior-Berater. Ihr arbeitet mit den Menschen, die Lusides führen.</p>
     </div>
-  </div>
-  <div class="wrap">
-    <div class="services reveal" data-stagger>
-      <div class="service">
-        <span class="num mono">01</span>
-        <span class="tag mono" data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</span>
-        <h3 class="display" data-i18n="leistungen.s1_h">Ein Unternehmen, das auch ohne ständige Eingriffe funktioniert.</h3>
-        <p data-i18n="leistungen.s1_p">Abläufe, Standards, Verantwortlichkeiten, Struktur.</p>
-        <a href="leistungen-prozesse-systeme.html" class="link-secondary"><span data-i18n="related.more">Mehr erfahren</span><span class="arrow">→</span></a>
-      </div>
-      <div class="service">
-        <span class="num mono">02</span>
-        <span class="tag mono" data-i18n="leistungen.s2_tag">Marketing</span>
-        <h3 class="display" data-i18n="leistungen.s2_h">Sichtbarkeit, die zum Umsatz passt.</h3>
-        <p data-i18n="leistungen.s2_p">Positionierung, Kampagnen, Leadgenerierung, Vertrieb.</p>
-        <a href="leistungen-marketing.html" class="link-secondary"><span data-i18n="related.more">Mehr erfahren</span><span class="arrow">→</span></a>
-      </div>
-      <div class="service">
-        <span class="num mono">03</span>
-        <span class="tag mono" data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</span>
-        <h3 class="display" data-i18n="leistungen.s3_h">Kennzahlen, auf die man sich verlassen kann.</h3>
-        <p data-i18n="leistungen.s3_p">Controlling, Reporting, Struktur für fundierte Entscheidungen.</p>
-        <a href="leistungen-finanzen.html" class="link-secondary"><span data-i18n="related.more">Mehr erfahren</span><span class="arrow">→</span></a>
-      </div>
-      <div class="service">
-        <span class="num mono">04</span>
-        <span class="tag mono" data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</span>
-        <h3 class="display" data-i18n="leistungen.s4_h">KI-Systeme, die zu deinem Unternehmen passen.</h3>
-        <p data-i18n="leistungen.s4_p">Firmenspezifisch entwickelt und von uns selbst implementiert.</p>
-        <a href="leistungen-digitalisierung-ki.html" class="link-secondary"><span data-i18n="related.more">Mehr erfahren</span><span class="arrow">→</span></a>
-        <a href="leistungen-onlineshop-entwicklung.html" class="link-secondary link-sub"><span data-i18n="svc_shop.tag">Onlineshop-Entwicklung</span><span class="arrow">→</span></a>
-      </div>
+    <div class="o-grid">
+      <a href="team.html" class="owner ls-reveal">
+        <div class="o-visual a"><span class="mono-big">M<em>K</em></span></div>
+        <div class="o-meta"><div><b>Marko Katalan</b><span data-i18n="home2.own_marko">Strategie · Organisation · Wachstum</span></div><span class="o-tag" data-i18n="home2.owner">INHABER</span></div>
+      </a>
+      <a href="team.html" class="owner ls-reveal" data-delay="1">
+        <div class="o-visual b"><span class="mono-big">R<em>D</em></span></div>
+        <div class="o-meta"><div><b>Richard Dobrohruschka</b><span data-i18n="home2.own_richard">Marketing · Vertrieb · Prozesse</span></div><span class="o-tag" data-i18n="home2.owner">INHABER</span></div>
+      </a>
     </div>
   </div>
 </section>
 
-<div class="hr" aria-hidden="true"></div>
-
-<section id="warum" data-bg="#E3EEF9">
+<section class="book" id="termin">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="book-card ls-reveal">
+      <div class="b-orb" aria-hidden="true"></div>
       <div>
-        <div class="section-label mono" data-i18n="warum.label">WARUM LUSIDES</div>
-        <h2 class="display" data-i18n="warum.h2">Ein Partner, der wirklich mit anpackt.</h2>
+        <div class="chips"><span class="chip" data-i18n="home2.chip1">60 MINUTEN</span><span class="chip">MICROSOFT TEAMS</span><span class="chip solid">350 €</span></div>
+        <h2><span data-i18n="home2.book_a">Eine Stunde.</span><br><em data-i18n="home2.book_b">Volle Klarheit.</em></h2>
       </div>
-      <p data-i18n="warum.p">Wir sind keine Berater von außen — wir arbeiten mit.</p>
-    </div>
-    <div class="why-grid reveal" data-stagger>
-      <div class="why-item">
-        <span class="w-name display" data-i18n="warum.w1_name">Wir packen mit an</span>
-        <span class="w-desc" data-i18n="warum.w1_desc">Nicht nur Ratschläge — wir übernehmen Verantwortung mit.</span>
-      </div>
-      <div class="why-item">
-        <span class="w-name display" data-i18n="warum.w2_name">Beratung, die umsetzt</span>
-        <span class="w-desc" data-i18n="warum.w2_desc">Keine Folien-Präsentationen — wir bauen die Systeme mit.</span>
-      </div>
-      <div class="why-item">
-        <span class="w-name display" data-i18n="warum.w3_name">Nur etablierte Unternehmen</span>
-        <span class="w-desc" data-i18n="warum.w3_desc">Wir arbeiten mit Unternehmen, die bereits Umsatz und Struktur haben.</span>
-      </div>
-      <div class="why-item">
-        <span class="w-name display" data-i18n="warum.w4_name">Klare Verantwortlichkeiten</span>
-        <span class="w-desc" data-i18n="warum.w4_desc">Jeder weiß, wer wofür zuständig ist.</span>
-      </div>
-      <div class="why-item">
-        <span class="w-name display" data-i18n="warum.w5_name">Firmenspezifische KI</span>
-        <span class="w-desc" data-i18n="warum.w5_desc">Keine Standardsoftware — Systeme, die zu eurem Unternehmen passen.</span>
-      </div>
-      <div class="why-item">
-        <span class="w-name display" data-i18n="warum.w6_name">Wir bleiben, auch wenn's schwierig wird</span>
-        <span class="w-desc" data-i18n="warum.w6_desc">Wir denken in Jahren, nicht in Projekten.</span>
-      </div>
+      <a href="termin.html" class="circle-btn ls-magnetic" data-strength="0.4"><span data-i18n="home2.book_btn">Termin buchen</span><span class="arr" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
 
-<section id="ablauf" data-bg="#F4F8FC">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <div class="section-label mono" data-i18n="ablauf.label">ABLAUF</div>
-        <h2 class="display" data-i18n="ablauf.h2">So läuft die Zusammenarbeit.</h2>
-      </div>
-      <p data-i18n="ablauf.p">Drei Schritte, ohne Umwege.</p>
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="steps reveal" data-stagger>
-      <div class="step">
-        <span class="num mono">01</span>
-        <h3 class="display" data-i18n="ablauf.step1_h">Analyse</h3>
-        <p data-i18n="ablauf.step1_p">Wir prüfen dein Unternehmen: Zahlen, Struktur, Potenzial — und wo die größten Hebel liegen.</p>
-      </div>
-      <div class="step">
-        <span class="num mono">02</span>
-        <h3 class="display" data-i18n="ablauf.step2_h">Aufbau</h3>
-        <p data-i18n="ablauf.step2_p">Gemeinsam bauen wir die Systeme, die fehlen — in Prozessen, Marketing, oder Digitalisierung.</p>
-      </div>
-      <div class="step">
-        <span class="num mono">03</span>
-        <h3 class="display" data-i18n="ablauf.step3_h">Umsetzung</h3>
-        <p data-i18n="ablauf.step3_p">Wir begleiten die Umsetzung als Partner — messbar, langfristig, mit echtem Interesse am Ergebnis.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="mid-cta" data-bg="#0B1F3A">
-  <div class="wrap reveal">
-    <h2 class="display" data-i18n="midcta.h2">Passt dein Unternehmen dazu?</h2>
-    <p data-i18n="midcta.p">Zwei Minuten Formular. Wir melden uns, wenn wir wirklich weiterhelfen können.</p>
-    <a href="#kontakt" class="btn-primary" data-i18n="midcta.btn">Unternehmen vorstellen</a>
-  </div>
-</section>
-
-<section id="faq" data-bg="#E3EEF9">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <div class="section-label mono" data-i18n="faq.label">FAQ</div>
-        <h2 class="display" data-i18n="faq.h2">Häufige Fragen</h2>
-      </div>
-      <p data-i18n="faq.p">Was du vor einem Erstgespräch wissen solltest.</p>
-    </div>
-    <div class="faq-list reveal">
-      <details class="faq-item">
-        <summary data-i18n="faq.q1">Wann lohnt sich Lusides für uns?</summary>
-        <p data-i18n="faq.a1">Wenn euer Unternehmen bereits Umsatz und Struktur hat, aber Prozesse, Marketing oder Digitalisierung den nächsten Schritt bremsen.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-i18n="faq.q2">Für welche Unternehmen eignet sich das?</summary>
-        <p data-i18n="faq.a2">Für etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und einer gewachsenen Struktur — nicht für Start-ups oder Ideen in der Frühphase.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-i18n="faq.q3">Wie lange dauert ein Projekt?</summary>
-        <p data-i18n="faq.a3">Das hängt vom Umfang ab. Im Erstgespräch klären wir konkret, wo wir ansetzen würden und wie lange das realistisch dauert.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-i18n="faq.q4">Wie läuft die Zusammenarbeit ab?</summary>
-        <p data-i18n="faq.a4">In drei Schritten: Analyse eures Unternehmens, gemeinsamer Aufbau der fehlenden Systeme, begleitete Umsetzung.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-i18n="faq.q5">Was unterscheidet Lusides von klassischen Unternehmensberatungen?</summary>
-        <p data-i18n="faq.a5">Wir bleiben bei der Umsetzung dabei, statt nur eine Strategie zu übergeben. Keine Folien-Präsentationen, sondern gemeinsam gebaute Systeme.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-i18n="faq.q6">Müssen wir uns auf alle vier Bereiche gleichzeitig einlassen?</summary>
-        <p data-i18n="faq.a6">Nein. Im Erstgespräch klären wir, wo aktuell der größte Hebel liegt, und beginnen dort.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section id="kontakt" class="kontakt" data-bg="#0B1F3A">
-  <div class="wrap kontakt-inner">
-    <div class="reveal">
-      <div class="section-label mono" data-i18n="kontakt.label">KOSTENLOSE ANALYSE</div>
-      <h2 data-i18n="kontakt.h2">Erzähl uns von deinem Unternehmen.</h2>
-      <p class="kontakt-copy" data-i18n="kontakt.copy">Eine Minute Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.</p>
-
-      <div class="qualify-form">
-        <form id="kontaktForm" novalidate>
-          <div class="field">
-            <label for="cf-company" data-i18n="kontakt.form_company">Unternehmen</label>
-            <input id="cf-company" name="company" type="text" required>
-          </div>
-          <div class="field">
-            <label for="cf-name" data-i18n="kontakt.form_name">Name</label>
-            <input id="cf-name" name="name" type="text" required>
-          </div>
-          <div class="field">
-            <label for="cf-message" data-i18n="erstberatung_page.form_message">Kurz, worum es geht (optional)</label>
-            <textarea id="cf-message" name="message" rows="3"></textarea>
-          </div>
-          <div class="field">
-            <label for="cf-phone" data-i18n="kontakt.form_phone">Telefon</label>
-            <input id="cf-phone" name="phone" type="tel">
-          </div>
-          <div class="field">
-            <label for="cf-email" data-i18n="kontakt.form_email">E-Mail</label>
-            <input id="cf-email" name="email" type="email" required>
-          </div>
-          <div class="field field-checkbox">
-            <label>
-              <input type="checkbox" name="newsletter">
-              <span data-i18n="kontakt.form_newsletter">Ich möchte den Newsletter erhalten.</span>
-            </label>
-          </div>
-          <p class="form-trust" data-i18n="kontakt.form_trust">Direkt mit den Gründern &middot; Antwort innerhalb von 2 Werktagen</p>
-          <button type="submit" class="submit-btn" data-i18n="kontakt.form_submit">Kontakt aufnehmen</button>
-          <div class="form-note" id="formNote"></div>
-        </form>
-      </div>
-
-      <div class="kontakt-direct">
-        <div><span data-i18n="kontakt.email_label">E-Mail</span>inquiry@luside.com</div>
-        <div><span data-i18n="kontakt.phone_label">Telefon</span><a href="tel:+436603607188">+43 660 3607188</a></div>
-        <div><span data-i18n="kontakt.location_label">Standort</span>Royerstraße 7, 2482 Münchendorf</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer data-bg="#F4F8FC">
-  <div class="wrap footer-inner">
-    <div class="footer-cols">
-      <div class="footer-col">
-        <div class="footer-col-title" data-i18n="nav.leistungen">Leistungen</div>
-        <a href="leistungen-prozesse-systeme.html" data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</a>
-        <a href="leistungen-marketing.html" data-i18n="leistungen.s2_tag">Marketing</a>
-        <a href="leistungen-finanzen.html" data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</a>
-        <a href="leistungen-digitalisierung-ki.html" data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</a>
-        <a href="leistungen-onlineshop-entwicklung.html" data-i18n="svc_shop.tag">Onlineshop-Entwicklung</a>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title" data-i18n="footer.col_unternehmen">Unternehmen</div>
-        <a href="team.html" data-i18n="nav.team">Team</a>
-        <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
-          <a href="erstberatung.html" data-i18n="nav.erstberatung">Erstberatung</a>
-      </div>
-    </div>
+<section class="duo" id="kontakt">
+  <div class="wrap duo-grid">
     <div>
-      <span data-i18n="footer.copyright">© 2026 Lusides. Alle Rechte vorbehalten.</span>
+      <div class="kicker ls-reveal" data-i18n="home2.k5">05 — Fragen</div>
+      <h2 class="h2 ls-reveal" data-delay="1" style="font-size:clamp(40px,4.6vw,64px)"><span data-i18n="home2.faq_h2a">Kurz</span> <em data-i18n="home2.faq_h2b">beantwortet.</em></h2>
+      <div class="faq ls-reveal" data-delay="2" style="margin-top:40px">
+        <details><summary><span data-i18n="faq.q1">Wann lohnt sich Lusides für uns?</span><span class="pm" aria-hidden="true"></span></summary><p data-i18n="faq.a1">Wenn euer Unternehmen bereits Umsatz und Struktur hat, aber Prozesse, Marketing oder Digitalisierung den nächsten Schritt bremsen.</p></details>
+        <details><summary><span data-i18n="faq.q2">Für welche Unternehmen eignet sich das?</span><span class="pm" aria-hidden="true"></span></summary><p data-i18n="faq.a2">Für etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und einer gewachsenen Struktur — nicht für Start-ups oder Ideen in der Frühphase.</p></details>
+        <details><summary><span data-i18n="faq.q5">Was unterscheidet Lusides von klassischen Unternehmensberatungen?</span><span class="pm" aria-hidden="true"></span></summary><p data-i18n="faq.a5">Wir bleiben bei der Umsetzung dabei, statt nur eine Strategie zu übergeben. Keine Folien-Präsentationen, sondern gemeinsam gebaute Systeme.</p></details>
+        <details><summary><span data-i18n="faq.q6">Müssen wir uns auf alle vier Bereiche gleichzeitig einlassen?</span><span class="pm" aria-hidden="true"></span></summary><p data-i18n="faq.a6">Nein. Im Erstgespräch klären wir, wo aktuell der größte Hebel liegt, und beginnen dort.</p></details>
+      </div>
+    </div>
+    <div class="contact-card ls-reveal" data-delay="1">
+      <h3 data-i18n="home2.form_h">Lieber schreiben?</h3>
+      <p data-i18n="home2.form_p">Wir melden uns innerhalb von zwei Werktagen.</p>
+      <form id="kontaktForm" class="cf" novalidate>
+        <div><label for="cf-name" data-i18n="kontakt.form_name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required></div>
+        <div><label for="cf-company" data-i18n="kontakt.form_company">Unternehmen</label><input id="cf-company" name="company" type="text" autocomplete="organization" required></div>
+        <div><label for="cf-email" data-i18n="kontakt.form_email">E-Mail</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
+        <div><label for="cf-phone" data-i18n="kontakt.form_phone">Telefon</label><input id="cf-phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="full"><label for="cf-message" data-i18n="erstberatung_page.form_message">Kurz, worum es geht (optional)</label><textarea id="cf-message" name="message"></textarea></div>
+        <label class="chk full"><input type="checkbox" name="newsletter"><span data-i18n="kontakt.form_newsletter">Ich möchte den Newsletter erhalten.</span></label>
+        <button type="submit" class="send" data-i18n="kontakt.form_submit">Kontakt aufnehmen</button>
+        <div class="form-note" id="formNote"></div>
+      </form>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span></span>
-    <div class="footer-links">
-      <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
-      <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
+</section>
+
+</main>
+
+<footer class="ls-footer" id="footer">
+  <div class="ls-f-inner">
+    <div class="ls-f-cta ls-reveal">
+      <h2><span data-i18n="ls_footer.cta1">Bereit für den</span><br><em data-i18n="ls_footer.cta2">nächsten Schritt?</em></h2>
+      <a href="termin.html" class="ls-cta ls-magnetic"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">60 MIN · 350 €</small></a>
+    </div>
+    <div class="ls-wordmark ls-reveal" aria-hidden="true">Lusides<span>.</span></div>
+    <div class="ls-f-grid">
+      <div><b data-i18n="ls_footer.contact">Kontakt</b><a href="mailto:inquiry@luside.com">inquiry@luside.com</a><br><a href="tel:+436603607188">+43 660 3607188</a></div>
+      <div><b data-i18n="ls_footer.company">Unternehmen</b>Legatech GmbH &amp; Co KG<br>Endresstraße 50/V3<br>1230 Wien, Österreich</div>
+      <div><b data-i18n="ls_footer.owners">Inhaber</b>Marko Katalan<br>Richard Dobrohruschka</div>
+      <div><b data-i18n="nav.leistungen">Leistungen</b><a href="leistungen-prozesse-systeme.html" data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</a><br><a href="leistungen-marketing.html" data-i18n="leistungen.s2_tag">Marketing</a><br><a href="leistungen-finanzen.html" data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</a><br><a href="leistungen-digitalisierung-ki.html" data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</a><br><a href="leistungen-onlineshop-entwicklung.html" data-i18n="svc_shop.tag">Onlineshop-Entwicklung</a></div>
+    </div>
+    <div class="ls-f-bottom">
+      <span>© 2026 Lusides · Legatech GmbH &amp; Co KG · FN 614735 y</span>
+      <nav aria-label="Rechtliches"><a href="impressum.html" data-i18n="footer.impressum">Impressum</a><a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a></nav>
     </div>
   </div>
 </footer>
 
-<script>
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function hexToRgb(hex){
-    const n = parseInt(hex.replace('#',''), 16);
-    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  }
-  function lerpColor(a, b, t){
-    const c = a.map((v, i) => Math.round(v + (b[i] - v) * t));
-    return `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
-  }
-  let bgStops = [];
-  function buildBgStops(){
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    bgStops = Array.from(document.querySelectorAll('[data-bg]')).map(el => {
-      const top = el.getBoundingClientRect().top + window.scrollY;
-      const mid = top + el.offsetHeight / 2;
-      const frac = total > 0 ? Math.max(0, Math.min(1, (mid - window.innerHeight / 2) / total)) : 0;
-      return { frac, rgb: hexToRgb(el.getAttribute('data-bg')) };
-    }).sort((a, b) => a.frac - b.frac);
-  }
-  function bgForPct(pct){
-    if(bgStops.length === 0) return null;
-    if(pct <= bgStops[0].frac) return `rgb(${bgStops[0].rgb.join(',')})`;
-    for(let i = 0; i < bgStops.length - 1; i++){
-      const cur = bgStops[i], next = bgStops[i + 1];
-      if(pct >= cur.frac && pct <= next.frac){
-        const span = next.frac - cur.frac;
-        const t = span > 0 ? (pct - cur.frac) / span : 0;
-        return lerpColor(cur.rgb, next.rgb, t);
-      }
-    }
-    const last = bgStops[bgStops.length - 1];
-    return `rgb(${last.rgb.join(',')})`;
-  }
-  buildBgStops();
-  window.addEventListener('resize', buildBgStops);
-  window.addEventListener('load', () => { buildBgStops(); onScroll(); });
-
-  function buildTicks(id){
-    const g = document.getElementById(id);
-    if(!g) return;
-    let out = '';
-    for(let x = 0; x <= 1160; x += 20){
-      const major = x % 100 === 0;
-      out += `<line x1="${x}" y1="${major ? 6 : 12}" x2="${x}" y2="26" class="tick${major ? ' major' : ''}"/>`;
-    }
-    g.innerHTML = out;
-  }
-  buildTicks('ticks');
-  buildTicks('ticks2');
-
-  const progressBar = document.getElementById('progress');
-  const headerEl = document.querySelector('header');
-  const cursors = [document.getElementById('cursor'), document.getElementById('cursor2')].filter(Boolean);
-
-  function onScroll(){
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? scrollTop / docHeight : 0;
-    progressBar.style.width = (pct * 100) + '%';
-    cursors.forEach(c => c.setAttribute('cx', (pct * 1160).toFixed(1)));
-    headerEl.classList.toggle('scrolled', scrollTop > 40);
-    const bg = bgForPct(pct);
-    if(bg) document.body.style.backgroundColor = bg;
-  }
-  document.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  const navToggle = document.querySelector('.nav-toggle');
-  const navCollapse = document.querySelector('.nav-collapse');
-  const menuIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
-  const closeIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>';
-  function closeMobileMenu(){
-    navCollapse.classList.remove('mobile-open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.innerHTML = menuIcon;
-  }
-  if(navToggle && navCollapse){
-    navToggle.addEventListener('click', () => {
-      const isOpen = navCollapse.classList.toggle('mobile-open');
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      navToggle.innerHTML = isOpen ? closeIcon : menuIcon;
-    });
-    navCollapse.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
-    window.addEventListener('resize', () => { if(window.innerWidth > 780) closeMobileMenu(); });
-  }
-
-  const revealEls = document.querySelectorAll('.reveal');
-  function activate(el){
-    if(el.hasAttribute('data-stagger')){
-      Array.from(el.children).forEach((child, i) => {
-        child.style.transitionDelay = reduceMotion ? '0s' : (i * 0.09) + 's';
-      });
-    }
-    el.classList.add('in');
-  }
-  if('IntersectionObserver' in window){
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          activate(entry.target);
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(el => io.observe(el));
-  } else {
-    revealEls.forEach(activate);
-  }
-
-  // Subtle 3D tilt + cursor spotlight on hover — small angle range, disabled for touch/reduced-motion.
-  const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if(!reduceMotion && fineHover){
-    document.querySelectorAll('.service').forEach(card => {
-      let raf = null;
-      card.style.transition = 'background .3s ease, box-shadow .3s ease, transform .25s ease';
-      card.addEventListener('mousemove', e => {
-        if(raf) return;
-        raf = requestAnimationFrame(() => {
-          const r = card.getBoundingClientRect();
-          const px = (e.clientX - r.left) / r.width - 0.5;
-          const py = (e.clientY - r.top) / r.height - 0.5;
-          card.style.transform = `perspective(700px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 5).toFixed(2)}deg)`;
-          card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-          card.style.setProperty('--my', `${e.clientY - r.top}px`);
-          raf = null;
-        });
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg)';
-      });
-    });
-  }
-
-  // Magnetic pull on primary buttons — subtle, disabled for touch/reduced-motion.
-  if(!reduceMotion && fineHover){
-    document.querySelectorAll('.btn-primary').forEach(btn => {
-      let raf = null;
-      btn.style.transition = btn.style.transition ? btn.style.transition : 'background .2s ease, box-shadow .2s ease';
-      btn.style.transition += ', transform .18s ease';
-      btn.addEventListener('mousemove', e => {
-        if(raf) return;
-        raf = requestAnimationFrame(() => {
-          const r = btn.getBoundingClientRect();
-          const mx = (e.clientX - r.left - r.width / 2) * 0.18;
-          const my = (e.clientY - r.top - r.height / 2) * 0.28;
-          btn.style.transform = `translate(${mx.toFixed(1)}px, ${my.toFixed(1)}px)`;
-          raf = null;
-        });
-      });
-      btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
-    });
-  }
-
-  // Smooth FAQ accordion via Web Animations API — keeps native <details> semantics/no-JS fallback.
-  document.querySelectorAll('.faq-item').forEach(details => {
-    const content = details.querySelector('p');
-    let anim = null, closing = false, expanding = false;
-    if(!content) return;
-    details.addEventListener('click', e => {
-      e.preventDefault();
-      if(closing || !details.open){ openItem(); } else if(expanding || details.open){ shrink(); }
-    });
-    function shrink(){
-      closing = true;
-      const startH = details.offsetHeight + 'px';
-      const endH = details.querySelector('summary').offsetHeight + 'px';
-      runAnim(startH, endH, false);
-    }
-    function openItem(){
-      details.style.overflow = 'hidden';
-      details.open = true;
-      requestAnimationFrame(() => expand());
-    }
-    function expand(){
-      expanding = true;
-      const startH = details.querySelector('summary').offsetHeight + 'px';
-      const endH = details.offsetHeight + 'px';
-      runAnim(startH, endH, true);
-    }
-    function runAnim(startH, endH, isOpening){
-      if(anim) anim.cancel();
-      details.style.height = startH;
-      details.style.overflow = 'hidden';
-      anim = details.animate({ height: [startH, endH] }, { duration: reduceMotion ? 0 : 280, easing: 'cubic-bezier(.2,.7,.2,1)' });
-      anim.onfinish = () => {
-        details.open = isOpening;
-        details.style.height = details.style.overflow = '';
-        closing = false; expanding = false; anim = null;
-      };
-      anim.oncancel = () => { closing = false; expanding = false; };
-    }
-  });
-
-  // Nav active-section highlight.
-  const sectionEls = ['leistungen','warum','ablauf','faq'].map(id => document.getElementById(id)).filter(Boolean);
-  const navAnchors = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
-  if(sectionEls.length && 'IntersectionObserver' in window){
-    const navIo = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(!entry.isIntersecting) return;
-        const id = entry.target.id;
-        navAnchors.forEach(a => a.classList.toggle('current', a.getAttribute('href') === '#' + id));
-      });
-    }, { rootMargin: '-45% 0px -45% 0px' });
-    sectionEls.forEach(el => navIo.observe(el));
-  }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script src="i18n.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" defer></script>
 <script src="supabase-config.js" defer></script>
 <script src="chatbot.js" defer></script>
 <script src="contact-form.js" defer></script>
 <script src="analytics.js" defer></script>
-
+<script src="site.js" defer></script>
 </body>
 </html>

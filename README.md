@@ -9,6 +9,8 @@ Static site for Lusides, served via GitHub Pages.
 
 ## Structure
 
+- `site.css` + `site.js` — gemeinsames Designsystem (Farben, Schriften Instrument Sans/Serif + JetBrains Mono, dunkler Header, großer Footer) und Effekte (Smooth Scroll via Lenis, Reveal beim Scrollen, Wort-für-Wort-Highlight, magnetische Buttons, Lichtkegel auf Kacheln, Ablauf-Fortschrittslinie). Wird von jeder Seite nach dem seiteneigenen CSS geladen.
+
 - `index.html` — homepage (hero, problem, model, services, why us, process, FAQ, contact form).
 - `team.html`, `datenschutz.html`, `impressum.html`, `admin.html` — subpages.
 - `termin.html` + `termin-booking.js` — Terminbuchung: 1 Std. Erstgespräch per Microsoft Teams (350 €). Freie Slots Mo–Fr 09–17 Uhr (Wiener Zeit), gebucht über die Supabase-Funktion `book_appointment`.
