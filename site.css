@@ -55,7 +55,6 @@ html.lenis, html.lenis body{ height: auto; }
 .ls-header.is-hidden{ transform: translateY(-100%); }
 .ls-header .ls-bar{ max-width: 1280px; margin: 0 auto; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .ls-logo{ display: flex; align-items: center; gap: 10px; color: #fff !important; text-decoration: none !important; font-weight: 600; font-size: 20px; letter-spacing: -0.02em; font-family: var(--f-sans); }
-.ls-logo i{ width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--ice), var(--blue) 60%, #0A1F5C); box-shadow: 0 0 22px rgba(47,107,255,0.6); }
 .ls-links{ display: flex; gap: 30px; font-size: 14px; }
 .ls-links a{ color: rgba(255,255,255,0.7) !important; text-decoration: none !important; position: relative; padding: 4px 0; transition: color .25s ease; }
 .ls-links a::after{ content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: var(--ice); transform: scaleX(0); transform-origin: right; transition: transform .45s var(--ease); }
@@ -135,3 +134,38 @@ body:not(.home) .hero .btn-primary:hover{ background: var(--ice) !important; }
 body:not(.home) .hero .link-secondary{ color: #fff !important; border-color: rgba(255,255,255,.35) !important; }
 body:not(.home) .hero + .hr{ display: none; }
 body:not(.home) .hero + section{ margin-top: 64px; }
+
+/* ---------- Logo ---------- */
+.ls-mark{ width: 30px; height: 30px; flex-shrink: 0; display: block; }
+
+/* ---------- Intro: "lusides" teilt sich entlang eines schrägen Strichs ---------- */
+.ls-intro{ position: fixed; inset: 0; z-index: 1000; perspective: 1400px; pointer-events: auto; animation: liSafety .01s 5s forwards; }
+@keyframes liSafety{ to{ visibility: hidden; opacity: 0; pointer-events: none; } }
+.intro-skip .ls-intro{ display: none; }
+.intro-on, .intro-on body{ overflow: hidden; }
+.li-half{ position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 55%, #0E2456 0%, #050B18 62%); will-change: transform, opacity; transition: transform 1.25s cubic-bezier(.76,0,.18,1), opacity .95s cubic-bezier(.5,0,.75,0) .15s; }
+.li-l{ clip-path: polygon(0 0, 58.1% 0, 42.1% 100%, 0 100%); transform-origin: 0% 50%; }
+.li-r{ clip-path: polygon(57.9% 0, 100% 0, 100% 100%, 41.9% 100%); transform-origin: 100% 50%; }
+.li-content{ position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(18px, 3vh, 36px); }
+.li-logo{ width: clamp(64px, 9vw, 120px); height: auto; opacity: 0; transform: scale(.6) rotate(-20deg); transition: opacity .7s ease, transform 1s cubic-bezier(.16,1,.3,1); }
+.li-word{ display: flex; overflow: hidden; color: #fff; font-family: var(--f-sans); font-weight: 700; font-size: min(26.5vw, 46vh); line-height: .86; letter-spacing: -0.07em; padding: 0 .04em .06em; white-space: nowrap; }
+.li-word span{ display: inline-block; transform: translateY(108%); transition: transform 1s cubic-bezier(.16,1,.3,1); }
+.li-word span:nth-child(2){ transition-delay: .05s; } .li-word span:nth-child(3){ transition-delay: .1s; } .li-word span:nth-child(4){ transition-delay: .15s; }
+.li-word span:nth-child(5){ transition-delay: .2s; } .li-word span:nth-child(6){ transition-delay: .25s; } .li-word span:nth-child(7){ transition-delay: .3s; }
+.li-line{ position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, #fff, var(--ice) 50%, var(--blue)); filter: drop-shadow(0 0 8px rgba(142,197,255,.9));
+  clip-path: polygon(calc(58% - 1px) 0, calc(58% + 1px) 0, calc(58% + 1px) 0, calc(58% - 1px) 0);
+  transition: clip-path .65s cubic-bezier(.65,0,.35,1), opacity .35s ease; }
+/* Phase 1: Logo + Schriftzug erscheinen */
+.ls-intro.go .li-logo{ opacity: 1; transform: none; }
+.ls-intro.go .li-word span{ transform: none; }
+/* Phase 2: schräger Strich zieht durch */
+.ls-intro.cut .li-line{ clip-path: polygon(calc(58% - 1px) 0, calc(58% + 1px) 0, calc(42% + 1px) 100%, calc(42% - 1px) 100%); }
+/* Phase 3: beide Seiten klappen weg */
+.ls-intro.open .li-l{ transform: translateX(-58%) rotateY(32deg) scale(1.18); opacity: .0; }
+.ls-intro.open .li-r{ transform: translateX(58%) rotateY(-32deg) scale(1.18); opacity: .0; }
+.ls-intro.open .li-line{ opacity: 0; }
+.ls-intro.open{ pointer-events: none; }
+/* Seite dahinter kommt einem entgegen */
+.intro-on body > main, .intro-on body > .hero{ transform: scale(1.08); transform-origin: 50% 40%; }
+.intro-on:not(.intro-open) .fade-up{ animation-play-state: paused; }
+.intro-open body > main, .intro-open body > .hero{ transform: none !important; transition: transform 1.4s cubic-bezier(.16,1,.3,1); }

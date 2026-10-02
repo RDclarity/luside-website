@@ -3,12 +3,45 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var header = document.querySelector('.ls-header');
+  var root = document.documentElement;
+
+  // ---------- Intro: Schriftzug + schräger Strich, Seiten klappen weg ----------
+  var intro = document.querySelector('.ls-intro');
+  var introRunning = !!(intro && root.classList.contains('intro-on'));
+  var introDone = [];
+  function whenIntroOpen(fn){ introRunning ? introDone.push(fn) : fn(); }
+  if(intro && !introRunning && intro.parentNode) intro.parentNode.removeChild(intro);
+  if(introRunning){
+    var timers = [];
+    var openIntro = function(){
+      timers.forEach(clearTimeout);
+      intro.classList.add('go', 'cut', 'open');
+      root.classList.add('intro-open');
+      introRunning = false;
+      introDone.splice(0).forEach(function(fn){ fn(); });
+      setTimeout(function(){
+        if(intro.parentNode) intro.parentNode.removeChild(intro);
+        root.classList.remove('intro-on', 'intro-open');
+      }, 1500);
+    };
+    var start = function(){
+      if(intro.classList.contains('go')) return;
+      intro.classList.add('go');
+      timers.push(setTimeout(function(){ intro.classList.add('cut'); }, 1050));
+      timers.push(setTimeout(openIntro, 1750));
+    };
+    var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    Promise.race([fontsReady, new Promise(function(r){ setTimeout(r, 700); })]).then(function(){ requestAnimationFrame(start); });
+    intro.addEventListener('click', openIntro);
+    window.addEventListener('keydown', function onKey(){ window.removeEventListener('keydown', onKey); if(intro.parentNode && !intro.classList.contains('open')) openIntro(); });
+  }
 
   // ---------- Sanftes Scrollen (Lenis, falls geladen) ----------
   var lenis = null;
   if(!reduce && window.Lenis){
     lenis = new window.Lenis({ duration: 1.15, easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, smoothWheel: true });
     (function raf(time){ lenis.raf(time); requestAnimationFrame(raf); })(0);
+    if(introRunning){ lenis.stop(); whenIntroOpen(function(){ lenis.start(); }); }
     document.addEventListener('click', function(e){
       var a = e.target.closest('a[href^="#"]');
       if(!a) return;
@@ -73,7 +106,7 @@
 
   // ---------- Hero: Zeilen gleiten aus der Maske ----------
   document.querySelectorAll('[data-split]').forEach(function(el){
-    requestAnimationFrame(function(){ el.classList.add('is-in'); });
+    whenIntroOpen(function(){ setTimeout(function(){ requestAnimationFrame(function(){ el.classList.add('is-in'); }); }, introRunning ? 0 : 350); });
   });
 
   // ---------- Magnetische Buttons ----------
