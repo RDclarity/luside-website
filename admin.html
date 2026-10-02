@@ -137,6 +137,13 @@
   .toast{ position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(30px); background: var(--night); color:#fff; padding: 11px 18px; border-radius: 999px; font-size: 14px; opacity: 0; pointer-events:none; transition: all .3s ease; z-index: 200; max-width: calc(100% - 32px); }
   .toast.show{ opacity:1; transform: translateX(-50%); }
   .toast.err{ background:#9F1D1D; }
+  #sInfo h4{ font-size: 11px; font-family:'JetBrains Mono', monospace; letter-spacing:.1em; text-transform: uppercase; color: var(--accent); margin: 16px 0 6px; }
+  #sInfo dl{ display:grid; grid-template-columns: 150px 1fr; gap: 6px 12px; font-size: 14px; }
+  #sInfo dt{ color: var(--slate); }
+  #sInfo dd{ white-space: pre-wrap; overflow-wrap: anywhere; }
+  @media (max-width: 560px){ #sInfo dl{ grid-template-columns: 1fr; gap: 0; } #sInfo dd{ margin-bottom: 8px; } }
+  #sheetsBody tr.clickable{ cursor:pointer; }
+  #sheetsBody tr.clickable:hover td{ background: var(--paper, #f4f7fb); }
   /* ---------- TERMINKALENDER ---------- */
   .cal-wrap{ background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
   .cal-toolbar{ display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
@@ -268,6 +275,7 @@
   <div class="tabs-inner" role="tablist">
     <button class="tab active" data-tab="termine" role="tab">Termine <span class="badge" id="bTermine" hidden></span></button>
     <button class="tab" data-tab="rechnungen" role="tab">Rechnungen <span class="badge" id="bRechnungen" hidden></span></button>
+    <button class="tab" data-tab="datenblaetter" role="tab">Datenblätter <span class="badge" id="bSheets" hidden></span></button>
     <button class="tab" data-tab="anfragen" role="tab">Anfragen <span class="badge" id="bAnfragen" hidden></span></button>
     <button class="tab" data-tab="newsletter" role="tab">Newsletter</button>
     <button class="tab" data-tab="besucher" role="tab">Besucher</button>
@@ -348,6 +356,26 @@
       <p class="hint" style="margin-top:12px">Rechnungen werden bei jeder Buchung automatisch fortlaufend nummeriert (RE-Jahr-Nummer) und können nicht gelöscht oder geändert werden (§132 BAO). Korrekturen nur per Storno, das eine eigene Nummer bekommt.</p>
     </section>
 
+    <!-- DATENBLÄTTER -->
+    <section class="pane" id="pane-datenblaetter">
+      <div class="pane-head">
+        <div><h2>Projektdatenblätter</h2><div class="count" id="sheetsCount"></div></div>
+        <div class="actions-row"><button class="btn" type="button" id="exportSheetsBtn">Excel-Export</button></div>
+      </div>
+      <div class="filters" id="sheetFilters">
+        <button class="chip-f active" data-f="alle">Alle</button>
+        <button class="chip-f" data-f="neu">Neu</button>
+        <button class="chip-f" data-f="in Bearbeitung">In Bearbeitung</button>
+        <button class="chip-f" data-f="erledigt">Erledigt</button>
+      </div>
+      <div class="card-box">
+        <table class="rt">
+          <thead><tr><th>Unternehmen</th><th>Ansprechpartner</th><th>Branche</th><th>Mitarbeiter</th><th>Umsatz</th><th>Bereiche</th><th>Status</th><th>Eingang</th><th></th></tr></thead>
+          <tbody id="sheetsBody"><tr class="loading-row"><td colspan="9">Lade…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
     <!-- ANFRAGEN -->
     <section class="pane" id="pane-anfragen">
       <div class="pane-head">
@@ -419,6 +447,28 @@
     </section>
   </div>
 </main>
+<div class="modal-bg" id="sheetModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="sName" style="width:min(720px,100%)">
+    <div class="modal-top st-gebucht">
+      <div style="flex:1"><h3 id="sName"></h3><div class="sub" id="sSub"></div></div>
+      <button type="button" class="modal-close" id="sClose" aria-label="Schließen">×</button>
+    </div>
+    <div class="modal-body"><div id="sInfo"></div>
+      <div class="row2" style="margin-top:14px">
+        <div class="field"><label for="sStatus">Status</label><select id="sStatus"><option value="neu">Neu</option><option value="in Bearbeitung">In Bearbeitung</option><option value="erledigt">Erledigt</option></select></div>
+        <div class="field"><label>E-Mail-Kopie</label><div id="sMail" style="padding-top:8px"></div></div>
+      </div>
+      <div class="field"><label for="sNotes">Interne Notizen</label><textarea id="sNotes"></textarea></div>
+    </div>
+    <div class="modal-msg" id="sMsg"></div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-primary" id="sSave">Speichern</button>
+      <button type="button" class="btn" id="sPdf">PDF</button>
+      <button type="button" class="btn" id="sResend">Kopie erneut senden</button>
+      <a class="btn" id="sMailto">E-Mail schreiben</a>
+    </div>
+  </div>
+</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="modal-bg" id="apptModal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mName">
@@ -471,6 +521,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous"></script>
 <script src="supabase-config.js"></script>
 <script src="admin-calendar.js"></script>
+<script src="admin-sheets.js"></script>
 <script src="admin.js"></script>
 </body>
 </html>

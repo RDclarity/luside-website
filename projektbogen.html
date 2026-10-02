@@ -8,14 +8,14 @@
 <meta name="author" content="Lusides">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Projektbogen zur Erstberatung: ein paar gezielte Fragen zu eurer Situation, damit Marko Katalan sich vorbereiten kann.">
+<meta name="description" content="Projektdatenblatt: Angaben zu Unternehmen, Mitarbeitern, Umsatz und Zielen zur Vorbereitung des Erstgesprächs mit Lusides.">
 <link rel="canonical" href="https://rdclarity.github.io/luside-website/projektbogen.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#050B18">
 <meta name="robots" content="noindex, follow">
-<title data-i18n="projektbogen_page.meta_title">Projektbogen — Lusides</title>
+<title data-i18n="pds.meta_title">Projektdatenblatt | Lusides</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
@@ -94,6 +94,62 @@
   .form-note.error{ background: #F7DDD6; color: #7A2A14; }
 
   footer{ padding: 32px 0; border-top: 1px solid var(--line); text-align:center; font-size: 0.8rem; color: var(--slate); }
+  /* ---------- Projektdatenblatt ---------- */
+  .pds-wrap{ max-width: 820px; }
+  .pds-steps{ list-style:none; display:flex; gap: 8px; margin: 36px 0 8px; flex-wrap: wrap; }
+  .pds-steps li{ display:flex; align-items:center; gap: 8px; font-size: .85rem; color: var(--slate); background:#fff; border:1px solid var(--line); border-radius: 999px; padding: 6px 14px 6px 6px; }
+  .pds-steps li span{ width: 24px; height: 24px; border-radius: 50%; display:inline-flex; align-items:center; justify-content:center; background: var(--paper-dim); font-size: .75rem; font-weight: 600; }
+  .pds-steps li.done span{ background: #0B8043; color:#fff; }
+  .pds-steps li.on{ border-color: var(--accent); color: var(--ink); }
+  .pds-steps li.on span{ background: var(--accent); color:#fff; }
+  .pds-steps b{ font-weight: 500; }
+  #projektbogenForm{ padding: 24px 0 96px; gap: 18px; }
+  #projektbogenForm[hidden], .pds-result[hidden]{ display:none !important; }
+  .pds-result{ scroll-margin-top: 96px; }
+  .pds-card{ border: 1px solid var(--line); background:#fff; border-radius: 20px; padding: 26px 26px 28px; display:flex; flex-direction:column; gap: 18px; min-width: 0; }
+  .pds-card legend{ float:left; width:100%; display:flex; align-items:center; gap: 12px; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .pds-card legend + *{ clear: both; }
+  .pds-card legend .n{ font-family: var(--f-mono, monospace); font-size: .72rem; color: var(--accent); border: 1px solid var(--accent-dim); background: var(--accent-dim); border-radius: 999px; padding: 3px 8px; font-weight: 500; letter-spacing: .06em; }
+  .field .lbl{ font-size: 0.86rem; color: var(--ink); font-weight: 500; }
+  .field input, .field select, .field textarea{ border-radius: 12px !important; background: var(--paper) !important; min-width: 0; width: 100%; }
+  .field input:focus, .field select:focus, .field textarea:focus{ background:#fff !important; box-shadow: 0 0 0 4px rgba(47,107,255,.12); }
+  .three-col{ display:grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 18px; }
+  @media (max-width: 640px){ .three-col{ grid-template-columns: 1fr; } .pds-card{ padding: 20px 18px 22px; border-radius: 16px; } }
+  .seg{ display:flex; gap: 8px; flex-wrap: wrap; }
+  .seg label, .chips-select label{ position: relative; cursor: pointer; }
+  .seg input, .chips-select input{ position:absolute; opacity:0; width:1px; height:1px; }
+  .seg span, .chips-select span{ display:inline-flex; align-items:center; gap: 6px; border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 9px 16px; font-size: .9rem; transition: all .2s ease; }
+  .seg input:checked + span, .chips-select input:checked + span{ background: var(--ink); color:#fff; border-color: var(--ink); }
+  .seg input:focus-visible + span, .chips-select input:focus-visible + span{ outline: 2px solid var(--accent); outline-offset: 2px; }
+  .chips-select{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .check{ display:flex; gap: 10px; align-items:flex-start; font-size: .92rem; color: var(--slate); cursor:pointer; }
+  .check input{ margin-top: 3px; width: 17px; height: 17px; accent-color: var(--accent); flex-shrink: 0; }
+  .check a{ color: var(--accent-ink); text-decoration: underline; }
+  .submit-btn{ border-radius: 999px !important; font-weight: 600; text-align:center; display:inline-block; }
+  .pds-result{ padding: 36px 0 96px; }
+  .pds-done{ display:flex; gap: 18px; align-items:flex-start; background: var(--night, #050B18); color:#fff; border-radius: 22px; padding: 28px; }
+  .pds-done h2{ font-size: clamp(1.3rem, 2.6vw, 1.7rem); letter-spacing: -0.03em; color:#fff; }
+  .pds-done p{ color: rgba(255,255,255,.7); margin-top: 6px; }
+  .pds-done .ref{ font-family: var(--f-mono, monospace); font-size: .8rem; }
+  .check-ico{ width: 48px; height: 48px; border-radius: 50%; background: var(--accent); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .check-ico svg{ width: 24px; height: 24px; color:#fff; }
+  .pds-sheet{ margin-top: 18px; background:#fff; border:1px solid var(--line); border-radius: 22px; padding: 8px 26px 18px; }
+  .pds-sheet h3{ font-size: .78rem; font-family: var(--f-mono, monospace); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 22px 0 8px; }
+  .pds-sheet dl{ display:grid; grid-template-columns: 220px 1fr; gap: 8px 18px; font-size: .95rem; }
+  .pds-sheet dt{ color: var(--slate); }
+  .pds-sheet dd{ white-space: pre-wrap; overflow-wrap: anywhere; }
+  @media (max-width: 560px){ .pds-sheet{ padding: 6px 18px 16px; } .pds-sheet dl{ grid-template-columns: 1fr; gap: 2px; } .pds-sheet dd{ margin-bottom: 8px; } }
+  .pds-actions{ display:flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+  .btn-ghost{ border: 1px solid var(--line); background:#fff; color: var(--ink); border-radius: 999px; padding: 15px 24px; font: inherit; font-size: .95rem; cursor:pointer; }
+  .btn-ghost:hover{ border-color: var(--accent); color: var(--accent); }
+  .pds-actions .submit-btn{ text-decoration: none; padding: 15px 24px; }
+  @media print{
+    .ls-header, .ls-footer, .ls-progress, .pds-actions, .pds-steps, .hero, #projektbogenForm, .cl-chat-toggle, .cl-chat-panel, .ls-intro{ display:none !important; }
+    body{ background:#fff !important; }
+    .pds-done{ background:#fff !important; color:#000 !important; border:1px solid #ccc; }
+    .pds-done h2, .pds-done p{ color:#000 !important; }
+    .pds-sheet{ border:none; padding: 0; }
+  }
 </style>
 <link rel="stylesheet" href="site.css">
 <style>#progress{ display:none !important; } .bg-stone{ display:none; }</style>
@@ -129,105 +185,200 @@
   </div>
 </header>
 
-<div class="wrap">
-  <section class="hero">
-    <span class="eyebrow mono" data-i18n="projektbogen_page.eyebrow">PROJEKTBOGEN</span>
-    <h1 class="display" data-i18n="projektbogen_page.h1">Bevor wir uns treffen, ein paar Fragen zu eurer Situation.</h1>
-    <p class="hero-sub" data-i18n="projektbogen_page.sub">Damit Marko Katalan sich gezielt auf euer Gespräch vorbereiten kann. Dauert etwa fünf Minuten.</p>
+<section class="hero">
+  <div class="wrap pds-wrap">
+    <span class="eyebrow mono" data-i18n="pds.eyebrow">SCHRITT 2 VON 2 · PROJEKTDATENBLATT</span>
+    <h1 class="display" data-i18n="pds.h1">Erzählen Sie uns von Ihrem Unternehmen.</h1>
+    <p class="hero-sub" data-i18n="pds.sub">Mit diesem Datenblatt bereiten wir uns gezielt auf Ihr Gespräch vor. Dauert etwa fünf Minuten – eine Kopie erhalten Sie per E-Mail.</p>
     <div class="lead-summary" id="leadSummary"></div>
-  </section>
+  </div>
+</section>
+
+<div class="wrap pds-wrap">
+
+  <ol class="pds-steps" aria-label="Fortschritt">
+    <li class="done"><span>1</span><b data-i18n="pds.step1">Anfrage</b></li>
+    <li class="on"><span>2</span><b data-i18n="pds.step2">Projektdatenblatt</b></li>
+    <li><span>3</span><b data-i18n="pds.step3">Bestätigung</b></li>
+  </ol>
 
   <form id="projektbogenForm" method="post" action="#" novalidate>
-    <div class="two-col">
-      <div class="field">
-        <label for="pb-name" data-i18n="kontakt.form_name">Name</label>
-        <input id="pb-name" name="name" type="text" required>
+    <fieldset class="pds-card">
+      <legend><span class="n">01</span><span data-i18n="pds.sec_contact">Ansprechpartner</span></legend>
+      <div class="two-col">
+        <div class="field"><label for="pd-name" data-i18n="pds.f_name">Name *</label><input id="pd-name" name="name" type="text" autocomplete="name" required maxlength="120"></div>
+        <div class="field"><label for="pd-position" data-i18n="pds.f_position">Position / Funktion</label><input id="pd-position" name="position" type="text" autocomplete="organization-title" maxlength="80"></div>
+      </div>
+      <div class="two-col">
+        <div class="field"><label for="pd-email" data-i18n="pds.f_email">E-Mail *</label><input id="pd-email" name="email" type="email" autocomplete="email" required maxlength="254"></div>
+        <div class="field"><label for="pd-phone" data-i18n="pds.f_phone">Telefon</label><input id="pd-phone" name="phone" type="tel" autocomplete="tel" maxlength="40"></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="pds-card">
+      <legend><span class="n">02</span><span data-i18n="pds.sec_company">Unternehmen</span></legend>
+      <div class="two-col">
+        <div class="field"><label for="pd-company" data-i18n="pds.f_company">Firmenname *</label><input id="pd-company" name="company" type="text" autocomplete="organization" required maxlength="160"></div>
+        <div class="field">
+          <label for="pd-legal" data-i18n="pds.f_legal">Rechtsform</label>
+          <select id="pd-legal" name="legal_form">
+            <option value="" data-i18n="pds.pick">Bitte wählen</option>
+            <option value="Einzelunternehmen" data-i18n="pds.legal_eu">Einzelunternehmen</option>
+            <option value="GmbH">GmbH</option>
+            <option value="GmbH & Co KG">GmbH &amp; Co KG</option>
+            <option value="OG / KG">OG / KG</option>
+            <option value="AG">AG</option>
+            <option value="LLC / Inc.">LLC / Inc.</option>
+            <option value="Sonstige" data-i18n="pds.other">Sonstige</option>
+          </select>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="field">
+          <label for="pd-industry" data-i18n="pds.f_industry">Branche *</label>
+          <select id="pd-industry" name="industry" required>
+            <option value="" data-i18n="pds.pick">Bitte wählen</option>
+            <option value="Handwerk & Bau" data-i18n="pds.ind_craft">Handwerk &amp; Bau</option>
+            <option value="Handel & E-Commerce" data-i18n="pds.ind_retail">Handel &amp; E-Commerce</option>
+            <option value="Produktion & Industrie" data-i18n="pds.ind_prod">Produktion &amp; Industrie</option>
+            <option value="Dienstleistung & Beratung" data-i18n="pds.ind_service">Dienstleistung &amp; Beratung</option>
+            <option value="Gastronomie & Hotellerie" data-i18n="pds.ind_hosp">Gastronomie &amp; Hotellerie</option>
+            <option value="Gesundheit & Pflege" data-i18n="pds.ind_health">Gesundheit &amp; Pflege</option>
+            <option value="Immobilien" data-i18n="pds.ind_realestate">Immobilien</option>
+            <option value="IT & Software" data-i18n="pds.ind_it">IT &amp; Software</option>
+            <option value="Sonstige" data-i18n="pds.other">Sonstige</option>
+          </select>
+        </div>
+        <div class="field"><label for="pd-website" data-i18n="pds.f_website">Website</label><input id="pd-website" name="website" type="url" inputmode="url" placeholder="https://" maxlength="200"></div>
+      </div>
+      <div class="three-col">
+        <div class="field"><label for="pd-founded" data-i18n="pds.f_founded">Gründungsjahr</label><input id="pd-founded" name="founded_year" type="number" inputmode="numeric" min="1800" max="2100" placeholder="2010"></div>
+        <div class="field"><label for="pd-city" data-i18n="pds.f_city">Standort (Ort) *</label><input id="pd-city" name="city" type="text" autocomplete="address-level2" required maxlength="80"></div>
+        <div class="field">
+          <label for="pd-country" data-i18n="pds.f_country">Land</label>
+          <select id="pd-country" name="country">
+            <option value="AT" data-i18n="pds.c_at">Österreich</option>
+            <option value="DE" data-i18n="pds.c_de">Deutschland</option>
+            <option value="CH" data-i18n="pds.c_ch">Schweiz</option>
+            <option value="US" data-i18n="pds.c_us">USA</option>
+            <option value="Other" data-i18n="pds.c_other">Anderes Land</option>
+          </select>
+        </div>
       </div>
       <div class="field">
-        <label for="pb-company" data-i18n="kontakt.form_company">Unternehmen</label>
-        <input id="pb-company" name="company" type="text" required>
-      </div>
-    </div>
-    <div class="two-col">
-      <div class="field">
-        <label for="pb-email" data-i18n="kontakt.form_email">E-Mail</label>
-        <input id="pb-email" name="email" type="email" required>
+        <span class="lbl" data-i18n="pds.f_model">Geschäftsmodell</span>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="business_model" value="B2B"><span>B2B</span></label>
+          <label><input type="radio" name="business_model" value="B2C"><span>B2C</span></label>
+          <label><input type="radio" name="business_model" value="B2B & B2C"><span data-i18n="pds.both">Beides</span></label>
+        </div>
       </div>
       <div class="field">
-        <label for="pb-phone" data-i18n="kontakt.form_phone">Telefon</label>
-        <input id="pb-phone" name="phone" type="tel">
+        <span class="lbl" data-i18n="pds.f_owner">Inhabergeführt?</span>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="owner_managed" value="Ja"><span data-i18n="pds.yes">Ja</span></label>
+          <label><input type="radio" name="owner_managed" value="Nein"><span data-i18n="pds.no">Nein</span></label>
+        </div>
       </div>
-    </div>
+    </fieldset>
 
-    <div class="field">
-      <label data-i18n="projektbogen_page.f_bereich">Welcher Bereich betrifft eure größte Herausforderung? <span class="hint" data-i18n="projektbogen_page.f_multi">(Mehrfachauswahl möglich)</span></label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="bereich" value="Prozesse & Systeme"><span data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</span></label>
-        <label><input type="checkbox" name="bereich" value="Marketing"><span data-i18n="leistungen.s2_tag">Marketing</span></label>
-        <label><input type="checkbox" name="bereich" value="Finanzielle Angelegenheiten"><span data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</span></label>
-        <label><input type="checkbox" name="bereich" value="Digitalisierung & KI"><span data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</span></label>
-        <label><input type="checkbox" name="bereich" value="Sonstiges"><span data-i18n="projektbogen_page.f_bereich_other">Sonstiges</span></label>
+    <fieldset class="pds-card">
+      <legend><span class="n">03</span><span data-i18n="pds.sec_figures">Kennzahlen</span></legend>
+      <div class="two-col">
+        <div class="field">
+          <label for="pd-employees" data-i18n="pds.f_employees">Mitarbeiterzahl *</label>
+          <select id="pd-employees" name="employee_count" required>
+            <option value="" data-i18n="pds.pick">Bitte wählen</option>
+            <option value="1–5">1–5</option><option value="6–10">6–10</option><option value="11–25">11–25</option>
+            <option value="26–50">26–50</option><option value="51–100">51–100</option><option value="101–250">101–250</option><option value="250+">250+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="pd-revenue" data-i18n="pds.f_revenue">Jahresumsatz *</label>
+          <select id="pd-revenue" name="annual_revenue" required>
+            <option value="" data-i18n="pds.pick">Bitte wählen</option>
+            <option value="< 250.000">&lt; 250.000</option><option value="250.000–500.000">250.000–500.000</option>
+            <option value="500.000–1 Mio.">500.000–1 Mio.</option><option value="1–2,5 Mio.">1–2,5 Mio.</option>
+            <option value="2,5–5 Mio.">2,5–5 Mio.</option><option value="5–10 Mio.">5–10 Mio.</option><option value="> 10 Mio.">&gt; 10 Mio.</option>
+            <option value="keine Angabe" data-i18n="pds.na">Keine Angabe</option>
+          </select>
+          <span class="hint" data-i18n="pds.currency_hint">in Euro bzw. US-Dollar</span>
+        </div>
       </div>
-    </div>
+      <div class="two-col">
+        <div class="field">
+          <label for="pd-trend" data-i18n="pds.f_trend">Umsatzentwicklung (letzte 2 Jahre)</label>
+          <select id="pd-trend" name="revenue_trend">
+            <option value="" data-i18n="pds.pick">Bitte wählen</option>
+            <option value="wachsend" data-i18n="pds.trend_up">Wachsend</option>
+            <option value="stabil" data-i18n="pds.trend_flat">Stabil</option>
+            <option value="rückläufig" data-i18n="pds.trend_down">Rückläufig</option>
+          </select>
+        </div>
+        <div class="field"><label for="pd-locations" data-i18n="pds.f_locations">Anzahl Standorte</label><input id="pd-locations" name="locations" type="number" inputmode="numeric" min="1" max="999" placeholder="1"></div>
+      </div>
+    </fieldset>
 
-    <div class="field">
-      <label for="pb-situation" data-i18n="projektbogen_page.f_situation">Wie sieht eure aktuelle Situation aus?</label>
-      <textarea id="pb-situation" name="situation" rows="4" required></textarea>
-    </div>
-
-    <div class="field">
-      <label for="pb-versucht" data-i18n="projektbogen_page.f_versucht">Was habt ihr bereits versucht? <span class="hint" data-i18n="projektbogen_page.f_optional">(optional)</span></label>
-      <textarea id="pb-versucht" name="versucht" rows="3"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="pb-ziel" data-i18n="projektbogen_page.f_ziel">Was soll am Ende des Gesprächs für euch herauskommen?</label>
-      <textarea id="pb-ziel" name="ziel" rows="3" required></textarea>
-    </div>
-
-    <div class="two-col">
+    <fieldset class="pds-card">
+      <legend><span class="n">04</span><span data-i18n="pds.sec_situation">Ausgangslage &amp; Ziele</span></legend>
       <div class="field">
-        <label for="pb-dringlichkeit" data-i18n="projektbogen_page.f_dringlichkeit">Dringlichkeit</label>
-        <select id="pb-dringlichkeit" name="dringlichkeit" required>
-          <option value="" data-i18n="kontakt.form_select_placeholder">Bitte wählen</option>
-          <option value="In den nächsten Wochen" data-i18n="projektbogen_page.f_dringlichkeit_1">In den nächsten Wochen</option>
-          <option value="In den nächsten 3 Monaten" data-i18n="projektbogen_page.f_dringlichkeit_2">In den nächsten 3 Monaten</option>
-          <option value="Noch offen" data-i18n="projektbogen_page.f_dringlichkeit_3">Noch offen</option>
-        </select>
+        <span class="lbl" data-i18n="pds.f_areas">Wo liegt der größte Hebel? (Mehrfachauswahl)</span>
+        <div class="chips-select">
+          <label><input type="checkbox" name="areas" value="Prozesse & Systeme"><span data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</span></label>
+          <label><input type="checkbox" name="areas" value="Marketing"><span data-i18n="leistungen.s2_tag">Marketing</span></label>
+          <label><input type="checkbox" name="areas" value="Finanzen"><span data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</span></label>
+          <label><input type="checkbox" name="areas" value="Digitalisierung & KI"><span data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</span></label>
+          <label><input type="checkbox" name="areas" value="Onlineshop"><span data-i18n="svc_shop.tag">Onlineshop-Entwicklung</span></label>
+          <label><input type="checkbox" name="areas" value="Sonstiges"><span data-i18n="pds.other">Sonstiges</span></label>
+        </div>
       </div>
-      <div class="field">
-        <label for="pb-employees" data-i18n="kontakt.form_employees">Mitarbeiterzahl</label>
-        <select id="pb-employees" name="employee_count" required>
-          <option value="" data-i18n="kontakt.form_select_placeholder">Bitte wählen</option>
-          <option value="1-5">1–5</option>
-          <option value="6-15">6–15</option>
-          <option value="16-50">16–50</option>
-          <option value="50+">50+</option>
-        </select>
+      <div class="field"><label for="pd-situation" data-i18n="pds.f_situation">Wie sieht Ihre aktuelle Situation aus? *</label><textarea id="pd-situation" name="situation" rows="4" required maxlength="2000"></textarea></div>
+      <div class="field"><label for="pd-tried" data-i18n="pds.f_tried">Was haben Sie bereits versucht? (optional)</label><textarea id="pd-tried" name="tried" rows="3" maxlength="2000"></textarea></div>
+      <div class="field"><label for="pd-goal" data-i18n="pds.f_goal">Was soll in 12 Monaten anders sein? *</label><textarea id="pd-goal" name="goal" rows="3" required maxlength="2000"></textarea></div>
+      <div class="two-col">
+        <div class="field">
+          <label for="pd-urgency" data-i18n="pds.f_urgency">Zeitrahmen *</label>
+          <select id="pd-urgency" name="urgency" required>
+            <option value="" data-i18n="pds.pick">Bitte wählen</option>
+            <option value="sofort" data-i18n="pds.urg_now">Sofort</option>
+            <option value="1–3 Monate" data-i18n="pds.urg_3m">In 1–3 Monaten</option>
+            <option value="3–6 Monate" data-i18n="pds.urg_6m">In 3–6 Monaten</option>
+            <option value="offen" data-i18n="pds.urg_open">Noch offen</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="pd-budget" data-i18n="pds.f_budget">Budgetrahmen (optional)</label>
+          <select id="pd-budget" name="budget">
+            <option value="" data-i18n="pds.pick">Bitte wählen</option>
+            <option value="< 5.000">&lt; 5.000</option><option value="5.000–15.000">5.000–15.000</option>
+            <option value="15.000–50.000">15.000–50.000</option><option value="> 50.000">&gt; 50.000</option>
+            <option value="noch offen" data-i18n="pds.urg_open">Noch offen</option>
+          </select>
+        </div>
       </div>
-    </div>
+      <label class="check"><input type="checkbox" name="decision_maker"><span data-i18n="pds.f_decision">Ich treffe die Entscheidung selbst oder bin maßgeblich beteiligt.</span></label>
+    </fieldset>
 
-    <div class="field">
-      <label for="pb-revenue" data-i18n="kontakt.form_revenue">Jahresumsatz</label>
-      <select id="pb-revenue" name="annual_revenue" required>
-        <option value="" data-i18n="kontakt.form_select_placeholder">Bitte wählen</option>
-        <option value="<250k">&lt; 250.000 €</option>
-        <option value="250k-500k">250.000–500.000 €</option>
-        <option value="500k-1m">500.000 €–1 Mio €</option>
-        <option value=">1m">&gt; 1 Mio €</option>
-      </select>
-    </div>
-
-    <div class="field field-checkbox">
-      <label>
-        <input type="checkbox" name="entscheidung">
-        <span data-i18n="projektbogen_page.f_entscheidung">Ich kann diese Entscheidung selbst treffen oder bin maßgeblich daran beteiligt.</span>
-      </label>
-    </div>
-
-    <button type="submit" class="submit-btn" data-i18n="projektbogen_page.submit">Projektbogen absenden</button>
-    <div class="form-note" id="formNote"></div>
+    <label class="check consent"><input type="checkbox" name="consent" required><span data-i18n-html="pds.consent">Ich bin einverstanden, dass Lusides diese Angaben zur Vorbereitung des Gesprächs speichert und verarbeitet (<a href="datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>). *</span></label>
+    <button type="submit" class="submit-btn" data-i18n="pds.submit">Projektdatenblatt absenden</button>
+    <div class="form-note" id="formNote" role="alert"></div>
   </form>
+
+  <section class="pds-result" id="pdsResult" hidden aria-live="polite">
+    <div class="pds-done">
+      <div class="check-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+      <div>
+        <h2 data-i18n="pds.done_h">Vielen Dank – Ihr Projektdatenblatt ist da.</h2>
+        <p id="pdsMail" data-i18n="pds.done_p">Eine Kopie geht an Ihre E-Mail-Adresse. Wir melden uns innerhalb von zwei Werktagen.</p>
+        <p class="ref">Ref. <b id="pdsRef">—</b></p>
+      </div>
+    </div>
+    <div class="pds-sheet" id="pdsSheet"></div>
+    <div class="pds-actions">
+      <button type="button" class="btn-ghost" id="pdsPrint" data-i18n="pds.print">Drucken / als PDF speichern</button>
+      <a href="termin.html" class="submit-btn" data-i18n="pds.book">Gleich Erstgespräch buchen</a>
+    </div>
+  </section>
 </div>
 
 <footer class="ls-footer" id="footer">

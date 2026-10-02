@@ -477,6 +477,8 @@
   @media (max-width: 900px){ .duo-grid{ grid-template-columns: minmax(0,1fr); gap: 90px; } }
   .faq details{ border-bottom: 1px solid var(--line); }
   .faq summary{ list-style:none; cursor:pointer; display:flex; justify-content:space-between; gap: 24px; padding: 26px 0; font-size: 21px; letter-spacing: -0.02em; font-weight: 500; }
+  .faq summary > span:first-child{ min-width:0; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:break-word; }
+  @media (max-width: 400px){ .faq summary{ font-size: 18px; gap: 14px; } }
   .faq summary::-webkit-details-marker{ display:none; }
   .faq summary .pm{ flex-shrink:0; width: 32px; height: 32px; border-radius:50%; border:1px solid var(--line); position:relative; transition: transform .5s var(--ease), background .3s ease; }
   .faq summary .pm::before, .faq summary .pm::after{ content:''; position:absolute; left: 50%; top: 50%; width: 12px; height: 1.5px; background: var(--ink); translate: -50% -50%; }
@@ -680,7 +682,7 @@
     </div>
     <div class="contact-card ls-reveal" data-delay="1">
       <h3 data-i18n="home2.form_h">Lieber schreiben?</h3>
-      <p data-i18n="home2.form_p">Wir melden uns innerhalb von zwei Werktagen.</p>
+      <p data-i18n="home2.form_p">Im nächsten Schritt folgt ein kurzes Projektdatenblatt – wir melden uns innerhalb von zwei Werktagen.</p>
       <form id="kontaktForm" class="cf" method="post" action="#" novalidate>
         <div><label for="cf-name" data-i18n="kontakt.form_name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required></div>
         <div><label for="cf-company" data-i18n="kontakt.form_company">Unternehmen</label><input id="cf-company" name="company" type="text" autocomplete="organization" required></div>

@@ -112,7 +112,7 @@
         if(window.lusidesLogConversion) window.lusidesLogConversion('form_submit');
         try {
           sessionStorage.setItem('lusidesErstberatungLead', JSON.stringify({
-            name: name, email: email, phone: phone, company: company
+            name: name, email: email, phone: phone, company: company, message: message
           }));
         } catch(err){ console.warn('sessionStorage unavailable (non-blocking):', err); }
         window.location.href = 'projektbogen.html';

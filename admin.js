@@ -273,6 +273,7 @@
   // ---------- Laden ----------
   function loadData(){
     if(window.lusidesAdminCalendar) window.lusidesAdminCalendar.load(client);
+    if(window.lusidesAdminSheets) window.lusidesAdminSheets.load(client);
     loadInvoices();
     loadSettings();
     client.from('contacts').select('*').order('created_at', { ascending: false }).then(function(res){

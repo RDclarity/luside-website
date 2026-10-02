@@ -63,15 +63,17 @@ Projekt: `knuktzuqqmrrkpkusren`
    1. `supabase/migrations/20261002120000_appointments.sql` (Termine)
    2. `supabase/migrations/20261003100000_billing.sql` (Bestellschein, Rechnungen, Nummernkreise)
    3. `supabase/migrations/20261003120000_security.sql` (Admin-Rechte, Missbrauchsschutz, Härtung)
-   4. Admins freischalten:
+   4. `supabase/migrations/20261004100000_project_sheets.sql` (Projektdatenblatt nach dem Anfrageformular)
+   5. Admins freischalten:
       ```sql
       insert into public.admin_users (user_id, note)
       select id, email from auth.users where email in ('ADMIN1@…', 'ADMIN2@…')
       on conflict do nothing;
       ```
-3. **Edge Functions** deployen (`lusides-invoice`, außerdem die aktualisierten `lusides-chat` und `lusides-rima-sync` mit Missbrauchsbremse):
+3. **Edge Functions** deployen (`lusides-invoice`, `lusides-datasheet`, außerdem die aktualisierten `lusides-chat` und `lusides-rima-sync` mit Missbrauchsbremse):
    ```
    supabase functions deploy lusides-invoice --project-ref knuktzuqqmrrkpkusren --no-verify-jwt
+   supabase functions deploy lusides-datasheet --project-ref knuktzuqqmrrkpkusren --no-verify-jwt
    supabase functions deploy lusides-chat --project-ref knuktzuqqmrrkpkusren --no-verify-jwt
    supabase functions deploy lusides-rima-sync --project-ref knuktzuqqmrrkpkusren --no-verify-jwt
    ```
@@ -79,7 +81,8 @@ Projekt: `knuktzuqqmrrkpkusren`
 4. **Secrets** (Edge Functions → Secrets):
    - `RESEND_API_KEY` = Key aus Resend
    - optional `MAIL_FROM` = `Lusides <invoice@lusides.com>`
-   - optional `MAIL_NOTIFY` = `inquiry@lusides.com`
+   - optional `MAIL_NOTIFY` = `inquiry@lusides.com` (bekommt auch jedes Projektdatenblatt als Kopie)
+   - optional `MAIL_FROM_INFO` = `Lusides <inquiry@lusides.com>` (Absender der Projektdatenblatt-Mail)
 5. **Admin → Einstellungen** auf der Website: UID-Nummer, IBAN, BIC und Bank eintragen. Sie erscheinen dann auf jeder Rechnung.
 6. **Nicht** `appointments`/`invoices` an den RIMA-Mirror hängen – das würde Rechnungsdaten (Adressen, UID) in ein zweites System kopieren.
 7. OpenAI: im OpenAI-Projekt ein monatliches Ausgabenlimit setzen (Kostenschutz für den Chat).
@@ -93,3 +96,12 @@ Projekt: `knuktzuqqmrrkpkusren`
   - EU-Unternehmen mit UID außerhalb Österreichs: Reverse Charge, Nettobetrag, Hinweis auf der Rechnung.
   - Kunde außerhalb der EU (USA): in Österreich nicht steuerbar, USD-Preis ohne USt.
 - Bis 400 € brutto gilt die Rechnung als Kleinbetragsrechnung (§11 Abs 6 UStG). Die UID des Leistenden wird trotzdem angedruckt, sobald sie hinterlegt ist.
+
+## 4. Ablauf Anfrage → Projektdatenblatt
+
+1. Besucher füllt das kurze Anfrageformular auf der Startseite aus → Kontakt landet in `contacts` und im CRM (RIMA).
+2. Weiterleitung auf `projektbogen.html`; Name, E-Mail, Telefon, Firma und Nachricht sind vorausgefüllt.
+3. Datenblatt (Firma, Branche, Mitarbeiter, Umsatz, Ziele …) → gespeichert in `project_sheets` (Referenz `PD-2026-0001`), zusätzlich mit allen Kennzahlen ans CRM.
+4. Sofort auf der Seite: Bestätigung mit Zusammenfassung, druckbar bzw. als PDF speicherbar.
+5. Per E-Mail: PDF-Kopie an den Kunden, Kopie an `MAIL_NOTIFY`.
+6. Admin → Tab „Datenblätter“: Liste, Details, Status, Notizen, PDF, erneut senden, CSV-Export.
