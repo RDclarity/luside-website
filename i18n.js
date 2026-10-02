@@ -6,7 +6,7 @@
       hero: {
         eyebrow: 'LUSIDES',
         h1: 'Du hast dein Unternehmen aufgebaut. Nicht, um jetzt allein weiterzukämpfen.',
-        sub: 'Lusides ist Unternehmensberatung und Entwicklungspartner für inhabergeführte Unternehmen — in Prozessen, Systemen, Marketing und KI. Wir beraten nicht nur, wir setzen um.',
+        sub: 'Prozesse, Marketing, Finanzen und KI für inhabergeführte Unternehmen. Wir beraten, wir setzen um.',
         cta1: 'Unternehmen vorstellen',
         cta2: 'Wie wir helfen',
         reassurance: 'Kein Massengeschäft. Nur für Unternehmen mit bestehendem Umsatz und Struktur.'
@@ -780,7 +780,7 @@
       hero: {
         eyebrow: 'LUSIDES',
         h1: "You built this business. Not to keep carrying it alone.",
-        sub: "Lusides is a management consultancy and development partner for owner-run businesses — in processes, systems, marketing, and AI. We don't just advise, we implement.",
+        sub: "Processes, marketing, finance and AI for owner-run businesses. We advise, we implement.",
         cta1: 'Introduce your business',
         cta2: 'How we help',
         reassurance: "Not a volume business. Only for companies with existing revenue and structure."
