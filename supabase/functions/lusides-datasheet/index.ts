@@ -39,7 +39,7 @@ function labels(lang: string) {
       name: "Name", position: en ? "Position" : "Position", email: "E-Mail", phone: en ? "Phone" : "Telefon",
       company: en ? "Company name" : "Firmenname", legal_form: en ? "Legal form" : "Rechtsform", industry: en ? "Industry" : "Branche",
       website: "Website", founded_year: en ? "Founded" : "Gründungsjahr", city: en ? "Location" : "Standort", country: en ? "Country" : "Land",
-      business_model: en ? "Business model" : "Geschäftsmodell", owner_managed: en ? "Owner-managed" : "Inhabergeführt",
+      business_model: en ? "Business model" : "Geschäftsmodell", succession: en ? "Succession / handover" : "Generationenwechsel / Nachfolge",
       employee_count: en ? "Employees" : "Mitarbeiter", annual_revenue: en ? "Annual revenue" : "Jahresumsatz",
       revenue_trend: en ? "Revenue trend" : "Umsatzentwicklung", locations: en ? "Locations" : "Standorte",
       areas: en ? "Focus areas" : "Bereiche", situation: en ? "Current situation" : "Aktuelle Situation", tried: en ? "Already tried" : "Bereits versucht",
@@ -61,7 +61,7 @@ function sections(d: Row, L: ReturnType<typeof labels>): [string, [string, strin
   const pick = (keys: string[]) => keys.map((k) => [L.rows[k], v(k)] as [string, string]).filter(([, val]) => val);
   return [
     [L.contact, pick(["name", "position", "email", "phone"])],
-    [L.company, pick(["company", "legal_form", "industry", "website", "founded_year", "city", "country", "business_model", "owner_managed"])],
+    [L.company, pick(["company", "legal_form", "industry", "website", "founded_year", "city", "country", "business_model", "succession"])],
     [L.figures, pick(["employee_count", "annual_revenue", "revenue_trend", "locations"])],
     [L.situation, pick(["areas", "situation", "tried", "goal", "urgency", "budget", "decision_maker"])],
   ];

@@ -25,7 +25,7 @@ create table if not exists public.project_sheets (
   city            text not null check (char_length(city) <= 80),
   country         text check (char_length(country) <= 10),
   business_model  text check (business_model in ('B2B','B2C','B2B & B2C')),
-  owner_managed   text check (owner_managed in ('Ja','Nein')),
+  succession      text check (succession in ('Ja','Nein')),
   -- Kennzahlen
   employee_count  text not null check (char_length(employee_count) <= 20),
   annual_revenue  text not null check (char_length(annual_revenue) <= 30),
@@ -99,13 +99,13 @@ begin
 
   begin
     insert into public.project_sheets (lang, name, position, email, phone, company, legal_form, industry, website, founded_year,
-      city, country, business_model, owner_managed, employee_count, annual_revenue, revenue_trend, locations,
+      city, country, business_model, succession, employee_count, annual_revenue, revenue_trend, locations,
       areas, situation, tried, goal, urgency, budget, decision_maker, source)
     values (case when p->>'lang' = 'en' then 'en' else 'de' end,
       trim(p->>'name'), nullif(trim(p->>'position'), ''), v_email, nullif(trim(p->>'phone'), ''),
       trim(p->>'company'), nullif(p->>'legal_form', ''), trim(p->>'industry'), nullif(trim(p->>'website'), ''),
       nullif(p->>'founded_year', '')::int, trim(p->>'city'), nullif(p->>'country', ''),
-      nullif(p->>'business_model', ''), nullif(p->>'owner_managed', ''),
+      nullif(p->>'business_model', ''), nullif(p->>'succession', ''),
       trim(p->>'employee_count'), trim(p->>'annual_revenue'), nullif(p->>'revenue_trend', ''), nullif(p->>'locations', '')::int,
       v_areas, trim(p->>'situation'), nullif(trim(p->>'tried'), ''), trim(p->>'goal'), trim(p->>'urgency'),
       nullif(p->>'budget', ''), coalesce((p->>'decision_maker')::boolean, false), left(nullif(p->>'source', ''), 80))

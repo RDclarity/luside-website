@@ -15,7 +15,7 @@
 
   var LABELS = [
     ['Ansprechpartner', [['name', 'Name'], ['position', 'Position'], ['email', 'E-Mail'], ['phone', 'Telefon']]],
-    ['Unternehmen', [['company', 'Firma'], ['legal_form', 'Rechtsform'], ['industry', 'Branche'], ['website', 'Website'], ['founded_year', 'Gründungsjahr'], ['city', 'Ort'], ['country', 'Land'], ['business_model', 'Geschäftsmodell'], ['owner_managed', 'Inhabergeführt']]],
+    ['Unternehmen', [['company', 'Firma'], ['legal_form', 'Rechtsform'], ['industry', 'Branche'], ['website', 'Website'], ['founded_year', 'Gründungsjahr'], ['city', 'Ort'], ['country', 'Land'], ['business_model', 'Geschäftsmodell'], ['succession', 'Generationenwechsel / Nachfolge']]],
     ['Kennzahlen', [['employee_count', 'Mitarbeiter'], ['annual_revenue', 'Jahresumsatz'], ['revenue_trend', 'Entwicklung'], ['locations', 'Standorte']]],
     ['Ausgangslage', [['areas', 'Bereiche'], ['situation', 'Situation'], ['tried', 'Bereits versucht'], ['goal', 'Ziel (12 Monate)'], ['urgency', 'Zeitrahmen'], ['budget', 'Budget'], ['decision_maker', 'Entscheider'], ['source', 'Quelle']]]
   ];

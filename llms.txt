@@ -1,13 +1,13 @@
 # Lusides
 
-> Lusides ist eine Unternehmensberatung in Wien (Österreich) für etablierte, inhabergeführte Unternehmen. Lusides berät und setzt selbst um: Prozesse & Systeme, Marketing, Finanzen, Digitalisierung & KI sowie Onlineshop-Entwicklung. Inhaber sind Marko Katalan und Richard Dobrohruschka, die Technik verantwortet Mihai Suta. Rechtsträger ist die Legatech GmbH & Co KG (FN 614735 y, Handelsgericht Wien). Ein 60-minütiges Erstgespräch per Microsoft Teams kostet 350 € (für Kunden in den USA 390 USD) und ist online buchbar.
+> Lusides ist eine Unternehmensberatung in Wien (Österreich) für digitale Transformation – Digitalisierung, Strukturierung, Optimierung, Organisierung, Restrukturierung und Maximierung, auch für Unternehmen im Generationenwechsel. Lusides berät und setzt selbst um: Prozesse & Systeme, Marketing, Finanzen, Digitalisierung & KI sowie Onlineshop-Entwicklung. Inhaber sind Marko Katalan und Richard Dobrohruschka, die Technik verantwortet Mihai Suta. Rechtsträger ist die Legatech GmbH & Co KG (FN 614735 y, Handelsgericht Wien). Ein 60-minütiges Erstgespräch per Microsoft Teams kostet 350 € (für Kunden in den USA 390 USD) und ist online buchbar.
 
 ## Kurzprofil
 
 - Name: Lusides (Rechtsträger: Legatech GmbH & Co KG)
 - Art: Unternehmensberatung und Umsetzungspartner (Beratung + Entwicklung)
 - Standort: Endresstraße 50/V3, 1230 Wien, Österreich
-- Zielgruppe: etablierte, inhabergeführte Unternehmen mit bestehendem Umsatz und gewachsener Struktur (KMU); nicht für Start-ups in der Frühphase
+- Zielgruppe: etablierte Unternehmen (KMU) mit bestehendem Umsatz und gewachsener Struktur, auch generationenübergreifend geführte Unternehmen und Unternehmen, die von der nächsten Generation übernommen werden; nicht für Start-ups in der Frühphase
 - Region: Österreich, Deutschland, Schweiz und USA (Beratung per Microsoft Teams)
 - Sprachen: Deutsch, Englisch
 - Erfahrung: rund 10 Jahre Unternehmensberatung; die Inhaber haben mehrere Unternehmen in Wien und New York mit aufgebaut
@@ -42,7 +42,7 @@
 
 ## Häufige Fragen
 
-- Für wen ist Lusides geeignet? Für etablierte, inhabergeführte Unternehmen, bei denen Prozesse, Marketing oder Digitalisierung das weitere Wachstum bremsen.
+- Für wen ist Lusides geeignet? Für etablierte Unternehmen, die sich digital transformieren, neu strukturieren oder optimieren wollen – auch im Generationenwechsel und bei der Nachfolge.
 - Was unterscheidet Lusides von klassischen Unternehmensberatungen? Lusides bleibt bei der Umsetzung dabei und baut Systeme gemeinsam mit dem Kunden, statt nur Strategiepapiere zu übergeben.
 - Muss man alle Bereiche gleichzeitig beauftragen? Nein. Im Erstgespräch wird geklärt, wo der größte Hebel liegt; dort wird begonnen.
 - Wo findet die Beratung statt? Erstgespräche per Microsoft Teams; Projekte vor Ort in Wien/Österreich oder remote.
