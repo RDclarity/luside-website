@@ -781,7 +781,7 @@
       hero: {
         eyebrow: 'LUSIDES',
         h1: "You built this business. Not to keep carrying it alone.",
-        sub: "Processes, marketing, finance and AI for owner-run businesses. We advise, we implement.",
+        sub: "Digital transformation for established businesses and the next generation. We advise, we implement.",
         cta1: 'Introduce your business',
         cta2: 'How we help',
         reassurance: "Not a volume business. Only for companies with existing revenue and structure."
@@ -1124,7 +1124,7 @@
         h1a: "Growth,",
         h1b: "by",
         h1c: "design.",
-        sub: "Processes, marketing, finance and AI for owner-run businesses. We advise, we implement.",
+        sub: "Digital transformation for established businesses and the next generation. We advise, we implement.",
         cta1: "Book a call",
         k1: "01 — Mindset",
         statement: "You built your business. We make sure it runs without you too — with clear processes, strong marketing and systems that grow with you.",
