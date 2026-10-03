@@ -364,28 +364,25 @@
   }
   var US_TZ = /^(America\/(New_York|Detroit|Chicago|Denver|Phoenix|Los_Angeles|Anchorage|Boise|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak|Menominee|Indiana\/.*|Kentucky\/.*|North_Dakota\/.*)|Pacific\/Honolulu)$/;
   var TZ_COUNTRY = { 'Europe/Vienna': 'AT', 'Europe/Berlin': 'DE', 'Europe/Busingen': 'DE', 'Europe/Zurich': 'CH', 'Europe/Vaduz': 'LI' };
-  function regionUrl(r){ var u = location.pathname + '?region=' + r; return u; }
+  // Englisch = USD nur für Kunden außerhalb der EU; EU-Kunden buchen auf der deutschen Seite in Euro.
   function updateRegionNote(){
     var note = document.getElementById('regionNote'), c = form.country.value;
     if(REGION === 'US' && EU.indexOf(c) !== -1){
       note.hidden = false;
-      note.innerHTML = str('region_mismatch', 'EU: Euro-Preis.') + ' <a href="' + regionUrl('eu') + '">' + str('region_switch_eur', 'Euro') + '</a>';
-    } else if(REGION === 'EU' && c === 'US'){
-      note.hidden = false;
-      note.innerHTML = '<a href="' + regionUrl('us') + '">' + str('region_switch_usd', 'USD') + '</a>';
+      note.innerHTML = str('region_mismatch', '') + ' <a href="#" data-to-de>' + str('region_switch_eur', '') + '</a>';
+      var link = note.querySelector('[data-to-de]');
+      link.addEventListener('click', function(e){ e.preventDefault(); if(window.lusidesI18n) window.lusidesI18n.applyLang('de'); });
     } else { note.hidden = true; note.textContent = ''; }
-  }
-  function updateCurrencySwitch(){
-    var el = document.getElementById('currencySwitch'); if(!el) return;
-    el.innerHTML = (REGION === 'US' ? str('region_now_usd', 'USD.') : str('region_now_eur', 'EUR.')) + ' <a href="' + regionUrl(REGION === 'US' ? 'eu' : 'us') + '">'
-      + (REGION === 'US' ? str('region_switch_eur', 'EUR') : str('region_switch_usd', 'USD')) + '</a>';
   }
   fillCountries();
   if(REGION === 'US' && US_TZ.test(LOCAL_TZ)) form.country.value = 'US';
   else if(REGION === 'EU' && TZ_COUNTRY[LOCAL_TZ]) form.country.value = TZ_COUNTRY[LOCAL_TZ];
   form.country.addEventListener('change', updateRegionNote);
-  updateCurrencySwitch();
-  window.addEventListener('lusides:langchange', function(){ fillCountries(); updateRegionNote(); updateCurrencySwitch(); });
+  window.addEventListener('lusides:langchange', function(){
+    // Sprache wechselt die Währung und die Buchungszeiten → Seite neu aufbauen
+    if(window.lusidesRegion && window.lusidesRegion.region !== REGION){ location.reload(); return; }
+    fillCountries(); updateRegionNote();
+  });
   updateTzNote();
   slotsHead.textContent = str('loading', 'Lade freie Termine…');
   loadBooked().then(function(){

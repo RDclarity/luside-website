@@ -214,22 +214,6 @@
       return '<tr><td class="primary" data-label="Name">' + esc(r.name || '—') + '</td><td data-label="E-Mail"><a href="mailto:' + esc(encodeURIComponent(r.email || '')) + '">' + esc(r.email) + '</a></td><td class="nowrap" data-label="Datum">' + fmtDate(r.created_at) + '</td></tr>';
     }).join('');
   }
-  function renderAnalytics(visits, durations, conversions){
-    var devices = {};
-    visits.forEach(function(v){ devices[v.device_type] = (devices[v.device_type] || 0) + 1; });
-    var sessions = new Set(visits.map(function(v){ return v.session_id; }));
-    var conv = new Set((conversions || []).map(function(c){ return c.session_id; }));
-    var rate = sessions.size ? (conv.size / sessions.size * 100) : 0;
-    var html = '<div class="stat"><div class="num">' + visits.length + '</div><div class="lbl">Seitenaufrufe</div></div>';
-    Object.keys(devices).sort().forEach(function(d){ html += '<div class="stat"><div class="num">' + devices[d] + '</div><div class="lbl">' + esc(d) + '</div></div>'; });
-    html += '<div class="stat hl"><div class="num">' + (conversions || []).length + '</div><div class="lbl">Conversions</div></div>';
-    html += '<div class="stat hl"><div class="num">' + rate.toFixed(1) + ' %</div><div class="lbl">Conversion-Rate</div></div>';
-    $('analyticsSummary').innerHTML = html;
-    if(!visits.length){ $('analyticsBody').innerHTML = '<tr class="empty-row"><td colspan="5">Noch keine Besuche.</td></tr>'; return; }
-    $('analyticsBody').innerHTML = visits.map(function(v){
-      return '<tr><td class="primary" data-label="Seite">' + esc(v.page) + '</td><td data-label="Herkunft">' + esc(v.referrer || 'Direktzugriff') + '</td><td data-label="Gerät">' + esc(v.device_type) + '</td><td class="nowrap" data-label="Verweildauer">' + fmtDuration(durations[v.session_id]) + '</td><td class="nowrap" data-label="Datum">' + fmtDate(v.created_at) + '</td></tr>';
-    }).join('');
-  }
   $('exportContactsBtn').addEventListener('click', function(){
     downloadCSV('kontaktanfragen.csv', data.contacts, [
       { label: 'Name', get: function(r){ return r.name; } }, { label: 'Unternehmen', get: function(r){ return r.company; } },
@@ -284,16 +268,7 @@
       if(res.error){ $('newsletterBody').innerHTML = '<tr class="empty-row"><td colspan="3">Fehler beim Laden.</td></tr>'; return; }
       renderNewsletter(res.data || []);
     });
-    Promise.all([
-      client.from('page_visits').select('*').order('created_at', { ascending: false }).limit(300),
-      client.from('page_visit_durations').select('session_id, duration_seconds'),
-      client.from('conversion_events').select('*').order('created_at', { ascending: false })
-    ]).then(function(r){
-      if(r[0].error || r[1].error){ $('analyticsBody').innerHTML = '<tr class="empty-row"><td colspan="5">Fehler beim Laden.</td></tr>'; return; }
-      var durations = {};
-      (r[1].data || []).forEach(function(d){ durations[d.session_id] = Math.max(durations[d.session_id] || 0, d.duration_seconds); });
-      renderAnalytics(r[0].data || [], durations, r[2].error ? [] : (r[2].data || []));
-    });
+    if(window.lusidesAdminAnalytics) window.lusidesAdminAnalytics.load(client);
   }
 
   // ---------- Login ----------

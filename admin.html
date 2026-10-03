@@ -264,6 +264,57 @@
     .modal-actions{ padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
   }
   @media (max-width: 420px){ .yr{ grid-template-columns: 1fr; } }
+
+  /* Statistik + Live */
+  .an-grid{ display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin-bottom: 26px; }
+  .an-grid-2{ grid-template-columns: 1fr 1fr; margin-top: 26px; }
+  .an-grid-3{ grid-template-columns: repeat(3, 1fr); margin-top: 26px; }
+  @media (max-width: 1000px){ .an-grid{ grid-template-columns: 1fr 1fr; } .an-wide{ grid-column: 1 / -1; } }
+  @media (max-width: 680px){ .an-grid, .an-grid-2, .an-grid-3{ grid-template-columns: 1fr; } }
+  .an-card{ background:#fff; border:1px solid var(--line); border-radius: 16px; padding: 16px 18px; min-width: 0; }
+  .an-card h3, .an-h{ font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .an-h{ margin-top: 6px; }
+  .an-sub{ font-size: 12.5px; color: var(--slate); margin-bottom: 12px; }
+  .an-empty{ color: var(--slate-light); font-size: 13px; padding: 12px 0; }
+  .an-bars{ display:flex; align-items:flex-end; gap: 3px; height: 150px; padding-top: 18px; }
+  .an-bar{ flex:1; min-width: 3px; background: var(--accent); border-radius: 4px 4px 0 0; position: relative; }
+  .an-bar:hover{ background: var(--accent-ink); }
+  .an-bar span{ position:absolute; bottom: 100%; left: 50%; transform: translateX(-50%); font-size: 10.5px; color: var(--slate); white-space: nowrap; display:none; }
+  .an-bar:hover span{ display:block; }
+  .an-axis{ display:flex; justify-content:space-between; font-size: 11px; color: var(--slate-light); margin-top: 6px; }
+  .fn-step{ margin-bottom: 10px; }
+  .fn-top{ display:flex; justify-content:space-between; gap: 8px; font-size: 13px; }
+  .fn-top b{ font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .fn-track{ height: 8px; background: var(--paper-dim); border-radius: 999px; overflow:hidden; margin-top: 4px; }
+  .fn-fill{ height: 100%; background: var(--accent); border-radius: 999px; }
+  .fn-drop{ font-size: 11.5px; color: #B3261E; margin-top: 2px; }
+  .hbar{ display:grid; grid-template-columns: minmax(0,1fr) auto; gap: 2px 10px; font-size: 13px; margin-bottom: 8px; }
+  .hbar .t{ grid-column: 1 / -1; height: 6px; background: var(--paper-dim); border-radius: 999px; overflow:hidden; }
+  .hbar .t i{ display:block; height:100%; background: var(--accent); }
+  .hbar span{ overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .reach{ display:flex; gap: 3px; align-items:flex-end; height: 26px; }
+  .reach i{ width: 14px; background: var(--accent); border-radius: 3px 3px 0 0; opacity: .85; }
+  .reach-l{ font-size: 11px; color: var(--slate); white-space: nowrap; }
+  .trail{ list-style:none; font-size: 13px; border-left: 2px solid var(--line); margin: 6px 0 4px 4px; padding-left: 12px; }
+  .trail li{ position: relative; padding: 3px 0; color: var(--ink); }
+  .trail li::before{ content:''; position:absolute; left: -17px; top: 10px; width: 8px; height: 8px; border-radius: 50%; background: var(--slate-light); }
+  .trail li.pv::before{ background: var(--accent); }
+  .trail li.cv::before{ background: #0B6B32; }
+  .trail li.lv::before{ background: #B3261E; }
+  .trail small{ color: var(--slate); font-variant-numeric: tabular-nums; margin-right: 6px; }
+  tr.an-detail td{ background: #FAFCFE; }
+  .live-dot{ width: 8px; height: 8px; border-radius: 50%; background: #1DB954; display:inline-block; box-shadow: 0 0 0 0 rgba(29,185,84,.6); animation: livePulse 1.8s infinite; }
+  @keyframes livePulse{ 0%{ box-shadow: 0 0 0 0 rgba(29,185,84,.55); } 70%{ box-shadow: 0 0 0 7px rgba(29,185,84,0); } 100%{ box-shadow: 0 0 0 0 rgba(29,185,84,0); } }
+  .live-list{ display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+  @media (max-width: 400px){ .live-list{ grid-template-columns: 1fr; } }
+  .lv-card{ background:#fff; border:1px solid var(--line); border-radius: 16px; padding: 16px 18px; min-width:0; }
+  .lv-head{ display:flex; justify-content:space-between; align-items:flex-start; gap: 10px; }
+  .lv-page{ font-weight: 600; font-size: 15px; overflow-wrap:anywhere; }
+  .lv-sec{ font-size: 13px; color: var(--accent-ink); margin-top: 2px; }
+  .lv-meta{ display:flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+  .lv-scroll{ height: 6px; background: var(--paper-dim); border-radius: 999px; overflow:hidden; }
+  .lv-scroll i{ display:block; height:100%; background: var(--accent); transition: width .6s ease; }
+  .lv-time{ font-size: 12px; color: var(--slate); white-space: nowrap; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -278,7 +329,8 @@
     <button class="tab" data-tab="datenblaetter" role="tab">Datenblätter <span class="badge" id="bSheets" hidden></span></button>
     <button class="tab" data-tab="anfragen" role="tab">Anfragen <span class="badge" id="bAnfragen" hidden></span></button>
     <button class="tab" data-tab="newsletter" role="tab">Newsletter</button>
-    <button class="tab" data-tab="besucher" role="tab">Besucher</button>
+    <button class="tab" data-tab="besucher" role="tab">Statistik</button>
+    <button class="tab" data-tab="live" role="tab"><span class="live-dot" aria-hidden="true"></span>Live <span class="badge" id="bLive" hidden></span></button>
     <button class="tab" data-tab="einstellungen" role="tab">Einstellungen</button>
   </div>
 </nav>
@@ -404,16 +456,55 @@
       </div>
     </section>
 
-    <!-- BESUCHER -->
+    <!-- STATISTIK -->
     <section class="pane" id="pane-besucher">
-      <div class="pane-head"><div><h2>Website-Besucher</h2><div class="count">Letzte 300 Seitenaufrufe</div></div></div>
-      <div class="stats" id="analyticsSummary"></div>
-      <div class="card-box">
-        <table class="rt">
-          <thead><tr><th>Seite</th><th>Herkunft</th><th>Gerät</th><th>Verweildauer</th><th>Datum</th></tr></thead>
-          <tbody id="analyticsBody"><tr class="loading-row"><td colspan="5">Lade…</td></tr></tbody>
-        </table>
+      <div class="pane-head">
+        <div><h2>Statistik</h2><div class="count" id="anRangeLabel">Letzte 7 Tage</div></div>
+        <div class="filters" id="anRange" style="margin:0">
+          <button class="chip-f" data-days="1">Heute</button>
+          <button class="chip-f active" data-days="7">7 Tage</button>
+          <button class="chip-f" data-days="30">30 Tage</button>
+          <button class="chip-f" data-days="90">90 Tage</button>
+        </div>
       </div>
+      <div class="stats" id="anTotals"></div>
+      <div class="an-grid">
+        <div class="an-card an-wide"><h3>Besuche pro Tag</h3><div class="an-bars" id="anDaily"></div></div>
+        <div class="an-card"><h3>Weg zur Terminbuchung</h3><p class="an-sub">Wie viele Besucher kommen bis zur Buchung – und wo steigen sie aus?</p><div id="anFunnelBooking"></div></div>
+        <div class="an-card"><h3>Weg zur Anfrage</h3><p class="an-sub">Kontaktformular und Projektdatenblatt.</p><div id="anFunnelContact"></div></div>
+      </div>
+      <h3 class="an-h">Seiten: Aufrufe, Verweildauer, Scrolltiefe, Ausstieg</h3>
+      <p class="an-sub">„Gelesen bis“ zeigt, welcher Anteil der Besucher mindestens 25 / 50 / 75 / 100 % der Seite gesehen hat. „Ausstieg“ heißt: Auf dieser Seite haben Besucher die Website verlassen.</p>
+      <div class="card-box"><table class="rt">
+        <thead><tr><th>Seite</th><th>Aufrufe</th><th>Ø Zeit</th><th>Gelesen bis</th><th>Ausstiege</th></tr></thead>
+        <tbody id="anPages"><tr class="loading-row"><td colspan="5">Lade…</td></tr></tbody>
+      </table></div>
+      <div class="an-grid an-grid-2">
+        <div><h3 class="an-h">Wo abgebrochen wurde</h3><p class="an-sub">Seite und Abschnitt, in dem Besucher zuletzt waren, bevor sie gegangen sind.</p>
+          <div class="card-box"><table class="rt"><thead><tr><th>Seite</th><th>Abschnitt</th><th>Besucher</th></tr></thead><tbody id="anExits"></tbody></table></div></div>
+        <div><h3 class="an-h">Meistgeklickt</h3><p class="an-sub">Links, Buttons und Auswahlen.</p>
+          <div class="card-box"><table class="rt"><thead><tr><th>Element</th><th>Seite</th><th>Klicks</th></tr></thead><tbody id="anClicks"></tbody></table></div></div>
+      </div>
+      <div class="an-grid an-grid-3">
+        <div class="an-card"><h3>Herkunft</h3><div id="anSources"></div></div>
+        <div class="an-card"><h3>Geräte</h3><div id="anDevices"></div></div>
+        <div class="an-card"><h3>Sprache</h3><div id="anLangs"></div></div>
+      </div>
+      <h3 class="an-h">Besuche im Detail</h3>
+      <p class="an-sub">Antippen zeigt den kompletten Klickpfad des Besuchers.</p>
+      <div class="card-box"><table class="rt">
+        <thead><tr><th>Beginn</th><th>Einstieg</th><th>Ausstieg</th><th>Seiten</th><th>Dauer</th><th>Herkunft</th><th>Gerät</th><th></th></tr></thead>
+        <tbody id="anSessions"><tr class="loading-row"><td colspan="8">Lade…</td></tr></tbody>
+      </table></div>
+    </section>
+
+    <!-- LIVE -->
+    <section class="pane" id="pane-live">
+      <div class="pane-head">
+        <div><h2>Live auf der Website</h2><div class="count" id="liveMeta">Aktualisiert alle 5 Sekunden</div></div>
+      </div>
+      <div class="stats" id="liveTotals"></div>
+      <div class="live-list" id="liveList"><p class="an-empty">Lade…</p></div>
     </section>
 
     <!-- EINSTELLUNGEN -->
@@ -525,9 +616,10 @@
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous"></script>
-<script src="supabase-config.js?v=202610030938"></script>
-<script src="admin-calendar.js?v=202610030938"></script>
-<script src="admin-sheets.js?v=202610030938"></script>
-<script src="admin.js?v=202610030938"></script>
+<script src="supabase-config.js?v=202610061200"></script>
+<script src="admin-calendar.js?v=202610061200"></script>
+<script src="admin-sheets.js?v=202610061200"></script>
+<script src="admin.js?v=202610061200"></script>
+<script src="admin-analytics.js?v=202610061200"></script>
 </body>
 </html>

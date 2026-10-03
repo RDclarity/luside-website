@@ -5,18 +5,24 @@
   var header = document.querySelector('.ls-header');
   var root = document.documentElement;
 
-  // ---------- Intro: Tresor öffnet sich in vier Richtungen ----------
+  // ---------- Intro: Schriftzug + schräger Strich, Seiten klappen weg ----------
   var intro = document.querySelector('.ls-intro');
   var introRunning = !!(intro && root.classList.contains('intro-on'));
   var introDone = [];
   function whenIntroOpen(fn){ introRunning ? introDone.push(fn) : fn(); }
   if(intro && !introRunning && intro.parentNode) intro.parentNode.removeChild(intro);
   if(introRunning){
-    // Fugen: Länge und Winkel von der Mitte zu den Ecken
+    // Schnittlinie exakt durch den Schnitt im Logo-L legen (Logo-Einheiten 0–100)
     var placeCut = function(){
-      var w = window.innerWidth, h = window.innerHeight;
-      intro.style.setProperty('--diag', Math.ceil(Math.hypot(w, h) / 2 + 4) + 'px');
-      intro.style.setProperty('--ang', (Math.atan2(h, w) * 180 / Math.PI) + 'deg');
+      var mark = intro.querySelector('.li-mark');
+      if(!mark) return;
+      var r = mark.getBoundingClientRect();
+      var k = 0.675;                       // Steigung des Schnitts (dx/dy)
+      var x0 = r.left + 0.485 * r.width;   // Punkt in der Mitte des Spalts
+      var y0 = r.top + 0.67 * r.height;
+      var H = window.innerHeight;
+      intro.style.setProperty('--xt', (x0 - k * y0) + 'px');
+      intro.style.setProperty('--xb', (x0 + k * (H - y0)) + 'px');
     };
     placeCut();
     window.addEventListener('resize', placeCut);
@@ -37,7 +43,7 @@
       placeCut();
       intro.classList.add('go');
       timers.push(setTimeout(function(){ intro.classList.add('cut'); }, 1150));
-      timers.push(setTimeout(openIntro, 2100));
+      timers.push(setTimeout(openIntro, 1950));
     };
     var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
     Promise.race([fontsReady, new Promise(function(r){ setTimeout(r, 700); })]).then(function(){ requestAnimationFrame(start); });

@@ -459,11 +459,8 @@
         teaser_link: "Zur Onlineshop-Entwicklung"
       },
       termin_page: {
-        region_now_usd: "Preise in US-Dollar.",
-        region_now_eur: "Preise in Euro.",
-        region_switch_usd: "Preise in US-Dollar anzeigen (Kunden in den USA)",
-        region_switch_eur: "Zu den Euro-Preisen wechseln",
-        region_mismatch: "Für Kunden in der EU gilt der Euro-Preis inkl. USt.",
+        region_switch_eur: "Zur deutschen Seite wechseln",
+        region_mismatch: "Kunden in der EU buchen auf der deutschen Seite in Euro.",
         err_slot_gone: "Dieser Termin ist nicht mehr buchbar (Vorlaufzeit 12 Stunden). Bitte wähle einen anderen.",
         err_input: "Bitte prüfe deine Angaben (Name, E-Mail, Telefon).",
         err_uid: "Die UID-Nummer passt nicht zum gewählten Land (z. B. DE… für Deutschland).",
@@ -638,7 +635,7 @@
         f_succession: "Generationenwechsel oder Nachfolge geplant?",
         f_employees: "Mitarbeiterzahl *",
         f_revenue: "Jahresumsatz *",
-        currency_hint: "in Euro bzw. US-Dollar",
+        currency_hint: "in Euro",
         f_trend: "Umsatzentwicklung (letzte 2 Jahre)",
         f_locations: "Anzahl Standorte",
         f_areas: "Wo liegt der größte Hebel? (Mehrfachauswahl)",
@@ -749,9 +746,9 @@
         h_newsletter: 'Newsletter-Anmeldung',
         p_newsletter: 'Wenn Sie beim Absenden des Formulars die Newsletter-Checkbox aktivieren, speichern wir Ihren Namen und Ihre E-Mail-Adresse zusätzlich in einer separaten Liste für den Newsletter-Versand. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie jederzeit formlos per E-Mail an inquiry@luside.com widerrufen können.',
         h_booking: 'Terminbuchung',
-        p_booking: "Wenn Sie über die Seite „Termin buchen“ ein Erstgespräch buchen, verarbeiten wir Name, E-Mail-Adresse, optional Telefonnummer und Unternehmen, Ihre Rechnungsadresse (Straße, PLZ, Ort, Land), optional Ihre UID-Nummer, das gewählte Thema und Ihre Nachricht sowie den gewählten Termin. Zweck ist die Durchführung des Gesprächs sowie die Erstellung von Bestellschein und Rechnung (Rechtsgrundlage: Vertragserfüllung, Art. 6 Abs. 1 lit. b DSGVO, und gesetzliche Pflichten nach UStG/BAO, Art. 6 Abs. 1 lit. c DSGVO). Bestellschein und Rechnung werden automatisch erstellt und über den E-Mail-Dienst Resend (Resend, Inc., Versand über Server in der EU) an Sie versendet. Das Gespräch findet über Microsoft Teams statt; dafür gelten zusätzlich die Datenschutzbestimmungen von Microsoft. Die Zeitzone Ihres Browsers verwenden wir nur, um Uhrzeiten und Währung (EUR/USD) passend anzuzeigen.",
+        p_booking: "Wenn Sie über die Seite „Termin buchen“ ein Erstgespräch buchen, verarbeiten wir Name, E-Mail-Adresse, optional Telefonnummer und Unternehmen, Ihre Rechnungsadresse (Straße, PLZ, Ort, Land), optional Ihre UID-Nummer, das gewählte Thema und Ihre Nachricht sowie den gewählten Termin. Zweck ist die Durchführung des Gesprächs sowie die Erstellung von Bestellschein und Rechnung (Rechtsgrundlage: Vertragserfüllung, Art. 6 Abs. 1 lit. b DSGVO, und gesetzliche Pflichten nach UStG/BAO, Art. 6 Abs. 1 lit. c DSGVO). Bestellschein und Rechnung werden automatisch erstellt und über den E-Mail-Dienst Resend (Resend, Inc., Versand über Server in der EU) an Sie versendet. Das Gespräch findet über Microsoft Teams statt; dafür gelten zusätzlich die Datenschutzbestimmungen von Microsoft. Die Zeitzone Ihres Browsers verwenden wir nur, um Uhrzeiten und Sprache passend anzuzeigen.",
         h_analytics: 'Website-Analyse',
-        p_analytics: 'Um zu verstehen, wie unsere Website genutzt wird, erfassen wir bei jedem Seitenaufruf: die aufgerufene Seite, die verweisende Seite (Referrer), den Gerätetyp (Mobil/Tablet/Desktop), die ungefähre Verweildauer und eine zufällig erzeugte Sitzungs-ID. Diese Sitzungs-ID verknüpft mehrere Seitenaufrufe miteinander und ist daher als pseudonyme Angabe zu behandeln. Unsere Anwendung selbst speichert dabei keine IP-Adressen oder Standortdaten; unser Hosting- und Datenbankanbieter verarbeitet IP-Adressen jedoch technisch bedingt kurzzeitig als übliche Server-Logdaten zur Sicherheit und Missbrauchsabwehr. Es werden keine Cookies gesetzt. Rechtsgrundlage ist unser berechtigtes Interesse an der Verbesserung unseres Angebots (Art. 6 Abs. 1 lit. f DSGVO).',
+        p_analytics: 'Um zu verstehen, wie unsere Website genutzt wird, erfassen wir pseudonym: die aufgerufenen Seiten, die Herkunft (verweisende Website bzw. Kampagnenparameter), den Gerätetyp (Mobil/Tablet/Desktop), die gewählte Sprache, die Verweildauer, wie weit eine Seite gescrollt wurde, in welchem Abschnitt Sie sich gerade befinden, welche Links und Schaltflächen Sie anklicken sowie ob ein Formular begonnen oder abgeschickt wurde (ohne dessen Inhalte). Diese Angaben werden über eine zufällig erzeugte Sitzungs-ID verknüpft, die nur im Sitzungsspeicher Ihres Browsers (sessionStorage) liegt und beim Schließen des Tabs bzw. nach 30 Minuten Inaktivität verfällt; während Ihres Besuchs können wir so auch in Echtzeit sehen, auf welcher Seite sich Besucher befinden. Unsere Anwendung speichert keine IP-Adressen oder Standortdaten; unser Hosting- und Datenbankanbieter verarbeitet IP-Adressen jedoch technisch bedingt kurzzeitig als übliche Server-Logdaten zur Sicherheit und Missbrauchsabwehr. Es werden keine Cookies gesetzt. Ist in Ihrem Browser „Do Not Track“ oder „Global Privacy Control“ aktiviert, findet keine Erfassung statt. Die Daten werden nach spätestens 13 Monaten gelöscht. Rechtsgrundlage ist unser berechtigtes Interesse an der Verbesserung unseres Angebots (Art. 6 Abs. 1 lit. f DSGVO).',
         h_chatbot: 'Chat-Assistent',
         p_chatbot: 'Der Chat-Assistent beantwortet einfache Fragen mit vorbereiteten Inhalten direkt in Ihrem Browser, ohne dass diese Eingaben übertragen werden. Bei weiterführenden Fragen wird Ihre Nachricht zur Beantwortung an die Chat-API von OpenAI, L.L.C. (USA) übermittelt; OpenAI kann diese Daten dabei in die USA übertragen und hat sich hierfür den EU-Standardvertragsklauseln unterworfen. Wir speichern den Gesprächsverlauf nicht dauerhaft. Wenn Sie über den Chat aktiv Ihre Kontaktdaten angeben und der Datenschutzerklärung sowie optional dem Newsletter zustimmen, werden diese Daten wie unter „Kontaktformular" beschrieben verarbeitet.',
         h_language: 'Spracheinstellung',
@@ -1234,11 +1231,8 @@
         teaser_link: "Explore online shop development"
       },
       termin_page: {
-        region_now_usd: "Prices in US dollars.",
-        region_now_eur: "Prices in euros.",
-        region_switch_usd: "Show prices in US dollars (customers in the USA)",
-        region_switch_eur: "Switch to euro prices",
-        region_mismatch: "Customers in the EU are billed the euro price incl. VAT.",
+        region_switch_eur: "Switch to the German page (EUR)",
+        region_mismatch: "Customers in the EU book on the German page, in euros.",
         err_slot_gone: "This slot can no longer be booked (12 hours lead time). Please choose another one.",
         err_input: "Please check your details (name, email, phone).",
         err_uid: "The VAT ID does not match the selected country (e.g. DE… for Germany).",
@@ -1413,7 +1407,7 @@
         f_succession: "Succession or generational handover planned?",
         f_employees: "Number of employees *",
         f_revenue: "Annual revenue *",
-        currency_hint: "in euros or US dollars",
+        currency_hint: "in US dollars",
         f_trend: "Revenue trend (last 2 years)",
         f_locations: "Number of locations",
         f_areas: "Where is the biggest lever? (multiple choice)",
@@ -1524,9 +1518,9 @@
         h_newsletter: 'Newsletter sign-up',
         p_newsletter: 'If you tick the newsletter checkbox when submitting the form, we additionally store your name and email address in a separate list for sending the newsletter. The legal basis is your consent (Art. 6(1)(a) GDPR), which you can withdraw at any time, informally, by emailing inquiry@luside.com.',
         h_booking: 'Booking an appointment',
-        p_booking: "When you book an initial consultation on the “Book a call” page, we process your name, email address, optionally your phone number and company, your billing address (street, postal code, city, country), optionally your VAT ID, the chosen topic, your message and the selected appointment. We use this data to hold the call and to issue the order confirmation and invoice (legal basis: performance of a contract, Art. 6(1)(b) GDPR, and legal obligations under Austrian VAT and tax law, Art. 6(1)(c) GDPR). The order confirmation and invoice are created automatically and sent to you via the email service Resend (Resend, Inc., sending via servers in the EU). The call takes place on Microsoft Teams, for which Microsoft’s privacy terms also apply. We use your browser’s time zone only to show times and currency (EUR/USD) correctly.",
+        p_booking: "When you book an initial consultation on the “Book a call” page, we process your name, email address, optionally your phone number and company, your billing address (street, postal code, city, country), optionally your VAT ID, the chosen topic, your message and the selected appointment. We use this data to hold the call and to issue the order confirmation and invoice (legal basis: performance of a contract, Art. 6(1)(b) GDPR, and legal obligations under Austrian VAT and tax law, Art. 6(1)(c) GDPR). The order confirmation and invoice are created automatically and sent to you via the email service Resend (Resend, Inc., sending via servers in the EU). The call takes place on Microsoft Teams, for which Microsoft’s privacy terms also apply. We use your browser’s time zone only to show times and language correctly.",
         h_analytics: 'Website analytics',
-        p_analytics: "To understand how our website is used, we record on each page view: the page visited, the referring page, the device type (mobile/tablet/desktop), the approximate time spent on the page, and a randomly generated session ID. This session ID links multiple page views together and is therefore treated as pseudonymous data. Our application itself does not store IP addresses or location data; our hosting and database provider does, however, process IP addresses briefly as standard server log data for security and abuse prevention. No cookies are set. The legal basis is our legitimate interest in improving our offering (Art. 6(1)(f) GDPR).",
+        p_analytics: "To understand how our website is used, we record the following pseudonymously: the pages viewed, where you came from (referring website or campaign parameters), the device type (mobile/tablet/desktop), the language selected, time spent, how far a page was scrolled, which section you are currently viewing, which links and buttons you click, and whether a form was started or submitted (without its contents). These details are linked by a randomly generated session ID that is kept only in your browser’s session storage (sessionStorage) and expires when you close the tab or after 30 minutes of inactivity; this also lets us see in real time which page visitors are on. Our application does not store IP addresses or location data; our hosting and database provider does, however, briefly process IP addresses as standard server log data for security and abuse prevention. No cookies are set. If “Do Not Track” or “Global Privacy Control” is enabled in your browser, nothing is recorded. The data is deleted after 13 months at the latest. The legal basis is our legitimate interest in improving our services (Art. 6(1)(f) GDPR).",
         h_chatbot: 'Chat assistant',
         p_chatbot: "The chat assistant answers simple questions using pre-written content directly in your browser, without transmitting that input anywhere. For more complex questions, your message is sent to OpenAI, L.L.C.'s (USA) chat API to generate a reply; OpenAI may transfer this data to the USA and relies on the EU Standard Contractual Clauses for that transfer. We do not permanently store the conversation. If you actively provide your contact details through the chat and agree to the privacy policy and, optionally, the newsletter, that data is processed as described under \"Contact form\".",
         h_language: 'Language preference',
@@ -1552,40 +1546,34 @@
     }
   };
 
-  // ---------- Region (EU/US) → Währung, Sprache ----------
-  // US-Besucher (Zeitzone America/… oder Browser en-US) sehen Englisch + US-Dollar,
-  // alle anderen Euro. Testen: ?region=us bzw. ?region=eu an die URL hängen.
+  // ---------- Sprache → Währung ----------
+  // Deutsch = Euro, Englisch = US-Dollar – strikt getrennt, nichts wird vermischt.
+  // US-Besucher (Zeitzone America/… oder Browser en-US) landen auf Englisch, alle anderen
+  // je nach Browser. Testen: ?region=us (Englisch/USD) bzw. ?region=eu (Deutsch/EUR).
   var PRICING = { EU: { currency: 'EUR', amount: 350 }, US: { currency: 'USD', amount: 390 } };
   function store(k, v){ try{ localStorage.setItem(k, v); }catch(e){} }
   function read(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
-  function detectRegion(){
+  function detectLang(){
     var q = (location.search.match(/[?&]region=(us|eu)/i) || [])[1];
-    if(q){ store('lusides_region', q.toUpperCase()); return q.toUpperCase(); }
-    var saved = read('lusides_region');
-    if(saved === 'US' || saved === 'EU') return saved;
-    var tz = ''; try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }catch(e){}
-    var langs = (navigator.languages || [navigator.language || '']).join(',');
-    // Nur echte US-Zeitzonen (nicht Kanada, Mexiko, Brasilien …) zählen als USA.
-    var usTz = /^(America\/(New_York|Detroit|Chicago|Denver|Phoenix|Los_Angeles|Anchorage|Boise|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak|Menominee|Indiana\/.*|Kentucky\/.*|North_Dakota\/.*)|Pacific\/Honolulu)$/;
-    var region = (usTz.test(tz) || (!tz && /(^|,)en-US/i.test(langs))) ? 'US' : 'EU';
-    store('lusides_region', region);
-    return region;
-  }
-  function detectLang(region){
+    if(q) return q.toLowerCase() === 'us' ? 'en' : 'de';
     var saved = read('lusides_lang');
     if(saved === 'de' || saved === 'en') return saved;
-    if(region === 'US') return 'en';
     var langs = (navigator.languages || [navigator.language || '']).join(',');
     var tz = ''; try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }catch(e){}
+    // Nur echte US-Zeitzonen (nicht Kanada, Mexiko, Brasilien …) zählen als USA.
+    var usTz = /^(America\/(New_York|Detroit|Chicago|Denver|Phoenix|Los_Angeles|Anchorage|Boise|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak|Menominee|Indiana\/.*|Kentucky\/.*|North_Dakota\/.*)|Pacific\/Honolulu)$/;
+    if(usTz.test(tz) || (!tz && /(^|,)en-US/i.test(langs))) return 'en';
     if(/(^|,)de/i.test(langs) || /^Europe\/(Vienna|Berlin|Zurich|Busingen|Vaduz)$/.test(tz)) return 'de';
     return /(^|,)en/i.test(langs) ? 'en' : 'de';
   }
-  var REGION = detectRegion();
-  var currentLang = 'de';
+  function regionOf(lang){ return lang === 'en' ? 'US' : 'EU'; }
+  var initialLang = detectLang();
+  var REGION = regionOf(initialLang);
+  var currentLang = initialLang;
   function priceLabel(){
     var p = PRICING[REGION];
     try{
-      return new Intl.NumberFormat(currentLang === 'en' ? 'en-US' : 'de-DE', { style: 'currency', currency: p.currency, maximumFractionDigits: 0 }).format(p.amount);
+      return new Intl.NumberFormat(REGION === 'US' ? 'en-US' : 'de-DE', { style: 'currency', currency: p.currency, maximumFractionDigits: 0 }).format(p.amount);
     }catch(e){ return p.currency === 'USD' ? '$' + p.amount : p.amount + ' €'; }
   }
   window.lusidesRegion = { region: REGION, pricing: PRICING[REGION], label: priceLabel };
@@ -1601,6 +1589,10 @@
     document.documentElement.lang = lang;
 
     currentLang = lang;
+    REGION = regionOf(lang);
+    window.lusidesRegion.region = REGION;
+    window.lusidesRegion.pricing = PRICING[REGION];
+    document.documentElement.setAttribute('data-region', REGION);
     var price = priceLabel();
     var fill = function(v){ return typeof v === 'string' ? v.replace(/\{price\}/g, price) : v; };
     document.querySelectorAll('[data-i18n]').forEach(function(el){
@@ -1636,5 +1628,5 @@
     });
   });
 
-  applyLang(detectLang(REGION));
+  applyLang(initialLang);
 })();

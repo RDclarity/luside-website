@@ -40,10 +40,10 @@ function labels(lang: string) {
       company: en ? "Company name" : "Firmenname", legal_form: en ? "Legal form" : "Rechtsform", industry: en ? "Industry" : "Branche",
       website: "Website", founded_year: en ? "Founded" : "Gründungsjahr", city: en ? "Location" : "Standort", country: en ? "Country" : "Land",
       business_model: en ? "Business model" : "Geschäftsmodell", succession: en ? "Succession / handover" : "Generationenwechsel / Nachfolge",
-      employee_count: en ? "Employees" : "Mitarbeiter", annual_revenue: en ? "Annual revenue" : "Jahresumsatz",
+      employee_count: en ? "Employees" : "Mitarbeiter", annual_revenue: en ? "Annual revenue (USD)" : "Jahresumsatz (EUR)",
       revenue_trend: en ? "Revenue trend" : "Umsatzentwicklung", locations: en ? "Locations" : "Standorte",
       areas: en ? "Focus areas" : "Bereiche", situation: en ? "Current situation" : "Aktuelle Situation", tried: en ? "Already tried" : "Bereits versucht",
-      goal: en ? "Goal in 12 months" : "Ziel in 12 Monaten", urgency: en ? "Timeframe" : "Zeitrahmen", budget: "Budget",
+      goal: en ? "Goal in 12 months" : "Ziel in 12 Monaten", urgency: en ? "Timeframe" : "Zeitrahmen", budget: en ? "Budget (USD)" : "Budget (EUR)",
       decision_maker: en ? "Decision maker" : "Entscheider",
     } as Record<string, string>,
     yes: en ? "Yes" : "Ja", no: en ? "No" : "Nein",
@@ -51,12 +51,32 @@ function labels(lang: string) {
   };
 }
 
+// Formularwerte werden auf Deutsch gespeichert; das englische Datenblatt zeigt sie
+// ausschließlich auf Englisch (Zahlen im US-Format, Beträge in USD).
+const EN_VALUES: Record<string, string> = {
+  "Einzelunternehmen": "Sole proprietorship", "Sonstige": "Other", "Sonstiges": "Other",
+  "Handwerk & Bau": "Trades & construction", "Handel & E-Commerce": "Retail & e-commerce",
+  "Produktion & Industrie": "Manufacturing & industry", "Dienstleistung & Beratung": "Services & consulting",
+  "Gastronomie & Hotellerie": "Hospitality", "Gesundheit & Pflege": "Health & care", "Immobilien": "Real estate",
+  "IT & Software": "IT & software", "AT": "Austria", "DE": "Germany", "CH": "Switzerland", "US": "United States",
+  "Other": "Other country", "Ja": "Yes", "Nein": "No",
+  "< 250.000": "< 250,000", "250.000–500.000": "250,000–500,000", "500.000–1 Mio.": "500,000–1M",
+  "1–2,5 Mio.": "1M–2.5M", "2,5–5 Mio.": "2.5M–5M", "5–10 Mio.": "5M–10M", "> 10 Mio.": "> 10M",
+  "keine Angabe": "Not specified", "wachsend": "Growing", "stabil": "Stable", "rückläufig": "Declining",
+  "Prozesse & Systeme": "Processes & systems", "Finanzen": "Finance", "Digitalisierung & KI": "Digitalization & AI",
+  "Onlineshop": "Online shop", "sofort": "Immediately", "1–3 Monate": "In 1–3 months", "3–6 Monate": "In 3–6 months",
+  "offen": "Open", "noch offen": "Open", "< 5.000": "< 5,000", "5.000–15.000": "5,000–15,000",
+  "15.000–50.000": "15,000–50,000", "> 50.000": "> 50,000",
+};
+const DE_VALUES: Record<string, string> = { "AT": "Österreich", "DE": "Deutschland", "CH": "Schweiz", "US": "USA", "Other": "Anderes Land" };
+
 function sections(d: Row, L: ReturnType<typeof labels>): [string, [string, string][]][] {
   const v = (k: string) => {
     const x = d[k];
     if (x === null || x === undefined || x === "" || (Array.isArray(x) && !x.length)) return "";
     if (typeof x === "boolean") return x ? L.yes : L.no;
-    return Array.isArray(x) ? x.join(", ") : String(x);
+    const tr = (y: unknown) => { const t = String(y); return d.lang === "en" ? (EN_VALUES[t] ?? t) : (DE_VALUES[t] ?? t); };
+    return Array.isArray(x) ? x.map(tr).join(", ") : tr(x);
   };
   const pick = (keys: string[]) => keys.map((k) => [L.rows[k], v(k)] as [string, string]).filter(([, val]) => val);
   return [
