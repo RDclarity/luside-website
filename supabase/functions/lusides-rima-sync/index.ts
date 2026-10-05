@@ -19,6 +19,34 @@ import { allow, clientIp } from "../_shared/ratelimit.ts";
 const RIMA_URL = Deno.env.get("RIMA_URL") ?? "https://vkiwbxayraxgrachjaoc.supabase.co";
 const RIMA_ANON_KEY = Deno.env.get("RIMA_ANON_KEY") ?? "";
 const LUSIDE_SYNC_SECRET = Deno.env.get("LUSIDE_SYNC_SECRET") ?? "";
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") ?? "";
+const MAIL_FROM = Deno.env.get("MAIL_FROM_INFO") ?? "Lusides <inquiry@lusides.com>";
+// Interne Benachrichtigung: MAIL_NOTIFY (kommagetrennt möglich) und immer die Gründer.
+const NOTIFY_TO = [...new Set([...(Deno.env.get("MAIL_NOTIFY") ?? "inquiry@lusides.com").split(","), "rd@rimaequity.com", "mk@rimaequity.com"]
+  .map((x) => x.trim().toLowerCase()).filter(Boolean))];
+
+const esc = (v: unknown) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
+
+// Kontaktformular, Chatbot und Seminar-Anmeldung per E-Mail melden. Buchungen nicht –
+// dafür verschickt lusides-invoice bereits eine Kopie mit Bestellschein und Rechnung.
+async function notifyTeam(name: string, email: string, phone: string, source: string, message: string) {
+  if (!RESEND_API_KEY) { console.error("notify skipped: RESEND_API_KEY fehlt"); return; }
+  const rows = [["Name", name], ["E-Mail", email], ["Telefon", phone || "–"], ["Quelle", source]]
+    .map(([k, v]) => `<tr><td style="color:#56677F;padding:4px 16px 4px 0">${esc(k)}</td><td style="color:#0A1428;padding:4px 0">${esc(v)}</td></tr>`).join("");
+  const r = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: MAIL_FROM, to: NOTIFY_TO, reply_to: email,
+      subject: `Neue Anfrage (${source}): ${name}`,
+      html: `<p style="font:15px/1.6 Arial,sans-serif"><strong>Neue Anfrage über lusides.com</strong></p>
+        <table style="border-collapse:collapse;font:14px/1.5 Arial,sans-serif">${rows}</table>
+        <p style="font:14px/1.6 Arial,sans-serif;white-space:pre-line;margin-top:14px">${esc(message)}</p>
+        <p style="font:12px/1.5 Arial,sans-serif;color:#56677F">Antworten geht direkt an ${esc(email)}. Der Lead ist auch im CRM (RIMA Equity) angelegt.</p>`,
+    }),
+  });
+  if (!r.ok) console.error("notify failed", r.status, await r.text());
+}
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
@@ -77,6 +105,13 @@ Deno.serve(async (req) => {
     body.annual_revenue?.trim() ? `Jahresumsatz: ${body.annual_revenue.trim()}` : null,
   ].filter(Boolean);
   const message = [body.biggest_challenge?.trim() || "", ...extras].filter(Boolean).join("\n\n") || "(keine Angabe)";
+
+  const challenge = body.biggest_challenge?.trim() || "";
+  if (!/^Erstgespräch gebucht/.test(challenge)) {
+    const source = body.channel?.trim()
+      || (/^Chat/.test(challenge) ? "Chatbot" : /seminar/i.test(challenge) ? "Seminar" : "Kontaktformular");
+    try { await notifyTeam(name, email, body.phone?.trim() ?? "", source, message); } catch (e) { console.error("notify error", e); }
+  }
 
   if (!RIMA_ANON_KEY || !LUSIDE_SYNC_SECRET) {
     console.error("lusides-rima-sync misconfigured: missing RIMA_ANON_KEY or LUSIDE_SYNC_SECRET");
