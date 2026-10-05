@@ -225,7 +225,7 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
     if (cur === "USD" && s.us_account && s.us_routing) {
       notes.push(t.pay);
       notes.push(`${s.us_account_name ? s.us_account_name + " · " : ""}Account ${s.us_account} · Routing (ABA) ${s.us_routing}${s.us_bank ? " · " + s.us_bank : ""}`);
-    } else if (s.iban) { notes.push(t.pay); notes.push(`IBAN ${s.iban}${s.bic ? " · BIC " + s.bic : ""}${s.bank ? " · " + s.bank : ""}`); }
+    } else if (s.iban) { notes.push(t.pay); notes.push(`IBAN ${String(s.iban).replace(/\s+/g, "").replace(/(.{4})(?=.)/g, "$1 ")}${s.bic ? " · BIC " + s.bic : ""}${s.bank ? " · " + s.bank : ""}`); }
     else notes.push(t.payNoBank);
   }
   notes.push(t.thanks);
