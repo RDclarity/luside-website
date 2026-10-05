@@ -22,7 +22,10 @@ const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") ?? "";
 const MAIL_FROM = Deno.env.get("MAIL_FROM") ?? "Lusides <invoice@lusides.com>";
-const MAIL_NOTIFY = Deno.env.get("MAIL_NOTIFY") ?? "inquiry@lusides.com";
+const MAIL_NOTIFY_RAW = Deno.env.get("MAIL_NOTIFY") ?? "inquiry@lusides.com";
+// Interne Kopien gehen an MAIL_NOTIFY (kommagetrennt möglich) und immer zusätzlich an die Gründer.
+const NOTIFY_TO = [...new Set([...MAIL_NOTIFY_RAW.split(","), "rd@rimaequity.com", "mk@rimaequity.com"].map((x) => x.trim().toLowerCase()).filter(Boolean))];
+const MAIL_NOTIFY = NOTIFY_TO[0];
 
 const admin = createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false } });
 
@@ -298,7 +301,7 @@ async function sendMails(s: Row, a: Row, inv: Row) {
   // Interne Kopie: Fehler hier dürfen die (bereits erfolgte) Kundenmail nicht als gescheitert markieren.
   try {
     await send({
-      from: MAIL_FROM, to: [MAIL_NOTIFY],
+      from: MAIL_FROM, to: NOTIFY_TO,
       subject: `Neue Buchung (${meeting === "phone" ? "TELEFON" : "Teams"}): ${oneLine(a.name)} – ${oneLine(whenVienna)}`,
       html: `<p><strong>${h(a.name)}</strong>${a.company ? " (" + h(a.company) + ")" : ""} hat ein Erstgespräch gebucht.</p>
              <p style="font-size:16px"><strong>${meeting === "phone" ? "Telefon – bitte anrufen: " + h(a.phone ?? "-") : "Video (Microsoft Teams) – Link vor dem Termin senden"}</strong></p>

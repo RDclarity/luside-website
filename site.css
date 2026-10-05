@@ -204,3 +204,9 @@ body:not(.home) .hero p a{ color: var(--ice) !important; text-decoration-color: 
   .ls-logo{ font-size: 0 !important; gap: 0 !important; }
   .ls-mark{ width: 30px !important; height: 30px !important; }
 }
+
+/* Kompakter Seitenkopf (z. B. Projektdatenblatt): Formular sofort sichtbar */
+body.compact-hero .hero{ padding-top: 104px !important; padding-bottom: 36px !important; }
+body.compact-hero .hero h1{ font-size: clamp(30px, 3.6vw, 48px) !important; line-height: 1.05 !important; max-width: 24ch; }
+body.compact-hero .hero .hero-sub{ margin-top: 12px; font-size: 1rem; }
+@media (max-width: 640px){ body.compact-hero .hero{ padding-top: 88px !important; padding-bottom: 24px !important; } }

@@ -16,7 +16,10 @@ const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") ?? "";
 const MAIL_FROM = Deno.env.get("MAIL_FROM_INFO") ?? "Lusides <inquiry@lusides.com>";
-const MAIL_NOTIFY = Deno.env.get("MAIL_NOTIFY") ?? "inquiry@lusides.com";
+const MAIL_NOTIFY_RAW = Deno.env.get("MAIL_NOTIFY") ?? "inquiry@lusides.com";
+// Interne Kopien gehen an MAIL_NOTIFY (kommagetrennt möglich) und immer zusätzlich an die Gründer.
+const NOTIFY_TO = [...new Set([...MAIL_NOTIFY_RAW.split(","), "rd@rimaequity.com", "mk@rimaequity.com"].map((x) => x.trim().toLowerCase()).filter(Boolean))];
+const MAIL_NOTIFY = NOTIFY_TO[0];
 
 const admin = createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false } });
 type Row = Record<string, any>;
@@ -185,7 +188,7 @@ async function sendMails(d: Row) {
   });
   try {
     await send({
-      from: MAIL_FROM, to: [MAIL_NOTIFY], reply_to: d.email,
+      from: MAIL_FROM, to: NOTIFY_TO, reply_to: d.email,
       subject: `Neues Projektdatenblatt ${d.ref}: ${oneLine(d.company)} (${oneLine(d.employee_count)} MA, ${oneLine(d.annual_revenue)})`,
       html: `<p style="font:15px/1.6 Arial,sans-serif"><strong>${h(d.name)}</strong> (${h(d.company)}) hat ein Projektdatenblatt ausgefüllt.</p>` + htmlSummary({ ...d, lang: "de" }),
       attachments,

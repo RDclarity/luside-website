@@ -14,7 +14,10 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") ?? "";
 const MAIL_FROM = Deno.env.get("MAIL_FROM_INFO") ?? "Lusides <inquiry@lusides.com>";
-const MAIL_NOTIFY = Deno.env.get("MAIL_NOTIFY") ?? "inquiry@lusides.com";
+const MAIL_NOTIFY_RAW = Deno.env.get("MAIL_NOTIFY") ?? "inquiry@lusides.com";
+// Interne Kopien gehen an MAIL_NOTIFY (kommagetrennt möglich) und immer zusätzlich an die Gründer.
+const NOTIFY_TO = [...new Set([...MAIL_NOTIFY_RAW.split(","), "rd@rimaequity.com", "mk@rimaequity.com"].map((x) => x.trim().toLowerCase()).filter(Boolean))];
+const MAIL_NOTIFY = NOTIFY_TO[0];
 
 const admin = createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false } });
 type Row = Record<string, any>;
@@ -94,7 +97,7 @@ Deno.serve(async (req) => {
 
     try {
       if (RESEND_API_KEY) await send({
-        from: MAIL_FROM, to: [MAIL_NOTIFY], reply_to: email,
+        from: MAIL_FROM, to: NOTIFY_TO, reply_to: email,
         subject: `WIDERRUF eingegangen: ${name} (${ref})`,
         html: `<p><strong>${h(name)}</strong> (${h(email)}) hat am ${h(stamp(received, false))} den Vertrag widerrufen.</p>
                <p>Bestellnummer: ${h(ref)}${appt?.start_at ? `<br>Termin: ${h(new Date(appt.start_at).toLocaleString("de-AT", { timeZone: "Europe/Vienna" }))}` : ""}${message ? `<br>Nachricht: ${h(message)}` : ""}</p>
