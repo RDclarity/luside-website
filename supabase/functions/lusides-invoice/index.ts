@@ -157,7 +157,13 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
   page.drawCircle({ x: M + 14, y: 790, size: 14, color: rgb(0.07, 0.07, 0.08), borderColor: rgb(0.95, 0.94, 0.93), borderWidth: 2 });
   text(page, "L", M + 9.5, 784.5, 15, bold, rgb(0.95, 0.94, 0.93));
   text(page, s.brand, M + 36, 784, 20, bold);
-  const sender = [s.legal_name, s.street, `${s.zip} ${s.city}`, s.country, s.email_contact, s.phone];
+  // Aussteller: USD-Rechnungen stellt die Katalan Group LLC aus, EUR-Rechnungen die Legatech GmbH & Co KG
+  const usIssuer = (kind === "order" ? a?.currency : inv?.currency) === "USD";
+  const iss = usIssuer
+    ? { name: s.us_legal_name || "Katalan Group LLC", street: s.us_street || "", city: s.us_city_line || "", country: s.us_country || "USA",
+        email: s.us_email || s.email_contact, phone: s.us_phone || s.phone }
+    : { name: s.legal_name, street: s.street, city: `${s.zip} ${s.city}`, country: s.country, email: s.email_contact, phone: s.phone };
+  const sender = [iss.name, iss.street, iss.city, iss.country, iss.email, iss.phone].filter(Boolean);
   sender.forEach((l, i) => right(page, l, W - M, 796 - i * 12, 8.5, font, slate));
 
   // Empfänger
@@ -165,7 +171,7 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
   const cust = isOrder
     ? [a.billing_company, a.billing_name, a.billing_street, [a.billing_zip, a.billing_city].filter(Boolean).join(" "), countryName(a.billing_country, lang)]
     : [inv.customer_company, inv.customer_name, inv.customer_street, [inv.customer_zip, inv.customer_city].filter(Boolean).join(" "), countryName(inv.customer_country, lang)];
-  text(page, `${s.legal_name} · ${s.street} · ${s.zip} ${s.city}`, M, 700, 7, font, slate);
+  text(page, [iss.name, iss.street, iss.city].filter(Boolean).join(" · "), M, 700, 7, font, slate);
   cust.filter(Boolean).forEach((l, i) => text(page, String(l), M, 682 - i * 13, 10.5, i === 0 ? bold : font));
 
   // Titel + Metadaten
@@ -238,8 +244,12 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
 
   // Fußzeile (Pflichtangaben)
   page.drawLine({ start: { x: M, y: 72 }, end: { x: W - M, y: 72 }, thickness: 0.6, color: rgb(0.86, 0.9, 0.94) });
-  const foot1 = `${s.legal_name} · ${s.street}, ${s.zip} ${s.city} · ${s.fn} · ${s.court}`;
-  const foot2 = `${t.ourUid}: ${s.uid ?? t.tbd} · ${s.email_invoice} · ${s.phone}`;
+  const foot1 = usIssuer
+    ? [iss.name, [iss.street, iss.city].filter(Boolean).join(", "), iss.country, `EIN: ${s.us_ein || t.tbd}`].filter(Boolean).join(" · ")
+    : `${s.legal_name} · ${s.street}, ${s.zip} ${s.city} · ${s.fn} · ${s.court}`;
+  const foot2 = usIssuer
+    ? `${iss.email} · ${iss.phone} · Lusides`
+    : `${t.ourUid}: ${s.uid ?? t.tbd} · ${s.email_invoice} · ${s.phone}`;
   text(page, foot1, M, 58, 7.5, font, slate); text(page, foot2, M, 47, 7.5, font, slate);
   return await doc.save();
 }

@@ -553,8 +553,17 @@
         <div class="field full"><label for="s-iban">IBAN</label><input id="s-iban" name="iban"></div>
         <div class="field"><label for="s-bic">BIC</label><input id="s-bic" name="bic"></div>
         <div class="field"><label for="s-bank">Bank</label><input id="s-bank" name="bank"></div>
+        <h3>US-Kunden: Rechnungsaussteller (Rechnungen in USD)</h3>
+        <p class="hint full">Dollar-Rechnungen und Bestellscheine stellt dieses Unternehmen aus (eigener Nummernkreis US-JJJJ-NNNN).</p>
+        <div class="field full"><label for="s-us-legal">Firmenname</label><input id="s-us-legal" name="us_legal_name" data-keep maxlength="160" placeholder="Katalan Group LLC"></div>
+        <div class="field full"><label for="s-us-street">Street</label><input id="s-us-street" name="us_street" maxlength="160" placeholder="123 Main Street, Suite 100"></div>
+        <div class="field"><label for="s-us-city">City, State ZIP</label><input id="s-us-city" name="us_city_line" maxlength="160" placeholder="New York, NY 10001"></div>
+        <div class="field"><label for="s-us-country">Land</label><input id="s-us-country" name="us_country" data-keep maxlength="60" placeholder="USA"></div>
+        <div class="field"><label for="s-us-ein">EIN</label><input id="s-us-ein" name="us_ein" maxlength="20" placeholder="12-3456789"></div>
+        <div class="field"><label for="s-us-email">E-Mail</label><input id="s-us-email" name="us_email" type="email" maxlength="254" placeholder="inquiry@lusides.com"></div>
+        <div class="field"><label for="s-us-phone">Telefon</label><input id="s-us-phone" name="us_phone" maxlength="40" placeholder="+1 …"></div>
         <h3>US-Bankverbindung (Rechnungen in USD)</h3>
-        <div class="field full"><label for="s-us-name">Kontoinhaber</label><input id="s-us-name" name="us_account_name" maxlength="120" placeholder="Legatech GmbH &amp; Co KG"></div>
+        <div class="field full"><label for="s-us-name">Kontoinhaber</label><input id="s-us-name" name="us_account_name" maxlength="120" placeholder="Katalan Group LLC"></div>
         <div class="field"><label for="s-us-acc">Account Number</label><input id="s-us-acc" name="us_account" inputmode="numeric" pattern="[0-9]{4,17}" maxlength="17"></div>
         <div class="field"><label for="s-us-rt">Routing Number (ABA)</label><input id="s-us-rt" name="us_routing" inputmode="numeric" pattern="[0-9]{9}" maxlength="9"></div>
         <div class="field full"><label for="s-us-bank">Bank</label><input id="s-us-bank" name="us_bank" maxlength="120" placeholder="JPMorgan Chase Bank, N.A."></div>
@@ -642,10 +651,10 @@
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous"></script>
-<script src="supabase-config.js?v=202610081800"></script>
-<script src="admin-calendar.js?v=202610081800"></script>
-<script src="admin-sheets.js?v=202610081800"></script>
-<script src="admin.js?v=202610081800"></script>
-<script src="admin-analytics.js?v=202610081800"></script>
+<script src="supabase-config.js?v=202610091000"></script>
+<script src="admin-calendar.js?v=202610091000"></script>
+<script src="admin-sheets.js?v=202610091000"></script>
+<script src="admin.js?v=202610091000"></script>
+<script src="admin-analytics.js?v=202610091000"></script>
 </body>
 </html>

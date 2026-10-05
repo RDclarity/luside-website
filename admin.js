@@ -279,6 +279,7 @@
     Array.prototype.forEach.call(settingsForm.elements, function(el){
       if(!el.name) return;
       var v = el.value.trim();
+      if(v === '' && el.hasAttribute('data-keep')) return;   // Pflichtfelder nicht leeren
       patch[el.name] = el.type === 'number' ? (v === '' ? null : Number(v)) : (v === '' ? null : v);
     });
     patch.updated_at = new Date().toISOString();
