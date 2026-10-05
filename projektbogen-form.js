@@ -160,9 +160,9 @@
       if(el) el.setAttribute('aria-invalid', empty ? 'true' : 'false');
       if(empty) missing.push(k);
     });
-    if(missing.length){ showNote(str('err_required', 'Bitte füllen Sie alle Pflichtfelder (*) aus.'), true); var f = form.elements[missing[0]]; if(f && f.focus) f.focus(); return; }
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)){ showNote(str('err_email', 'Bitte geben Sie eine gültige E-Mail-Adresse an.'), true); form.email.focus(); return; }
-    if(!d.consent){ showNote(str('err_consent', 'Bitte stimmen Sie der Verarbeitung Ihrer Angaben zu.'), true); return; }
+    if(missing.length){ showNote(str('err_required', 'Bitte fülle alle Pflichtfelder (*) aus.'), true); var f = form.elements[missing[0]]; if(f && f.focus) f.focus(); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)){ showNote(str('err_email', 'Bitte gib eine gültige E-Mail-Adresse an.'), true); form.email.focus(); return; }
+    if(!d.consent){ showNote(str('err_consent', 'Bitte stimme der Verarbeitung deiner Angaben zu.'), true); return; }
     if(!window.lusidesSupabaseReady){ showNote(str('err_generic', 'Senden gerade nicht möglich.'), true); return; }
 
     submitBtn.disabled = true;
@@ -171,9 +171,9 @@
       client.rpc('submit_project_sheet', { p: d }).then(function(res){
         if(res.error){
           var m = res.error.message || '';
-          showNote(/rate_limited/.test(m) ? str('err_rate', 'Bitte versuchen Sie es später erneut.')
-                 : /invalid_input/.test(m) ? str('err_input', 'Bitte prüfen Sie Ihre Angaben (E-Mail, Telefon, Website).')
-                 : str('err_generic', 'Senden gerade nicht möglich. Bitte versuchen Sie es später erneut.'), true);
+          showNote(/rate_limited/.test(m) ? str('err_rate', 'Bitte versuche es später erneut.')
+                 : /invalid_input/.test(m) ? str('err_input', 'Bitte prüfe deine Angaben (E-Mail, Telefon, Website).')
+                 : str('err_generic', 'Senden gerade nicht möglich. Bitte versuche es später erneut.'), true);
           submitBtn.disabled = false;
           return;
         }

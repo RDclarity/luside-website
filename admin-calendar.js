@@ -25,6 +25,9 @@
   function dayKey(d){ return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
   function hm(d){ return d.toLocaleTimeString('de-AT', { hour: '2-digit', minute: '2-digit' }); }
   function longDate(d){ return d.toLocaleDateString('de-AT', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); }
+  function isPhone(a){ return a && a.meeting_type === 'phone'; }
+  function meetingLabel(a){ return isPhone(a) ? 'Telefon' : 'Microsoft Teams'; }
+  function telHref(p){ return 'tel:' + String(p || '').replace(/[^\d+]/g, ''); }
 
   function byDay(){
     var map = {};
@@ -69,7 +72,7 @@
         var height = Math.max(22, (endH - startH) * HOUR_PX - 2);
         body += '<div class="ev st-' + a.status + '" data-id="' + a.id + '" style="top:' + top + 'px;height:' + height + 'px" title="' + esc(a.name) + '">'
           + '<span class="ev-name">' + esc(a.name) + '</span>'
-          + '<span class="ev-time">' + hm(a._start) + '–' + hm(a._end) + (a.company ? ' · ' + esc(a.company) : '') + '</span></div>';
+          + '<span class="ev-time">' + hm(a._start) + '–' + hm(a._end) + (isPhone(a) ? ' · Tel.' : '') + (a.company ? ' · ' + esc(a.company) : '') + '</span></div>';
       });
       if(sameDay(day, today)){
         var nowH = today.getHours() + today.getMinutes() / 60;
@@ -98,7 +101,7 @@
       html += '<div class="mo-cell' + (d.getMonth() !== first.getMonth() ? ' out' : '') + (sameDay(d, today) ? ' is-today' : '') + '">'
         + '<span class="mo-num" data-goto="' + d.toISOString() + '">' + d.getDate() + '</span>';
       list.slice(0, 3).forEach(function(a){
-        html += '<button type="button" class="chip st-' + a.status + '" data-id="' + a.id + '">' + hm(a._start) + ' <b>' + esc(a.name) + '</b></button>';
+        html += '<button type="button" class="chip st-' + a.status + '" data-id="' + a.id + '">' + hm(a._start) + (isPhone(a) ? ' Tel.' : '') + ' <b>' + esc(a.name) + '</b></button>';
       });
       if(list.length > 3) html += '<button type="button" class="more" data-goto="' + d.toISOString() + '">+' + (list.length - 3) + ' weitere</button>';
       html += '</div>';
@@ -144,7 +147,7 @@
     if(!list.length){ $('upcomingBody').innerHTML = '<tr class="empty-row"><td colspan="6">Keine anstehenden Termine.</td></tr>'; return; }
     $('upcomingBody').innerHTML = list.map(function(a){
       return '<tr><td class="primary" data-label="Name"><button type="button" class="name-link" data-id="' + a.id + '">' + esc(a.name) + '</button></td>'
-        + '<td data-label="Termin">' + esc(longDate(a._start)) + ', ' + hm(a._start) + '</td>'
+        + '<td data-label="Termin">' + esc(longDate(a._start)) + ', ' + hm(a._start) + ' · ' + meetingLabel(a) + '</td>'
         + '<td data-label="Unternehmen">' + esc(a.company || '—') + '</td><td data-label="Thema">' + esc(a.topic || '—') + '</td>'
         + '<td data-label="Status"><span class="status-pill st-' + a.status + '">' + STATUS_LABEL[a.status] + '</span></td>'
         + '<td data-label="Bezahlt" class="' + (a.paid ? 'tag-yes' : 'tag-no') + '">' + (a.paid ? 'Ja' : 'Nein') + '</td></tr>';
@@ -157,22 +160,30 @@
       subject: 'Erstgespräch Lusides – ' + a.name + (a.company ? ' (' + a.company + ')' : ''),
       startTime: a._startReal.toISOString(),
       endTime: a._endReal.toISOString(),
-      content: 'Erstgespräch (60 Min)' + (a.topic ? ' · Thema: ' + a.topic : ''),
+      content: 'Erstgespräch (60 Min, Video)' + (a.topic ? ' · Thema: ' + a.topic : ''),
       attendees: a.email
     });
     return 'https://teams.microsoft.com/l/meeting/new?' + p.toString().replace(/\+/g, '%20');
   }
   function mailUrl(a, link){
     var en = a.lang === 'en';
+    var phone = isPhone(a);
     var when = en
       ? a._startReal.toLocaleString('en-US', { timeZone: 'Europe/Vienna', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' }) + ' (Vienna time, CET/CEST)'
       : longDate(a._start) + ', ' + hm(a._start) + '–' + hm(a._end) + ' Uhr (Wiener Zeit)';
     var body = en
       ? 'Hello ' + a.name + ',\n\nthank you for your booking. Here are the details of our initial consultation:\n\n'
-        + 'Date: ' + when + '\nDuration: 60 minutes\nLocation: Microsoft Teams (video)\nLink: ' + (link || '[insert Teams link]') + '\n\nKind regards\nLusides'
+        + 'Date: ' + when + '\nDuration: 60 minutes\n'
+        + (phone ? 'Format: phone call – we will call you at ' + (a.phone || '[phone number]') + '\n'
+                 : 'Location: Microsoft Teams (video)\nLink: ' + (link || '[insert Teams link]') + '\n')
+        + '\nKind regards\nLusides'
       : 'Guten Tag ' + a.name + ',\n\nvielen Dank für Ihre Buchung. Hier die Details zu unserem Erstgespräch:\n\n'
-        + 'Termin: ' + when + '\nDauer: 60 Minuten\nOrt: Microsoft Teams (Video)\nLink: ' + (link || '[Teams-Link einfügen]') + '\n\nBeste Grüße\nLusides';
-    var subject = en ? 'Your initial consultation with Lusides (Microsoft Teams)' : 'Ihr Erstgespräch mit Lusides am ' + a._start.toLocaleDateString('de-AT') + ' (Microsoft Teams)';
+        + 'Termin: ' + when + '\nDauer: 60 Minuten\n'
+        + (phone ? 'Format: Telefonat – wir rufen Sie unter ' + (a.phone || '[Telefonnummer]') + ' an.\n'
+                 : 'Ort: Microsoft Teams (Video)\nLink: ' + (link || '[Teams-Link einfügen]') + '\n')
+        + '\nBeste Grüße\nLusides';
+    var subject = en ? 'Your initial consultation with Lusides (' + (phone ? 'phone call' : 'Microsoft Teams') + ')'
+                     : 'Ihr Erstgespräch mit Lusides am ' + a._start.toLocaleDateString('de-AT') + ' (' + (phone ? 'Telefon' : 'Microsoft Teams') + ')';
     return 'mailto:' + encodeURIComponent(a.email) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   }
   function setMsg(text, isErr){ var m = $('mMsg'); m.textContent = text || ''; m.classList.toggle('show', !!text); m.classList.toggle('err', !!isErr); }
@@ -182,7 +193,7 @@
     var link = $('mTeams').value.trim();
     $('mMail').href = mailUrl(current, link);
     var join = $('mJoin');
-    if(/^https:\/\//.test(link)){ join.href = link; join.style.display = ''; } else { join.removeAttribute('href'); join.style.display = 'none'; }
+    if(!isPhone(current) && /^https:\/\//.test(link)){ join.href = link; join.style.display = ''; } else { join.removeAttribute('href'); join.style.display = 'none'; }
   }
 
   function openModal(id){
@@ -191,17 +202,26 @@
     current = a;
     $('mTop').className = 'modal-top st-' + a.status;
     $('mName').textContent = a.name;
-    $('mWhen').textContent = longDate(a._start) + ' · ' + hm(a._start) + '–' + hm(a._end) + ' · Microsoft Teams';
+    var phone = isPhone(a);
+    $('mWhen').innerHTML = esc(longDate(a._start) + ' · ' + hm(a._start) + '–' + hm(a._end) + ' · ' + meetingLabel(a))
+      + (phone ? '<div style="margin-top:8px;font-size:1.15rem;font-weight:600">Anrufen: '
+          + (a.phone ? '<a href="' + esc(telHref(a.phone)) + '">' + esc(a.phone) + '</a>' : '<span style="color:#B3261E">keine Nummer hinterlegt</span>')
+          + '</div>' : '');
+    var tzInfo = a.customer_tz && a.customer_tz !== 'Europe/Vienna'
+      ? a.customer_tz.replace(/_/g, ' ') + ' (' + a._startReal.toLocaleString('de-AT', { timeZone: a.customer_tz, hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' }) + ' Ortszeit Kunde)'
+      : null;
     var rows = [
+      ['Gesprächsart', phone ? '<strong>Telefon</strong> – wir rufen an' : 'Video (Microsoft Teams)'],
       ['Unternehmen', esc(a.company || '—')],
       ['E-Mail', '<a href="mailto:' + esc(encodeURIComponent(a.email || '')) + '">' + esc(a.email) + '</a>'],
-      ['Telefon', a.phone ? '<a href="tel:' + esc(String(a.phone).replace(/[^\d+]/g, '')) + '">' + esc(a.phone) + '</a>' : '—'],
+      ['Telefon', a.phone ? (phone ? '<strong>' : '') + '<a href="' + esc(telHref(a.phone)) + '">' + esc(a.phone) + '</a>' + (phone ? '</strong>' : '') : '—'],
       ['Thema', esc(a.topic || '—')],
       ['Nachricht', esc(a.message || '—')],
       ['Preis', esc(priceLabel(a))],
       ['Bestellung', esc(a.order_no || '—')],
       ['Rechnung', esc(invoiceLabel(a))],
       ['Rechnungsadr.', esc([a.billing_company, a.billing_street, [a.billing_zip, a.billing_city].filter(Boolean).join(' '), a.billing_country, a.billing_uid].filter(Boolean).join(', ') || '—')],
+      ['Zeitzone Kunde', esc(tzInfo || '—')],
       ['Gebucht am', esc(new Date(a.created_at).toLocaleString('de-AT', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Vienna' }))]
     ];
     $('mInfo').innerHTML = rows.map(function(r){ return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('');
@@ -209,7 +229,12 @@
     $('mPaid').checked = !!a.paid;
     $('mTeams').value = a.teams_link || '';
     $('mNotes').value = a.admin_notes || '';
-    $('mTeamsCreate').href = teamsCreateUrl(a);
+    // Telefontermine: kein Teams-Meeting nötig → Teams-Aktionen und -Feld ausblenden
+    $('mTeamsCreate').href = phone ? '#' : teamsCreateUrl(a);
+    $('mTeamsCreate').style.display = phone ? 'none' : '';
+    $('mTeamsCreate').setAttribute('aria-hidden', phone ? 'true' : 'false');
+    var teamsField = $('mTeams').closest('.field');
+    if(teamsField) teamsField.style.display = phone ? 'none' : '';
     var inv = docs() && docs().invoiceFor(a.id);
     ['mInvPdf', 'mOrderPdf', 'mResend'].forEach(function(id){ $(id).style.display = inv ? '' : 'none'; });
     setMsg('');
@@ -286,7 +311,9 @@
       { label: 'Name', get: function(a){ return a.name; } },
       { label: 'Unternehmen', get: function(a){ return a.company; } },
       { label: 'E-Mail', get: function(a){ return a.email; } },
+      { label: 'Gesprächsart', get: function(a){ return isPhone(a) ? 'Telefon' : 'Video (Teams)'; } },
       { label: 'Telefon', get: function(a){ return a.phone; } },
+      { label: 'Zeitzone Kunde', get: function(a){ return a.customer_tz; } },
       { label: 'Thema', get: function(a){ return a.topic; } },
       { label: 'Nachricht', get: function(a){ return a.message; } },
       { label: 'Status', get: function(a){ return STATUS_LABEL[a.status]; } },

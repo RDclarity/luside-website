@@ -173,9 +173,9 @@ async function sendMails(d: Row) {
 
   const intro = en
     ? `<p style="font:15px/1.6 Arial,sans-serif">Hello ${h(d.name)},</p><p style="font:15px/1.6 Arial,sans-serif">thank you for your project data sheet (${h(d.ref)}). Attached you will find a copy as PDF. We will get back to you within two working days.</p>
-       <p style="font:15px/1.6 Arial,sans-serif">Prefer to talk right away? <a href="https://rdclarity.github.io/luside-website/termin.html">Book your initial consultation</a>.</p>`
+       <p style="font:15px/1.6 Arial,sans-serif">Prefer to talk right away? <a href="https://lusides.com/termin.html">Book your initial consultation</a>.</p>`
     : `<p style="font:15px/1.6 Arial,sans-serif">Guten Tag ${h(d.name)},</p><p style="font:15px/1.6 Arial,sans-serif">vielen Dank für Ihr Projektdatenblatt (${h(d.ref)}). Im Anhang finden Sie eine Kopie als PDF. Wir melden uns innerhalb von zwei Werktagen.</p>
-       <p style="font:15px/1.6 Arial,sans-serif">Lieber gleich sprechen? <a href="https://rdclarity.github.io/luside-website/termin.html">Erstgespräch direkt buchen</a>.</p>`;
+       <p style="font:15px/1.6 Arial,sans-serif">Lieber gleich sprechen? <a href="https://lusides.com/termin.html">Erstgespräch direkt buchen</a>.</p>`;
   const outro = `<p style="font:15px/1.6 Arial,sans-serif;margin-top:24px">${en ? "Kind regards" : "Beste Grüße"}<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`;
 
   await send({

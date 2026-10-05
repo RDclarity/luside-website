@@ -57,7 +57,11 @@
       var email = form.email.value.trim();
       var newsletter = form.newsletter.checked;
 
-      if(!name || !email) return;
+      var de = !(window.lusidesI18n && window.lusidesI18n.currentLang() === 'en');
+      if(!name || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+        showNote(de ? 'Bitte Name und eine gültige E-Mail-Adresse angeben.' : 'Please enter your name and a valid email address.', true);
+        (name ? form.email : form.name).focus(); return;
+      }
 
       if(!window.lusidesSupabaseReady){
         console.warn('Supabase is not configured yet — see supabase-config.js');

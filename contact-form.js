@@ -69,7 +69,10 @@
     var email = form.email.value.trim();
     var newsletter = form.newsletter.checked;
 
-    if(!name || !company || !email) return;
+    var de = !(window.lusidesI18n && window.lusidesI18n.currentLang() === 'en');
+    var missing = !name ? form.name : !company ? form.company : !email ? form.email : null;
+    if(missing){ showNote(de ? 'Bitte Name, Unternehmen und E-Mail angeben.' : 'Please enter your name, company and email.', true); missing.focus(); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ showNote(de ? 'Bitte eine gültige E-Mail-Adresse angeben.' : 'Please enter a valid email address.', true); form.email.focus(); return; }
 
     if(!window.lusidesSupabaseReady){
       console.warn('Supabase is not configured yet — see supabase-config.js');

@@ -110,6 +110,11 @@ html.lenis, html.lenis body{ height: auto; }
 .ls-f-bottom nav{ display: flex; gap: 22px; }
 @media (max-width: 860px){ .ls-f-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } .ls-footer{ padding: 72px 20px 28px; } }
 @media (max-width: 480px){ .ls-f-grid{ grid-template-columns: 1fr; } }
+/* Touch: Fußzeilen-Links mit ausreichend großer Tippfläche */
+@media (pointer: coarse){
+  .ls-f-grid a{ display: inline-block; padding: 6px 0; line-height: 1.5; }
+  .ls-f-bottom nav a{ display: inline-block; padding: 10px 0; }
+}
 
 /* ---------- Gemeinsame Effekte ---------- */
 .ls-reveal{ opacity: 0; transform: translateY(36px); transition: opacity 1s var(--ease), transform 1.2s var(--ease); }

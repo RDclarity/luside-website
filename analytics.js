@@ -1,5 +1,5 @@
 (function(){
-  if(!window.lusidesSupabaseReady) return;
+  if(!window.lusidesSupabaseReady || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) return;
 
   function detectDevice(){
     var ua = navigator.userAgent || '';
@@ -77,6 +77,8 @@
 // keine IP, keine Cookies, keine Formularinhalte. Browser mit "Do Not Track"/GPC werden nicht erfasst.
 (function(){
   var cfg = window.LUSIDES_SUPABASE;
+  // Lokale Vorschau (localhost) nicht mitzählen
+  if(/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) return;
   if(!cfg || !window.fetch || navigator.globalPrivacyControl || navigator.doNotTrack === '1' || window.doNotTrack === '1') return;
   var URL_TRACK = cfg.url + '/rest/v1/rpc/track';
   var IDLE_MS = 30 * 60 * 1000;

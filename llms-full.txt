@@ -7,7 +7,7 @@ Stand: Oktober 2026. Inhalte der öffentlichen Seiten in Textform.
 ---
 
 # Unternehmensberatung Wien für digitale Transformation | Lusides
-URL: https://rdclarity.github.io/luside-website/index.html
+URL: https://lusides.com/index.html
 
 Unternehmensberatung für digitale Transformation · Wien
 ## Wachstum mit System.
@@ -65,31 +65,31 @@ Im nächsten Schritt folgt ein kurzes Projektdatenblatt – wir melden uns inner
 
 ---
 
-# Erstgespräch buchen – 60 Min. per Microsoft Teams | Lusides
-URL: https://rdclarity.github.io/luside-website/termin.html
+# Erstgespräch buchen – 60 Min. per Telefon oder Video | Lusides
+URL: https://lusides.com/termin.html
 
 ERSTGESPRÄCH · MICROSOFT TEAMS
 ## Jetzt Termin buchen.
-Eine Stunde, volle Aufmerksamkeit für dein Unternehmen. Wähle einen freien Termin, das Gespräch findet per Video über Microsoft Teams statt.
-Video-Call · Microsoft Teams 350 € pro Gespräch
+Eine Stunde, volle Aufmerksamkeit für dein Unternehmen. Wähle einen freien Termin, das Gespräch findet per Telefon oder per Video über Microsoft Teams statt.
+Telefon oder Video · 350 € pro Gespräch
 ### Erstgespräch · 60 Minuten
 - Analyse deiner aktuellen Situation und der größten Hebel
 - Konkrete nächste Schritte, auch wenn wir nicht zusammenarbeiten
 - Direkt mit den Gründern, kein Vertriebsgespräch
-- Den Teams-Link erhältst du per E-Mail vor dem Termin
+- Bei Video erhältst du den Teams-Link per E-Mail vor dem Termin, bei Telefon rufen wir dich an
 Die Rechnung über 350 € erhältst du per E-Mail. Kostenlose Umbuchung oder Absage bis 24 Stunden vor dem Termin.
 1 Datum wählen
 2 Uhrzeit wählen
 Alle Zeiten in Wiener Zeit (MEZ/MESZ).
 3 Deine Daten
 ### Termin gebucht!
-Danke! Du erhältst in Kürze eine Bestätigung mit dem Microsoft-Teams-Link und der Rechnung per E-Mail.
+Danke! Du erhältst in Kürze eine Bestätigung und die Rechnung per E-Mail.
 Projektbogen ausfüllen (Vorbereitung)
 
 ---
 
 # Prozessoptimierung & Organisationsentwicklung Wien | Lusides
-URL: https://rdclarity.github.io/luside-website/leistungen-prozesse-systeme.html
+URL: https://lusides.com/leistungen-prozesse-systeme.html
 
 LEISTUNG · 01
 ## Ein Unternehmen, das auch ohne dich am Laufen bleibt.
@@ -163,14 +163,14 @@ Ja. Wir bauen die Systeme gemeinsam mit euren Mitarbeitenden auf, damit sie im A
 KOSTENLOSE ANALYSE
 ### Erzähl uns von deinem Unternehmen.
 Eine Minute Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.
-E-Mail inquiry@luside.com
+E-Mail inquiry@lusides.com
 Telefon +43 660 3607188
 Standort Endresstraße 50/V3, 1230 Wien
 
 ---
 
 # Marketingberatung & Leadgenerierung für KMU in Wien | Lusides
-URL: https://rdclarity.github.io/luside-website/leistungen-marketing.html
+URL: https://lusides.com/leistungen-marketing.html
 
 LEISTUNG · 02
 ## Sichtbarkeit, die tatsächlich zu Umsatz wird.
@@ -244,14 +244,14 @@ Ja, im Erstgespräch klären wir, wo ihr aktuell steht und was zuerst aufgebaut 
 KOSTENLOSE ANALYSE
 ### Erzähl uns von deinem Unternehmen.
 Eine Minute Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.
-E-Mail inquiry@luside.com
+E-Mail inquiry@lusides.com
 Telefon +43 660 3607188
 Standort Endresstraße 50/V3, 1230 Wien
 
 ---
 
 # Controlling, Reporting & Finanzberatung für KMU Wien | Lusides
-URL: https://rdclarity.github.io/luside-website/leistungen-finanzen.html
+URL: https://lusides.com/leistungen-finanzen.html
 
 LEISTUNG · 03
 ## Kennzahlen, auf die man sich verlassen kann.
@@ -325,14 +325,14 @@ Zum Beispiel bei Investitionsentscheidungen, Preisgestaltung, Personalplanung od
 KOSTENLOSE ANALYSE
 ### Erzähl uns von deinem Unternehmen.
 Eine Minute Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.
-E-Mail inquiry@luside.com
+E-Mail inquiry@lusides.com
 Telefon +43 660 3607188
 Standort Endresstraße 50/V3, 1230 Wien
 
 ---
 
 # Digitalisierung & KI-Beratung für Unternehmen in Wien | Lusides
-URL: https://rdclarity.github.io/luside-website/leistungen-digitalisierung-ki.html
+URL: https://lusides.com/leistungen-digitalisierung-ki.html
 
 LEISTUNG · 04
 ## KI-Systeme, die zu deinem Unternehmen passen — nicht umgekehrt.
@@ -410,14 +410,14 @@ Nein. Wir entwickeln und implementieren die Systeme selbst und übergeben sie so
 KOSTENLOSE ANALYSE
 ### Erzähl uns von deinem Unternehmen.
 Eine Minute Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.
-E-Mail inquiry@luside.com
+E-Mail inquiry@lusides.com
 Telefon +43 660 3607188
 Standort Endresstraße 50/V3, 1230 Wien
 
 ---
 
 # Onlineshop-Entwicklung Wien – Shopify, WooCommerce & individuell | Lusides
-URL: https://rdclarity.github.io/luside-website/leistungen-onlineshop-entwicklung.html
+URL: https://lusides.com/leistungen-onlineshop-entwicklung.html
 
 DIGITALISIERUNG & KI · ONLINESHOP & WEB
 ## Onlineshops, die verkaufen — und sich in euren Betrieb einfügen.
@@ -465,7 +465,7 @@ Design, Entwicklung und Anbindungen. Ihr seht laufend Zwischenstände und gebt f
 #### Umsetzung
 Launch, Einschulung eures Teams und laufende Betreuung: Performance, Updates und Weiterentwicklung.
 ### Euer Shop soll mehr verkaufen?
-Im einstündigen Erstgespräch per Microsoft Teams schauen wir uns euer Vorhaben gemeinsam an.
+Im einstündigen Erstgespräch per Telefon oder Video schauen wir uns euer Vorhaben gemeinsam an.
 Jetzt Termin buchen
 WEITERE LEISTUNGEN
 ### Was sonst noch relevant sein könnte
@@ -491,14 +491,14 @@ Ja. Produkte, Preise und Inhalte pflegt ihr selbst, wir schulen euer Team ein. F
 KOSTENLOSE ANALYSE
 ### Erzähl uns von deinem Unternehmen.
 Eine Minute Formular. Wir melden uns innerhalb von zwei Werktagen — nur wenn wir wirklich weiterhelfen können.
-E-Mail inquiry@luside.com
+E-Mail inquiry@lusides.com
 Telefon +43 660 3607188
 Standort Endresstraße 50/V3, 1230 Wien
 
 ---
 
 # Team: Marko Katalan, Richard Dobrohruschka & Mihai Suta | Lusides
-URL: https://rdclarity.github.io/luside-website/team.html
+URL: https://lusides.com/team.html
 
 TEAM — LUSIDES
 ## Die Menschen hinter Lusides.
@@ -537,7 +537,7 @@ Jetzt Termin buchen
 ---
 
 # Seminar Prozesse, Systeme & Marketing – Wien, Feb/März 2027 | Lusides
-URL: https://rdclarity.github.io/luside-website/seminar.html
+URL: https://lusides.com/seminar.html
 
 SEMINAR — WIEN
 ## Prozesse, Systeme, Marketing: zwei Tage, die dein Unternehmen weiterbringen.

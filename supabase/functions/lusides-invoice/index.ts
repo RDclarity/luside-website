@@ -36,8 +36,9 @@ function countryName(code: string | null | undefined, lang: string) {
   try { return new Intl.DisplayNames([lang === "en" ? "en" : "de"], { type: "region" }).of(code) ?? code; } catch { return code; }
 }
 
-function T(lang: string) {
+function T(lang: string, meeting = "video", customerTz: string | null = null) {
   const en = lang === "en";
+  const phone = meeting === "phone";
   return {
     invoice: en ? "INVOICE" : "RECHNUNG",
     storno: en ? "CANCELLATION INVOICE" : "STORNORECHNUNG",
@@ -64,9 +65,16 @@ function T(lang: string) {
     payNoBank: en ? "Payment details will follow separately." : "Die Zahlungsdetails erhalten Sie gesondert.",
     thanks: en ? "Thank you for your booking." : "Vielen Dank für Ihre Buchung.",
     notInvoice: en ? "This order confirmation is not an invoice." : "Dieser Bestellschein ist keine Rechnung.",
-    terms: en ? "Free rescheduling or cancellation up to 24 hours before the appointment. The Microsoft Teams link will be sent by email."
-              : "Kostenlose Umbuchung oder Stornierung bis 24 Stunden vor dem Termin. Den Microsoft-Teams-Link erhalten Sie per E-Mail.",
-    tzNote: en ? "Times in Vienna time (CET/CEST)" : "Zeiten in Wiener Zeit (MEZ/MESZ)",
+    terms: en
+      ? "Free rescheduling or cancellation up to 24 hours before the appointment. " + (phone
+        ? "We will call you at the phone number you provided at the time of the appointment."
+        : "We will send you the Microsoft Teams link by email before the appointment.")
+      : "Kostenlose Umbuchung oder Stornierung bis 24 Stunden vor dem Termin. " + (phone
+        ? "Wir rufen Sie zum Termin unter der angegebenen Telefonnummer an."
+        : "Den Microsoft-Teams-Link senden wir Ihnen vor dem Termin per E-Mail."),
+    tzNote: en
+      ? (customerTz ? `Times in your time zone (${customerTz.replace(/_/g, " ")}); Vienna time in brackets` : "Times in Vienna time (CET/CEST)")
+      : "Zeiten in Wiener Zeit (MEZ/MESZ)",
     tbd: en ? "to follow" : "folgt",
   };
 }
@@ -74,27 +82,59 @@ function T(lang: string) {
 function money(v: number, cur: string, lang: string) {
   return new Intl.NumberFormat(lang === "en" ? "en-US" : "de-AT", { style: "currency", currency: cur }).format(v);
 }
+// Gesprächsart → Positionstext (identisch zu book_appointment in 20261007100000_booking_channel.sql)
+function meetingDesc(lang: string, meeting: string) {
+  if (lang === "en") return meeting === "phone" ? "Initial consultation, 60 minutes, by phone" : "Initial consultation, 60 minutes, via Microsoft Teams (video)";
+  return meeting === "phone" ? "Erstgespräch, 60 Minuten, per Telefon" : "Erstgespräch, 60 Minuten, per Microsoft Teams (Video)";
+}
+function meetingShort(lang: string, meeting: string) {
+  if (lang === "en") return meeting === "phone" ? "Phone call (we call you)" : "Video call via Microsoft Teams";
+  return meeting === "phone" ? "Telefonat (wir rufen Sie an)" : "Video-Call über Microsoft Teams";
+}
+// Kundenzeitzone nur für die englische (US-)Seite und nur, wenn sie gültig ist.
+function customerTz(a: Row | null | undefined, lang: string): string | null {
+  const tz = a?.customer_tz;
+  if (lang !== "en" || typeof tz !== "string" || !tz || tz === "Europe/Vienna") return null;
+  try { new Intl.DateTimeFormat("en-US", { timeZone: tz }); return tz; } catch { return null; }
+}
+
 function dateFmt(d: string | Date, lang: string) {
   return lang === "en"
     ? new Intl.DateTimeFormat("en-US", { timeZone: "Europe/Vienna", day: "numeric", month: "short", year: "numeric" }).format(new Date(d))
     : new Intl.DateTimeFormat("de-AT", { timeZone: "Europe/Vienna", day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(d));
 }
-function shortDateTime(d: string, lang: string) {
-  const time = new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "de-AT", { timeZone: "Europe/Vienna", hour: "2-digit", minute: "2-digit" }).format(new Date(d));
+function viennaTime(d: string, lang: string) {
+  return new Intl.DateTimeFormat(lang === "en" ? "en-US" : "de-AT", { timeZone: "Europe/Vienna", hour: "numeric", minute: "2-digit" }).format(new Date(d));
+}
+// Kurzform für den Bestellschein-Kopf. US: Kundenzeitzone mit Zonenname, Wiener Zeit in Klammern.
+function shortDateTime(d: string, lang: string, tz: string | null = null) {
+  if (lang === "en" && tz) {
+    const local = new Intl.DateTimeFormat("en-US", { timeZone: tz, day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }).format(new Date(d));
+    return `${local} (${viennaTime(d, lang)} Vienna)`;
+  }
+  const time = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "de-AT", { timeZone: "Europe/Vienna", hour: "2-digit", minute: "2-digit" }).format(new Date(d));
   return `${dateFmt(d, lang)}, ${time}`;
 }
-function dateTimeFmt(d: string, lang: string) {
-  return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "de-AT", { timeZone: "Europe/Vienna", weekday: "long", day: "2-digit", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(d));
+// Langform für Positionstext und E-Mail. DE: Wiener Zeit. US: Kundenzeitzone + Wiener Zeit in Klammern.
+function dateTimeFmt(d: string, lang: string, tz: string | null = null) {
+  if (lang === "en") {
+    const zone = tz ?? "Europe/Vienna";
+    const main = new Intl.DateTimeFormat("en-US", { timeZone: zone, weekday: "long", month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }).format(new Date(d));
+    return tz ? `${main} (${viennaTime(d, lang)} Vienna time)` : `${main} (Vienna time)`;
+  }
+  return new Intl.DateTimeFormat("de-AT", { timeZone: "Europe/Vienna", weekday: "long", day: "2-digit", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(d)) + " Uhr";
 }
 
 // pdf-lib-Standardschriften können nur WinAnsi – sicherheitshalber alles andere ersetzen.
 function safe(s: unknown): string {
-  return String(s ?? "").replace(/[–—]/g, "-").replace(/[„“”]/g, '"').replace(/[‚‘’]/g, "'").replace(/[^\x00-\xFF€]/g, "?");
+  return String(s ?? "").replace(/[\u202F\u2009\u2007]/g, " ").replace(/[\u200E\u200F]/g, "").replace(/[–—]/g, "-").replace(/[„“”]/g, '"').replace(/[‚‘’]/g, "'").replace(/[^\x00-\xFF€]/g, "?");
 }
 
 async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Promise<Uint8Array> {
   const lang = inv?.lang ?? a.lang ?? "de";
-  const t = T(lang);
+  const meeting = a?.meeting_type === "phone" ? "phone" : "video";
+  const tz = customerTz(a, lang);
+  const t = T(lang, meeting, tz);
   const doc = await PDFDocument.create();
   const page = doc.addPage([595.28, 841.89]);
   const font = await doc.embedFont(StandardFonts.Helvetica);
@@ -126,7 +166,7 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
   text(page, title, M, 585, 22, bold);
   page.drawRectangle({ x: M, y: 575, width: 36, height: 2.5, color: blue });
   const meta: [string, string][] = isOrder
-    ? [[t.orderNo, a.order_no], [t.orderDate, dateFmt(a.created_at, lang)], [t.appt, shortDateTime(a.start_at, lang)]]
+    ? [[t.orderNo, a.order_no], [t.orderDate, dateFmt(a.created_at, lang)], [t.appt, shortDateTime(a.start_at, lang, tz)]]
     : [[t.no, inv.invoice_no], [t.date, dateFmt(inv.issue_date, lang)], [t.service, dateFmt(inv.service_date, lang)], [t.orderNo, a?.order_no ?? "-"]];
   if (!isOrder && inv.due_date && inv.kind !== "storno") meta.push([t.due, dateFmt(inv.due_date, lang)]);
   if (!isOrder && inv.customer_uid) meta.push([t.yourUid, inv.customer_uid]);
@@ -141,9 +181,9 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
   const cur = isOrder ? a.currency : inv.currency;
   const qty = isOrder ? 1 : Math.abs(Number(inv.quantity ?? 1));
   const net = isOrder ? Number(inv?.net_amount ?? 0) : Number(inv.net_amount);
-  const desc = isOrder ? (lang === "en" ? "Initial consultation, 60 minutes, via Microsoft Teams" : "Erstgespräch, 60 Minuten, per Microsoft Teams") : inv.description;
+  const desc = isOrder ? meetingDesc(lang, meeting) : inv.description;
   text(page, "1", M + 8, y, 10); text(page, desc, M + 46, y, 10, bold);
-  text(page, `${t.appt}: ${dateTimeFmt(a?.start_at ?? inv.service_date, lang)}`, M + 46, y - 14, 8.5, font, slate);
+  text(page, `${t.appt}: ${a?.start_at ? dateTimeFmt(a.start_at, lang, tz) : dateFmt(inv.service_date, lang)}`, M + 46, y - 14, 8.5, font, slate);
   right(page, String(qty), 370, y, 10); right(page, money(net / qty, cur, lang), 460, y, 10); right(page, money(net, cur, lang), W - M - 8, y, 10);
   y -= 34;
   page.drawLine({ start: { x: M, y }, end: { x: W - M, y }, thickness: 0.6, color: rgb(0.86, 0.9, 0.94) });
@@ -206,20 +246,30 @@ async function sendMails(s: Row, a: Row, inv: Row) {
   const lang = a.lang ?? "de";
   const en = lang === "en";
   const [order, invoice] = await Promise.all([buildPdf("order", s, a, inv), buildPdf("invoice", s, a, inv)]);
-  const when = dateTimeFmt(a.start_at, lang);
+  const meeting = a.meeting_type === "phone" ? "phone" : "video";
+  const tz = customerTz(a, lang);
+  const when = dateTimeFmt(a.start_at, lang, tz);
+  const whenVienna = dateTimeFmt(a.start_at, "de");
   const amount = money(Number(inv.gross_amount), inv.currency, lang);
+  const how = en
+    ? (meeting === "phone"
+      ? `We will call you at <strong>${h(a.phone)}</strong> at the time of the appointment.`
+      : "We will send you the Microsoft Teams link by email before the appointment.")
+    : (meeting === "phone"
+      ? `Wir rufen Sie zum Termin unter <strong>${h(a.phone)}</strong> an.`
+      : "Den Microsoft-Teams-Link senden wir Ihnen vor dem Termin per E-Mail.");
   const subject = en
     ? `Your Lusides booking ${a.order_no} – invoice ${inv.invoice_no}`
     : `Ihre Buchung bei Lusides ${a.order_no} – Rechnung ${inv.invoice_no}`;
   const html = en
     ? `<p>Hello ${h(a.name)},</p><p>thank you for booking your initial consultation with Lusides.</p>
-       <p><strong>${h(when)}</strong> (Vienna time) · 60 minutes · Microsoft Teams</p>
+       <p><strong>${h(when)}</strong> · 60 minutes · ${h(meetingShort(lang, meeting))}</p>
        <p>Attached you will find your order confirmation <strong>${h(a.order_no)}</strong> and invoice <strong>${h(inv.invoice_no)}</strong> (${h(amount)}).
-       We will send you the Microsoft Teams link before the appointment.</p><p>Kind regards<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`
+       ${how}</p><p>Kind regards<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`
     : `<p>Guten Tag ${h(a.name)},</p><p>vielen Dank für Ihre Buchung eines Erstgesprächs bei Lusides.</p>
-       <p><strong>${h(when)}</strong> · 60 Minuten · Microsoft Teams</p>
+       <p><strong>${h(when)}</strong> · 60 Minuten · ${h(meetingShort(lang, meeting))}</p>
        <p>Im Anhang finden Sie Ihren Bestellschein <strong>${h(a.order_no)}</strong> und die Rechnung <strong>${h(inv.invoice_no)}</strong> (${h(amount)}).
-       Den Microsoft-Teams-Link senden wir Ihnen vor dem Termin.</p><p>Beste Grüße<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`;
+       ${how}</p><p>Beste Grüße<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`;
   const attachments = [
     { filename: `${en ? "Order" : "Bestellschein"}-${a.order_no}.pdf`, content: b64(order) },
     { filename: `${en ? "Invoice" : "Rechnung"}-${inv.invoice_no}.pdf`, content: b64(invoice) },
@@ -234,9 +284,11 @@ async function sendMails(s: Row, a: Row, inv: Row) {
   // Interne Kopie: Fehler hier dürfen die (bereits erfolgte) Kundenmail nicht als gescheitert markieren.
   try {
     await send({
-      from: MAIL_FROM, to: [MAIL_NOTIFY], subject: `Neue Buchung: ${oneLine(a.name)} – ${oneLine(when)}`,
+      from: MAIL_FROM, to: [MAIL_NOTIFY],
+      subject: `Neue Buchung (${meeting === "phone" ? "TELEFON" : "Teams"}): ${oneLine(a.name)} – ${oneLine(whenVienna)}`,
       html: `<p><strong>${h(a.name)}</strong>${a.company ? " (" + h(a.company) + ")" : ""} hat ein Erstgespräch gebucht.</p>
-             <p>${h(when)} · ${h(a.email)}${a.phone ? " · " + h(a.phone) : ""}<br>Thema: ${h(a.topic ?? "-")}<br>${h(a.message ?? "").replace(/\n/g, "<br>")}</p>
+             <p style="font-size:16px"><strong>${meeting === "phone" ? "Telefon – bitte anrufen: " + h(a.phone ?? "-") : "Video (Microsoft Teams) – Link vor dem Termin senden"}</strong></p>
+             <p>${h(whenVienna)} (Wiener Zeit)${tz ? " · Kunde: " + h(when) : ""} · ${h(a.email)}${a.phone ? " · " + h(a.phone) : ""}${a.topic ? "<br>Thema: " + h(a.topic) : ""}<br>${h(a.message ?? "").replace(/\n/g, "<br>")}</p>
              <p>Bestellschein ${h(a.order_no)} · Rechnung ${h(inv.invoice_no)} · ${h(amount)}</p>`,
       attachments,
     });

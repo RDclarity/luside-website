@@ -89,4 +89,4 @@ Allow: /
 Disallow: /admin.html
 Disallow: /projektbogen.html
 
-Sitemap: https://rdclarity.github.io/luside-website/sitemap.xml
+Sitemap: https://lusides.com/sitemap.xml
