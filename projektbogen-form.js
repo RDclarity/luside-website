@@ -183,6 +183,10 @@
         if(window.lusidesLogConversion) window.lusidesLogConversion('project_sheet');
         try{ sessionStorage.removeItem('lusidesErstberatungLead'); }catch(err){}
         renderResult(d, out.ref);
+      }, function(){
+        // Netzwerkfehler: Button wieder freigeben und Hinweis zeigen
+        submitBtn.disabled = false;
+        showNote(str('err_generic', 'Senden gerade nicht möglich. Bitte versuche es später erneut.'), true);
       });
     });
   });

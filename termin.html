@@ -275,6 +275,8 @@
   .book-btn{ margin-top: 16px; width:100%; min-height: 54px; background: var(--accent); color:#fff; border:none; border-radius: 6px; padding: 16px; font: inherit; font-weight:600; font-size:1rem; cursor:pointer; transition: background .2s ease; }
   .book-btn:hover:not(:disabled){ background: var(--accent-ink); }
   .book-btn:disabled{ opacity:0.6; cursor:progress; }
+  .tz-pick{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; font-size:0.86rem; color: var(--slate); }
+  .tz-pick select{ font: inherit; font-size: 16px; color: var(--ink); background:#fff; border:1px solid var(--line); border-radius: 6px; padding: 8px 10px; min-height: 44px; max-width: 100%; }
   /* Übersicht vor dem zahlungspflichtigen Buchen */
   .review{ margin-top: 4px; }
   .review h3{ font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; outline: none; }
@@ -309,7 +311,7 @@
   .btn-ghost:hover{ background: var(--accent-dim); }
   .link-btn{ background: none; border: none; color: var(--slate); text-decoration: underline; font: inherit; font-size: 0.84rem; cursor: pointer; margin-top: 18px; min-height: 44px; padding: 0 8px; }
 </style>
-<link rel="stylesheet" href="site.css?v=202610081600">
+<link rel="stylesheet" href="site.css?v=202610081800">
 <style>#progress{ display:none !important; } .bg-stone{ display:none; }</style>
 </head>
 <body>
@@ -510,14 +512,14 @@
     window.addEventListener('resize', () => { if(window.innerWidth > 780) closeMobileMenu(); });
   }
 </script>
-<script src="i18n.js?v=202610081600" defer></script>
+<script src="i18n.js?v=202610081800" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
-<script src="supabase-config.js?v=202610081600" defer></script>
-<script src="chatbot.js?v=202610081600" defer></script>
-<script src="analytics.js?v=202610081600" defer></script>
-<script src="termin-booking.js?v=202610081600" defer></script>
+<script src="supabase-config.js?v=202610081800" defer></script>
+<script src="chatbot.js?v=202610081800" defer></script>
+<script src="analytics.js?v=202610081800" defer></script>
+<script src="termin-booking.js?v=202610081800" defer></script>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
-<script src="site.js?v=202610081600" defer></script>
+<script src="site.js?v=202610081800" defer></script>
 </body>
 </html>

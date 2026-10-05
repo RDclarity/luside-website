@@ -10,7 +10,29 @@
   var SLOT_FIRST_HOUR = REGION === 'US' ? 15 : 9;
   var SLOT_LAST_HOUR = REGION === 'US' ? 18 : 16;
   var LOCAL_TZ = (function(){ try{ return Intl.DateTimeFormat().resolvedOptions().timeZone || TZ; }catch(e){ return TZ; } })();
-  var SHOW_TZ = REGION === 'US' ? LOCAL_TZ : TZ;
+  // US-Kunden sehen und buchen immer in einer US-Zeitzone: Gerätezeitzone, wenn sie in den USA liegt,
+  // sonst Eastern Time (New York). Wählbar über das Zeitzonen-Menü über den Uhrzeiten.
+  var US_ZONES = [['America/New_York', 'Eastern Time (New York)'], ['America/Chicago', 'Central Time (Chicago)'],
+    ['America/Denver', 'Mountain Time (Denver)'], ['America/Phoenix', 'Arizona (Phoenix)'], ['America/Los_Angeles', 'Pacific Time (Los Angeles)'],
+    ['America/Anchorage', 'Alaska (Anchorage)'], ['Pacific/Honolulu', 'Hawaii (Honolulu)']];
+  function tzOffset(zone, d){
+    try{
+      var p = new Intl.DateTimeFormat('en-US', { timeZone: zone, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }).formatToParts(d || new Date());
+      var g = function(t){ return +p.filter(function(x){ return x.type === t; })[0].value; };
+      return Math.round((Date.UTC(g('year'), g('month') - 1, g('day'), g('hour'), g('minute')) - (d || new Date()).getTime()) / 60000);
+    }catch(e){ return null; }
+  }
+  function defaultUsZone(){
+    var saved = null; try{ saved = localStorage.getItem('lusides_tz'); }catch(e){}
+    if(saved && US_ZONES.some(function(z){ return z[0] === saved; })) return saved;
+    if(US_ZONES.some(function(z){ return z[0] === LOCAL_TZ; })) return LOCAL_TZ;
+    if(/^(America\/|Pacific\/Honolulu)/.test(LOCAL_TZ)){
+      var off = tzOffset(LOCAL_TZ), hit = US_ZONES.filter(function(z){ return tzOffset(z[0]) === off; })[0];
+      if(hit) return hit[0];
+    }
+    return 'America/New_York';
+  }
+  var SHOW_TZ = REGION === 'US' ? defaultUsZone() : TZ;
   var INVOICE_URL = (window.LUSIDES_SUPABASE ? window.LUSIDES_SUPABASE.url : '') + '/functions/v1/lusides-invoice';
   var WORKDAYS = [1, 2, 3, 4, 5];
   var MIN_LEAD_HOURS = 12;
@@ -121,7 +143,7 @@
   function hasFreeSlot(y, m, d){ return slotsForDay(y, m, d).some(function(s){ return !s.taken; }); }
 
   function fmtTime(date){
-    return date.toLocaleTimeString(locale(), { timeZone: SHOW_TZ, hour: '2-digit', minute: '2-digit' });
+    return date.toLocaleTimeString(locale(), { timeZone: SHOW_TZ, hour: REGION === 'US' ? 'numeric' : '2-digit', minute: '2-digit' });
   }
   function fmtLong(date){
     return date.toLocaleDateString(locale(), { timeZone: SHOW_TZ, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
@@ -132,7 +154,19 @@
   }
   function updateTzNote(){
     var el = $('tzNote');
-    if(el && REGION === 'US') el.textContent = str('tz_local', 'All times shown in your local time ({tz}).').replace('{tz}', LOCAL_TZ.replace(/_/g, ' '));
+    if(!el || REGION !== 'US') return;
+    el.innerHTML = '';
+    var lab = document.createElement('label'); lab.className = 'tz-pick';
+    var span = document.createElement('span'); span.textContent = str('tz_pick', 'Times shown in');
+    var sel = document.createElement('select'); sel.id = 'tzSel';
+    US_ZONES.forEach(function(z){ var o = document.createElement('option'); o.value = z[0]; o.textContent = z[1]; sel.appendChild(o); });
+    sel.value = SHOW_TZ;
+    sel.addEventListener('change', function(){
+      SHOW_TZ = sel.value;
+      try{ localStorage.setItem('lusides_tz', SHOW_TZ); }catch(e){}
+      renderSlots(); renderChosen();
+    });
+    lab.appendChild(span); lab.appendChild(sel); el.appendChild(lab);
   }
 
   // --- Belegte Slots + gesperrte Tage laden -----------------------------------
@@ -397,6 +431,7 @@
         email: fields.email,
         phone: fields.phone || null,
         lead_company: fields.company || null,
+        channel: 'Terminbuchung', locale: lang(),
         biggest_challenge: 'Erstgespräch gebucht (' + channel + ', 30 Min, ' + fields.amount + '): ' + fields.when + (fields.message ? ' · ' + fields.message : '')
       })
     }).catch(function(err){ console.warn('CRM forward failed (non-blocking):', err); });
@@ -498,7 +533,7 @@
         p_message: fields.message || null, p_topic: null, p_lang: lang(),
         p_region: REGION, p_street: fields.street, p_zip: fields.zip || null, p_city: fields.city,
         p_country: fields.country, p_uid: fields.uid || null,
-        p_meeting_type: fields.meeting, p_tz: LOCAL_TZ,
+        p_meeting_type: fields.meeting, p_tz: REGION === 'US' ? SHOW_TZ : LOCAL_TZ,
         p_terms: true, p_early_start: true
       }).then(function(res){
         if(res.error){ setBusy(false); handleError(res.error.message || '', slot); return; }
@@ -631,7 +666,7 @@
   // --- Start -----------------------------------------------------------------
   function presetCountry(){
     if(f.country.value) return;
-    if(REGION === 'US' && US_TZ.test(LOCAL_TZ)) f.country.value = 'US';
+    if(REGION === 'US') f.country.value = 'US';
     else if(REGION === 'EU' && TZ_COUNTRY[LOCAL_TZ]) f.country.value = TZ_COUNTRY[LOCAL_TZ];
     updateUid(); updateCharge();
   }

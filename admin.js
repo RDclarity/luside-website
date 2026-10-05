@@ -189,6 +189,39 @@
   }
 
   // ---------- Anfragen / Newsletter / Besucher ----------
+  // ---------- Widerrufe (§ 13a FAGG) ----------
+  function renderWithdrawals(rows){
+    var open = rows.filter(function(r){ return r.status !== 'bearbeitet'; }).length;
+    badge('bWiderrufe', open);
+    if(!rows.length){ $('wdBody').innerHTML = '<tr class="empty-row"><td colspan="7">Keine Widerrufe.</td></tr>'; return; }
+    $('wdBody').innerHTML = rows.map(function(r){
+      return '<tr>'
+        + '<td class="primary nowrap" data-label="">' + fmtDate(r.created_at, true) + '</td>'
+        + '<td data-label="Name">' + esc(r.name) + '</td>'
+        + '<td data-label="E-Mail"><a href="mailto:' + esc(encodeURIComponent(r.email || '')) + '">' + esc(r.email) + '</a></td>'
+        + '<td class="nowrap" data-label="Bestellnr.">' + esc(r.order_no || '—') + '</td>'
+        + '<td data-label="Nachricht">' + esc(r.message || '—') + '</td>'
+        + '<td data-label="Bestätigung"><span class="pill ' + (r.mail_status === 'gesendet' ? 'gesendet' : r.mail_status === 'fehler' ? 'fehler' : '') + '">' + esc(r.mail_status === 'gesendet' ? 'versendet' : r.mail_status === 'fehler' ? 'fehlgeschlagen' : 'offen') + '</span></td>'
+        + '<td data-label="Status"><select class="wd-status" data-id="' + esc(r.id) + '"><option value="eingegangen"' + (r.status !== 'bearbeitet' ? ' selected' : '') + '>Eingegangen</option><option value="bearbeitet"' + (r.status === 'bearbeitet' ? ' selected' : '') + '>Bearbeitet</option></select></td>'
+        + '</tr>';
+    }).join('');
+  }
+  $('wdBody').addEventListener('change', function(e){
+    var sel = e.target.closest('.wd-status'); if(!sel) return;
+    sel.disabled = true;
+    client.from('withdrawals').update({ status: sel.value }).eq('id', sel.getAttribute('data-id')).then(function(res){
+      sel.disabled = false;
+      if(res.error){ alert('Speichern fehlgeschlagen.'); return; }
+      loadWithdrawals();
+    });
+  });
+  function loadWithdrawals(){
+    client.from('withdrawals').select('*').order('created_at', { ascending: false }).then(function(res){
+      if(res.error){ $('wdBody').innerHTML = '<tr class="empty-row"><td colspan="7">Fehler beim Laden.</td></tr>'; return; }
+      renderWithdrawals(res.data || []);
+    });
+  }
+
   function renderContacts(rows){
     data.contacts = rows;
     $('contactsCount').textContent = rows.length + ' Einträge';
@@ -269,6 +302,7 @@
       renderNewsletter(res.data || []);
     });
     if(window.lusidesAdminAnalytics) window.lusidesAdminAnalytics.load(client);
+    loadWithdrawals();
   }
 
   // ---------- Login ----------
@@ -296,7 +330,39 @@
     client = c;
     if(!client){ $('configNote').classList.add('show'); return; }
     loginForm.querySelector('button').disabled = false;
-    client.auth.getSession().then(function(res){ if(res.data && res.data.session) showDashboard(res.data.session); });
+    // Einladung oder Passwort-Reset: erst Passwort festlegen, dann Dashboard
+    var pwForm = $('pwForm');
+    function showPwForm(){ loginForm.style.display = 'none'; pwForm.style.display = 'block'; $('loginView').querySelector('h1').textContent = 'Passwort festlegen'; $('new-password').focus(); }
+    client.auth.onAuthStateChange(function(event){ if(event === 'PASSWORD_RECOVERY') showPwForm(); });
+    client.auth.getSession().then(function(res){
+      if(!(res.data && res.data.session)) return;
+      if(window.LUSIDES_AUTH_FLOW){ showPwForm(); return; }
+      showDashboard(res.data.session);
+    });
+    pwForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var p1 = $('new-password').value, p2 = $('new-password2').value, note = $('pwNote');
+      if(p1.length < 10){ note.textContent = 'Das Passwort braucht mindestens 10 Zeichen.'; return; }
+      if(p1 !== p2){ note.textContent = 'Die Passwörter stimmen nicht überein.'; return; }
+      var btn = pwForm.querySelector('button'); btn.disabled = true; note.textContent = '';
+      client.auth.updateUser({ password: p1 }).then(function(res){
+        if(res.error) throw res.error;
+        window.LUSIDES_AUTH_FLOW = null;
+        try{ history.replaceState(null, '', location.pathname); }catch(err){}
+        pwForm.style.display = 'none'; loginForm.style.display = 'block';
+        $('loginView').querySelector('h1').textContent = 'Anmelden';
+        return client.auth.getSession().then(function(r){ showDashboard(r.data.session); });
+      }).catch(function(err){ note.textContent = 'Speichern fehlgeschlagen: ' + (err && err.message ? err.message : 'bitte erneut versuchen'); })
+        .finally(function(){ btn.disabled = false; });
+    });
+    $('forgotBtn').addEventListener('click', function(){
+      var email = $('admin-email').value.trim();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ loginNote.textContent = 'Bitte zuerst oben deine E-Mail-Adresse eintragen.'; loginNote.classList.add('show'); $('admin-email').focus(); return; }
+      client.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname }).then(function(){
+        loginNote.textContent = 'Falls die Adresse als Admin hinterlegt ist, kommt gleich ein Link per E-Mail.';
+        loginNote.classList.add('show');
+      });
+    });
     loginForm.addEventListener('submit', function(e){
       e.preventDefault();
       var btn = loginForm.querySelector('button'); btn.disabled = true; loginNote.classList.remove('show');

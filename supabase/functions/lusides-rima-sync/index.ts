@@ -107,7 +107,9 @@ Deno.serve(async (req) => {
   const message = [body.biggest_challenge?.trim() || "", ...extras].filter(Boolean).join("\n\n") || "(keine Angabe)";
 
   const challenge = body.biggest_challenge?.trim() || "";
-  if (!/^Erstgespräch gebucht/.test(challenge)) {
+  // Terminbuchungen und Projektdatenblätter haben eigene Benachrichtigungen (lusides-invoice / lusides-datasheet)
+  const ownMail = /^(Terminbuchung|Projektdatenblatt)$/i.test(body.channel?.trim() ?? "") || /^Erstgespräch gebucht/.test(challenge);
+  if (!ownMail) {
     const source = body.channel?.trim()
       || (/^Chat/.test(challenge) ? "Chatbot" : /seminar/i.test(challenge) ? "Seminar" : "Kontaktformular");
     try { await notifyTeam(name, email, body.phone?.trim() ?? "", source, message); } catch (e) { console.error("notify error", e); }

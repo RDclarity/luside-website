@@ -209,7 +209,11 @@
         form_submit: 'Interesse anmelden',
         form_success: 'Danke! Wir melden uns, sobald der Termin feststeht.',
         form_error: 'Da ist etwas schiefgelaufen. Bitte versuche es erneut oder schreib uns direkt per E-Mail.',
-        trust: 'Kein Massengeschäft. Begrenzte Teilnehmerzahl.'
+        trust: 'Kein Massengeschäft. Begrenzte Teilnehmerzahl.',
+        more_follow: "— weitere folgen",
+        details_duration_label: "Dauer",
+        role_rd: "Marketing, Vertrieb, Unternehmensentwicklung, Prozessaufbau",
+        role_mk: "Strategie, Organisation, Unternehmensentwicklung, Wachstum"
       },
       svc_prozesse: {
         meta_title: "Prozessoptimierung & Organisationsentwicklung Wien | Lusides",
@@ -488,6 +492,7 @@
         f_uid: "UID-Nummer (optional, für Reverse Charge)",
         country_other: "Anderes Land",
         tz_local: "Alle Zeiten in deiner Ortszeit ({tz}).",
+        tz_pick: "Zeiten in",
         err_billing: "Bitte Straße und Ort für die Rechnung angeben.",
         meta_title: "Erstgespräch buchen – 30 Min. per Video oder Telefon | Lusides",
         eyebrow: "ERSTGESPRÄCH · VIDEO ODER TELEFON",
@@ -700,7 +705,18 @@
         err_consent: "Bitte stimme der Verarbeitung deiner Angaben zu.",
         err_rate: "Du hast heute bereits mehrere Datenblätter gesendet. Bitte versuche es später erneut.",
         err_input: "Bitte prüfe deine Angaben (E-Mail, Telefon, Website).",
-        err_generic: "Senden gerade nicht möglich. Bitte versuche es später erneut."
+        err_generic: "Senden gerade nicht möglich. Bitte versuche es später erneut.",
+        rev1: "< 250.000",
+        rev2: "250.000–500.000",
+        rev3: "500.000–1 Mio.",
+        rev4: "1–2,5 Mio.",
+        rev5: "2,5–5 Mio.",
+        rev6: "5–10 Mio.",
+        rev7: "> 10 Mio.",
+        bud1: "< 5.000",
+        bud2: "5.000–15.000",
+        bud3: "15.000–50.000",
+        bud4: "> 50.000"
       },
       projektbogen_page: {
         meta_title: 'Projektbogen — Lusides',
@@ -761,6 +777,8 @@
         p_newsletter: 'Wenn Sie beim Absenden des Formulars die Newsletter-Checkbox aktivieren, speichern wir Ihren Namen und Ihre E-Mail-Adresse zusätzlich in einer separaten Liste für den Newsletter-Versand. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie jederzeit formlos per E-Mail an inquiry@lusides.com widerrufen können.',
         h_booking: 'Terminbuchung',
         p_booking: "Wenn Sie über die Seite „Termin buchen“ ein Erstgespräch buchen, verarbeiten wir Name, E-Mail-Adresse, Telefonnummer (bei telefonischem Gespräch erforderlich, sonst optional), optional Unternehmen, Ihre Rechnungsadresse (Straße, PLZ, Ort, Land), optional Ihre UID-Nummer, das gewählte Thema und Ihre Nachricht sowie den gewählten Termin. Zweck ist die Durchführung des Gesprächs sowie die Erstellung von Bestellschein und Rechnung (Rechtsgrundlage: Vertragserfüllung, Art. 6 Abs. 1 lit. b DSGVO, und gesetzliche Pflichten nach UStG/BAO, Art. 6 Abs. 1 lit. c DSGVO). Bestellschein und Rechnung werden automatisch erstellt und über den E-Mail-Dienst Resend (Resend, Inc., Versand über Server in der EU) an Sie versendet. Das Gespräch findet je nach Wahl per Telefon oder per Video über Microsoft Teams statt; bei Video gelten zusätzlich die Datenschutzbestimmungen von Microsoft. Die Zeitzone Ihres Browsers verwenden wir nur, um Uhrzeiten und Sprache passend anzuzeigen.",
+        h_withdraw: 'Online-Widerruf',
+        p_withdraw: "Wenn Sie über die Funktion „Vertrag widerrufen“ auf der Seite Widerruf einen Vertrag widerrufen, verarbeiten wir Ihren Namen, Ihre E-Mail-Adresse, optional die Bestellnummer und Ihre Nachricht sowie den Zeitpunkt des Eingangs. Zweck ist die Bearbeitung des Widerrufs und die gesetzlich vorgeschriebene Eingangsbestätigung per E-Mail (Rechtsgrundlage: Art. 6 Abs. 1 lit. c DSGVO in Verbindung mit § 13a FAGG). Die Bestätigung wird über den E-Mail-Dienst Resend versendet. Die Daten werden gemeinsam mit den Buchungs- und Rechnungsunterlagen für die Dauer der gesetzlichen Aufbewahrungspflichten gespeichert.",
         h_analytics: 'Website-Analyse',
         p_analytics: 'Um zu verstehen, wie unsere Website genutzt wird, erfassen wir pseudonym: die aufgerufenen Seiten, die Herkunft (verweisende Website bzw. Kampagnenparameter), den Gerätetyp (Mobil/Tablet/Desktop), die gewählte Sprache, die Verweildauer, wie weit eine Seite gescrollt wurde, in welchem Abschnitt Sie sich gerade befinden, welche Links und Schaltflächen Sie anklicken sowie ob ein Formular begonnen oder abgeschickt wurde (ohne dessen Inhalte). Diese Angaben werden über eine zufällig erzeugte Sitzungs-ID verknüpft, die nur im Sitzungsspeicher Ihres Browsers (sessionStorage) liegt und beim Schließen des Tabs bzw. nach 30 Minuten Inaktivität verfällt; während Ihres Besuchs können wir so auch in Echtzeit sehen, auf welcher Seite sich Besucher befinden. Unsere Anwendung speichert keine IP-Adressen oder Standortdaten; unser Hosting- und Datenbankanbieter verarbeitet IP-Adressen jedoch technisch bedingt kurzzeitig als übliche Server-Logdaten zur Sicherheit und Missbrauchsabwehr. Es werden keine Cookies gesetzt. Ist in Ihrem Browser „Do Not Track“ oder „Global Privacy Control“ aktiviert, findet keine Erfassung statt. Die Daten werden nach spätestens 13 Monaten gelöscht. Rechtsgrundlage ist unser berechtigtes Interesse an der Verbesserung unseres Angebots (Art. 6 Abs. 1 lit. f DSGVO).',
         h_chatbot: 'Chat-Assistent',
@@ -995,7 +1013,11 @@
         form_submit: 'Register interest',
         form_success: 'Thanks! We\'ll be in touch as soon as the date is confirmed.',
         form_error: 'Something went wrong. Please try again or email us directly.',
-        trust: "Not a volume business. Limited number of spots."
+        trust: "Not a volume business. Limited number of spots.",
+        more_follow: "— more to follow",
+        details_duration_label: "Duration",
+        role_rd: "Marketing, sales, business development, process design",
+        role_mk: "Strategy, organisation, business development, growth"
       },
       svc_prozesse: {
         meta_title: "Process optimisation & organisational development, Vienna | Lusides",
@@ -1274,6 +1296,7 @@
         f_uid: "VAT ID (optional, for companies)",
         country_other: "Other country",
         tz_local: "All times shown in your local time ({tz}).",
+        tz_pick: "Times shown in",
         err_billing: "Please enter street and city for the invoice.",
         meta_title: "Book an initial consultation – 30 min by video or phone | Lusides",
         eyebrow: "INITIAL CALL · VIDEO OR PHONE",
@@ -1486,7 +1509,18 @@
         err_consent: "Please agree to the processing of your details.",
         err_rate: "You have already sent several data sheets today. Please try again later.",
         err_input: "Please check your details (email, phone, website).",
-        err_generic: "Sending is not possible right now. Please try again later."
+        err_generic: "Sending is not possible right now. Please try again later.",
+        rev1: "< 250,000",
+        rev2: "250,000–500,000",
+        rev3: "500,000–1M",
+        rev4: "1M–2.5M",
+        rev5: "2.5M–5M",
+        rev6: "5M–10M",
+        rev7: "> 10M",
+        bud1: "< 5,000",
+        bud2: "5,000–15,000",
+        bud3: "15,000–50,000",
+        bud4: "> 50,000"
       },
       projektbogen_page: {
         meta_title: 'Project Brief — Lusides',
@@ -1547,6 +1581,8 @@
         p_newsletter: 'If you tick the newsletter checkbox when submitting the form, we additionally store your name and email address in a separate list for sending the newsletter. The legal basis is your consent (Art. 6(1)(a) GDPR), which you can withdraw at any time, informally, by emailing inquiry@lusides.com.',
         h_booking: 'Booking an appointment',
         p_booking: "When you book an initial consultation on the “Book a call” page, we process your name, email address, your phone number (required for phone calls, otherwise optional), optionally your company, your billing address (street, postal code, city, country), optionally your VAT ID, the chosen topic, your message and the selected appointment. We use this data to hold the call and to issue the order confirmation and invoice (legal basis: performance of a contract, Art. 6(1)(b) GDPR, and legal obligations under Austrian VAT and tax law, Art. 6(1)(c) GDPR). The order confirmation and invoice are created automatically and sent to you via the email service Resend (Resend, Inc., sending via servers in the EU). The call takes place by phone or by video on Microsoft Teams, as you choose; for video calls Microsoft’s privacy terms also apply. We use your browser’s time zone only to show times and language correctly.",
+        h_withdraw: 'Online withdrawal',
+        p_withdraw: "If you withdraw from a contract using the “Withdraw from contract” function on the withdrawal page, we process your name, email address, optionally the order number and your message, as well as the time of receipt. The purpose is to process the withdrawal and to send the legally required confirmation of receipt by email (legal basis: Art. 6(1)(c) GDPR in conjunction with § 13a FAGG). The confirmation is sent via the email service Resend. The data is stored together with the booking and invoice records for the duration of the statutory retention periods.",
         h_analytics: 'Website analytics',
         p_analytics: "To understand how our website is used, we record the following pseudonymously: the pages viewed, where you came from (referring website or campaign parameters), the device type (mobile/tablet/desktop), the language selected, time spent, how far a page was scrolled, which section you are currently viewing, which links and buttons you click, and whether a form was started or submitted (without its contents). These details are linked by a randomly generated session ID that is kept only in your browser’s session storage (sessionStorage) and expires when you close the tab or after 30 minutes of inactivity; this also lets us see in real time which page visitors are on. Our application does not store IP addresses or location data; our hosting and database provider does, however, briefly process IP addresses as standard server log data for security and abuse prevention. No cookies are set. If “Do Not Track” or “Global Privacy Control” is enabled in your browser, nothing is recorded. The data is deleted after 13 months at the latest. The legal basis is our legitimate interest in improving our services (Art. 6(1)(f) GDPR).",
         h_chatbot: 'Chat assistant',

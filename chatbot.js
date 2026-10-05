@@ -165,8 +165,8 @@
         en: ['how do you work:3', 'how does it work:3', 'approach:3', 'method*:3', 'steps:2', 'collaboration:2', 'working together:3', 'work together:2']
       },
       answer: {
-        de: 'Drei Schritte:<br>1. <strong>Analyse</strong> — wir schauen uns dein Unternehmen genau an.<br>2. <strong>Aufbau</strong> — wir bauen gemeinsam die fehlenden Systeme.<br>3. <strong>Umsetzung</strong> — wir begleiten dich, bis es im Alltag läuft.<br>Am Anfang steht das 60-minütige Erstgespräch.',
-        en: 'Three steps:<br>1. <strong>Analysis</strong> — we take a close look at your business.<br>2. <strong>Build</strong> — we build the missing systems together.<br>3. <strong>Implementation</strong> — we support you until it runs day to day.<br>It all starts with the 60-minute initial call.'
+        de: 'Drei Schritte:<br>1. <strong>Analyse</strong> — wir schauen uns dein Unternehmen genau an.<br>2. <strong>Aufbau</strong> — wir bauen gemeinsam die fehlenden Systeme.<br>3. <strong>Umsetzung</strong> — wir begleiten dich, bis es im Alltag läuft.<br>Am Anfang steht das 30-minütige Erstgespräch.',
+        en: 'Three steps:<br>1. <strong>Analysis</strong> — we take a close look at your business.<br>2. <strong>Build</strong> — we build the missing systems together.<br>3. <strong>Implementation</strong> — we support you until it runs day to day.<br>It all starts with the 30-minute initial call.'
       },
       next: ['pricing', 'audience']
     },

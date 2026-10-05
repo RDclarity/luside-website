@@ -71,6 +71,10 @@
   #loginForm button:disabled{ opacity:.6; cursor:not-allowed; }
   #loginNote{ font-size: 13px; color:#B3261E; margin-top: 12px; display:none; }
   #loginNote.show{ display:block; }
+  .link-btn{ display:block; margin: 12px auto 0; background:none; border:none; color: var(--accent-ink); font: inherit; font-size: 13px; text-decoration: underline; cursor:pointer; padding: 8px; }
+  .pw-hint{ font-size: 14px; color: var(--slate); margin-bottom: 14px; }
+  #pwForm button[type=submit]{ width:100%; background: var(--night); color:#fff; padding: 13px; border:none; border-radius: 999px; font-size: 15px; font-weight:600; cursor:pointer; }
+  #pwNote{ font-size: 13px; margin-top: 12px; color: #B3261E; }
   #configNote{ font-size: 13px; color: var(--accent-ink); background: var(--accent-dim); padding: 12px; border-radius: 10px; margin-bottom: 16px; display:none; }
   #configNote.show{ display:block; }
   #dashboardView{ display:none; }
@@ -328,6 +332,7 @@
     <button class="tab" data-tab="rechnungen" role="tab">Rechnungen <span class="badge" id="bRechnungen" hidden></span></button>
     <button class="tab" data-tab="datenblaetter" role="tab">Datenblätter <span class="badge" id="bSheets" hidden></span></button>
     <button class="tab" data-tab="anfragen" role="tab">Anfragen <span class="badge" id="bAnfragen" hidden></span></button>
+    <button class="tab" data-tab="widerrufe" role="tab">Widerrufe <span class="badge" id="bWiderrufe" hidden></span></button>
     <button class="tab" data-tab="newsletter" role="tab">Newsletter</button>
     <button class="tab" data-tab="besucher" role="tab">Statistik</button>
     <button class="tab" data-tab="live" role="tab"><span class="live-dot" aria-hidden="true"></span>Live <span class="badge" id="bLive" hidden></span></button>
@@ -342,7 +347,15 @@
       <div class="field"><label for="admin-email">E-Mail</label><input id="admin-email" type="email" required autocomplete="username"></div>
       <div class="field"><label for="admin-password">Passwort</label><input id="admin-password" type="password" required autocomplete="current-password"></div>
       <button type="submit">Anmelden</button>
+      <button type="button" class="link-btn" id="forgotBtn">Passwort vergessen?</button>
       <div id="loginNote"></div>
+    </form>
+    <form id="pwForm" style="display:none">
+      <p class="pw-hint">Lege dein Passwort fest (mindestens 10 Zeichen).</p>
+      <div class="field"><label for="new-password">Neues Passwort</label><input id="new-password" type="password" minlength="10" required autocomplete="new-password"></div>
+      <div class="field"><label for="new-password2">Passwort wiederholen</label><input id="new-password2" type="password" minlength="10" required autocomplete="new-password"></div>
+      <button type="submit">Passwort speichern</button>
+      <div id="pwNote"></div>
     </form>
   </div>
 
@@ -438,6 +451,19 @@
         <table class="rt">
           <thead><tr><th>Name</th><th>Unternehmen</th><th>Anliegen</th><th>Telefon</th><th>E-Mail</th><th>Newsletter</th><th>Datum</th></tr></thead>
           <tbody id="contactsBody"><tr class="loading-row"><td colspan="7">Lade…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- WIDERRUFE -->
+    <section class="pane" id="pane-widerrufe">
+      <div class="pane-head">
+        <div><h2>Widerrufe</h2><div class="count" id="wdCount">Eingegangen über „Vertrag widerrufen“ (§ 13a FAGG)</div></div>
+      </div>
+      <div class="card-box">
+        <table class="rt">
+          <thead><tr><th>Eingang</th><th>Name</th><th>E-Mail</th><th>Bestellnr.</th><th>Nachricht</th><th>Bestätigung</th><th>Status</th></tr></thead>
+          <tbody id="wdBody"><tr class="loading-row"><td colspan="7">Lade…</td></tr></tbody>
         </table>
       </div>
     </section>
@@ -616,10 +642,10 @@
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous"></script>
-<script src="supabase-config.js?v=202610081600"></script>
-<script src="admin-calendar.js?v=202610081600"></script>
-<script src="admin-sheets.js?v=202610081600"></script>
-<script src="admin.js?v=202610081600"></script>
-<script src="admin-analytics.js?v=202610081600"></script>
+<script src="supabase-config.js?v=202610081800"></script>
+<script src="admin-calendar.js?v=202610081800"></script>
+<script src="admin-sheets.js?v=202610081800"></script>
+<script src="admin.js?v=202610081800"></script>
+<script src="admin-analytics.js?v=202610081800"></script>
 </body>
 </html>

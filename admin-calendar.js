@@ -318,7 +318,10 @@
       { label: 'Nachricht', get: function(a){ return a.message; } },
       { label: 'Status', get: function(a){ return STATUS_LABEL[a.status]; } },
       { label: 'Bezahlt', get: function(a){ return a.paid ? 'Ja' : 'Nein'; } },
-      { label: 'Preis (€)', get: function(a){ return a.price_eur; } },
+      { label: 'Preis', get: function(a){ return a.price != null ? a.price : a.price_eur; } },
+      { label: 'Währung', get: function(a){ return a.currency || 'EUR'; } },
+      { label: 'AGB akzeptiert', get: function(a){ return a.terms_accepted_at ? 'Ja' : ''; } },
+      { label: 'Vorzeitiger Beginn verlangt', get: function(a){ return a.early_start_consent_at ? 'Ja' : ''; } },
       { label: 'Teams-Link', get: function(a){ return a.teams_link; } }
     ]);
   }
