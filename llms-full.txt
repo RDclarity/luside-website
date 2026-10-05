@@ -527,10 +527,10 @@ Geprüfter Tischlermeister und Unternehmer. Seit 2016 in der Führung des 1935 g
 MS Technik
 ### Mihai Suta
 KI-Architekt · Software · Digitalisierung
-KI-Architekt und hochspezialisierter Softwareentwickler. Er konzipiert KI-Systeme, Automatisierungen und Datenflüsse so, dass sie sich in bestehende Abläufe einfügen – und verantwortet bei Lusides die technische Umsetzung von individueller Software über Onlineshops bis zu produktiven KI-Lösungen.
-- Individuelle Software- und Web-Entwicklung
-- KI, Automatisierung und Datenverarbeitung
-- Architektur von KI-Systemen und Datenflüssen
+KI-Architekt mit MBA in Digitaler Transformation der WU Wien, derzeit Doktorand im Bereich Emerging Technologies & Computational Economies (TU Cluj-Napoca / WU Wien). Er verbindet KI, Prozessoptimierung und Projektmanagement und verantwortet bei Lusides die technische Umsetzung – von individueller Software über Onlineshops bis zu produktiven KI-Lösungen.
+- MBA Digitale Transformation, WU Wien
+- KI-Architektur, Automatisierung und Prozessoptimierung
+- Doktorat Emerging Technologies (TU Cluj-Napoca / WU Wien)
 ### Bereit für den nächsten Schritt?
 Jetzt Termin buchen
 
