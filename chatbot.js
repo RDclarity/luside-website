@@ -218,8 +218,8 @@
         en: ['contact:2', 'contact details:3', 'email:2', 'e mail:2', 'phone:2', 'number:1', 'address:3', 'location:3', 'office:2', 'where are you:3', 'reach you:3', 'call you:2', 'vienna:1']
       },
       answer: {
-        de: 'E-Mail: <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a><br>Telefon: <a href="tel:' + CONTACT_PHONE_HREF + '">' + CONTACT_PHONE + '</a><br>Adresse: Endresstraße 50/V3, 1230 Wien<br>Am schnellsten geht’s mit einem gebuchten Erstgespräch.',
-        en: 'Email: <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a><br>Phone: <a href="tel:' + CONTACT_PHONE_HREF + '">' + CONTACT_PHONE + '</a><br>Address: Endresstraße 50/V3, 1230 Vienna, Austria<br>The fastest way is to book an initial call.'
+        de: 'E-Mail: <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a><br>Telefon: <a href="tel:' + CONTACT_PHONE_HREF + '">' + CONTACT_PHONE + '</a><br>Adresse: Endresstraße 50/V2, 1230 Wien<br>Am schnellsten geht’s mit einem gebuchten Erstgespräch.',
+        en: 'Email: <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a><br>Phone: <a href="tel:' + CONTACT_PHONE_HREF + '">' + CONTACT_PHONE + '</a><br>Address: Endresstraße 50/V2, 1230 Vienna, Austria<br>The fastest way is to book an initial call.'
       },
       next: ['lead']
     }

@@ -6,7 +6,7 @@
 
 - Name: Lusides (Rechtsträger: Legatech GmbH & Co KG)
 - Art: Unternehmensberatung und Umsetzungspartner (Beratung + Entwicklung)
-- Standort: Endresstraße 50/V3, 1230 Wien, Österreich
+- Standort: Endresstraße 50/V2, 1230 Wien, Österreich
 - Zielgruppe: etablierte Unternehmen (KMU) mit bestehendem Umsatz und gewachsener Struktur, auch generationenübergreifend geführte Unternehmen und Unternehmen, die von der nächsten Generation übernommen werden; nicht für Start-ups in der Frühphase
 - Region: Österreich, Deutschland, Schweiz und USA (Beratung per Telefon oder Video)
 - Sprachen: Deutsch, Englisch

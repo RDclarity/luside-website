@@ -141,7 +141,7 @@ async function buildPdf(d: Row): Promise<Uint8Array> {
   }
   for (const p of doc.getPages()) {
     p.drawLine({ start: { x: M, y: 58 }, end: { x: W - M, y: 58 }, thickness: 0.6, color: rgb(0.86, 0.9, 0.94) });
-    p.drawText(safe(`${L.footer}  Legatech GmbH & Co KG · Endresstraße 50/V3, 1230 Wien · FN 614735 y`), { x: M, y: 44, size: 7.5, font, color: slate });
+    p.drawText(safe(`${L.footer}  Legatech GmbH & Co KG · Endresstraße 50/V2, 1230 Wien · FN 614735 y`), { x: M, y: 44, size: 7.5, font, color: slate });
   }
   return await doc.save();
 }
