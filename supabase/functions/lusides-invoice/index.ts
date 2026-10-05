@@ -122,6 +122,17 @@ function shortDateTime(d: string, lang: string, tz: string | null = null) {
   const time = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "de-AT", { timeZone: "Europe/Vienna", hour: "2-digit", minute: "2-digit" }).format(new Date(d));
   return `${dateFmt(d, lang)}, ${time}`;
 }
+// Termin im Bestellschein-Kopf: Datum und Uhrzeit in getrennten Zeilen (passt in die rechte Spalte)
+function apptRows(d: string, lang: string, tz: string | null): [string, string][] {
+  const en = lang === "en";
+  if (en && tz) {
+    const date = new Intl.DateTimeFormat("en-US", { timeZone: tz, day: "numeric", month: "short", year: "numeric" }).format(new Date(d));
+    const time = new Intl.DateTimeFormat("en-US", { timeZone: tz, hour: "numeric", minute: "2-digit", timeZoneName: "short" }).format(new Date(d));
+    return [["Appointment", date], ["Time", time], ["Vienna time", viennaTime(d, lang)]];
+  }
+  const time = new Intl.DateTimeFormat(en ? "en-US" : "de-AT", { timeZone: "Europe/Vienna", hour: en ? "numeric" : "2-digit", minute: "2-digit" }).format(new Date(d));
+  return en ? [["Appointment", dateFmt(d, lang)], ["Time (Vienna)", time]] : [["Termin", dateFmt(d, lang)], ["Uhrzeit", time + " Uhr"]];
+}
 // Langform für Positionstext und E-Mail. DE: Wiener Zeit. US: Kundenzeitzone + Wiener Zeit in Klammern.
 function dateTimeFmt(d: string, lang: string, tz: string | null = null) {
   if (lang === "en") {
@@ -163,7 +174,7 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
     ? { name: s.us_legal_name || "Katalan Group LLC", street: s.us_street || "", city: s.us_city_line || "", country: s.us_country || "USA",
         email: s.us_email || s.email_contact, phone: s.us_phone || s.phone }
     : { name: s.legal_name, street: s.street, city: `${s.zip} ${s.city}`, country: s.country, email: s.email_contact, phone: s.phone };
-  const sender = [iss.name, iss.street, iss.city, iss.country, iss.email, iss.phone].filter(Boolean);
+  const sender = [iss.name, iss.street, iss.city, iss.country, iss.email].filter(Boolean);   // ohne Telefonnummern
   sender.forEach((l, i) => right(page, l, W - M, 796 - i * 12, 8.5, font, slate));
 
   // Empfänger
@@ -179,11 +190,19 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
   text(page, title, M, 585, 22, bold);
   page.drawRectangle({ x: M, y: 575, width: 36, height: 2.5, color: blue });
   const meta: [string, string][] = isOrder
-    ? [[t.orderNo, a.order_no], [t.orderDate, dateFmt(a.created_at, lang)], [t.appt, shortDateTime(a.start_at, lang, tz)]]
+    ? [[t.orderNo, a.order_no], [t.orderDate, dateFmt(a.created_at, lang)], ...apptRows(a.start_at, lang, tz)]
     : [[t.no, inv.invoice_no], [t.date, dateFmt(inv.issue_date, lang)], [t.service, dateFmt(inv.service_date, lang)], [t.orderNo, a?.order_no ?? "-"]];
   if (!isOrder && inv.due_date && inv.kind !== "storno") meta.push([t.due, dateFmt(inv.due_date, lang)]);
   if (!isOrder && inv.customer_uid) meta.push([t.yourUid, inv.customer_uid]);
-  meta.forEach(([k, v], i) => { text(page, k, 340, 600 - i * 14, 9, font, slate); right(page, v, W - M, 600 - i * 14, 9, bold); });
+  // Werte nie über die Beschriftung laufen lassen: notfalls Schrift verkleinern
+  meta.forEach(([k, v], i) => {
+    const yy = 600 - i * 14;
+    text(page, k, 340, yy, 9, font, slate);
+    const room = (W - M) - (340 + font.widthOfTextAtSize(safe(k), 9) + 10);
+    let size = 9;
+    while (size > 6.5 && bold.widthOfTextAtSize(safe(v), size) > room) size -= 0.5;
+    right(page, v, W - M, yy, size, bold);
+  });
 
   // Positionstabelle
   let y = 500;
@@ -248,8 +267,8 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
     ? [iss.name, [iss.street, iss.city].filter(Boolean).join(", "), iss.country, `EIN: ${s.us_ein || t.tbd}`].filter(Boolean).join(" · ")
     : `${s.legal_name} · ${s.street}, ${s.zip} ${s.city} · ${s.fn} · ${s.court}`;
   const foot2 = usIssuer
-    ? `${iss.email} · ${iss.phone} · Lusides`
-    : `${t.ourUid}: ${s.uid ?? t.tbd} · ${s.email_invoice} · ${s.phone}`;
+    ? `${iss.email} · lusides.com`
+    : `${t.ourUid}: ${s.uid ?? t.tbd} · ${s.email_invoice} · lusides.com`;
   text(page, foot1, M, 58, 7.5, font, slate); text(page, foot2, M, 47, 7.5, font, slate);
   return await doc.save();
 }
