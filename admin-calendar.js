@@ -160,7 +160,7 @@
       subject: 'Erstgespräch Lusides – ' + a.name + (a.company ? ' (' + a.company + ')' : ''),
       startTime: a._startReal.toISOString(),
       endTime: a._endReal.toISOString(),
-      content: 'Erstgespräch (60 Min, Video)' + (a.topic ? ' · Thema: ' + a.topic : ''),
+      content: 'Erstgespräch (30 Min, Video)' + (a.topic ? ' · Thema: ' + a.topic : ''),
       attendees: a.email
     });
     return 'https://teams.microsoft.com/l/meeting/new?' + p.toString().replace(/\+/g, '%20');
@@ -173,12 +173,12 @@
       : longDate(a._start) + ', ' + hm(a._start) + '–' + hm(a._end) + ' Uhr (Wiener Zeit)';
     var body = en
       ? 'Hello ' + a.name + ',\n\nthank you for your booking. Here are the details of our initial consultation:\n\n'
-        + 'Date: ' + when + '\nDuration: 60 minutes\n'
+        + 'Date: ' + when + '\nDuration: 30 minutes\n'
         + (phone ? 'Format: phone call – we will call you at ' + (a.phone || '[phone number]') + '\n'
                  : 'Location: Microsoft Teams (video)\nLink: ' + (link || '[insert Teams link]') + '\n')
         + '\nKind regards\nLusides'
       : 'Guten Tag ' + a.name + ',\n\nvielen Dank für Ihre Buchung. Hier die Details zu unserem Erstgespräch:\n\n'
-        + 'Termin: ' + when + '\nDauer: 60 Minuten\n'
+        + 'Termin: ' + when + '\nDauer: 30 Minuten\n'
         + (phone ? 'Format: Telefonat – wir rufen Sie unter ' + (a.phone || '[Telefonnummer]') + ' an.\n'
                  : 'Ort: Microsoft Teams (Video)\nLink: ' + (link || '[Teams-Link einfügen]') + '\n')
         + '\nBeste Grüße\nLusides';

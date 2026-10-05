@@ -8,7 +8,7 @@
 <meta name="author" content="Lusides">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Erstgespräch mit Lusides online buchen: 60 Minuten per Video (Microsoft Teams) oder Telefon, 350 €. Freien Termin wählen, Bestellschein und Rechnung kommen automatisch per E-Mail.">
+<meta name="description" content="Erstgespräch mit Lusides online buchen: 30 Minuten per Video (Microsoft Teams) oder Telefon. Freien Termin wählen, Bestellschein und Rechnung kommen automatisch per E-Mail.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://lusides.com/termin.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -17,15 +17,15 @@
 <meta name="theme-color" content="#050B18">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lusides">
-<meta property="og:title" content="Erstgespräch buchen – 60 Min. per Video oder Telefon | Lusides">
-<meta property="og:description" content="Erstgespräch mit Lusides online buchen: 60 Minuten per Video (Microsoft Teams) oder Telefon, 350 €. Freien Termin wählen, Bestellschein und Rechnung kommen automatisch per E-Mail.">
+<meta property="og:title" content="Erstgespräch buchen – 30 Min. per Video oder Telefon | Lusides">
+<meta property="og:description" content="Erstgespräch mit Lusides online buchen: 30 Minuten per Video (Microsoft Teams) oder Telefon. Freien Termin wählen, Bestellschein und Rechnung kommen automatisch per E-Mail.">
 <meta property="og:url" content="https://lusides.com/termin.html">
 <meta property="og:image" content="https://lusides.com/og-image.jpg?v=2">
 <meta property="og:locale" content="de_AT">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Erstgespräch buchen – 60 Min. per Video oder Telefon | Lusides">
-<meta name="twitter:description" content="Erstgespräch mit Lusides online buchen: 60 Minuten per Video (Microsoft Teams) oder Telefon, 350 €. Freien Termin wählen, Bestellschein und Rechnung kommen automatisch per E-Mail.">
-<title data-i18n="termin_page.meta_title">Erstgespräch buchen – 60 Min. per Video oder Telefon | Lusides</title>
+<meta name="twitter:title" content="Erstgespräch buchen – 30 Min. per Video oder Telefon | Lusides">
+<meta name="twitter:description" content="Erstgespräch mit Lusides online buchen: 30 Minuten per Video (Microsoft Teams) oder Telefon. Freien Termin wählen, Bestellschein und Rechnung kommen automatisch per E-Mail.">
+<title data-i18n="termin_page.meta_title">Erstgespräch buchen – 30 Min. per Video oder Telefon | Lusides</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,7 +33,7 @@
     {
       "@type": "Service",
       "@id": "https://lusides.com/termin.html#service",
-      "name": "Erstgespräch mit Lusides (60 Minuten, Video oder Telefon)",
+      "name": "Erstgespräch mit Lusides (30 Minuten, Video oder Telefon)",
       "serviceType": "Unternehmensberatung – Erstgespräch",
       "provider": {
         "@type": "Organization",
@@ -61,9 +61,7 @@
       "offers": [
         {
           "@type": "Offer",
-          "name": "Erstgespräch 60 Minuten (Video oder Telefon)",
-          "price": "350.00",
-          "priceCurrency": "EUR",
+          "name": "Erstgespräch 30 Minuten (Video oder Telefon)",
           "url": "https://lusides.com/termin.html",
           "availability": "https://schema.org/InStock",
           "eligibleRegion": [
@@ -71,25 +69,17 @@
             "DE",
             "CH",
             "LI"
-          ],
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "350.00",
-            "priceCurrency": "EUR",
-            "valueAddedTaxIncluded": true
-          }
+          ]
         },
         {
           "@type": "Offer",
-          "name": "Initial consultation 60 minutes (video or phone)",
-          "price": "390.00",
-          "priceCurrency": "USD",
+          "name": "Initial consultation 30 minutes (video or phone)",
           "url": "https://lusides.com/termin.html",
           "availability": "https://schema.org/InStock",
           "eligibleRegion": "US"
         }
       ],
-      "description": "60-minütiges Erstgespräch per Video (Microsoft Teams) oder Telefon: Analyse der Situation und konkrete nächste Schritte. Online buchbar Mo–Fr (außer an österreichischen Feiertagen); Bestellschein und Rechnung werden automatisch per E-Mail zugestellt."
+      "description": "30-minütiges Erstgespräch per Video (Microsoft Teams) oder Telefon: Analyse der Situation und konkrete nächste Schritte. Online buchbar Mo–Fr (außer an österreichischen Feiertagen); Bestellschein und Rechnung werden automatisch per E-Mail zugestellt."
     },
     {
       "@type": "BreadcrumbList",
@@ -285,6 +275,21 @@
   .book-btn{ margin-top: 16px; width:100%; min-height: 54px; background: var(--accent); color:#fff; border:none; border-radius: 6px; padding: 16px; font: inherit; font-weight:600; font-size:1rem; cursor:pointer; transition: background .2s ease; }
   .book-btn:hover:not(:disabled){ background: var(--accent-ink); }
   .book-btn:disabled{ opacity:0.6; cursor:progress; }
+  /* Übersicht vor dem zahlungspflichtigen Buchen */
+  .review{ margin-top: 4px; }
+  .review h3{ font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; outline: none; }
+  .review-sub{ font-size: 0.86rem; color: var(--slate); margin: 4px 0 14px; }
+  .review-list{ display: grid; grid-template-columns: minmax(110px, auto) minmax(0, 1fr); gap: 8px 16px; font-size: 0.92rem; border-top: 1px solid var(--line); padding-top: 14px; }
+  .review-list dt{ color: var(--slate); }
+  .review-list dd{ margin: 0; overflow-wrap: anywhere; white-space: pre-line; }
+  @media (max-width: 480px){ .review-list{ grid-template-columns: minmax(0, 1fr); gap: 2px; } .review-list dd{ margin-bottom: 8px; } }
+  .edit-btn{ background: none; border: none; padding: 10px 0; min-height: 44px; font: inherit; font-size: 0.88rem; color: var(--accent-ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .review-price{ display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin: 10px 0 16px; padding: 16px 18px; border-radius: 8px; background: var(--accent-dim); color: var(--accent-ink); }
+  .review-price span{ font-size: 0.86rem; width: 100%; }
+  .review-price b{ font-size: 2rem; letter-spacing: -0.03em; line-height: 1; }
+  .review-price small{ font-size: 0.86rem; }
+  .review .consent{ margin-top: 8px; }
+  .review .consent a{ color: var(--accent-ink); }
   .note{ margin-top: 12px; font-size:0.88rem; display:none; }
   .note.show{ display:block; }
   .note.error{ color:#B3261E; }
@@ -304,7 +309,7 @@
   .btn-ghost:hover{ background: var(--accent-dim); }
   .link-btn{ background: none; border: none; color: var(--slate); text-decoration: underline; font: inherit; font-size: 0.84rem; cursor: pointer; margin-top: 18px; min-height: 44px; padding: 0 8px; }
 </style>
-<link rel="stylesheet" href="site.css?v=202610071000">
+<link rel="stylesheet" href="site.css?v=202610081200">
 <style>#progress{ display:none !important; } .bg-stone{ display:none; }</style>
 </head>
 <body>
@@ -336,7 +341,7 @@
         <button type="button" class="lang-btn" data-lang="de" lang="de" aria-label="Deutsch" title="Deutsch">DE</button>
         <button type="button" class="lang-btn" data-lang="en" lang="en" aria-label="English" title="English">EN</button>
       </div>
-      <a href="termin.html" class="ls-cta ls-magnetic" data-strength="0.2"><span class="ls-cta-label" data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">60 MIN · 350 €</small></a>
+      <a href="termin.html" class="ls-cta ls-magnetic" data-strength="0.2"><span class="ls-cta-label" data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">30 MIN</small></a>
       <button type="button" class="ls-burger" aria-label="Menü öffnen" aria-expanded="false"><span></span></button>
     </div>
   </div>
@@ -346,7 +351,7 @@
   <div class="wrap">
     <span class="eyebrow mono" data-i18n="termin_page.eyebrow">ERSTGESPRÄCH · VIDEO ODER TELEFON</span>
     <h1 class="display" data-i18n="termin_page.h1">Jetzt Termin buchen.</h1>
-    <p class="hero-sub" data-i18n="termin_page.sub">Eine Stunde, volle Aufmerksamkeit für dein Unternehmen. Wähle einen freien Termin und ob wir per Video (Microsoft Teams) oder telefonisch sprechen.</p>
+    <p class="hero-sub" data-i18n="termin_page.sub">30 Minuten volle Aufmerksamkeit für dein Unternehmen. Wähle einen freien Termin und ob wir per Video (Microsoft Teams) oder telefonisch sprechen.</p>
   </div>
 </section>
 
@@ -354,15 +359,14 @@
   <div class="wrap booking-grid">
     <aside class="card offer">
       <span class="teams-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span data-i18n="termin_page.badge">Video (Microsoft Teams) oder Telefon</span></span>
-      <div class="price"><span data-price>350 €</span><small data-i18n="termin_page.price_note">pro Gespräch</small></div>
-      <h2 data-i18n="termin_page.offer_h2">Erstgespräch · 60 Minuten</h2>
+      <h2 data-i18n="termin_page.offer_h2">Erstgespräch · 30 Minuten</h2>
       <ul>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-i18n="termin_page.li1">Analyse deiner aktuellen Situation und der größten Hebel</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-i18n="termin_page.li2">Konkrete nächste Schritte, auch wenn wir nicht zusammenarbeiten</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-i18n="termin_page.li3">Direkt mit den Gründern, kein Vertriebsgespräch</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-i18n="termin_page.li4">Per Video (Teams-Link kommt vor dem Termin per E-Mail) oder per Telefon (wir rufen dich an)</span></li>
       </ul>
-      <p class="fine" data-i18n="termin_page.fine">Die Rechnung über 350 € erhältst du per E-Mail. Kostenlose Umbuchung oder Absage bis 24 Stunden vor dem Termin.</p>
+      <p class="fine" data-i18n="termin_page.fine">Den Preis siehst du, sobald du deine Daten eingegeben hast. Die Rechnung erhältst du per E-Mail. Kostenlose Umbuchung oder Absage bis 24 Stunden vor dem Termin.</p>
     </aside>
 
     <div class="card">
@@ -394,7 +398,7 @@
             <div class="chosen" id="chosen"></div>
             <form id="bookingForm" method="post" action="#" novalidate>
               <p class="req-hint" data-i18n="termin_page.req_hint">* Pflichtfeld</p>
-              <div class="form-grid">
+              <div class="form-grid" id="formGrid">
                 <fieldset class="meet full">
                   <legend data-i18n="termin_page.meet_h">Wie möchtest du sprechen?</legend>
                   <div class="meet-opts">
@@ -422,10 +426,18 @@
                 </div>
                 <div class="fld" id="fldUid" hidden><label for="bk-uid" data-i18n="termin_page.f_uid">UID-Nummer (optional, für Reverse Charge)</label><input id="bk-uid" name="uid" type="text" maxlength="20" autocomplete="off" placeholder="DE123456789"></div>
                 <div class="fld full"><label for="bk-message" data-i18n="termin_page.f_message">Worum geht's? (optional)</label><textarea id="bk-message" name="message" maxlength="2000" placeholder="z. B. Wachstum, Prozesse, Digitalisierung …"></textarea></div>
-                <label class="consent full"><input type="checkbox" name="consent" id="bk-consent" required><span data-i18n-html="termin_page.consent">Ich buche ein kostenpflichtiges Erstgespräch (350 €) und akzeptiere die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</span></label>
               </div>
-              <p class="charge" id="chargeNote" aria-live="polite" hidden></p>
-              <button type="submit" class="book-btn" id="bookBtn" data-i18n="termin_page.submit">Zahlungspflichtig buchen · 350 €</button>
+              <button type="button" class="book-btn" id="reviewBtn" data-i18n="termin_page.review_btn">Weiter zur Übersicht</button>
+              <div class="review" id="review" hidden>
+                <h3 id="reviewH" tabindex="-1" data-i18n="termin_page.review_h">Übersicht &amp; Preis</h3>
+                <p class="review-sub" data-i18n="termin_page.review_sub">Bitte prüfe deine Angaben. Gebucht wird erst mit dem Button unten.</p>
+                <dl class="review-list" id="reviewList"></dl>
+                <button type="button" class="edit-btn" id="editBtn" data-i18n="termin_page.edit_btn">Angaben ändern</button>
+                <div class="review-price"><span data-i18n="termin_page.r_price">Preis</span><b id="reviewPrice"></b><small id="reviewTax"></small></div>
+                <label class="consent"><input type="checkbox" name="consent" id="bk-consent"><span data-i18n-html="termin_page.consent">Ich akzeptiere die <a href="agb.html" target="_blank" rel="noopener">AGB</a> und habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen. *</span></label>
+                <label class="consent"><input type="checkbox" name="consent2" id="bk-consent2"><span data-i18n-html="termin_page.consent_withdraw">Ich verlange ausdrücklich, dass Lusides vor Ablauf der Widerrufsfrist mit der Leistung beginnt. Mir ist bekannt, dass ich als Verbraucher mein <a href="widerruf.html" target="_blank" rel="noopener">Widerrufsrecht</a> verliere, sobald das Gespräch vollständig erbracht ist. *</span></label>
+                <button type="submit" class="book-btn" id="bookBtn">Zahlungspflichtig buchen</button>
+              </div>
               <div class="note" id="bookNote" aria-live="polite"></div>
             </form>
           </div>
@@ -453,7 +465,7 @@
   <div class="ls-f-inner">
     <div class="ls-f-cta ls-reveal">
       <h2><span data-i18n="ls_footer.cta1">Bereit für den</span><br><em data-i18n="ls_footer.cta2">nächsten Schritt?</em></h2>
-      <a href="termin.html" class="ls-cta ls-magnetic"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">60 MIN · 350 €</small></a>
+      <a href="termin.html" class="ls-cta ls-magnetic"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">30 MIN</small></a>
     </div>
     <div class="ls-wordmark ls-reveal" aria-hidden="true">Lusides<span>.</span></div>
     <div class="ls-f-grid">
@@ -464,7 +476,7 @@
     </div>
     <div class="ls-f-bottom">
       <span>© 2026 Lusides · Legatech GmbH &amp; Co KG · FN 614735 y</span>
-      <nav aria-label="Rechtliches"><a href="impressum.html" data-i18n="footer.impressum">Impressum</a><a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a></nav>
+      <nav aria-label="Rechtliches"><a href="impressum.html" data-i18n="footer.impressum">Impressum</a><a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a><a href="agb.html" data-i18n="footer.agb">AGB</a><a href="widerruf.html#widerrufen" data-i18n="footer.widerruf">Vertrag widerrufen</a></nav>
     </div>
   </div>
 </footer>
@@ -498,14 +510,14 @@
     window.addEventListener('resize', () => { if(window.innerWidth > 780) closeMobileMenu(); });
   }
 </script>
-<script src="i18n.js?v=202610071000" defer></script>
+<script src="i18n.js?v=202610081200" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
-<script src="supabase-config.js?v=202610071000" defer></script>
-<script src="chatbot.js?v=202610071000" defer></script>
-<script src="analytics.js?v=202610071000" defer></script>
-<script src="termin-booking.js?v=202610071000" defer></script>
+<script src="supabase-config.js?v=202610081200" defer></script>
+<script src="chatbot.js?v=202610081200" defer></script>
+<script src="analytics.js?v=202610081200" defer></script>
+<script src="termin-booking.js?v=202610081200" defer></script>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
-<script src="site.js?v=202610071000" defer></script>
+<script src="site.js?v=202610081200" defer></script>
 </body>
 </html>

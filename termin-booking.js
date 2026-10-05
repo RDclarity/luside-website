@@ -15,7 +15,7 @@
   var WORKDAYS = [1, 2, 3, 4, 5];
   var MIN_LEAD_HOURS = 12;
   var MAX_DAYS_AHEAD = 90;
-  var DURATION_MIN = 60;
+  var DURATION_MIN = 30;
   var VAT_RATE = 20;
   var PHONE_RE = /^[0-9+()\/ .\-]*$/;   // identisch zur Server-Prüfung
   var STORE_KEY = 'lusidesBooking';
@@ -25,7 +25,8 @@
   var calGrid = $('calGrid'), calMonth = $('calMonth'), calPrev = $('calPrev'), calNext = $('calNext');
   var slotsEl = $('slots'), slotsHead = $('slotsHead'), slotNote = $('slotNote');
   var details = $('details'), chosenEl = $('chosen');
-  var form = $('bookingForm'), bookBtn = $('bookBtn'), noteEl = $('bookNote'), chargeEl = $('chargeNote');
+  var form = $('bookingForm'), bookBtn = $('bookBtn'), noteEl = $('bookNote');
+  var formGrid = $('formGrid'), reviewBtn = $('reviewBtn'), reviewEl = $('review'), reviewList = $('reviewList'), consent2 = $('bk-consent2');
   var successEl = $('success');
   var f = {
     name: $('bk-name'), email: $('bk-email'), phone: $('bk-phone'), company: $('bk-company'),
@@ -52,10 +53,11 @@
     var v = dict && dict.termin_page && dict.termin_page[key];
     return v || fallback || '';
   }
-  function price(){ return window.lusidesRegion ? window.lusidesRegion.label() : '350 €'; }
+  function price(){ return window.lusidesRegion ? window.lusidesRegion.label() : '300 €'; }
   function money(amount, currency){
     // de-DE statt de-AT: "291,67 €" (wie der Headline-Preis), nicht "€ 291,67"
-    try{ return new Intl.NumberFormat(lang() === 'en' ? 'en-US' : 'de-DE', { style: 'currency', currency: currency }).format(amount); }
+    var whole = Math.round(amount * 100) % 100 === 0;
+    try{ return new Intl.NumberFormat(lang() === 'en' ? 'en-US' : 'de-DE', { style: 'currency', currency: currency, minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: whole ? 0 : 2 }).format(amount); }
     catch(e){ return amount.toFixed(2) + ' ' + currency; }
   }
   function meetingType(){
@@ -232,7 +234,8 @@
     updateSteps();
     if(!selectedSlot){ details.classList.remove('show'); return; }
     var end = new Date(selectedSlot.getTime() + DURATION_MIN * 60000);
-    chosenEl.textContent = fmtLong(selectedSlot) + ' · ' + fmtTime(selectedSlot) + '–' + fmtTime(end) + ' · ' + meetingLabel(meetingType()) + ' · ' + price();
+    chosenEl.textContent = fmtLong(selectedSlot) + ' · ' + fmtTime(selectedSlot) + '–' + fmtTime(end) + ' · ' + meetingLabel(meetingType());
+    if(isReviewOpen()) renderReview();
     details.classList.add('show');
   }
 
@@ -325,19 +328,17 @@
     $('fldUid').hidden = !show;
     if(!show){ f.uid.value = ''; f.uid.removeAttribute('aria-invalid'); }
   }
-  // Tatsächlicher Rechnungsbetrag, wenn er vom Headline-Preis abweicht (spiegelt compute_tax)
-  function updateCharge(){
-    var c = f.country.value, text = '';
-    if(REGION === 'EU' && c && window.lusidesRegion){
-      var p = window.lusidesRegion.pricing || { amount: 350, currency: 'EUR' };
-      var net = Math.round(p.amount / (1 + VAT_RATE / 100) * 100) / 100;
-      var uid = normUid(f.uid.value);
-      if(EU.indexOf(c) === -1) text = str('charge_noneu', 'Dein Rechnungsbetrag: {amount} (ohne USt)').replace('{amount}', money(net, p.currency));
-      else if(c !== 'AT' && uid && uidValid(uid, c)) text = str('charge_rc', 'Dein Rechnungsbetrag: {amount} (ohne USt, Reverse Charge)').replace('{amount}', money(net, p.currency));
-    }
-    chargeEl.textContent = text;
-    chargeEl.hidden = !text;
+  // Tatsächlicher Rechnungsbetrag (spiegelt compute_tax): wird erst in der Übersicht angezeigt
+  function charge(){
+    var p = (window.lusidesRegion && window.lusidesRegion.pricing) || { amount: 300, currency: 'EUR' };
+    if(REGION === 'US') return { amount: p.amount, currency: p.currency, tax: str('tax_us', 'keine österreichische USt') };
+    var c = f.country.value, uid = normUid(f.uid.value);
+    var net = Math.round(p.amount / (1 + VAT_RATE / 100) * 100) / 100;
+    if(c && EU.indexOf(c) === -1) return { amount: net, currency: p.currency, tax: str('tax_noneu', 'ohne USt') };
+    if(c && c !== 'AT' && uid && uidValid(uid, c)) return { amount: net, currency: p.currency, tax: str('tax_rc', 'ohne USt (Reverse Charge)') };
+    return { amount: p.amount, currency: p.currency, tax: str('tax_incl', 'inkl. 20 % USt') };
   }
+  function updateCharge(){ if(isReviewOpen()) renderReview(); }
   function updatePhone(){
     var req = meetingType() === 'phone';
     f.phone.required = req;
@@ -351,7 +352,7 @@
       var v = str(p[1], ''); if(v) f[p[0]].placeholder = v;
     });
   }
-  function idleLabel(){ return str('submit', 'Zahlungspflichtig buchen · {price}').replace(/\{price\}/g, price()); }
+  function idleLabel(){ var c = charge(); return str('submit', 'Zahlungspflichtig buchen · {price}').replace(/\{price\}/g, money(c.amount, c.currency)); }
   function setBusy(busy){
     submitting = busy;
     bookBtn.disabled = busy;
@@ -374,6 +375,8 @@
     if(isError) noteEl.setAttribute('role', 'alert'); else noteEl.removeAttribute('role');
   }
   function fieldError(el, key, fallback){
+    // Fehler in einem Eingabefeld: Übersicht schließen, damit das Feld sichtbar ist
+    if(el && formGrid.contains(el) && !reviewEl.hidden){ reviewEl.hidden = true; formGrid.hidden = false; reviewBtn.hidden = false; }
     showNote(str(key, fallback), true);
     if(el){ el.setAttribute('aria-invalid', 'true'); el.focus(); }
   }
@@ -394,14 +397,14 @@
         email: fields.email,
         phone: fields.phone || null,
         lead_company: fields.company || null,
-        biggest_challenge: 'Erstgespräch gebucht (' + channel + ', 60 Min, ' + price() + '): ' + fields.when + (fields.message ? ' · ' + fields.message : '')
+        biggest_challenge: 'Erstgespräch gebucht (' + channel + ', 30 Min, ' + fields.amount + '): ' + fields.when + (fields.message ? ' · ' + fields.message : '')
       })
     }).catch(function(err){ console.warn('CRM forward failed (non-blocking):', err); });
   }
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    if(submitting) return;
+  // --- Schritt 3b: Übersicht mit Preis (erst nach Eingabe der Daten sichtbar) ---------
+  function isReviewOpen(){ return !reviewEl.hidden; }
+  function validate(){
     noteEl.classList.remove('show');
     var mt = meetingType();
     var name = f.name.value.trim();
@@ -409,7 +412,7 @@
     var phone = f.phone.value.trim();
     var country = f.country.value;
     var uid = normUid(f.uid.value);
-    if(!selectedSlot){ showSlotNote(str('err_slot', 'Bitte wähle einen Termin.')); return; }
+    if(!selectedSlot){ showSlotNote(str('err_slot', 'Bitte wähle einen Termin.')); return null; }
     if(name.length < 2) return fieldError(f.name, 'err_name', 'Bitte gib deinen Namen an.');
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fieldError(f.email, 'err_email', 'Bitte gib eine gültige E-Mail-Adresse an.');
     if(!PHONE_RE.test(phone)) return fieldError(f.phone, 'err_phone_fmt', 'Bitte gib die Telefonnummer nur mit Ziffern, Leerzeichen und + ( ) / . - ein.');
@@ -419,12 +422,7 @@
     if(!country) return fieldError(f.country, 'err_country', 'Bitte wähle das Land.');
     if(REGION === 'US' && EU.indexOf(country) !== -1) return fieldError(f.country, 'region_mismatch', 'EU: Euro-Preis.');
     if(uid && !uidValid(uid, country)) return fieldError(f.uid, 'err_uid', 'Die UID-Nummer passt nicht zum gewählten Land.');
-    if(!f.consent.checked) return fieldError(f.consent, 'err_consent', 'Bitte bestätige die Buchung.');
-    if(!window.lusidesSupabaseReady){ showNote(str('err_generic', 'Buchung gerade nicht möglich. Bitte versuche es später erneut.'), true); return; }
-
-    setBusy(true);
-    var slot = selectedSlot;
-    var fields = {
+    return {
       name: name, email: email, phone: phone, meeting: mt,
       company: f.company.value.trim(),
       message: f.message.value.trim(),
@@ -434,6 +432,63 @@
       country: country,
       uid: uid
     };
+  }
+  function countryName(c){
+    var o = f.country.querySelector('option[value="' + c + '"]');
+    return o ? o.textContent : c;
+  }
+  function renderReview(){
+    var v = validate();
+    if(!v){ closeReview(); return; }
+    var end = new Date(selectedSlot.getTime() + DURATION_MIN * 60000);
+    var rows = [
+      ['r_when', 'Termin', fmtLong(selectedSlot) + ', ' + fmtTime(selectedSlot) + '–' + fmtTime(end)],
+      ['r_meet', 'Gespräch', meetingLabel(v.meeting) + ' · ' + DURATION_MIN + ' Min.'],
+      ['r_name', 'Name', v.name],
+      ['r_email', 'E-Mail', v.email],
+      ['r_phone', 'Telefon', v.phone],
+      ['r_company', 'Unternehmen', v.company],
+      ['r_billing', 'Rechnungsadresse', [v.street, [v.zip, v.city].filter(Boolean).join(' '), countryName(v.country)].join('\n') + (v.uid ? '\nUID ' + v.uid : '')]
+    ].filter(function(r){ return r[2]; });
+    reviewList.innerHTML = '';
+    rows.forEach(function(r){
+      var dt = document.createElement('dt'); dt.textContent = str(r[0], r[1]);
+      var dd = document.createElement('dd'); dd.textContent = r[2];
+      reviewList.appendChild(dt); reviewList.appendChild(dd);
+    });
+    var c = charge();
+    $('reviewPrice').textContent = money(c.amount, c.currency);
+    $('reviewTax').textContent = c.tax;
+    if(!submitting) bookBtn.textContent = idleLabel();
+  }
+  function openReview(){
+    if(!validate()) return;
+    reviewEl.hidden = false;
+    formGrid.hidden = true; reviewBtn.hidden = true;
+    renderReview();
+    $('reviewH').focus();
+  }
+  function closeReview(){
+    if(reviewEl.hidden) return;
+    reviewEl.hidden = true;
+    formGrid.hidden = false; reviewBtn.hidden = false;
+  }
+  reviewBtn.addEventListener('click', openReview);
+  $('editBtn').addEventListener('click', function(){ closeReview(); f.name.focus(); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(submitting) return;
+    if(!isReviewOpen()){ openReview(); return; }
+    var fields = validate();
+    if(!fields){ closeReview(); return; }
+    if(!f.consent.checked) return fieldError(f.consent, 'err_consent', 'Bitte akzeptiere die AGB.');
+    if(!consent2.checked) return fieldError(consent2, 'err_consent2', 'Bitte bestätige den Beginn der Leistung vor Ablauf der Widerrufsfrist.');
+    var amt = charge(); fields.amount = money(amt.amount, amt.currency);
+    if(!window.lusidesSupabaseReady){ showNote(str('err_generic', 'Buchung gerade nicht möglich. Bitte versuche es später erneut.'), true); return; }
+
+    setBusy(true);
+    var slot = selectedSlot;
     window.lusidesSupabaseReady(function(client){
       if(!client){ setBusy(false); showNote(str('err_generic', 'Buchung gerade nicht möglich.'), true); return; }
       client.rpc('book_appointment', {
@@ -443,14 +498,15 @@
         p_message: fields.message || null, p_topic: null, p_lang: lang(),
         p_region: REGION, p_street: fields.street, p_zip: fields.zip || null, p_city: fields.city,
         p_country: fields.country, p_uid: fields.uid || null,
-        p_meeting_type: fields.meeting, p_tz: LOCAL_TZ
+        p_meeting_type: fields.meeting, p_tz: LOCAL_TZ,
+        p_terms: true, p_early_start: true
       }).then(function(res){
         if(res.error){ setBusy(false); handleError(res.error.message || '', slot); return; }
         var data = res.data || {};
         fields.when = fmtLong(slot) + ', ' + fmtTime(slot);
         forwardToCrm(fields);
         // Projektbogen im Anschluss vorausfüllen
-        try{ sessionStorage.setItem('lusidesErstberatungLead', JSON.stringify({ name: fields.name, email: fields.email, phone: fields.phone, company: fields.company, durationLabel: 'Erstgespräch 60 Min (gebucht)' })); }catch(err){}
+        try{ sessionStorage.setItem('lusidesErstberatungLead', JSON.stringify({ name: fields.name, email: fields.email, phone: fields.phone, company: fields.company, durationLabel: 'Erstgespräch 30 Min (gebucht)' })); }catch(err){}
         if(window.lusidesLogConversion) window.lusidesLogConversion('appointment_booked');
         var booking = {
           start: slot.toISOString(), order_no: data.order_no || null, meeting_type: data.meeting_type || fields.meeting,
@@ -480,7 +536,7 @@
     var known = [
       ['phone_required', 'err_phone', f.phone], ['billing_required', 'err_billing', f.street], ['already_booked', 'err_already', f.email],
       ['rate_limited', 'err_rate', null], ['invalid_uid', 'err_uid', f.uid], ['invalid_input', 'err_input', null],
-      ['region_mismatch', 'region_mismatch', f.country]
+      ['region_mismatch', 'region_mismatch', f.country], ['terms_required', 'err_consent', f.consent]
     ];
     for(var k = 0; k < known.length; k++){
       if(msg.indexOf(known[k][0]) !== -1){ fieldError(known[k][2], known[k][1], 'Bitte prüfe deine Angaben.'); return; }

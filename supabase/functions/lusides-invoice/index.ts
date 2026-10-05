@@ -65,6 +65,9 @@ function T(lang: string, meeting = "video", customerTz: string | null = null) {
     payNoBank: en ? "Payment details will follow separately." : "Die Zahlungsdetails erhalten Sie gesondert.",
     thanks: en ? "Thank you for your booking." : "Vielen Dank für Ihre Buchung.",
     notInvoice: en ? "This order confirmation is not an invoice." : "Dieser Bestellschein ist keine Rechnung.",
+    consent: en
+      ? "You expressly requested that we start the service before the end of the withdrawal period and acknowledged that, as a consumer, you lose your right of withdrawal once the consultation has been fully performed. Terms: lusides.com/agb.html · Withdrawal: lusides.com/widerruf.html"
+      : "Sie haben ausdrücklich verlangt, dass wir vor Ablauf der Widerrufsfrist mit der Leistung beginnen, und zur Kenntnis genommen, dass Sie als Verbraucher Ihr Widerrufsrecht bei vollständiger Vertragserfüllung verlieren. AGB: lusides.com/agb.html · Widerruf: lusides.com/widerruf.html",
     terms: en
       ? "Free rescheduling or cancellation up to 24 hours before the appointment. " + (phone
         ? "We will call you at the phone number you provided at the time of the appointment."
@@ -84,8 +87,8 @@ function money(v: number, cur: string, lang: string) {
 }
 // Gesprächsart → Positionstext (identisch zu book_appointment in 20261007100000_booking_channel.sql)
 function meetingDesc(lang: string, meeting: string) {
-  if (lang === "en") return meeting === "phone" ? "Initial consultation, 60 minutes, by phone" : "Initial consultation, 60 minutes, via Microsoft Teams (video)";
-  return meeting === "phone" ? "Erstgespräch, 60 Minuten, per Telefon" : "Erstgespräch, 60 Minuten, per Microsoft Teams (Video)";
+  if (lang === "en") return meeting === "phone" ? "Initial consultation, 30 minutes, by phone" : "Initial consultation, 30 minutes, via Microsoft Teams (video)";
+  return meeting === "phone" ? "Erstgespräch, 30 Minuten, per Telefon" : "Erstgespräch, 30 Minuten, per Microsoft Teams (Video)";
 }
 function meetingShort(lang: string, meeting: string) {
   if (lang === "en") return meeting === "phone" ? "Phone call (we call you)" : "Video call via Microsoft Teams";
@@ -203,7 +206,7 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
   // Hinweise
   const notes: string[] = [];
   if (inv?.tax_note) notes.push(inv.tax_note);
-  if (isOrder) { notes.push(t.notInvoice); notes.push(t.terms); notes.push(t.tzNote); }
+  if (isOrder) { notes.push(t.notInvoice); notes.push(t.terms); if (a?.early_start_consent_at) notes.push(t.consent); notes.push(t.tzNote); }
   else if (inv.kind !== "storno") {
     if (cur === "USD" && s.us_account && s.us_routing) {
       notes.push(t.pay);
@@ -263,13 +266,13 @@ async function sendMails(s: Row, a: Row, inv: Row) {
     : `Ihre Buchung bei Lusides ${a.order_no} – Rechnung ${inv.invoice_no}`;
   const html = en
     ? `<p>Hello ${h(a.name)},</p><p>thank you for booking your initial consultation with Lusides.</p>
-       <p><strong>${h(when)}</strong> · 60 minutes · ${h(meetingShort(lang, meeting))}</p>
+       <p><strong>${h(when)}</strong> · 30 minutes · ${h(meetingShort(lang, meeting))}</p>
        <p>Attached you will find your order confirmation <strong>${h(a.order_no)}</strong> and invoice <strong>${h(inv.invoice_no)}</strong> (${h(amount)}).
-       ${how}</p><p>Kind regards<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`
+       ${how}</p>${a.early_start_consent_at ? `<p style="font-size:13px;color:#56677F">${h(T(lang).consent)}</p>` : ""}<p>Kind regards<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`
     : `<p>Guten Tag ${h(a.name)},</p><p>vielen Dank für Ihre Buchung eines Erstgesprächs bei Lusides.</p>
-       <p><strong>${h(when)}</strong> · 60 Minuten · ${h(meetingShort(lang, meeting))}</p>
+       <p><strong>${h(when)}</strong> · 30 Minuten · ${h(meetingShort(lang, meeting))}</p>
        <p>Im Anhang finden Sie Ihren Bestellschein <strong>${h(a.order_no)}</strong> und die Rechnung <strong>${h(inv.invoice_no)}</strong> (${h(amount)}).
-       ${how}</p><p>Beste Grüße<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`;
+       ${how}</p>${a.early_start_consent_at ? `<p style="font-size:13px;color:#56677F">${h(T(lang).consent)}</p>` : ""}<p>Beste Grüße<br>Marko Katalan &amp; Richard Dobrohruschka<br>Lusides</p>`;
   const attachments = [
     { filename: `${en ? "Order" : "Bestellschein"}-${a.order_no}.pdf`, content: b64(order) },
     { filename: `${en ? "Invoice" : "Rechnung"}-${inv.invoice_no}.pdf`, content: b64(invoice) },

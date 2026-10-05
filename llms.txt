@@ -1,6 +1,6 @@
 # Lusides
 
-> Lusides ist eine Unternehmensberatung in Wien (Österreich) für digitale Transformation – Digitalisierung, Strukturierung, Optimierung, Organisierung, Restrukturierung und Maximierung, auch für Unternehmen im Generationenwechsel. Lusides berät und setzt selbst um: Prozesse & Systeme, Marketing, Finanzen, Digitalisierung & KI sowie Onlineshop-Entwicklung. Inhaber sind Marko Katalan und Richard Dobrohruschka, die Technik verantwortet Mihai Suta. Rechtsträger ist die Legatech GmbH & Co KG (FN 614735 y, Handelsgericht Wien). Ein 60-minütiges Erstgespräch per Microsoft Teams kostet 350 € (für Kunden in den USA 390 USD) und ist online buchbar.
+> Lusides ist eine Unternehmensberatung in Wien (Österreich) für digitale Transformation – Digitalisierung, Strukturierung, Optimierung, Organisierung, Restrukturierung und Maximierung, auch für Unternehmen im Generationenwechsel. Lusides berät und setzt selbst um: Prozesse & Systeme, Marketing, Finanzen, Digitalisierung & KI sowie Onlineshop-Entwicklung. Inhaber sind Marko Katalan und Richard Dobrohruschka, die Technik verantwortet Mihai Suta. Rechtsträger ist die Legatech GmbH & Co KG (FN 614735 y, Handelsgericht Wien). Ein 30-minütiges Erstgespräch per Telefon oder Video ist kostenpflichtig und online buchbar.
 
 ## Kurzprofil
 
@@ -22,10 +22,10 @@
 - [Digitalisierung & KI](https://lusides.com/leistungen-digitalisierung-ki.html): KI-Beratung und firmenspezifische KI-Systeme sowie Automatisierung, von Lusides selbst entwickelt und implementiert.
 - [Onlineshop-Entwicklung](https://lusides.com/leistungen-onlineshop-entwicklung.html): Onlineshops (Shopify, WooCommerce oder individuell), Webseiten und Web-Apps mit Anbindung an Warenwirtschaft, Zahlung, Versand und KI.
 
-## Erstgespräch & Preise
+## Erstgespräch
 
-- [Termin buchen](https://lusides.com/termin.html): 60 Minuten per Telefon oder Video (Microsoft Teams), 350 € inkl. USt (USA: 390 USD).
-- Preis: 350 € inkl. 20 % USt (Kunden in Österreich und Privatkunden in der EU); Unternehmen in anderen EU-Staaten mit UID: 291,67 € netto (Reverse Charge); Kunden in den USA: 390 USD.
+- [Termin buchen](https://lusides.com/termin.html): 30 Minuten per Telefon oder Video (Microsoft Teams), kostenpflichtig, online buchbar.
+- Preis: wird auf der Buchungsseite angezeigt, nachdem Termin und Daten eingegeben wurden.
 - Buchbar: Montag bis Freitag; für EU-Kunden 9–17 Uhr Wiener Zeit, für US-Kunden 9–12 Uhr New Yorker Zeit.
 - Nach der Buchung erhält der Kunde automatisch Bestellschein und Rechnung per E-Mail; bei Video den Teams-Link vor dem Termin, bei Telefon rufen wir zum Termin an.
 - Kostenlose Umbuchung oder Absage bis 24 Stunden vor dem Termin.

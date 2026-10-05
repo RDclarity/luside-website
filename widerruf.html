@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://knuktzuqqmrrkpkusren.supabase.co wss://knuktzuqqmrrkpkusren.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="geo.region" content="AT-9">
+<meta name="geo.placename" content="Wien">
+<meta name="author" content="Lusides">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Widerrufsbelehrung und Muster-Widerrufsformular für Verbraucher bei Online-Buchung eines Erstgesprächs bei Lusides (Legatech GmbH &amp; Co KG).">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://lusides.com/widerruf.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#050B18">
+<title>Widerrufsbelehrung — Lusides</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root{
+    --paper: #F4F8FC; --paper-dim: #E3EEF9; --ink: #0B1F3A; --slate: #4A5F7A;
+    --slate-light: #8DA2BC; --line: #D3E2F2; --accent: #1E6FD9; --accent-dim: #DCEBFC;
+    --accent-ink: #0F3D7A; --radius: 2px;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ background: var(--paper); color: var(--ink); font-family:'Instrument Sans', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .display{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; }
+  .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.06em; }
+  a{ color: var(--accent-ink); text-decoration:underline; }
+  .brand, .nav-links a, .nav-cta, .lang-btn{ text-decoration:none; }
+  ::selection{ background: var(--accent); color:#fff; }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap{ max-width: 860px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px){ .wrap{ padding: 0 22px; } }
+  .bg-stone{ position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(1100px 620px at 14% -8%, rgba(30,111,217,0.07), transparent 60%),
+      radial-gradient(900px 640px at 104% 18%, rgba(30,111,217,0.05), transparent 55%); }
+  .grain{
+    position: fixed; inset: 0; z-index: 90; pointer-events: none;
+    opacity: 0.035; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-repeat: repeat; background-size: 140px 140px;
+  }
+  #progress{ position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--accent); z-index: 100; transition: width .08s linear; }
+  header{ position: sticky; top: 0; z-index: 50; background: rgba(244,248,252,0.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding: 20px 0; max-width: 1160px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
+  @media (max-width: 640px){ .nav{ padding-left:22px; padding-right:22px; } }
+  .brand{ display:flex; align-items:baseline; gap:8px; font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-weight:600; font-size:1.28rem; letter-spacing:-0.01em; color: var(--ink); }
+  .brand .dot{ color: var(--accent); }
+  .nav-right{ display:flex; align-items:center; gap:28px; }
+  .nav-collapse{ display:flex; align-items:center; gap:28px; }
+  .nav-links{ display:flex; gap:36px; font-size:0.88rem; }
+  .nav-links a{ color: var(--slate); }
+  .nav-links a:hover{ color: var(--ink); }
+  .nav-cta{ font-size: 0.82rem; padding: 10px 18px; background: var(--ink); color: var(--paper); border-radius: var(--radius); }
+  .nav-cta:hover{ background: var(--accent); }
+  .nav-cta-book{ display:inline-flex; flex-direction:column; align-items:center; line-height:1.25; background: var(--accent); color:#fff; padding: 8px 18px; white-space:nowrap; }
+  .nav-cta-book:hover{ background: var(--accent-ink); }
+  .nav-cta-book small{ font-size:0.68rem; opacity:0.85; letter-spacing:0.01em; }
+  @media (max-width: 420px){ .nav-cta-book{ padding: 7px 12px; } .nav-cta-book span{ font-size:0.76rem; } }
+  .lang-switch{ display:flex; align-items:center; gap:6px; font-family:'JetBrains Mono', monospace; font-size:0.76rem; letter-spacing:0.04em; }
+  .lang-btn{ background:none; border:none; padding:4px 2px; color: var(--slate); cursor:pointer; font: inherit; }
+  .lang-btn:hover{ color: var(--ink); }
+  .lang-btn.active{ color: var(--accent); font-weight:600; }
+  .lang-sep{ color: var(--line); }
+  .nav-toggle{ display:none; background:none; border:none; padding:6px; margin:-6px; color: var(--ink); cursor:pointer; }
+  .nav-toggle svg{ width:24px; height:24px; display:block; }
+  @media (max-width: 780px){
+    .nav-toggle{ display:block; }
+    .nav-collapse{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background: var(--paper); border-bottom:1px solid var(--line); padding:8px 22px 20px; z-index:50; }
+    .nav-collapse.mobile-open{ display:flex; }
+    .nav-links{ flex-direction:column; gap:0; font-size:0.98rem; }
+    .nav-links a{ padding:14px 0; border-bottom:1px solid var(--line); }
+    .lang-switch{ padding:16px 0; }
+  }
+  .hero{ padding: 64px 0 40px; }
+  .eyebrow{ font-size: 0.78rem; color: var(--accent-ink); display:flex; align-items:center; gap:10px; margin-bottom: 20px; }
+  .eyebrow::before{ content:''; width:26px; height:1px; background: var(--accent-ink); display:inline-block; }
+  .hero h1{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 500; letter-spacing: -0.01em; }
+  .hero-sub{ margin-top:14px; color: var(--slate); font-size:0.9rem; }
+  .legal{ padding: 0 0 100px; }
+  .legal h2{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-size: 1.3rem; font-weight:600; margin: 44px 0 14px; letter-spacing: -0.01em; }
+  .legal h2:first-child{ margin-top:0; }
+  .legal p{ margin-bottom: 12px; max-width: 68ch; }
+  .legal .row{ display:flex; gap:8px; margin-bottom:6px; }
+  .legal .row span:first-child{ color: var(--slate); min-width:180px; flex-shrink:0; }
+  @media (max-width: 520px){ .legal .row{ flex-direction: column; gap: 0; margin-bottom: 12px; } .legal .row span:first-child{ min-width: 0; font-size: .85rem; } }
+  .legal .row span{ overflow-wrap: anywhere; }
+  .legal .pending{ color: var(--slate-light); font-style:italic; }
+  .legal .meta{ color: var(--slate-light); font-size:0.82rem; margin-top:48px; }
+  footer{ padding: 44px 0; border-top: 1px solid var(--line); }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap: 16px; font-size: 0.8rem; color: var(--slate); max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px){ .footer-inner{ padding: 0 22px; } }
+  .footer-links{ display:flex; gap: 22px; }
+  .footer-links a{ color: var(--slate); text-decoration:none; }
+  .footer-links a:hover{ color: var(--ink); }
+</style>
+<link rel="stylesheet" href="site.css?v=202610081200">
+<style>#progress{ display:none !important; } .bg-stone{ display:none; }</style>
+<style>
+  .wd-card{ background:#fff; border:1px solid var(--line); border-radius: 12px; padding: 24px; margin: 8px 0 48px; }
+  .wd-card h2{ font-size: 1.4rem; margin-bottom: 6px; }
+  .wd-card > p{ color: var(--slate); font-size: .95rem; margin-bottom: 16px; }
+  .wd-grid{ display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 14px; }
+  @media (max-width: 640px){ .wd-grid{ grid-template-columns: minmax(0,1fr); } .wd-card{ padding: 18px; } }
+  .wd-grid label{ display:flex; flex-direction:column; gap:6px; font-size:.86rem; color: var(--slate); }
+  .wd-full{ grid-column: 1 / -1; }
+  .wd-grid input, .wd-grid textarea{ font: inherit; font-size: 16px; color: var(--ink); background: var(--paper); border:1px solid var(--line); border-radius: 6px; padding: 12px; min-height: 46px; width: 100%; }
+  .wd-grid input:focus, .wd-grid textarea:focus{ outline:none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(30,111,217,.2); }
+  .wd-btn{ margin-top: 16px; min-height: 50px; padding: 14px 22px; border:none; border-radius: 6px; background: var(--ink); color:#fff; font: inherit; font-weight: 600; cursor: pointer; }
+  .wd-btn:hover:not(:disabled){ background: var(--accent); }
+  .wd-btn:disabled{ opacity: .6; cursor: progress; }
+  .wd-note{ margin-top: 12px; font-size: .92rem; }
+  .wd-note.ok{ color: #0B6B32; } .wd-note.err{ color: #B3261E; }
+</style>
+<style>
+  html[lang="en"] .lang-de{display:none} html:not([lang="en"]) .lang-en{display:none}
+  .legal h3{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-size: 1.05rem; font-weight:600; margin: 24px 0 8px; }
+  .legal ul{ margin: 0 0 12px 20px; max-width: 66ch; }
+  .legal li{ margin-bottom: 6px; }
+  .legal h2[id]{ scroll-margin-top: 110px; }
+  .hero h1{ overflow-wrap: break-word; hyphens: auto; }
+  .legal .toc{ margin: 0 0 8px; padding: 20px 24px; border: 1px solid var(--line); background: rgba(255,255,255,0.5); }
+  .legal .toc ol{ margin: 0 0 0 20px; columns: 2; column-gap: 32px; font-size: 0.9rem; }
+  .legal .toc li{ margin-bottom: 4px; break-inside: avoid; }
+  @media (max-width: 640px){ .legal .toc ol{ columns: 1; } }
+  .legal .note{ color: var(--slate); font-size: 0.88rem; font-style: italic; margin-bottom: 24px; }
+  .legal .legal-box{ border: 1px solid var(--line); border-left: 3px solid var(--accent); background: rgba(255,255,255,0.55); padding: 20px 24px 10px; margin: 16px 0 12px; max-width: 72ch; }
+  .legal .legal-box h3:first-child{ margin-top: 0; }
+  .legal .form-box .fill{ border-bottom: 1px solid var(--slate-light); margin-bottom: 14px; min-height: 1.6em; }
+  .legal .form-box .small{ font-size: 0.82rem; color: var(--slate); }
+  @media print{ .ls-header, .ls-footer, .ls-intro, .ls-progress, .grain{ display:none !important; } }
+</style>
+</head>
+<body>
+<div class="ls-intro" aria-hidden="true">
+  <div class="li-half li-l"><div class="li-content"><div class="li-mark"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path class="li-foot" d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg></div><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
+  <div class="li-half li-r"><div class="li-content"><div class="li-mark"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path class="li-foot" d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg></div><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
+  <div class="li-glow"></div>
+  <div class="li-line"></div>
+</div>
+<script>(function(){var h=document.documentElement,seen=null;try{seen=sessionStorage.getItem('ls_intro');}catch(e){}if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||seen){h.classList.add('intro-skip');}else{h.classList.add('intro-on');try{sessionStorage.setItem('ls_intro','1');}catch(e){}}})();</script>
+<div class="ls-progress" aria-hidden="true"></div>
+
+<div class="bg-stone" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
+
+<header class="ls-header">
+  <div class="ls-bar">
+    <a href="index.html" class="ls-logo" aria-label="Lusides Startseite"><svg class="ls-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg>Lusides</a>
+    <nav class="ls-links" aria-label="Hauptnavigation">
+      <a href="index.html#leistungen" data-i18n="nav.leistungen">Leistungen</a>
+      <a href="index.html#ablauf" data-i18n="nav.ablauf">Ablauf</a>
+      <a href="team.html" data-i18n="nav.team">Team</a>
+      <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
+      <a href="index.html#kontakt" data-i18n="nav.kontakt">Kontakt</a>
+    </nav>
+    <div class="ls-right">
+      <div class="ls-lang">
+        <button type="button" class="lang-btn" data-lang="de" lang="de" aria-label="Deutsch" title="Deutsch">DE</button>
+        <button type="button" class="lang-btn" data-lang="en" lang="en" aria-label="English" title="English">EN</button>
+      </div>
+      <a href="termin.html" class="ls-cta ls-magnetic" data-strength="0.2"><span class="ls-cta-label" data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">30 MIN</small></a>
+      <button type="button" class="ls-burger" aria-label="Menü öffnen" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow mono"><span class="lang-de">WIDERRUF</span><span class="lang-en">WITHDRAWAL</span></span>
+    <h1 class="display"><span class="lang-de">Widerrufs&shy;belehrung &amp; Widerrufs&shy;formular</span><span class="lang-en">Right of withdrawal &amp; withdrawal form</span></h1>
+    <p class="hero-sub"><span class="lang-de">Stand: Oktober 2026 · Gilt nur für Verbraucher (§ 1 KSchG). Unternehmer haben kein gesetzliches Widerrufsrecht.</span><span class="lang-en">Last updated: October 2026 · Applies to consumers only. Businesses have no statutory right of withdrawal.</span></p>
+  </div>
+</section>
+
+<section class="legal">
+  <div class="wrap">
+
+<!-- ===================== Online-Widerruf (§ 13a FAGG) ===================== -->
+<div class="wd-card" id="widerrufen">
+  <h2 class="display"><span class="lang-de">Vertrag hier widerrufen</span><span class="lang-en">Withdraw from contract here</span></h2>
+  <p><span class="lang-de">Für Verbraucher: Gib deine Daten an und bestätige den Widerruf. Du erhältst sofort eine Eingangsbestätigung mit Datum und Uhrzeit per E-Mail.</span><span class="lang-en">For consumers: enter your details and confirm the withdrawal. You will immediately receive a confirmation of receipt with date and time by email.</span></p>
+  <form id="wdForm" novalidate>
+    <div class="wd-grid">
+      <label><span><span class="lang-de">Name *</span><span class="lang-en">Name *</span></span><input name="name" type="text" autocomplete="name" maxlength="120" required></label>
+      <label><span><span class="lang-de">E-Mail (wie bei der Buchung) *</span><span class="lang-en">Email (as used for booking) *</span></span><input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+      <label><span><span class="lang-de">Bestellnummer (optional, z. B. B-2026-0001)</span><span class="lang-en">Order no. (optional, e.g. B-2026-0001)</span></span><input name="order_no" type="text" maxlength="40" autocomplete="off"></label>
+      <label class="wd-full"><span><span class="lang-de">Nachricht (optional)</span><span class="lang-en">Message (optional)</span></span><textarea name="message" rows="3" maxlength="2000"></textarea></label>
+    </div>
+    <button type="submit" class="wd-btn"><span class="lang-de">Widerruf bestätigen</span><span class="lang-en">Confirm withdrawal</span></button>
+    <p class="wd-note" id="wdNote" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+
+<!-- ============================ DEUTSCH ============================ -->
+<div class="lang-de" lang="de">
+    <h2 class="display">1. Widerrufsbelehrung</h2>
+    <p>Die folgende Belehrung gilt für Verbraucher, die das Erstgespräch über <a href="termin.html">lusides.com/termin.html</a> online gebucht haben (Fernabsatzvertrag nach dem Fern- und Auswärtsgeschäfte-Gesetz, FAGG).</p>
+
+    <div class="legal-box">
+      <h3 class="display">Widerrufsrecht</h3>
+      <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p>
+      <p>Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses.</p>
+      <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (Legatech GmbH &amp; Co KG, Marke „Lusides“, Endresstraße 50/V3, 1230 Wien, Österreich, Telefon: +43 660 3607188, E-Mail: <a href="mailto:inquiry@lusides.com">inquiry@lusides.com</a>) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie können dafür das unten stehende Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.</p>
+      <p>Sie können Ihr Widerrufsrecht auch online über die Funktion „Vertrag widerrufen“ unter <a href="https://lusides.com/widerruf.html#widerrufen">lusides.com/widerruf.html#widerrufen</a> ausüben. Machen Sie von dieser Möglichkeit Gebrauch, so werden wir Ihnen unverzüglich per E-Mail eine Bestätigung über den Eingang eines solchen Widerrufs übermitteln.</p>
+      <p>Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</p>
+
+      <h3 class="display">Folgen des Widerrufs</h3>
+      <p>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist. Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben (Rücküberweisung auf das Konto, von dem Sie bezahlt haben), es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet.</p>
+      <p>Haben Sie verlangt, dass die Dienstleistungen während der Widerrufsfrist beginnen sollen, so haben Sie uns einen angemessenen Betrag zu zahlen, der dem Anteil der bis zu dem Zeitpunkt, zu dem Sie uns von der Ausübung des Widerrufsrechts hinsichtlich dieses Vertrags unterrichten, bereits erbrachten Dienstleistungen im Vergleich zum Gesamtumfang der im Vertrag vorgesehenen Dienstleistungen entspricht.</p>
+    </div>
+
+    <h2 class="display">2. Vorzeitiges Erlöschen des Widerrufsrechts</h2>
+    <p>Liegt der gebuchte Gesprächstermin innerhalb der 14-tägigen Widerrufsfrist, können wir das Erstgespräch nur durchführen, wenn Sie bei der Buchung</p>
+    <ul>
+      <li>ausdrücklich verlangt haben, dass wir vor Ablauf der Widerrufsfrist mit der Leistung beginnen, und</li>
+      <li>bestätigt haben, dass Sie zur Kenntnis nehmen, dass Sie Ihr Widerrufsrecht bei vollständiger Vertragserfüllung durch uns verlieren.</li>
+    </ul>
+    <p>Diese Erklärungen bestätigen wir Ihnen im Bestellschein per E-Mail. Ihr Widerrufsrecht <strong>erlischt</strong>, sobald das Erstgespräch auf dieser Grundlage vollständig durchgeführt wurde (§ 18 Abs 1 Z 1 FAGG).</p>
+    <p><strong>Widerruf nach Beginn des Gesprächs (Wertersatz):</strong> Widerrufen Sie, nachdem das Gespräch begonnen hat, aber bevor es vollständig erbracht ist, haben Sie für die bis dahin erbrachte Leistung einen anteiligen Betrag im Verhältnis zum Gesamtumfang zu bezahlen (§ 16 FAGG). Beispiel: Wird ein 30-minütiges Gespräch nach 10 Minuten widerrufen, beträgt der anteilige Betrag ein Drittel des Preises; den Rest erstatten wir.</p>
+
+    <h2 class="display">3. Verhältnis zur kostenlosen Umbuchung und Absage</h2>
+    <p>Unabhängig vom gesetzlichen Widerrufsrecht können Sie Ihren Termin als freiwillige Kulanzleistung bis 24 Stunden vor Gesprächsbeginn kostenlos verschieben oder absagen (siehe <a href="agb.html#de-6">AGB, Punkt 6</a>). Das gesetzliche Widerrufsrecht wird dadurch nicht eingeschränkt.</p>
+
+    <h2 class="display">4. Muster-Widerrufsformular</h2>
+    <p>Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück – am einfachsten per E-Mail an <a href="mailto:inquiry@lusides.com?subject=Widerruf">inquiry@lusides.com</a>.</p>
+    <div class="legal-box form-box">
+      <p>An: Legatech GmbH &amp; Co KG (Lusides), Endresstraße 50/V3, 1230 Wien, Österreich, E-Mail: inquiry@lusides.com</p>
+      <p>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über den Kauf der folgenden Waren (*)/die Erbringung der folgenden Dienstleistung (*):</p>
+      <p class="fill">&nbsp;</p>
+      <p>Bestellt am (*)/erhalten am (*):</p>
+      <p class="fill">&nbsp;</p>
+      <p>Name des/der Verbraucher(s):</p>
+      <p class="fill">&nbsp;</p>
+      <p>Anschrift des/der Verbraucher(s):</p>
+      <p class="fill">&nbsp;</p>
+      <p>Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier):</p>
+      <p class="fill">&nbsp;</p>
+      <p>Datum:</p>
+      <p class="fill">&nbsp;</p>
+      <p class="small">(*) Unzutreffendes streichen.</p>
+    </div>
+
+    <p class="meta">Stand: Oktober 2026</p>
+</div>
+
+<!-- ============================ ENGLISH ============================ -->
+<div class="lang-en" lang="en">
+    <p class="note">This English version is an informational translation. The German version is legally binding.</p>
+
+    <h2 class="display">1. Withdrawal information</h2>
+    <p>The following information applies to consumers who booked the initial consultation online at <a href="termin.html">lusides.com/termin.html</a> (distance contract under the Austrian Distance and Off-Premises Contracts Act, FAGG).</p>
+
+    <div class="legal-box">
+      <h3 class="display">Right of withdrawal</h3>
+      <p>You have the right to withdraw from this contract within 14 days without giving any reason.</p>
+      <p>The withdrawal period will expire after 14 days from the day of the conclusion of the contract.</p>
+      <p>To exercise the right of withdrawal, you must inform us (Legatech GmbH &amp; Co KG, trading as “Lusides”, Endresstraße 50/V3, 1230 Vienna, Austria, phone: +43 660 3607188, email: <a href="mailto:inquiry@lusides.com">inquiry@lusides.com</a>) of your decision to withdraw from this contract by an unequivocal statement (e.g. a letter sent by post or email). You may use the model withdrawal form below, but it is not obligatory.</p>
+      <p>You can also exercise your right of withdrawal online using the “Withdraw from contract” function at <a href="https://lusides.com/widerruf.html#widerrufen">lusides.com/widerruf.html#widerrufen</a>. If you use this option, we will send you a confirmation of receipt of such a withdrawal by email without delay.</p>
+      <p>To meet the withdrawal deadline, it is sufficient for you to send your communication concerning your exercise of the right of withdrawal before the withdrawal period has expired.</p>
+
+      <h3 class="display">Effects of withdrawal</h3>
+      <p>If you withdraw from this contract, we shall reimburse to you all payments received from you without undue delay and in any event not later than 14 days from the day on which we are informed about your decision to withdraw from this contract. We will carry out such reimbursement using the same means of payment as you used for the initial transaction (bank transfer to the account you paid from), unless you have expressly agreed otherwise; in any event, you will not incur any fees as a result of such reimbursement.</p>
+      <p>If you requested to begin the performance of services during the withdrawal period, you shall pay us an amount which is in proportion to what has been provided until you have communicated us your withdrawal from this contract, in comparison with the full coverage of the contract.</p>
+    </div>
+
+    <h2 class="display">2. Early expiry of the right of withdrawal</h2>
+    <p>If the booked appointment falls within the 14-day withdrawal period, we can only hold the initial consultation if, when booking, you</p>
+    <ul>
+      <li>expressly requested that we begin performance before the end of the withdrawal period, and</li>
+      <li>acknowledged that you will lose your right of withdrawal once we have fully performed the contract.</li>
+    </ul>
+    <p>We confirm these declarations in the order confirmation sent by email. Your right of withdrawal <strong>expires</strong> once the initial consultation has been fully performed on this basis.</p>
+    <p><strong>Withdrawal after the call has started (proportionate payment):</strong> If you withdraw after the call has begun but before it has been completed, you must pay a proportionate amount for the services provided up to that point. Example: if a 30-minute call is withdrawn from after 10 minutes, the amount due is one third of the price; we refund the rest.</p>
+
+    <h2 class="display">3. Relation to free rescheduling and cancellation</h2>
+    <p>Independently of the statutory right of withdrawal, you may reschedule or cancel your appointment free of charge as a goodwill arrangement up to 24 hours before the start of the call (see <a href="agb.html#en-6">Terms, section 6</a>). This does not limit the statutory right of withdrawal.</p>
+
+    <h2 class="display">4. Model withdrawal form</h2>
+    <p>If you wish to withdraw from the contract, please complete and return this form – most easily by email to <a href="mailto:inquiry@lusides.com?subject=Withdrawal">inquiry@lusides.com</a>.</p>
+    <div class="legal-box form-box">
+      <p>To: Legatech GmbH &amp; Co KG (Lusides), Endresstraße 50/V3, 1230 Vienna, Austria, email: inquiry@lusides.com</p>
+      <p>I/We (*) hereby give notice that I/We (*) withdraw from my/our (*) contract of sale of the following goods (*)/for the provision of the following service (*):</p>
+      <p class="fill">&nbsp;</p>
+      <p>Ordered on (*)/received on (*):</p>
+      <p class="fill">&nbsp;</p>
+      <p>Name of consumer(s):</p>
+      <p class="fill">&nbsp;</p>
+      <p>Address of consumer(s):</p>
+      <p class="fill">&nbsp;</p>
+      <p>Signature of consumer(s) (only if this form is notified on paper):</p>
+      <p class="fill">&nbsp;</p>
+      <p>Date:</p>
+      <p class="fill">&nbsp;</p>
+      <p class="small">(*) Delete as appropriate.</p>
+    </div>
+
+    <p class="meta">Last updated: October 2026</p>
+</div>
+
+  </div>
+</section>
+
+<footer class="ls-footer" id="footer">
+  <div class="ls-f-inner">
+    <div class="ls-f-cta ls-reveal">
+      <h2><span data-i18n="ls_footer.cta1">Bereit für den</span><br><em data-i18n="ls_footer.cta2">nächsten Schritt?</em></h2>
+      <a href="termin.html" class="ls-cta ls-magnetic"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">30 MIN</small></a>
+    </div>
+    <div class="ls-wordmark ls-reveal" aria-hidden="true">Lusides<span>.</span></div>
+    <div class="ls-f-grid">
+      <div><b data-i18n="ls_footer.contact">Kontakt</b><a href="mailto:inquiry@lusides.com">inquiry@lusides.com</a><br><a href="tel:+436603607188">+43 660 3607188</a></div>
+      <div><b data-i18n="ls_footer.company">Unternehmen</b>Legatech GmbH &amp; Co KG<br>Endresstraße 50/V3<br>1230 Wien, Österreich</div>
+      <div><b data-i18n="ls_footer.owners">Inhaber</b>Marko Katalan<br>Richard Dobrohruschka</div>
+      <div><b data-i18n="nav.leistungen">Leistungen</b><a href="leistungen-prozesse-systeme.html" data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</a><br><a href="leistungen-marketing.html" data-i18n="leistungen.s2_tag">Marketing</a><br><a href="leistungen-finanzen.html" data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</a><br><a href="leistungen-digitalisierung-ki.html" data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</a><br><a href="leistungen-onlineshop-entwicklung.html" data-i18n="svc_shop.tag">Onlineshop-Entwicklung</a></div>
+    </div>
+    <div class="ls-f-bottom">
+      <span>© 2026 Lusides · Legatech GmbH &amp; Co KG · FN 614735 y</span>
+      <nav aria-label="Rechtliches"><a href="impressum.html" data-i18n="footer.impressum">Impressum</a><a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a><a href="agb.html" data-i18n="footer.agb">AGB</a><a href="widerruf.html#widerrufen" data-i18n="footer.widerruf">Vertrag widerrufen</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const progressBar = document.getElementById('progress');
+  function onScroll(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? scrollTop / docHeight : 0;
+    progressBar.style.width = (pct * 100) + '%';
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  const navToggle = document.querySelector('.nav-toggle');
+  const navCollapse = document.querySelector('.nav-collapse');
+  const menuIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+  const closeIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>';
+  function closeMobileMenu(){
+    navCollapse.classList.remove('mobile-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.innerHTML = menuIcon;
+  }
+  if(navToggle && navCollapse){
+    navToggle.addEventListener('click', () => {
+      const isOpen = navCollapse.classList.toggle('mobile-open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle.innerHTML = isOpen ? closeIcon : menuIcon;
+    });
+    navCollapse.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+    window.addEventListener('resize', () => { if(window.innerWidth > 780) closeMobileMenu(); });
+  }
+</script>
+<script>
+  (function(){
+    var T = { de: "Widerrufsbelehrung — Lusides", en: "Right of Withdrawal — Lusides" };
+    function setT(l){ document.title = T[l === 'en' ? 'en' : 'de']; }
+    window.addEventListener('lusides:langchange', function(e){ setT(e.detail && e.detail.lang); });
+  })();
+</script>
+<script src="i18n.js?v=202610081200" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
+<script src="supabase-config.js?v=202610081200" defer></script>
+<script src="chatbot.js?v=202610081200" defer></script>
+<script src="analytics.js?v=202610081200" defer></script>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
+<script src="site.js?v=202610081200" defer></script>
+<script src="widerruf-form.js?v=202610081200" defer></script>
+</body>
+</html>

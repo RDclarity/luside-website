@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://knuktzuqqmrrkpkusren.supabase.co wss://knuktzuqqmrrkpkusren.supabase.co; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="geo.region" content="AT-9">
+<meta name="geo.placename" content="Wien">
+<meta name="author" content="Lusides">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Allgemeine Geschäftsbedingungen (AGB) von Lusides (Legatech GmbH &amp; Co KG): Online-Buchung des Erstgesprächs, Preise, Zahlung, Umbuchung, Haftung, Gerichtsstand.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://lusides.com/agb.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#050B18">
+<title>AGB — Lusides</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root{
+    --paper: #F4F8FC; --paper-dim: #E3EEF9; --ink: #0B1F3A; --slate: #4A5F7A;
+    --slate-light: #8DA2BC; --line: #D3E2F2; --accent: #1E6FD9; --accent-dim: #DCEBFC;
+    --accent-ink: #0F3D7A; --radius: 2px;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ background: var(--paper); color: var(--ink); font-family:'Instrument Sans', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .display{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; }
+  .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.06em; }
+  a{ color: var(--accent-ink); text-decoration:underline; }
+  .brand, .nav-links a, .nav-cta, .lang-btn{ text-decoration:none; }
+  ::selection{ background: var(--accent); color:#fff; }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap{ max-width: 860px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px){ .wrap{ padding: 0 22px; } }
+  .bg-stone{ position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(1100px 620px at 14% -8%, rgba(30,111,217,0.07), transparent 60%),
+      radial-gradient(900px 640px at 104% 18%, rgba(30,111,217,0.05), transparent 55%); }
+  .grain{
+    position: fixed; inset: 0; z-index: 90; pointer-events: none;
+    opacity: 0.035; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-repeat: repeat; background-size: 140px 140px;
+  }
+  #progress{ position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--accent); z-index: 100; transition: width .08s linear; }
+  header{ position: sticky; top: 0; z-index: 50; background: rgba(244,248,252,0.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding: 20px 0; max-width: 1160px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
+  @media (max-width: 640px){ .nav{ padding-left:22px; padding-right:22px; } }
+  .brand{ display:flex; align-items:baseline; gap:8px; font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-weight:600; font-size:1.28rem; letter-spacing:-0.01em; color: var(--ink); }
+  .brand .dot{ color: var(--accent); }
+  .nav-right{ display:flex; align-items:center; gap:28px; }
+  .nav-collapse{ display:flex; align-items:center; gap:28px; }
+  .nav-links{ display:flex; gap:36px; font-size:0.88rem; }
+  .nav-links a{ color: var(--slate); }
+  .nav-links a:hover{ color: var(--ink); }
+  .nav-cta{ font-size: 0.82rem; padding: 10px 18px; background: var(--ink); color: var(--paper); border-radius: var(--radius); }
+  .nav-cta:hover{ background: var(--accent); }
+  .nav-cta-book{ display:inline-flex; flex-direction:column; align-items:center; line-height:1.25; background: var(--accent); color:#fff; padding: 8px 18px; white-space:nowrap; }
+  .nav-cta-book:hover{ background: var(--accent-ink); }
+  .nav-cta-book small{ font-size:0.68rem; opacity:0.85; letter-spacing:0.01em; }
+  @media (max-width: 420px){ .nav-cta-book{ padding: 7px 12px; } .nav-cta-book span{ font-size:0.76rem; } }
+  .lang-switch{ display:flex; align-items:center; gap:6px; font-family:'JetBrains Mono', monospace; font-size:0.76rem; letter-spacing:0.04em; }
+  .lang-btn{ background:none; border:none; padding:4px 2px; color: var(--slate); cursor:pointer; font: inherit; }
+  .lang-btn:hover{ color: var(--ink); }
+  .lang-btn.active{ color: var(--accent); font-weight:600; }
+  .lang-sep{ color: var(--line); }
+  .nav-toggle{ display:none; background:none; border:none; padding:6px; margin:-6px; color: var(--ink); cursor:pointer; }
+  .nav-toggle svg{ width:24px; height:24px; display:block; }
+  @media (max-width: 780px){
+    .nav-toggle{ display:block; }
+    .nav-collapse{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background: var(--paper); border-bottom:1px solid var(--line); padding:8px 22px 20px; z-index:50; }
+    .nav-collapse.mobile-open{ display:flex; }
+    .nav-links{ flex-direction:column; gap:0; font-size:0.98rem; }
+    .nav-links a{ padding:14px 0; border-bottom:1px solid var(--line); }
+    .lang-switch{ padding:16px 0; }
+  }
+  .hero{ padding: 64px 0 40px; }
+  .eyebrow{ font-size: 0.78rem; color: var(--accent-ink); display:flex; align-items:center; gap:10px; margin-bottom: 20px; }
+  .eyebrow::before{ content:''; width:26px; height:1px; background: var(--accent-ink); display:inline-block; }
+  .hero h1{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 500; letter-spacing: -0.01em; }
+  .hero-sub{ margin-top:14px; color: var(--slate); font-size:0.9rem; }
+  .legal{ padding: 0 0 100px; }
+  .legal h2{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-size: 1.3rem; font-weight:600; margin: 44px 0 14px; letter-spacing: -0.01em; }
+  .legal h2:first-child{ margin-top:0; }
+  .legal p{ margin-bottom: 12px; max-width: 68ch; }
+  .legal .row{ display:flex; gap:8px; margin-bottom:6px; }
+  .legal .row span:first-child{ color: var(--slate); min-width:180px; flex-shrink:0; }
+  @media (max-width: 520px){ .legal .row{ flex-direction: column; gap: 0; margin-bottom: 12px; } .legal .row span:first-child{ min-width: 0; font-size: .85rem; } }
+  .legal .row span{ overflow-wrap: anywhere; }
+  .legal .pending{ color: var(--slate-light); font-style:italic; }
+  .legal .meta{ color: var(--slate-light); font-size:0.82rem; margin-top:48px; }
+  footer{ padding: 44px 0; border-top: 1px solid var(--line); }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap: 16px; font-size: 0.8rem; color: var(--slate); max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px){ .footer-inner{ padding: 0 22px; } }
+  .footer-links{ display:flex; gap: 22px; }
+  .footer-links a{ color: var(--slate); text-decoration:none; }
+  .footer-links a:hover{ color: var(--ink); }
+</style>
+<link rel="stylesheet" href="site.css?v=202610081200">
+<style>#progress{ display:none !important; } .bg-stone{ display:none; }</style>
+<style>
+  html[lang="en"] .lang-de{display:none} html:not([lang="en"]) .lang-en{display:none}
+  .legal h3{ font-family:'Instrument Sans', sans-serif; font-optical-sizing:auto; font-size: 1.05rem; font-weight:600; margin: 24px 0 8px; }
+  .legal ul{ margin: 0 0 12px 20px; max-width: 66ch; }
+  .legal li{ margin-bottom: 6px; }
+  .legal h2[id]{ scroll-margin-top: 110px; }
+  .hero h1{ overflow-wrap: break-word; hyphens: auto; }
+  .legal .toc{ margin: 0 0 8px; padding: 20px 24px; border: 1px solid var(--line); background: rgba(255,255,255,0.5); }
+  .legal .toc ol{ margin: 0 0 0 20px; columns: 2; column-gap: 32px; font-size: 0.9rem; }
+  .legal .toc li{ margin-bottom: 4px; break-inside: avoid; }
+  @media (max-width: 640px){ .legal .toc ol{ columns: 1; } }
+  .legal .note{ color: var(--slate); font-size: 0.88rem; font-style: italic; margin-bottom: 24px; }
+  .legal .legal-box{ border: 1px solid var(--line); border-left: 3px solid var(--accent); background: rgba(255,255,255,0.55); padding: 20px 24px 10px; margin: 16px 0 12px; max-width: 72ch; }
+  .legal .legal-box h3:first-child{ margin-top: 0; }
+  .legal .form-box .fill{ border-bottom: 1px solid var(--slate-light); margin-bottom: 14px; min-height: 1.6em; }
+  .legal .form-box .small{ font-size: 0.82rem; color: var(--slate); }
+  @media print{ .ls-header, .ls-footer, .ls-intro, .ls-progress, .grain{ display:none !important; } }
+</style>
+</head>
+<body>
+<div class="ls-intro" aria-hidden="true">
+  <div class="li-half li-l"><div class="li-content"><div class="li-mark"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path class="li-foot" d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg></div><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
+  <div class="li-half li-r"><div class="li-content"><div class="li-mark"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path class="li-foot" d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg></div><div class="li-word"><span>l</span><span>u</span><span>s</span><span>i</span><span>d</span><span>e</span><span>s</span></div></div></div>
+  <div class="li-glow"></div>
+  <div class="li-line"></div>
+</div>
+<script>(function(){var h=document.documentElement,seen=null;try{seen=sessionStorage.getItem('ls_intro');}catch(e){}if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||seen){h.classList.add('intro-skip');}else{h.classList.add('intro-on');try{sessionStorage.setItem('ls_intro','1');}catch(e){}}})();</script>
+<div class="ls-progress" aria-hidden="true"></div>
+
+<div class="bg-stone" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
+
+<header class="ls-header">
+  <div class="ls-bar">
+    <a href="index.html" class="ls-logo" aria-label="Lusides Startseite"><svg class="ls-mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#F2F0EC"/><circle cx="50" cy="50" r="43" fill="#111214"/><path d="M36 27h8.4v35.5L52.2 74H36z" fill="#F2F0EC"/><path d="M49.6 67H68v7H54.3z" fill="#F2F0EC"/></svg>Lusides</a>
+    <nav class="ls-links" aria-label="Hauptnavigation">
+      <a href="index.html#leistungen" data-i18n="nav.leistungen">Leistungen</a>
+      <a href="index.html#ablauf" data-i18n="nav.ablauf">Ablauf</a>
+      <a href="team.html" data-i18n="nav.team">Team</a>
+      <a href="seminar.html" data-i18n="nav.seminar">Seminar</a>
+      <a href="index.html#kontakt" data-i18n="nav.kontakt">Kontakt</a>
+    </nav>
+    <div class="ls-right">
+      <div class="ls-lang">
+        <button type="button" class="lang-btn" data-lang="de" lang="de" aria-label="Deutsch" title="Deutsch">DE</button>
+        <button type="button" class="lang-btn" data-lang="en" lang="en" aria-label="English" title="English">EN</button>
+      </div>
+      <a href="termin.html" class="ls-cta ls-magnetic" data-strength="0.2"><span class="ls-cta-label" data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">30 MIN</small></a>
+      <button type="button" class="ls-burger" aria-label="Menü öffnen" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow mono"><span class="lang-de">AGB</span><span class="lang-en">TERMS</span></span>
+    <h1 class="display"><span class="lang-de">Allgemeine Geschäfts&shy;bedingungen (AGB)</span><span class="lang-en">General Terms and Conditions</span></h1>
+    <p class="hero-sub"><span class="lang-de">Stand: Oktober 2026 · Legatech GmbH &amp; Co KG, Marke „Lusides“</span><span class="lang-en">Last updated: October 2026 · Legatech GmbH &amp; Co KG, trading as “Lusides”</span></p>
+  </div>
+</section>
+
+<section class="legal">
+  <div class="wrap">
+
+<!-- ============================ DEUTSCH ============================ -->
+<div class="lang-de" lang="de">
+    <nav class="toc" aria-label="Inhalt">
+      <ol>
+        <li><a href="#de-1">Geltungsbereich und Vertragspartner</a></li>
+        <li><a href="#de-2">Leistungen</a></li>
+        <li><a href="#de-3">Online-Buchung und Vertragsschluss</a></li>
+        <li><a href="#de-4">Preise, Rechnung und Zahlung</a></li>
+        <li><a href="#de-5">Durchführung des Erstgesprächs</a></li>
+        <li><a href="#de-6">Umbuchung, Absage und Nichterscheinen</a></li>
+        <li><a href="#de-7">Terminänderung durch Lusides</a></li>
+        <li><a href="#de-8">Widerrufsrecht für Verbraucher</a></li>
+        <li><a href="#de-9">Beratungs- und Umsetzungsprojekte</a></li>
+        <li><a href="#de-10">Mitwirkungspflichten</a></li>
+        <li><a href="#de-11">Kein Erfolgsversprechen, Gewährleistung</a></li>
+        <li><a href="#de-12">Haftung</a></li>
+        <li><a href="#de-13">Urheberrecht und Nutzung von Unterlagen</a></li>
+        <li><a href="#de-14">Vertraulichkeit</a></li>
+        <li><a href="#de-15">Datenschutz</a></li>
+        <li><a href="#de-16">Streitbeilegung</a></li>
+        <li><a href="#de-17">Anwendbares Recht und Gerichtsstand</a></li>
+        <li><a href="#de-18">Schlussbestimmungen</a></li>
+      </ol>
+    </nav>
+
+    <h2 class="display" id="de-1">1. Geltungsbereich und Vertragspartner</h2>
+    <p>1.1 Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen der Legatech GmbH &amp; Co KG, Endresstraße 50/V3, 1230 Wien, Österreich, eingetragen im Firmenbuch des Handelsgerichts Wien unter FN 614735 y, die unter der Marke „Lusides“ auftritt (im Folgenden „Lusides“ oder „wir“), und ihren Kundinnen und Kunden (im Folgenden „Kunde“). Kontakt: <a href="mailto:inquiry@lusides.com">inquiry@lusides.com</a>, Telefon <a href="tel:+436603607188">+43 660 3607188</a>.</p>
+    <p>1.2 Lusides erbringt Leistungen im Rahmen des Gewerbes Unternehmensberatung einschließlich der Unternehmensorganisation.</p>
+    <p>1.3 Kunden können Unternehmer oder Verbraucher sein. „Verbraucher“ ist, wer den Vertrag überwiegend zu Zwecken abschließt, die nicht seiner gewerblichen oder beruflichen Tätigkeit zugerechnet werden können (§ 1 KSchG). Bestimmungen, die ausdrücklich nur für Unternehmer gelten, sind gegenüber Verbrauchern nicht anzuwenden. Zwingende Rechte von Verbrauchern bleiben durch diese AGB in jedem Fall unberührt.</p>
+    <p>1.4 Maßgeblich ist die zum Zeitpunkt des Vertragsabschlusses gültige Fassung dieser AGB. Abweichende Geschäftsbedingungen des Kunden gelten nur, wenn Lusides ihnen ausdrücklich schriftlich zustimmt. Individuelle Vereinbarungen haben Vorrang vor diesen AGB.</p>
+
+    <h2 class="display" id="de-2">2. Leistungen</h2>
+    <h3 class="display">2.1 Erstgespräch (online buchbar)</h3>
+    <p>Das Erstgespräch ist ein kostenpflichtiges Beratungsgespräch mit einer Dauer von 30 Minuten. Es findet zum gebuchten Termin wahlweise telefonisch oder per Video über Microsoft Teams statt. Im Erstgespräch besprechen wir die Ausgangslage und das Anliegen des Kunden und geben eine erste fachliche Einschätzung sowie Hinweise zu möglichen nächsten Schritten. Das Erstgespräch ersetzt keine umfassende Analyse, kein schriftliches Gutachten und keine Rechts-, Steuer- oder Anlageberatung; schriftliche Unterlagen sind nur geschuldet, wenn sie gesondert vereinbart werden.</p>
+    <h3 class="display">2.2 Beratungs- und Umsetzungsprojekte</h3>
+    <p>Darüber hinaus bietet Lusides Beratungs- und Umsetzungsleistungen in den Bereichen Prozesse &amp; Systeme, Marketing, Finanzen, Digitalisierung &amp; KI sowie Onlineshop-Entwicklung an. Diese Leistungen sind nicht online buchbar; Umfang, Zeitplan und Honorar werden in einem individuellen Angebot festgelegt (siehe Punkt 9).</p>
+
+    <h2 class="display" id="de-3">3. Online-Buchung und Vertragsschluss</h2>
+    <p>3.1 Die Darstellung des Erstgesprächs auf unserer Website ist noch kein verbindliches Angebot. Die Buchung erfolgt auf <a href="termin.html">lusides.com/termin.html</a> in folgenden Schritten: Auswahl von Termin und Gesprächsart (Telefon oder Video), Eingabe der Kontakt- und Rechnungsdaten sowie des Anliegens, Prüfung der Angaben in einer Zusammenfassung und Abschluss über die Schaltfläche „Zahlungspflichtig buchen“.</p>
+    <p>3.2 <strong>Korrektur von Eingabefehlern:</strong> Bevor Sie die Buchung abschließen, werden Ihnen alle Angaben (Termin, Gesprächsart, Preis, Kontakt- und Rechnungsdaten) in einer Zusammenfassung angezeigt. Dort und in den vorangehenden Schritten können Sie Ihre Eingaben jederzeit über die Zurück-Funktion bzw. direkt in den Eingabefeldern prüfen und berichtigen. Bis zum Klick auf „Zahlungspflichtig buchen“ können Sie den Vorgang jederzeit ohne Folgen abbrechen.</p>
+    <p>3.3 <strong>Vertragsschluss:</strong> Mit dem Klick auf die Schaltfläche „Zahlungspflichtig buchen“ wird der Vertrag über das Erstgespräch verbindlich geschlossen und der Termin für Sie reserviert. Die Buchung wird unmittelbar auf der Seite bestätigt. Anschließend erhalten Sie automatisch per E-Mail einen Bestellschein (Auftragsbestätigung) mit den wesentlichen Vertragsinhalten sowie die Rechnung.</p>
+    <p>3.4 <strong>Vertragssprache:</strong> Der Vertrag kann auf Deutsch oder Englisch geschlossen werden, je nach der auf der Website gewählten Sprache.</p>
+    <p>3.5 <strong>Speicherung des Vertragstextes:</strong> Der Vertragstext (Buchungsdaten, Bestellschein und diese AGB in der bei Vertragsschluss gültigen Fassung) wird von uns gespeichert und Ihnen mit dem Bestellschein per E-Mail übermittelt. Die jeweils aktuelle Fassung der AGB ist unter <a href="agb.html">lusides.com/agb.html</a> abrufbar und kann ausgedruckt oder gespeichert werden.</p>
+    <p>3.6 Bei der Buchung sind wahrheitsgemäße und vollständige Angaben zu machen, insbesondere zu Name, E-Mail-Adresse, Telefonnummer (bei telefonischem Gespräch) und Rechnungsadresse.</p>
+
+    <h2 class="display" id="de-4">4. Preise, Rechnung und Zahlung</h2>
+    <p>4.1 Das Erstgespräch kostet bei Buchung über die deutschsprachige Website (Kunden in der EU) <strong>300 € inklusive 20 % Umsatzsteuer</strong>. Für Unternehmer mit Sitz in einem anderen EU-Mitgliedstaat, die eine gültige UID-Nummer angeben, kann die Steuerschuld nach den gesetzlichen Bestimmungen auf den Leistungsempfänger übergehen (Reverse Charge); in diesem Fall wird der Nettobetrag in Rechnung gestellt.</p>
+    <p>4.2 Bei Buchung über die englischsprachige Website (Kunden außerhalb der EU, insbesondere in den USA) beträgt der Preis <strong>490 USD</strong>. Für diese Leistungen fällt nach den umsatzsteuerlichen Leistungsortregeln keine österreichische Umsatzsteuer an. Allfällige Steuern, Abgaben oder Bankspesen im Land des Kunden trägt der Kunde.</p>
+    <p>4.3 Die Rechnung wird nach der Buchung automatisch per E-Mail von <a href="mailto:invoice@lusides.com">invoice@lusides.com</a> übermittelt. Der Kunde ist mit der Übermittlung von Rechnungen in elektronischer Form einverstanden.</p>
+    <p>4.4 Die Zahlung erfolgt per Banküberweisung auf das in der Rechnung angegebene Konto. Der Rechnungsbetrag ist ohne Abzug spätestens bis zum Tag des gebuchten Termins zu bezahlen. Bei Zahlungsverzug können die gesetzlichen Verzugszinsen verrechnet werden.</p>
+    <p>4.5 Honorare für Beratungs- und Umsetzungsprojekte ergeben sich aus dem jeweiligen Angebot. Sofern nichts anderes vereinbart ist, verstehen sich Angebotspreise gegenüber Unternehmern zuzüglich der gesetzlichen Umsatzsteuer, gegenüber Verbrauchern inklusive Umsatzsteuer.</p>
+
+    <h2 class="display" id="de-5">5. Durchführung des Erstgesprächs</h2>
+    <p>5.1 Bei einem Videogespräch erhält der Kunde den Zugangslink zu Microsoft Teams per E-Mail. Bei einem telefonischen Gespräch ruft Lusides den Kunden zum vereinbarten Zeitpunkt unter der bei der Buchung angegebenen Telefonnummer an.</p>
+    <p>5.2 Der Kunde sorgt für die technischen Voraussetzungen auf seiner Seite (z. B. Internetverbindung, Endgerät, Erreichbarkeit unter der angegebenen Telefonnummer). Beginnt das Gespräch aus Gründen, die in der Sphäre des Kunden liegen, verspätet, endet es dennoch zum ursprünglich vereinbarten Zeitpunkt.</p>
+    <p>5.3 Das Gespräch wird von Lusides nicht aufgezeichnet. Aufzeichnungen durch den Kunden sind nur mit ausdrücklicher Zustimmung aller Gesprächsteilnehmer zulässig.</p>
+
+    <h2 class="display" id="de-6">6. Umbuchung, Absage und Nichterscheinen</h2>
+    <p>6.1 Der Kunde kann den Termin bis spätestens 24 Stunden vor Gesprächsbeginn kostenlos verschieben oder absagen, und zwar per E-Mail an <a href="mailto:inquiry@lusides.com">inquiry@lusides.com</a> oder über eine allenfalls in der Buchungsbestätigung bereitgestellte Funktion. Bei kostenloser Absage wird ein bereits bezahlter Betrag innerhalb von 14 Tagen vollständig auf das Konto zurücküberwiesen, von dem die Zahlung erfolgt ist. Diese Regelung ist eine freiwillige Kulanzleistung von Lusides und gilt zusätzlich zum gesetzlichen Widerrufsrecht von Verbrauchern (Punkt 8).</p>
+    <p>6.2 Erfolgt die Absage später als 24 Stunden vor Gesprächsbeginn oder nimmt der Kunde ohne Absage nicht am Gespräch teil (Nichterscheinen, z. B. keine Teilnahme am Videogespräch oder keine Erreichbarkeit unter der angegebenen Telefonnummer innerhalb von 10 Minuten nach Terminbeginn), bleibt das vereinbarte Entgelt zur Zahlung fällig. Lusides muss sich jedoch anrechnen lassen, was es infolge des Unterbleibens des Gesprächs erspart oder durch anderweitige Verwendung der Zeit erworben hat (§ 1168 ABGB).</p>
+    <p>6.3 Das gesetzliche Widerrufsrecht von Verbrauchern (Punkt 8) bleibt von diesem Punkt unberührt.</p>
+
+    <h2 class="display" id="de-7">7. Terminänderung durch Lusides</h2>
+    <p>7.1 Lusides kann einen gebuchten Termin aus wichtigem Grund (z. B. Krankheit, unvorhersehbare Verhinderung, höhere Gewalt oder technische Störungen) verschieben oder absagen. Wir informieren den Kunden darüber so früh wie möglich.</p>
+    <p>7.2 In diesem Fall kann der Kunde wählen, ob er einen kostenlosen Ersatztermin wahrnimmt oder vom Vertrag zurücktritt; im zweiten Fall wird ein bereits bezahlter Betrag innerhalb von 14 Tagen vollständig erstattet. Weitergehende Ansprüche bestehen nur nach Maßgabe von Punkt 12 (Haftung).</p>
+
+    <h2 class="display" id="de-8">8. Widerrufsrecht für Verbraucher</h2>
+    <p>8.1 Verbrauchern steht bei der Online-Buchung ein gesetzliches Widerrufsrecht von 14 Tagen ab Vertragsschluss nach dem Fern- und Auswärtsgeschäfte-Gesetz (FAGG) zu. Einzelheiten, die Widerrufsbelehrung und das Muster-Widerrufsformular finden Sie unter <a href="widerruf.html">Widerrufsbelehrung &amp; Widerrufsformular</a>.</p>
+    <p>8.2 Liegt der gebuchte Termin innerhalb der Widerrufsfrist, beginnt Lusides mit der Leistung nur, wenn der Verbraucher dies bei der Buchung ausdrücklich verlangt und bestätigt hat, dass er zur Kenntnis nimmt, sein Widerrufsrecht bei vollständiger Vertragserfüllung zu verlieren. Diese Erklärungen werden im Bestellschein bestätigt.</p>
+    <p>8.3 Das Widerrufsrecht erlischt, wenn das Erstgespräch auf dieser Grundlage vollständig durchgeführt wurde (§ 18 Abs 1 Z 1 FAGG). Widerruft der Verbraucher nach Beginn, aber vor vollständiger Erbringung der Leistung, hat er einen anteiligen Betrag für die bis dahin erbrachte Leistung zu bezahlen (§ 16 FAGG).</p>
+    <p>8.4 Unternehmern steht kein gesetzliches Widerrufsrecht zu; für sie gilt Punkt 6.</p>
+
+    <h2 class="display" id="de-9">9. Beratungs- und Umsetzungsprojekte</h2>
+    <p>9.1 Umfang, Ziele, Zeitplan und Honorar von Projekten ergeben sich aus dem schriftlichen Angebot von Lusides und dessen Annahme durch den Kunden (z. B. per E-Mail). Diese AGB gelten ergänzend.</p>
+    <p>9.2 Lusides ist berechtigt, sich zur Erbringung der Leistungen sachkundiger Dritter (z. B. Partner oder Subunternehmer) zu bedienen; Lusides bleibt gegenüber dem Kunden verantwortlich.</p>
+    <p>9.3 Lusides berichtet dem Kunden in angemessenen Abständen über den Fortschritt. Nachträgliche Änderungen oder Erweiterungen des Leistungsumfangs werden gesondert vereinbart und verrechnet.</p>
+    <p>9.4 Bei länger dauernden Projekten ist Lusides berechtigt, Teil- bzw. Zwischenrechnungen entsprechend dem Leistungsfortschritt zu legen. Barauslagen und Reisekosten werden nur verrechnet, wenn dies vereinbart ist.</p>
+    <p>9.5 Unterbleibt die Ausführung aus Gründen, die auf Seiten des Kunden liegen, gilt gegenüber Unternehmern § 1168 ABGB; das vereinbarte Honorar gebührt abzüglich ersparter Aufwendungen. Gegenüber Verbrauchern gelten die gesetzlichen Bestimmungen.</p>
+    <p>9.6 Sofern nichts anderes vereinbart ist, endet ein Projektvertrag mit Erbringung der vereinbarten Leistungen. Beide Seiten können den Vertrag aus wichtigem Grund jederzeit mit sofortiger Wirkung auflösen, insbesondere bei wesentlicher Vertragsverletzung trotz Aufforderung zur Abhilfe. Bis dahin erbrachte Leistungen sind zu vergüten.</p>
+
+    <h2 class="display" id="de-10">10. Mitwirkungspflichten</h2>
+    <p>10.1 Der Kunde stellt Lusides rechtzeitig alle für die Beratung erforderlichen Informationen und Unterlagen zur Verfügung und informiert über alle Umstände, die für die Leistungserbringung von Bedeutung sind, auch wenn diese erst während der Zusammenarbeit bekannt werden.</p>
+    <p>10.2 Lusides darf, soweit nicht offensichtlich unrichtig, auf die Richtigkeit und Vollständigkeit der Angaben des Kunden vertrauen. Für Folgen unrichtiger oder unvollständiger Angaben des Kunden haftet Lusides nicht.</p>
+    <p>10.3 Die Entscheidung, ob und wie Empfehlungen umgesetzt werden, trifft der Kunde in eigener Verantwortung.</p>
+
+    <h2 class="display" id="de-11">11. Kein Erfolgsversprechen, Gewährleistung</h2>
+    <p>11.1 Lusides erbringt Beratungsleistungen mit der Sorgfalt eines ordentlichen Unternehmensberaters. Ein bestimmter wirtschaftlicher Erfolg (z. B. Umsatz-, Gewinn- oder Effizienzsteigerung) ist nicht geschuldet und wird nicht garantiert, sofern dies nicht ausdrücklich schriftlich vereinbart wurde.</p>
+    <p>11.2 Gegenüber Verbrauchern gelten die gesetzlichen Gewährleistungsbestimmungen. Gegenüber Unternehmern ist Lusides berechtigt und verpflichtet, Mängel, die ihm innerhalb von sechs Monaten nach Erbringung der Leistung bekannt gegeben werden, zunächst selbst zu beheben (Verbesserung).</p>
+
+    <h2 class="display" id="de-12">12. Haftung</h2>
+    <p>12.1 <strong>Gegenüber Unternehmern</strong> haftet Lusides nur für Schäden, die vorsätzlich oder grob fahrlässig verursacht wurden. Die Haftung für leichte Fahrlässigkeit, für entgangenen Gewinn, Folgeschäden und reine Vermögensschäden ist – soweit gesetzlich zulässig – ausgeschlossen. Schadenersatzansprüche von Unternehmern sind innerhalb von sechs Monaten ab Kenntnis von Schaden und Schädiger, spätestens jedoch innerhalb von drei Jahren nach der Leistungserbringung gerichtlich geltend zu machen.</p>
+    <p>12.2 <strong>Gegenüber Verbrauchern</strong> ist die Haftung von Lusides nur so weit beschränkt, wie dies gesetzlich zulässig ist. Für Schäden an der Person (Verletzung von Leben, Körper oder Gesundheit) sowie für vorsätzlich oder grob fahrlässig verursachte Schäden haftet Lusides uneingeschränkt (§ 6 Abs 1 Z 9 KSchG). Für sonstige Schäden aus leichter Fahrlässigkeit ist die Haftung ausgeschlossen.</p>
+    <p>12.3 Die vorstehenden Beschränkungen gelten auch zugunsten der Gesellschafter, Mitarbeiter und Erfüllungsgehilfen von Lusides. Zwingende gesetzliche Haftungsbestimmungen (z. B. nach dem Produkthaftungsgesetz) bleiben unberührt.</p>
+    <p>12.4 Für Störungen oder Ausfälle von Telekommunikations- und Videodiensten Dritter (z. B. Microsoft Teams, Telefonnetz), die Lusides nicht zu vertreten hat, haftet Lusides nicht; in diesem Fall wird ein Ersatztermin angeboten.</p>
+
+    <h2 class="display" id="de-13">13. Urheberrecht und Nutzung von Unterlagen</h2>
+    <p>13.1 Alle von Lusides erstellten Unterlagen (z. B. Präsentationen, Analysen, Konzepte, Berichte, Vorlagen, Grafiken, Software und Quellcode) bleiben, soweit nicht anders vereinbart, geistiges Eigentum von Lusides und sind urheberrechtlich geschützt.</p>
+    <p>13.2 Der Kunde erhält mit vollständiger Bezahlung ein einfaches, nicht übertragbares Recht, diese Unterlagen für eigene interne Zwecke im vereinbarten Umfang zu nutzen. Eine Weitergabe an Dritte, Veröffentlichung, Bearbeitung oder kommerzielle Verwertung bedarf der vorherigen schriftlichen Zustimmung von Lusides. Bei Entwicklungsprojekten (z. B. Onlineshops) werden Nutzungsrechte im Angebot gesondert geregelt.</p>
+
+    <h2 class="display" id="de-14">14. Vertraulichkeit</h2>
+    <p>14.1 Lusides behandelt alle Informationen, die ihm im Zusammenhang mit dem Auftrag über den Kunden, dessen Unternehmen und Geschäftspartner bekannt werden, vertraulich und gibt sie nicht an Dritte weiter, es sei denn, der Kunde stimmt zu oder es besteht eine gesetzliche Pflicht zur Offenlegung. Diese Pflicht gilt auch nach Vertragsende.</p>
+    <p>14.2 Lusides verpflichtet eingesetzte Mitarbeiter und Subunternehmer zu entsprechender Verschwiegenheit.</p>
+    <p>14.3 Der Kunde behandelt seinerseits nicht öffentliche Unterlagen, Methoden und Preisinformationen von Lusides vertraulich.</p>
+
+    <h2 class="display" id="de-15">15. Datenschutz</h2>
+    <p>Lusides verarbeitet personenbezogene Daten im Einklang mit der DSGVO und dem österreichischen Datenschutzgesetz. Welche Daten bei Buchung, Durchführung (inkl. Microsoft Teams) und Rechnungsstellung verarbeitet werden, ist in unserer <a href="datenschutz.html">Datenschutzerklärung</a> beschrieben. Soweit Lusides im Rahmen eines Projekts personenbezogene Daten im Auftrag des Kunden verarbeitet, schließen die Parteien bei Bedarf eine gesonderte Vereinbarung zur Auftragsverarbeitung (Art. 28 DSGVO).</p>
+
+    <h2 class="display" id="de-16">16. Streitbeilegung</h2>
+    <p>Die frühere EU-Plattform zur Online-Streitbeilegung (OS-Plattform) wurde mit 20. Juli 2025 eingestellt. Lusides ist zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle weder verpflichtet noch bereit. Bei Fragen oder Beschwerden wenden Sie sich bitte direkt an <a href="mailto:inquiry@lusides.com">inquiry@lusides.com</a>; wir bemühen uns um eine einvernehmliche Lösung.</p>
+
+    <h2 class="display" id="de-17">17. Anwendbares Recht und Gerichtsstand</h2>
+    <p>17.1 Es gilt österreichisches Recht unter Ausschluss der Verweisungsnormen des internationalen Privatrechts und des UN-Kaufrechts. Gegenüber Verbrauchern gilt diese Rechtswahl nur insoweit, als dadurch der Schutz durch zwingende Bestimmungen des Rechts des Staates, in dem der Verbraucher seinen gewöhnlichen Aufenthalt hat, nicht entzogen wird.</p>
+    <p>17.2 Für Streitigkeiten mit Unternehmern ist ausschließlich das sachlich zuständige Gericht in Wien vereinbart. Für Klagen gegen Verbraucher gelten die gesetzlichen Gerichtsstände, insbesondere § 14 KSchG (Wohnsitz, gewöhnlicher Aufenthalt oder Ort der Beschäftigung des Verbrauchers).</p>
+
+    <h2 class="display" id="de-18">18. Schlussbestimmungen</h2>
+    <p>18.1 Änderungen und Ergänzungen von Verträgen mit Unternehmern bedürfen der Schriftform; E-Mail genügt. Mündliche Nebenabreden bestehen nicht.</p>
+    <p>18.2 Sollte eine Bestimmung dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Gegenüber Unternehmern tritt an die Stelle der unwirksamen Bestimmung eine wirksame Regelung, die dem wirtschaftlichen Zweck am nächsten kommt; gegenüber Verbrauchern gilt anstelle der unwirksamen Bestimmung das Gesetz.</p>
+    <p>18.3 Bei Abweichungen zwischen der deutschen und der englischen Fassung dieser AGB ist die deutsche Fassung maßgeblich.</p>
+
+    <p class="meta">Stand: Oktober 2026</p>
+</div>
+
+<!-- ============================ ENGLISH ============================ -->
+<div class="lang-en" lang="en">
+    <p class="note">This English version is provided for convenience. In the event of any discrepancy, the German version prevails.</p>
+    <nav class="toc" aria-label="Contents">
+      <ol>
+        <li><a href="#en-1">Scope and contracting party</a></li>
+        <li><a href="#en-2">Services</a></li>
+        <li><a href="#en-3">Online booking and conclusion of contract</a></li>
+        <li><a href="#en-4">Prices, invoicing and payment</a></li>
+        <li><a href="#en-5">The initial consultation</a></li>
+        <li><a href="#en-6">Rescheduling, cancellation and no-shows</a></li>
+        <li><a href="#en-7">Changes by Lusides</a></li>
+        <li><a href="#en-8">Right of withdrawal for consumers</a></li>
+        <li><a href="#en-9">Consulting and implementation projects</a></li>
+        <li><a href="#en-10">Client cooperation</a></li>
+        <li><a href="#en-11">No guarantee of success; warranty</a></li>
+        <li><a href="#en-12">Liability</a></li>
+        <li><a href="#en-13">Copyright and use of materials</a></li>
+        <li><a href="#en-14">Confidentiality</a></li>
+        <li><a href="#en-15">Data protection</a></li>
+        <li><a href="#en-16">Dispute resolution</a></li>
+        <li><a href="#en-17">Governing law and jurisdiction</a></li>
+        <li><a href="#en-18">Final provisions</a></li>
+      </ol>
+    </nav>
+
+    <h2 class="display" id="en-1">1. Scope and contracting party</h2>
+    <p>1.1 These General Terms and Conditions (“Terms”) apply to all contracts between Legatech GmbH &amp; Co KG, Endresstraße 50/V3, 1230 Vienna, Austria, registered with the Commercial Court of Vienna under company number FN 614735 y, trading under the brand “Lusides” (“Lusides”, “we”, “us”), and its clients (“Client”). Contact: <a href="mailto:inquiry@lusides.com">inquiry@lusides.com</a>, phone <a href="tel:+436603607188">+43 660 3607188</a>.</p>
+    <p>1.2 Lusides provides services under the Austrian trade licence for management consulting (Unternehmensberatung), including business organisation.</p>
+    <p>1.3 Clients may be businesses or consumers. A “consumer” is a person who enters into the contract predominantly for purposes outside their trade, business or profession. Provisions expressly applicable only to businesses do not apply to consumers. Mandatory consumer rights remain unaffected by these Terms in all cases.</p>
+    <p>1.4 The version of these Terms in force at the time the contract is concluded applies. The Client’s own terms apply only if Lusides expressly agrees to them in writing. Individual agreements take precedence over these Terms.</p>
+
+    <h2 class="display" id="en-2">2. Services</h2>
+    <h3 class="display">2.1 Initial consultation (bookable online)</h3>
+    <p>The initial consultation is a paid consulting call lasting 30 minutes. It takes place at the booked time either by phone or by video via Microsoft Teams. We discuss the Client’s situation and request and provide an initial professional assessment and suggestions for possible next steps. The initial consultation is not a comprehensive analysis or written report and does not constitute legal, tax or investment advice; written materials are only owed if separately agreed.</p>
+    <h3 class="display">2.2 Consulting and implementation projects</h3>
+    <p>Lusides also offers consulting and implementation services in processes &amp; systems, marketing, finance, digitalisation &amp; AI and online shop development. These services cannot be booked online; scope, schedule and fees are set out in an individual quote (see section 9).</p>
+
+    <h2 class="display" id="en-3">3. Online booking and conclusion of contract</h2>
+    <p>3.1 The presentation of the initial consultation on our website is not a binding offer. Bookings are made at <a href="termin.html">lusides.com/termin.html</a> in the following steps: choosing a time slot and format (phone or video), entering contact and billing details and your request, reviewing your details in a summary, and completing the booking with the button “Book with obligation to pay” (German: “Zahlungspflichtig buchen”).</p>
+    <p>3.2 <strong>Correcting input errors:</strong> Before you complete the booking, all details (time, format, price, contact and billing details) are shown in a summary. There and in the previous steps you can review and correct your entries at any time using the back function or directly in the input fields. Until you click the paid booking button you may cancel the process at any time without consequences.</p>
+    <p>3.3 <strong>Conclusion of contract:</strong> By clicking the paid booking button, the contract for the initial consultation is concluded and the time slot is reserved for you. The booking is confirmed immediately on screen. You then automatically receive by email an order confirmation (Bestellschein) setting out the essential contract details, together with the invoice.</p>
+    <p>3.4 <strong>Contract language:</strong> The contract may be concluded in German or English, depending on the language selected on the website.</p>
+    <p>3.5 <strong>Storage of the contract text:</strong> We store the contract text (booking details, order confirmation and these Terms as applicable at the time of booking) and send it to you by email with the order confirmation. The current version of these Terms is available at <a href="agb.html">lusides.com/agb.html</a> and can be printed or saved.</p>
+    <p>3.6 Clients must provide accurate and complete information when booking, in particular name, email address, phone number (for phone calls) and billing address.</p>
+
+    <h2 class="display" id="en-4">4. Prices, invoicing and payment</h2>
+    <p>4.1 When booked via the English-language website (clients outside the EU, in particular in the United States), the initial consultation costs <strong>USD 490</strong>. Under the VAT place-of-supply rules no Austrian VAT is charged for these services. Any taxes, duties or bank charges arising in the Client’s country are borne by the Client.</p>
+    <p>4.2 When booked via the German-language website (clients in the EU), the price is <strong>EUR 300 including 20 % Austrian VAT</strong>. For businesses established in another EU member state that provide a valid VAT ID, the reverse-charge mechanism may apply under statutory rules, in which case the net amount is invoiced.</p>
+    <p>4.3 The invoice is sent automatically by email from <a href="mailto:invoice@lusides.com">invoice@lusides.com</a> after booking. The Client agrees to receive invoices electronically.</p>
+    <p>4.4 Payment is made by bank transfer to the account stated on the invoice. The invoice amount is due without deduction no later than the date of the booked appointment. In case of late payment, statutory default interest may be charged.</p>
+    <p>4.5 Fees for consulting and implementation projects are set out in the respective quote.</p>
+
+    <h2 class="display" id="en-5">5. The initial consultation</h2>
+    <p>5.1 For video calls the Client receives the Microsoft Teams link by email. For phone calls Lusides calls the Client at the agreed time on the phone number provided in the booking.</p>
+    <p>5.2 The Client is responsible for the technical requirements on their side (e.g. internet connection, device, being reachable on the phone number provided). If the call starts late for reasons attributable to the Client, it still ends at the originally scheduled time.</p>
+    <p>5.3 Lusides does not record the call. Recording by the Client requires the express consent of all participants.</p>
+
+    <h2 class="display" id="en-6">6. Rescheduling, cancellation and no-shows</h2>
+    <p>6.1 The Client may reschedule or cancel the appointment free of charge up to 24 hours before the start of the call by emailing <a href="mailto:inquiry@lusides.com">inquiry@lusides.com</a> or using any function provided in the booking confirmation. In the case of a free cancellation, any amount already paid is refunded in full within 14 days to the account from which it was paid. This is a voluntary goodwill arrangement by Lusides and applies in addition to the statutory right of withdrawal for consumers (section 8).</p>
+    <p>6.2 If the Client cancels less than 24 hours before the start of the call or does not attend without cancelling (no-show, e.g. not joining the video call or not being reachable on the phone number provided within 10 minutes of the scheduled start), the agreed fee remains payable. Lusides will, however, credit anything it saves as a result of the call not taking place or earns by otherwise using the time (Section 1168 Austrian Civil Code).</p>
+    <p>6.3 The statutory right of withdrawal for consumers (section 8) remains unaffected.</p>
+
+    <h2 class="display" id="en-7">7. Changes by Lusides</h2>
+    <p>7.1 Lusides may reschedule or cancel a booked appointment for important reasons (e.g. illness, unforeseeable unavailability, force majeure or technical failures). We will inform the Client as early as possible.</p>
+    <p>7.2 In this case the Client may choose between a free replacement appointment and withdrawing from the contract; in the latter case any amount already paid is refunded in full within 14 days. Further claims exist only in accordance with section 12 (Liability).</p>
+
+    <h2 class="display" id="en-8">8. Right of withdrawal for consumers</h2>
+    <p>8.1 Consumers have a statutory right to withdraw from contracts concluded online within 14 days of conclusion of the contract under the Austrian Distance and Off-Premises Contracts Act (FAGG). Details, the withdrawal information and the model withdrawal form are available at <a href="widerruf.html">Right of withdrawal &amp; withdrawal form</a>.</p>
+    <p>8.2 If the booked appointment falls within the withdrawal period, Lusides only starts performance if the consumer has expressly requested this when booking and acknowledged that they will lose their right of withdrawal once the contract has been fully performed. These declarations are confirmed in the order confirmation.</p>
+    <p>8.3 The right of withdrawal expires once the initial consultation has been fully performed on this basis. If the consumer withdraws after performance has begun but before it is complete, they must pay a proportionate amount for the services provided up to that point.</p>
+    <p>8.4 Businesses have no statutory right of withdrawal; section 6 applies to them.</p>
+
+    <h2 class="display" id="en-9">9. Consulting and implementation projects</h2>
+    <p>9.1 Scope, objectives, schedule and fees of projects are set out in Lusides’ written quote and its acceptance by the Client (e.g. by email). These Terms apply in addition.</p>
+    <p>9.2 Lusides may engage qualified third parties (e.g. partners or subcontractors) to perform services; Lusides remains responsible towards the Client.</p>
+    <p>9.3 Lusides reports to the Client on progress at reasonable intervals. Subsequent changes or extensions of scope are agreed and charged separately.</p>
+    <p>9.4 For longer projects Lusides may issue interim invoices in line with progress. Out-of-pocket and travel expenses are only charged if agreed.</p>
+    <p>9.5 If a project is not carried out for reasons attributable to the Client, Section 1168 Austrian Civil Code applies to businesses: the agreed fee is due less any expenses saved. Statutory rules apply to consumers.</p>
+    <p>9.6 Unless otherwise agreed, a project contract ends when the agreed services have been provided. Either party may terminate the contract with immediate effect for good cause, in particular in the event of a material breach not remedied after notice. Services provided until then must be paid for.</p>
+
+    <h2 class="display" id="en-10">10. Client cooperation</h2>
+    <p>10.1 The Client provides Lusides in good time with all information and documents required for the consultation and informs Lusides of all circumstances relevant to the services, including those that only become known during the engagement.</p>
+    <p>10.2 Unless obviously incorrect, Lusides may rely on the accuracy and completeness of the Client’s information. Lusides is not liable for consequences of incorrect or incomplete information provided by the Client.</p>
+    <p>10.3 The Client decides on its own responsibility whether and how recommendations are implemented.</p>
+
+    <h2 class="display" id="en-11">11. No guarantee of success; warranty</h2>
+    <p>11.1 Lusides provides consulting services with the care of a diligent management consultant. No particular economic result (e.g. increased revenue, profit or efficiency) is owed or guaranteed unless expressly agreed in writing.</p>
+    <p>11.2 Statutory warranty rules apply to consumers. Towards businesses, Lusides is entitled and obliged first to remedy defects notified within six months of performance.</p>
+
+    <h2 class="display" id="en-12">12. Liability</h2>
+    <p>12.1 <strong>Towards businesses</strong>, Lusides is liable only for damage caused intentionally or by gross negligence. Liability for slight negligence, lost profit, consequential loss and pure economic loss is excluded to the extent permitted by law. Claims for damages by businesses must be brought in court within six months of becoming aware of the damage and the party causing it, and in any event within three years of performance.</p>
+    <p>12.2 <strong>Towards consumers</strong>, Lusides’ liability is limited only to the extent permitted by law. Lusides is fully liable for personal injury (injury to life, body or health) and for damage caused intentionally or by gross negligence. Liability for other damage caused by slight negligence is excluded.</p>
+    <p>12.3 These limitations also apply in favour of Lusides’ partners, employees and agents. Mandatory statutory liability (e.g. under product liability law) remains unaffected.</p>
+    <p>12.4 Lusides is not liable for disruptions or outages of third-party telecommunications or video services (e.g. Microsoft Teams, phone networks) for which it is not responsible; in such cases a replacement appointment is offered.</p>
+
+    <h2 class="display" id="en-13">13. Copyright and use of materials</h2>
+    <p>13.1 All materials created by Lusides (e.g. presentations, analyses, concepts, reports, templates, graphics, software and source code) remain Lusides’ intellectual property and are protected by copyright, unless otherwise agreed.</p>
+    <p>13.2 Upon full payment the Client receives a simple, non-transferable right to use these materials for its own internal purposes within the agreed scope. Disclosure to third parties, publication, modification or commercial exploitation requires Lusides’ prior written consent. For development projects (e.g. online shops) usage rights are set out separately in the quote.</p>
+
+    <h2 class="display" id="en-14">14. Confidentiality</h2>
+    <p>14.1 Lusides treats all information about the Client, its business and business partners that becomes known in connection with the engagement as confidential and does not disclose it to third parties unless the Client consents or disclosure is required by law. This obligation survives the end of the contract.</p>
+    <p>14.2 Lusides obliges its employees and subcontractors to maintain the same confidentiality.</p>
+    <p>14.3 The Client likewise treats Lusides’ non-public materials, methods and pricing information as confidential.</p>
+
+    <h2 class="display" id="en-15">15. Data protection</h2>
+    <p>Lusides processes personal data in accordance with the GDPR and the Austrian Data Protection Act. Details of the data processed for booking, conducting the call (including Microsoft Teams) and invoicing are set out in our <a href="datenschutz.html">privacy policy</a>. Where Lusides processes personal data on the Client’s behalf in a project, the parties will conclude a separate data processing agreement (Art. 28 GDPR) where required.</p>
+
+    <h2 class="display" id="en-16">16. Dispute resolution</h2>
+    <p>The former EU online dispute resolution (ODR) platform was discontinued on 20 July 2025. Lusides is neither obliged nor willing to participate in dispute resolution proceedings before a consumer arbitration body. If you have questions or complaints, please contact us directly at <a href="mailto:inquiry@lusides.com">inquiry@lusides.com</a>; we will aim for an amicable solution.</p>
+
+    <h2 class="display" id="en-17">17. Governing law and jurisdiction</h2>
+    <p>17.1 These Terms and all contracts are governed by Austrian law, excluding its conflict-of-law rules and the UN Convention on Contracts for the International Sale of Goods (CISG). For consumers, this choice of law does not deprive them of the protection afforded by mandatory provisions of the law of the country in which they have their habitual residence.</p>
+    <p>17.2 For disputes with businesses (including business clients in the United States), the competent court in Vienna, Austria, has exclusive jurisdiction. For consumers, the statutory rules on jurisdiction apply; claims against consumers residing in Austria may only be brought at the courts of their residence, habitual abode or place of employment.</p>
+
+    <h2 class="display" id="en-18">18. Final provisions</h2>
+    <p>18.1 Amendments and additions to contracts with businesses must be made in writing; email is sufficient. There are no oral side agreements.</p>
+    <p>18.2 If any provision of these Terms is invalid, the remaining provisions remain unaffected. Towards businesses, the invalid provision is replaced by a valid one that comes closest to its economic purpose; towards consumers, the statutory provisions apply instead.</p>
+    <p>18.3 In the event of discrepancies between the German and English versions of these Terms, the German version prevails.</p>
+
+    <p class="meta">Last updated: October 2026</p>
+</div>
+
+  </div>
+</section>
+
+<footer class="ls-footer" id="footer">
+  <div class="ls-f-inner">
+    <div class="ls-f-cta ls-reveal">
+      <h2><span data-i18n="ls_footer.cta1">Bereit für den</span><br><em data-i18n="ls_footer.cta2">nächsten Schritt?</em></h2>
+      <a href="termin.html" class="ls-cta ls-magnetic"><span data-i18n="nav.book">Jetzt Termin buchen</span><small data-i18n="nav.book_short">30 MIN</small></a>
+    </div>
+    <div class="ls-wordmark ls-reveal" aria-hidden="true">Lusides<span>.</span></div>
+    <div class="ls-f-grid">
+      <div><b data-i18n="ls_footer.contact">Kontakt</b><a href="mailto:inquiry@lusides.com">inquiry@lusides.com</a><br><a href="tel:+436603607188">+43 660 3607188</a></div>
+      <div><b data-i18n="ls_footer.company">Unternehmen</b>Legatech GmbH &amp; Co KG<br>Endresstraße 50/V3<br>1230 Wien, Österreich</div>
+      <div><b data-i18n="ls_footer.owners">Inhaber</b>Marko Katalan<br>Richard Dobrohruschka</div>
+      <div><b data-i18n="nav.leistungen">Leistungen</b><a href="leistungen-prozesse-systeme.html" data-i18n="leistungen.s1_tag">Prozesse &amp; Systeme</a><br><a href="leistungen-marketing.html" data-i18n="leistungen.s2_tag">Marketing</a><br><a href="leistungen-finanzen.html" data-i18n="leistungen.s3_tag">Finanzielle Angelegenheiten</a><br><a href="leistungen-digitalisierung-ki.html" data-i18n="leistungen.s4_tag">Digitalisierung &amp; KI</a><br><a href="leistungen-onlineshop-entwicklung.html" data-i18n="svc_shop.tag">Onlineshop-Entwicklung</a></div>
+    </div>
+    <div class="ls-f-bottom">
+      <span>© 2026 Lusides · Legatech GmbH &amp; Co KG · FN 614735 y</span>
+      <nav aria-label="Rechtliches"><a href="impressum.html" data-i18n="footer.impressum">Impressum</a><a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a><a href="agb.html" data-i18n="footer.agb">AGB</a><a href="widerruf.html#widerrufen" data-i18n="footer.widerruf">Vertrag widerrufen</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const progressBar = document.getElementById('progress');
+  function onScroll(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? scrollTop / docHeight : 0;
+    progressBar.style.width = (pct * 100) + '%';
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  const navToggle = document.querySelector('.nav-toggle');
+  const navCollapse = document.querySelector('.nav-collapse');
+  const menuIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+  const closeIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>';
+  function closeMobileMenu(){
+    navCollapse.classList.remove('mobile-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.innerHTML = menuIcon;
+  }
+  if(navToggle && navCollapse){
+    navToggle.addEventListener('click', () => {
+      const isOpen = navCollapse.classList.toggle('mobile-open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle.innerHTML = isOpen ? closeIcon : menuIcon;
+    });
+    navCollapse.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+    window.addEventListener('resize', () => { if(window.innerWidth > 780) closeMobileMenu(); });
+  }
+</script>
+<script>
+  (function(){
+    var T = { de: "AGB — Lusides", en: "Terms and Conditions — Lusides" };
+    function setT(l){ document.title = T[l === 'en' ? 'en' : 'de']; }
+    window.addEventListener('lusides:langchange', function(e){ setT(e.detail && e.detail.lang); });
+  })();
+</script>
+<script src="i18n.js?v=202610081200" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
+<script src="supabase-config.js?v=202610081200" defer></script>
+<script src="chatbot.js?v=202610081200" defer></script>
+<script src="analytics.js?v=202610081200" defer></script>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
+<script src="site.js?v=202610081200" defer></script>
+</body>
+</html>

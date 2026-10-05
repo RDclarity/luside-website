@@ -29,8 +29,8 @@
       topics: 'Themen',
       topicsAria: 'Themenübersicht anzeigen',
       qrAria: 'Antwortvorschläge',
-      bookChip: 'Termin buchen · {price}',
-      bookDirectChip: 'Termin direkt buchen · {price}',
+      bookChip: 'Termin buchen',
+      bookDirectChip: 'Termin direkt buchen',
       contactChip: 'Kontakt aufnehmen',
       closeChip: 'Chat schließen',
       skipChip: 'Überspringen',
@@ -70,8 +70,8 @@
       topics: 'Topics',
       topicsAria: 'Show topic overview',
       qrAria: 'Suggested replies',
-      bookChip: 'Book a call · {price}',
-      bookDirectChip: 'Book your call now · {price}',
+      bookChip: 'Book a call',
+      bookDirectChip: 'Book your call now',
       contactChip: 'Get in touch',
       closeChip: 'Close chat',
       skipChip: 'Skip',
@@ -132,14 +132,14 @@
     },
     {
       id: 'pricing',
-      label: { de: 'Erstgespräch & Preis', en: 'Initial call & price' },
+      label: { de: 'Ablauf Erstgespräch', en: 'How the call works' },
       keywords: {
         de: ['kost*:3', 'preis*:3', 'honorar*:3', 'gebühr*:2', 'teuer:3', 'günstig:2', 'wie viel:2', 'wieviel:2', 'bezahl*:2', 'rechnung:2', 'dauer*:2', 'wie lange:2', 'minuten:2', 'umbuch*:3', 'stornier*:3', 'absage*:2', 'erstgespräch:1', 'erstberatung:1', 'teams:1', 'video:1'],
         en: ['cost*:3', 'price*:3', 'pricing:3', 'fee*:3', 'how much:3', 'expensive:3', 'cheap:2', 'pay:2', 'payment:2', 'invoice:2', 'duration:2', 'how long:2', 'minutes:2', 'reschedul*:3', 'cancellation:2', 'initial call:1', 'consultation:1', 'teams:1', 'video:1']
       },
       answer: {
-        de: 'Das Erstgespräch dauert <strong>60 Minuten</strong>, per Telefon oder Video (Microsoft Teams), direkt mit den Gründern — für <strong>{price}</strong>.<br>Du buchst es direkt online, die Rechnung kommt per E-Mail. Umbuchen ist bis 24 Stunden vorher kostenlos.<br>Was ein Projekt kostet, hängt vom Umfang ab — das klären wir im Gespräch.',
-        en: 'The initial call takes <strong>60 minutes</strong>, by phone or video (Microsoft Teams), directly with the founders — for <strong>{price}</strong>.<br>You book it online, the invoice arrives by email. Rescheduling is free up to 24 hours before.<br>Project costs depend on the scope — we clarify that in the call.'
+        de: 'Das Erstgespräch dauert <strong>30 Minuten</strong>, per Telefon oder Video (Microsoft Teams), direkt mit den Gründern.<br>Du buchst es direkt online: Termin wählen, Daten eingeben — danach siehst du den Preis, bevor du verbindlich buchst. Die Rechnung kommt per E-Mail. Umbuchen ist bis 24 Stunden vorher kostenlos.<br>Was ein Projekt kostet, hängt vom Umfang ab — das klären wir im Gespräch.',
+        en: 'The initial call takes <strong>30 minutes</strong>, by phone or video (Microsoft Teams), directly with the founders.<br>You book it online: pick a time, enter your details — you then see the price before you confirm. The invoice arrives by email. Rescheduling is free up to 24 hours before.<br>Project costs depend on the scope — we clarify that in the call.'
       },
       next: ['process', 'services']
     },
@@ -152,8 +152,8 @@
         en: ['book:3', 'booking:3', 'appointment*:3', 'schedule:3', 'scheduling:3', 'meeting:2', 'calendar:2', 'initial call:2', 'consultation:1', 'call:1']
       },
       answer: {
-        de: 'Ganz einfach: Wähl auf der <a href="' + BOOKING_URL + '">Buchungsseite</a> einen freien Termin und ob wir per Telefon oder Video (Teams) sprechen. 60 Minuten, {price}, Rechnung per E-Mail — Umbuchen bis 24 Stunden vorher kostenlos.',
-        en: 'Easy: pick a free slot on the <a href="' + BOOKING_URL + '">booking page</a> and choose phone or video (Teams). 60 minutes, {price}, invoice by email — free rescheduling up to 24 hours before.'
+        de: 'Ganz einfach: Wähl auf der <a href="' + BOOKING_URL + '">Buchungsseite</a> einen freien Termin und ob wir per Telefon oder Video (Teams) sprechen. 30 Minuten, den Preis siehst du nach Eingabe deiner Daten, Rechnung per E-Mail — Umbuchen bis 24 Stunden vorher kostenlos.',
+        en: 'Easy: pick a free slot on the <a href="' + BOOKING_URL + '">booking page</a> and choose phone or video (Teams). 30 minutes, you see the price after entering your details, invoice by email — free rescheduling up to 24 hours before.'
       },
       next: ['pricing', 'process']
     },
@@ -389,7 +389,7 @@
   function ui(){ return UI[getLang()]; }
   function price(){
     try{ if(window.lusidesRegion && window.lusidesRegion.label) return window.lusidesRegion.label(); }catch(e){}
-    return '350 €';
+    return '300 €';
   }
   // Ersetzt {key}-Platzhalter. {price} und {contact} sind immer verfügbar.
   function fmt(str, vars){
