@@ -443,7 +443,7 @@
     var end = new Date(selectedSlot.getTime() + DURATION_MIN * 60000);
     var rows = [
       ['r_when', 'Termin', fmtLong(selectedSlot) + ', ' + fmtTime(selectedSlot) + '–' + fmtTime(end)],
-      ['r_meet', 'Gespräch', meetingLabel(v.meeting) + ' · ' + DURATION_MIN + ' Min.'],
+      ['r_meet', 'Gespräch', meetingLabel(v.meeting) + ' · ' + DURATION_MIN + (lang() === 'en' ? ' min' : ' Min.')],
       ['r_name', 'Name', v.name],
       ['r_email', 'E-Mail', v.email],
       ['r_phone', 'Telefon', v.phone],

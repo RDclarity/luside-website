@@ -83,7 +83,8 @@ function T(lang: string, meeting = "video", customerTz: string | null = null) {
 }
 
 function money(v: number, cur: string, lang: string) {
-  return new Intl.NumberFormat(lang === "en" ? "en-US" : "de-AT", { style: "currency", currency: cur }).format(v);
+  // de-DE: "300,00 €" wie auf der Website (de-AT würde "€ 300,00" schreiben)
+  return new Intl.NumberFormat(lang === "en" ? "en-US" : "de-DE", { style: "currency", currency: cur }).format(v);
 }
 // Gesprächsart → Positionstext (identisch zu book_appointment in 20261007100000_booking_channel.sql)
 function meetingDesc(lang: string, meeting: string) {
@@ -185,10 +186,20 @@ async function buildPdf(kind: "invoice" | "order", s: Row, a: Row, inv: Row): Pr
   const qty = isOrder ? 1 : Math.abs(Number(inv.quantity ?? 1));
   const net = isOrder ? Number(inv?.net_amount ?? 0) : Number(inv.net_amount);
   const desc = isOrder ? meetingDesc(lang, meeting) : inv.description;
-  text(page, "1", M + 8, y, 10); text(page, desc, M + 46, y, 10, bold);
-  text(page, `${t.appt}: ${a?.start_at ? dateTimeFmt(a.start_at, lang, tz) : dateFmt(inv.service_date, lang)}`, M + 46, y - 14, 8.5, font, slate);
+  // Bezeichnung umbrechen, damit sie nicht in die Spalte "Menge" läuft
+  const descMax = 370 - 30 - (M + 46);
+  const descLines: string[] = [];
+  for (const w of safe(desc).split(" ")) {
+    const cand = descLines.length ? descLines[descLines.length - 1] + " " + w : w;
+    if (descLines.length && bold.widthOfTextAtSize(cand, 10) > descMax) descLines.push(w);
+    else if (descLines.length) descLines[descLines.length - 1] = cand; else descLines.push(w);
+  }
+  text(page, "1", M + 8, y, 10);
+  descLines.forEach((l, i) => text(page, l, M + 46, y - i * 13, 10, bold));
+  const extra = (descLines.length - 1) * 13;
+  text(page, `${t.appt}: ${a?.start_at ? dateTimeFmt(a.start_at, lang, tz) : dateFmt(inv.service_date, lang)}`, M + 46, y - 14 - extra, 8.5, font, slate);
   right(page, String(qty), 370, y, 10); right(page, money(net / qty, cur, lang), 460, y, 10); right(page, money(net, cur, lang), W - M - 8, y, 10);
-  y -= 34;
+  y -= 34 + extra;
   page.drawLine({ start: { x: M, y }, end: { x: W - M, y }, thickness: 0.6, color: rgb(0.86, 0.9, 0.94) });
 
   // Summen
