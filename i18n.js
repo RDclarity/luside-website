@@ -1381,7 +1381,7 @@
         err_fields: "Please enter your name and a valid email address.",
         err_consent: "Please accept the terms and conditions.",
         err_taken: "This slot was just taken. Please choose another one.",
-        err_generic: "Booking is not possible right now. Please try again later or call us: +43 660 3607188."
+        err_generic: "Booking is not possible right now. Please try again later or email us: inquiry@lusides.com."
       },
       svc_digital: {
         meta_title: "Digitalisation & AI consulting for companies, Vienna | Lusides",
@@ -1573,7 +1573,7 @@
         h1: 'Privacy Policy',
         sub: 'Last updated: August 2026. This policy describes what personal data we collect on this website, why we use it, and what rights you have.',
         h_controller: 'Data Controller',
-        p_controller: 'The controller responsible for data processing on this website is Legatech GmbH & Co KG (brand “Lusides”), Endresstraße 50/V2, 1230 Vienna, Austria. Email: inquiry@lusides.com, Phone: +43 660 3607188.',
+        p_controller: 'The controller responsible for data processing on this website is Legatech GmbH & Co KG (brand “Lusides”), Endresstraße 50/V2, 1230 Vienna, Austria. Email: inquiry@lusides.com.',
         h_data: 'What data we collect',
         h_contact_form: 'Contact form',
         p_contact_form: "When you fill out our contact form, we collect: name, company, number of employees, annual revenue (each as a size bracket), what you need from us, phone number (optional), and email address. We use this data solely to process your request. The legal basis is Art. 6(1)(b) GDPR (handling a request in the pre-contractual stage). Afterwards you can fill in a project data sheet (position, legal form, industry, website, year founded, location, business model, number of employees, revenue bracket and trend, situation, goals, timeframe, budget range). We store this information to prepare the call (Art. 6(1)(b) GDPR, at your request), transfer it to our CRM system and send you a copy as a PDF by email (sent via Resend).",

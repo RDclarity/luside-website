@@ -97,7 +97,7 @@
       leadSuccess: "Thanks, {name}! We've received your request and will get back to you within two business days. Want to move faster? Book your initial call right away:",
       leadError: 'Unfortunately that didn\'t work. Please try again in a moment — or contact us directly at {contact}.',
       cancelled: 'No problem, cancelled. What else can I help with?',
-      contactLine: '<a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a> or call <a href="tel:' + CONTACT_PHONE_HREF + '">' + CONTACT_PHONE + '</a>'
+      contactLine: '<a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a>'
     }
   };
 
@@ -219,7 +219,7 @@
       },
       answer: {
         de: 'E-Mail: <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a><br>Telefon: <a href="tel:' + CONTACT_PHONE_HREF + '">' + CONTACT_PHONE + '</a><br>Adresse: Endresstraße 50/V2, 1230 Wien<br>Am schnellsten geht’s mit einem gebuchten Erstgespräch.',
-        en: 'Email: <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a><br>Phone: <a href="tel:' + CONTACT_PHONE_HREF + '">' + CONTACT_PHONE + '</a><br>Address: Endresstraße 50/V2, 1230 Vienna, Austria<br>The fastest way is to book an initial call.'
+        en: 'Email: <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a><br>Address: Endresstraße 50/V2, 1230 Vienna, Austria<br>The fastest way is to book an initial call.'
       },
       next: ['lead']
     }

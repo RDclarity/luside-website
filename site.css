@@ -210,3 +210,7 @@ body.compact-hero .hero{ padding-top: 104px !important; padding-bottom: 36px !im
 body.compact-hero .hero h1{ font-size: clamp(30px, 3.6vw, 48px) !important; line-height: 1.05 !important; max-width: 24ch; }
 body.compact-hero .hero .hero-sub{ margin-top: 12px; font-size: 1rem; }
 @media (max-width: 640px){ body.compact-hero .hero{ padding-top: 88px !important; padding-bottom: 24px !important; } }
+
+/* Telefonnummer nur auf der deutschen Seite (englische Seite / US-Kunden ohne Telefon) */
+html[lang="en"] a[href^="tel:"], html[lang="en"] br:has(+ a[href^="tel:"]),
+html[lang="en"] .row:has(a[href^="tel:"]), html[lang="en"] div:has(> span[data-i18n="kontakt.phone_label"] + a[href^="tel:"]){ display: none !important; }
