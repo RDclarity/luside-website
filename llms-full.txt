@@ -526,11 +526,11 @@ Geprüfter Tischlermeister und Unternehmer. Seit 2016 in der Führung des 1935 g
 - Mehrfacher Unternehmensaufbau in Wien und New York
 MS Technik
 ### Mihai Suta
-Software · KI · Digitalisierung
-Hochspezialisierter Programmierer und Mitgeschäftsführer der Legatech-Gruppe. Er verantwortet bei Lusides die technische Umsetzung – von individueller Software über Onlineshops bis zu KI-Systemen.
+KI-Architekt · Software · Digitalisierung
+KI-Architekt und hochspezialisierter Softwareentwickler. Er konzipiert KI-Systeme, Automatisierungen und Datenflüsse so, dass sie sich in bestehende Abläufe einfügen – und verantwortet bei Lusides die technische Umsetzung von individueller Software über Onlineshops bis zu produktiven KI-Lösungen.
 - Individuelle Software- und Web-Entwicklung
 - KI, Automatisierung und Datenverarbeitung
-- Mitgeschäftsführer der Legatech-Gruppe
+- Architektur von KI-Systemen und Datenflüssen
 ### Bereit für den nächsten Schritt?
 Jetzt Termin buchen
 
