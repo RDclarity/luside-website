@@ -77,6 +77,22 @@
         a7: '30 Minuten per Telefon oder Video, direkt mit den Gründern. Du wählst den Termin online und gibst deine Daten ein, danach siehst du den Preis, bevor du verbindlich buchst. Bestellschein und Rechnung kommen per E-Mail. Umbuchen oder absagen ist bis 24 Stunden vorher kostenlos.',
         a6: 'Nein. Im Erstgespräch klären wir, wo aktuell der größte Hebel liegt, und beginnen dort.'
       },
+      folder: {
+        kicker: 'Leistungsfolder · PDF',
+        h_a: 'Lieber erst',
+        h_b: 'in Ruhe lesen?',
+        p: 'Alle fünf Leistungen, unser Ablauf und das Team auf zehn Seiten. Gib deine Telefonnummer an – der Download startet sofort.',
+        phone_label: 'Telefonnummer',
+        phone_ph: '+43 660 1234567',
+        btn: 'PDF herunterladen',
+        consent: 'Ich bin einverstanden, dass Lusides mich unter dieser Nummer kontaktiert. <a href="datenschutz.html">Datenschutz</a>',
+        err_phone: 'Bitte gib eine gültige Telefonnummer an.',
+        err_consent: 'Bitte bestätige, dass wir dich kontaktieren dürfen.',
+        err_generic: 'Download gerade nicht möglich. Bitte versuche es später erneut oder schreib an inquiry@lusides.com.',
+        err_rate: 'Zu viele Versuche. Bitte versuche es später erneut.',
+        sending: 'Einen Moment …',
+        ok: 'Danke! Der Download startet. Falls nicht: <a href="{url}" target="_blank" rel="noopener">PDF öffnen</a>'
+      },
       kontakt: {
         label: 'LIEBER ERST SCHREIBEN?',
         h2: 'Erzähl uns von deinem Unternehmen.',
@@ -779,6 +795,8 @@
         p_booking: "Wenn Sie über die Seite „Termin buchen“ ein Erstgespräch buchen, verarbeiten wir Name, E-Mail-Adresse, Telefonnummer (bei telefonischem Gespräch erforderlich, sonst optional), optional Unternehmen, Ihre Rechnungsadresse (Straße, PLZ, Ort, Land), optional Ihre UID-Nummer, das gewählte Thema und Ihre Nachricht sowie den gewählten Termin. Zweck ist die Durchführung des Gesprächs sowie die Erstellung von Bestellschein und Rechnung (Rechtsgrundlage: Vertragserfüllung, Art. 6 Abs. 1 lit. b DSGVO, und gesetzliche Pflichten nach UStG/BAO, Art. 6 Abs. 1 lit. c DSGVO). Bestellschein und Rechnung werden automatisch erstellt und über den E-Mail-Dienst Resend (Resend, Inc., Versand über Server in der EU) an Sie versendet. Das Gespräch findet je nach Wahl per Telefon oder per Video über Microsoft Teams statt; bei Video gelten zusätzlich die Datenschutzbestimmungen von Microsoft. Die Zeitzone Ihres Browsers verwenden wir nur, um Uhrzeiten und Sprache passend anzuzeigen.",
         h_withdraw: 'Online-Widerruf',
         p_withdraw: "Wenn Sie über die Funktion „Vertrag widerrufen“ auf der Seite Widerruf einen Vertrag widerrufen, verarbeiten wir Ihren Namen, Ihre E-Mail-Adresse, optional die Bestellnummer und Ihre Nachricht sowie den Zeitpunkt des Eingangs. Zweck ist die Bearbeitung des Widerrufs und die gesetzlich vorgeschriebene Eingangsbestätigung per E-Mail (Rechtsgrundlage: Art. 6 Abs. 1 lit. c DSGVO in Verbindung mit § 13a FAGG). Die Bestätigung wird über den E-Mail-Dienst Resend versendet. Die Daten werden gemeinsam mit den Buchungs- und Rechnungsunterlagen für die Dauer der gesetzlichen Aufbewahrungspflichten gespeichert.",
+        h_folder: 'Leistungsfolder-Download',
+        p_folder: "Wenn Sie den Leistungsfolder (PDF) herunterladen, verarbeiten wir die von Ihnen angegebene Telefonnummer, die Sprache der Website und den Zeitpunkt, um Sie wie von Ihnen gewünscht telefonisch zu kontaktieren (Rechtsgrundlage: Ihre Einwilligung, Art. 6 Abs. 1 lit. a DSGVO). Sie können die Einwilligung jederzeit per E-Mail an inquiry@lusides.com widerrufen; die Nummer wird dann gelöscht, spätestens jedoch zwölf Monate nach dem Download.",
         h_analytics: 'Website-Analyse',
         p_analytics: 'Um zu verstehen, wie unsere Website genutzt wird, erfassen wir pseudonym: die aufgerufenen Seiten, die Herkunft (verweisende Website bzw. Kampagnenparameter), den Gerätetyp (Mobil/Tablet/Desktop), die gewählte Sprache, die Verweildauer, wie weit eine Seite gescrollt wurde, in welchem Abschnitt Sie sich gerade befinden, welche Links und Schaltflächen Sie anklicken sowie ob ein Formular begonnen oder abgeschickt wurde (ohne dessen Inhalte). Diese Angaben werden über eine zufällig erzeugte Sitzungs-ID verknüpft, die nur im Sitzungsspeicher Ihres Browsers (sessionStorage) liegt und beim Schließen des Tabs bzw. nach 30 Minuten Inaktivität verfällt; während Ihres Besuchs können wir so auch in Echtzeit sehen, auf welcher Seite sich Besucher befinden. Unsere Anwendung speichert keine IP-Adressen oder Standortdaten; unser Hosting- und Datenbankanbieter verarbeitet IP-Adressen jedoch technisch bedingt kurzzeitig als übliche Server-Logdaten zur Sicherheit und Missbrauchsabwehr. Es werden keine Cookies gesetzt. Ist in Ihrem Browser „Do Not Track“ oder „Global Privacy Control“ aktiviert, findet keine Erfassung statt. Die Daten werden nach spätestens 13 Monaten gelöscht. Rechtsgrundlage ist unser berechtigtes Interesse an der Verbesserung unseres Angebots (Art. 6 Abs. 1 lit. f DSGVO).',
         h_chatbot: 'Chat-Assistent',
@@ -880,6 +898,22 @@
         q7: 'How does the initial call work?',
         a7: '30 minutes by phone or video, directly with the founders. You pick the time online and enter your details; you then see the price before you book. Order confirmation and invoice arrive by email. Rescheduling or cancelling is free up to 24 hours before.',
         a6: "No. In the introductory call we clarify where the biggest lever is right now, and start there."
+      },
+      folder: {
+        kicker: 'Service brochure · PDF',
+        h_a: 'Prefer to',
+        h_b: 'read first?',
+        p: 'All five services, our process and the team on ten pages (in German). Enter your phone number and the download starts right away.',
+        phone_label: 'Phone number',
+        phone_ph: '+1 212 555 0123',
+        btn: 'Download PDF',
+        consent: 'I agree that Lusides may contact me at this number. <a href="datenschutz.html">Privacy</a>',
+        err_phone: 'Please enter a valid phone number.',
+        err_consent: 'Please confirm that we may contact you.',
+        err_generic: 'Download not available right now. Please try again later or email inquiry@lusides.com.',
+        err_rate: 'Too many attempts. Please try again later.',
+        sending: 'One moment …',
+        ok: 'Thank you! Your download is starting. If not: <a href="{url}" target="_blank" rel="noopener">open the PDF</a>'
       },
       kontakt: {
         label: 'PREFER TO WRITE FIRST?',
@@ -1583,6 +1617,8 @@
         p_booking: "When you book an initial consultation on the “Book a call” page, we process your name, email address, your phone number (required for phone calls, otherwise optional), optionally your company, your billing address (street, postal code, city, country), optionally your VAT ID, the chosen topic, your message and the selected appointment. We use this data to hold the call and to issue the order confirmation and invoice (legal basis: performance of a contract, Art. 6(1)(b) GDPR, and legal obligations under Austrian VAT and tax law, Art. 6(1)(c) GDPR). The order confirmation and invoice are created automatically and sent to you via the email service Resend (Resend, Inc., sending via servers in the EU). The call takes place by phone or by video on Microsoft Teams, as you choose; for video calls Microsoft’s privacy terms also apply. We use your browser’s time zone only to show times and language correctly.",
         h_withdraw: 'Online withdrawal',
         p_withdraw: "If you withdraw from a contract using the “Withdraw from contract” function on the withdrawal page, we process your name, email address, optionally the order number and your message, as well as the time of receipt. The purpose is to process the withdrawal and to send the legally required confirmation of receipt by email (legal basis: Art. 6(1)(c) GDPR in conjunction with § 13a FAGG). The confirmation is sent via the email service Resend. The data is stored together with the booking and invoice records for the duration of the statutory retention periods.",
+        h_folder: 'Service brochure download',
+        p_folder: "If you download the service brochure (PDF), we process the phone number you provide, the website language and the time, in order to contact you by phone as requested (legal basis: your consent, Art. 6(1)(a) GDPR). You can withdraw your consent at any time by email to inquiry@lusides.com; the number will then be deleted, at the latest twelve months after the download.",
         h_analytics: 'Website analytics',
         p_analytics: "To understand how our website is used, we record the following pseudonymously: the pages viewed, where you came from (referring website or campaign parameters), the device type (mobile/tablet/desktop), the language selected, time spent, how far a page was scrolled, which section you are currently viewing, which links and buttons you click, and whether a form was started or submitted (without its contents). These details are linked by a randomly generated session ID that is kept only in your browser’s session storage (sessionStorage) and expires when you close the tab or after 30 minutes of inactivity; this also lets us see in real time which page visitors are on. Our application does not store IP addresses or location data; our hosting and database provider does, however, briefly process IP addresses as standard server log data for security and abuse prevention. No cookies are set. If “Do Not Track” or “Global Privacy Control” is enabled in your browser, nothing is recorded. The data is deleted after 13 months at the latest. The legal basis is our legitimate interest in improving our services (Art. 6(1)(f) GDPR).",
         h_chatbot: 'Chat assistant',

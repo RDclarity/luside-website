@@ -189,6 +189,35 @@
   }
 
   // ---------- Anfragen / Newsletter / Besucher ----------
+  // ---------- Leistungsfolder-Downloads ----------
+  function renderFolder(rows){
+    badge('bFolder', rows.filter(function(r){ return r.status !== 'kontaktiert'; }).length);
+    if(!rows.length){ $('folderBody').innerHTML = '<tr class="empty-row"><td colspan="4">Noch keine Downloads.</td></tr>'; return; }
+    $('folderBody').innerHTML = rows.map(function(r){
+      return '<tr>'
+        + '<td class="primary nowrap" data-label="">' + fmtDate(r.created_at, true) + '</td>'
+        + '<td class="nowrap" data-label="Telefon"><a href="tel:' + esc(String(r.phone).replace(/[^\d+]/g, '')) + '">' + esc(r.phone) + '</a></td>'
+        + '<td data-label="Sprache">' + (r.lang === 'en' ? 'Englisch (USA)' : 'Deutsch') + '</td>'
+        + '<td data-label="Status"><select class="fd-status" data-id="' + esc(r.id) + '"><option value="neu"' + (r.status !== 'kontaktiert' ? ' selected' : '') + '>Neu</option><option value="kontaktiert"' + (r.status === 'kontaktiert' ? ' selected' : '') + '>Kontaktiert</option></select></td>'
+        + '</tr>';
+    }).join('');
+  }
+  $('folderBody').addEventListener('change', function(e){
+    var sel = e.target.closest('.fd-status'); if(!sel) return;
+    sel.disabled = true;
+    client.from('folder_requests').update({ status: sel.value }).eq('id', sel.getAttribute('data-id')).then(function(res){
+      sel.disabled = false;
+      if(res.error){ alert('Speichern fehlgeschlagen.'); return; }
+      loadFolder();
+    });
+  });
+  function loadFolder(){
+    client.from('folder_requests').select('*').order('created_at', { ascending: false }).limit(500).then(function(res){
+      if(res.error){ $('folderBody').innerHTML = '<tr class="empty-row"><td colspan="4">Fehler beim Laden.</td></tr>'; return; }
+      renderFolder(res.data || []);
+    });
+  }
+
   // ---------- Widerrufe (§ 13a FAGG) ----------
   function renderWithdrawals(rows){
     var open = rows.filter(function(r){ return r.status !== 'bearbeitet'; }).length;
@@ -304,6 +333,7 @@
     });
     if(window.lusidesAdminAnalytics) window.lusidesAdminAnalytics.load(client);
     loadWithdrawals();
+    loadFolder();
   }
 
   // ---------- Login ----------

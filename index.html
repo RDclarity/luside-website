@@ -466,6 +466,27 @@
   @media (max-width: 720px){ .o-grid{ grid-template-columns: 1fr; } }
 
   /* TERMIN */
+  /* Leistungsfolder (PDF gegen Telefonnummer) */
+  .folder{ padding: 40px 0 0; }
+  .folder-card{ display:grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items:center; background:#fff; border:1px solid var(--line); border-radius: 40px; padding: clamp(28px, 5vw, 64px); }
+  .folder-cover img{ display:block; width:100%; height:auto; border-radius: 10px; box-shadow: 0 30px 60px -24px rgba(5,11,24,.45), 0 0 0 1px rgba(5,11,24,.06); transform: rotate(-2deg); }
+  .folder-h{ font-size: clamp(36px, 4.4vw, 60px); line-height: .98; letter-spacing: -0.045em; font-weight: 600; }
+  .folder-h em{ font-family: var(--f-serif); font-style: italic; font-weight: 400; color: var(--blue); }
+  .folder-p{ margin-top: 18px; color: var(--slate); font-size: 18px; max-width: 520px; text-wrap: pretty; }
+  .folder-form{ margin-top: 28px; max-width: 560px; }
+  .folder-row{ display:flex; gap: 10px; flex-wrap: wrap; }
+  .folder-row input{ flex: 1 1 220px; min-width: 0; min-height: 54px; font: inherit; font-size: 16px; color: var(--ink); background: var(--paper); border:1px solid var(--line); border-radius: 999px; padding: 0 22px; }
+  .folder-row input:focus{ outline:none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(47,107,255,.18); }
+  .btn-dark{ background: var(--night); color:#fff; min-height: 54px; }
+  .btn-dark:hover{ background: var(--blue); }
+  .btn-dark:disabled{ opacity: .6; cursor: progress; }
+  .folder-consent{ display:flex; gap: 10px; align-items:flex-start; margin-top: 14px; font-size: 14px; color: var(--slate); cursor:pointer; }
+  .folder-consent input{ width: 20px; height: 20px; margin-top: 1px; flex-shrink: 0; accent-color: var(--blue); }
+  .folder-consent a{ color: var(--ink); }
+  .folder-note{ margin-top: 12px; font-size: 14px; min-height: 1em; }
+  .folder-note.ok{ color: #0B6B32; } .folder-note.err{ color: #B3261E; }
+  .folder-note a{ color: inherit; font-weight: 600; }
+  @media (max-width: 760px){ .folder-card{ grid-template-columns: 1fr; border-radius: 28px; } .folder-cover{ max-width: 200px; } }
   .book{ padding: 40px 0 150px; }
   .book-card{ position: relative; overflow:hidden; border-radius: 40px; background: var(--night); color:#fff; padding: clamp(48px, 7vw, 104px); display:flex; justify-content:space-between; align-items:center; gap: 48px; flex-wrap: wrap; }
   .book-card .b-orb{ position:absolute; width: 760px; aspect-ratio:1; left: -260px; top: -340px; border-radius:50%; background: radial-gradient(circle, rgba(47,107,255,.55), transparent 62%); pointer-events:none; }
@@ -514,7 +535,7 @@
   .form-note.error{ color:#B3261E; }
   @media (max-width: 560px){ .cf{ grid-template-columns: 1fr; } .contact-card{ padding: 28px; } }
 </style>
-<link rel="stylesheet" href="site.css?v=202610091500">
+<link rel="stylesheet" href="site.css?v=202610131000">
 </head>
 <body class="home">
 <div class="ls-intro" aria-hidden="true">
@@ -665,6 +686,28 @@
   </div>
 </section>
 
+<section class="folder" id="folder">
+  <div class="wrap">
+    <div class="folder-card ls-reveal">
+      <div class="folder-cover" aria-hidden="true"><img src="img/leistungsfolder-cover.jpg" alt="" width="537" height="760" loading="lazy"></div>
+      <div class="folder-body">
+        <div class="kicker" data-i18n="folder.kicker">Leistungsfolder · PDF</div>
+        <h2 class="folder-h"><span data-i18n="folder.h_a">Lieber erst</span> <em data-i18n="folder.h_b">in Ruhe lesen?</em></h2>
+        <p class="folder-p" data-i18n="folder.p">Alle fünf Leistungen, unser Ablauf und das Team auf zehn Seiten. Gib deine Telefonnummer an – der Download startet sofort.</p>
+        <form id="folderForm" class="folder-form" novalidate>
+          <label class="sr-only" for="folder-phone" data-i18n="folder.phone_label">Telefonnummer</label>
+          <div class="folder-row">
+            <input id="folder-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" required placeholder="+43 660 1234567">
+            <button type="submit" class="btn btn-dark" id="folderBtn"><span data-i18n="folder.btn">PDF herunterladen</span><span class="arr" aria-hidden="true">↓</span></button>
+          </div>
+          <label class="folder-consent"><input type="checkbox" name="consent" id="folder-consent"><span data-i18n-html="folder.consent">Ich bin einverstanden, dass Lusides mich unter dieser Nummer kontaktiert. <a href="datenschutz.html">Datenschutz</a></span></label>
+          <p class="folder-note" id="folderNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="book" id="termin">
   <div class="wrap">
     <div class="book-card ls-reveal">
@@ -732,12 +775,13 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
-<script src="i18n.js?v=202610091500" defer></script>
+<script src="i18n.js?v=202610131000" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
-<script src="supabase-config.js?v=202610091500" defer></script>
-<script src="chatbot.js?v=202610091500" defer></script>
-<script src="contact-form.js?v=202610091500" defer></script>
-<script src="analytics.js?v=202610091500" defer></script>
-<script src="site.js?v=202610091500" defer></script>
+<script src="supabase-config.js?v=202610131000" defer></script>
+<script src="chatbot.js?v=202610131000" defer></script>
+<script src="folder-form.js?v=202610131000" defer></script>
+<script src="contact-form.js?v=202610131000" defer></script>
+<script src="analytics.js?v=202610131000" defer></script>
+<script src="site.js?v=202610131000" defer></script>
 </body>
 </html>

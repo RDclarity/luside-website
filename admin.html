@@ -332,6 +332,7 @@
     <button class="tab" data-tab="rechnungen" role="tab">Rechnungen <span class="badge" id="bRechnungen" hidden></span></button>
     <button class="tab" data-tab="datenblaetter" role="tab">Datenblätter <span class="badge" id="bSheets" hidden></span></button>
     <button class="tab" data-tab="anfragen" role="tab">Anfragen <span class="badge" id="bAnfragen" hidden></span></button>
+    <button class="tab" data-tab="folder" role="tab">Folder <span class="badge" id="bFolder" hidden></span></button>
     <button class="tab" data-tab="widerrufe" role="tab">Widerrufe <span class="badge" id="bWiderrufe" hidden></span></button>
     <button class="tab" data-tab="newsletter" role="tab">Newsletter</button>
     <button class="tab" data-tab="besucher" role="tab">Statistik</button>
@@ -451,6 +452,19 @@
         <table class="rt">
           <thead><tr><th>Name</th><th>Unternehmen</th><th>Anliegen</th><th>Telefon</th><th>E-Mail</th><th>Newsletter</th><th>Datum</th></tr></thead>
           <tbody id="contactsBody"><tr class="loading-row"><td colspan="7">Lade…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FOLDER -->
+    <section class="pane" id="pane-folder">
+      <div class="pane-head">
+        <div><h2>Leistungsfolder-Downloads</h2><div class="count">Telefonnummern zum Zurückrufen (Zustimmung erteilt)</div></div>
+      </div>
+      <div class="card-box">
+        <table class="rt">
+          <thead><tr><th>Datum</th><th>Telefon</th><th>Sprache</th><th>Status</th></tr></thead>
+          <tbody id="folderBody"><tr class="loading-row"><td colspan="4">Lade…</td></tr></tbody>
         </table>
       </div>
     </section>
@@ -651,10 +665,10 @@
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous"></script>
-<script src="supabase-config.js?v=202610091500"></script>
-<script src="admin-calendar.js?v=202610091500"></script>
-<script src="admin-sheets.js?v=202610091500"></script>
-<script src="admin.js?v=202610091500"></script>
-<script src="admin-analytics.js?v=202610091500"></script>
+<script src="supabase-config.js?v=202610131000"></script>
+<script src="admin-calendar.js?v=202610131000"></script>
+<script src="admin-sheets.js?v=202610131000"></script>
+<script src="admin.js?v=202610131000"></script>
+<script src="admin-analytics.js?v=202610131000"></script>
 </body>
 </html>
