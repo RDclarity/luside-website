@@ -90,7 +90,8 @@
         "Wien",
         "New York"
       ],
-      "url": "https://lusides.com/team.html"
+      "url": "https://lusides.com/team.html",
+      "image": "https://lusides.com/img/marko-katalan.jpg"
     },
     {
       "@type": "Person",
@@ -112,7 +113,8 @@
         "Wien",
         "New York"
       ],
-      "url": "https://lusides.com/team.html"
+      "url": "https://lusides.com/team.html",
+      "image": "https://lusides.com/img/richard-dobrohruschka.jpg"
     },
     {
       "@type": "Person",
@@ -536,6 +538,10 @@
   .tm-visual{ position: relative; height: 240px; display:flex; align-items:flex-end; justify-content:space-between; padding: 24px; overflow:hidden; }
   .tm-visual.a{ background: linear-gradient(160deg, #0F2A6E, #050B18 75%); }
   .tm-visual.b{ background: linear-gradient(200deg, #2F6BFF, #0A1F5C 70%); }
+  .tm-visual.photo{ height: 420px; background: #0A1428; justify-content: flex-end; }
+  .tm-visual.photo::after{ display: none; }
+  .tm-visual.photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit: cover; object-position: 50% 15%; }
+  .tm-visual.photo .tm-tag{ position: relative; z-index: 1; background: rgba(5,11,24,.55); border-color: rgba(255,255,255,.25); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
   .tm-visual.c{ background: linear-gradient(150deg, #0A1630, #12306E 60%, #2F6BFF); }
   .tm-visual::after{ content:''; position:absolute; width: 70%; aspect-ratio:1; right:-20%; top:-30%; border-radius:50%; background: radial-gradient(circle, rgba(142,197,255,.35), transparent 65%); }
   .tm-mono{ position: relative; z-index:1; font-size: 120px; line-height: .8; letter-spacing: -0.06em; font-weight: 600; color: rgba(255,255,255,.94); }
@@ -558,9 +564,9 @@
   .tm-cta h2{ font-size: clamp(28px, 3.4vw, 44px); letter-spacing:-0.04em; color:#fff; }
   .tm-cta .btn-primary{ background:#fff !important; color: var(--night) !important; }
   @media (max-width: 1024px){ .tm-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-  @media (max-width: 680px){ .tm-grid, .tm-stats{ grid-template-columns: minmax(0,1fr); } .tm-visual{ height: 200px; } .tm-mono{ font-size: 96px; } .tm-cta{ padding: 28px; } .tm-section{ padding-top: 48px; } }
+  @media (max-width: 680px){ .tm-grid, .tm-stats{ grid-template-columns: minmax(0,1fr); } .tm-visual{ height: 200px; } .tm-visual.photo{ height: 380px; } .tm-mono{ font-size: 96px; } .tm-cta{ padding: 28px; } .tm-section{ padding-top: 48px; } }
 </style>
-<link rel="stylesheet" href="site.css?v=202610131100">
+<link rel="stylesheet" href="site.css?v=202610131200">
 <style>#progress{ display:none !important; } .bg-stone{ display:none; }</style>
 </head>
 <body>
@@ -616,7 +622,7 @@
     </div>
     <div class="tm-grid">
       <article class="tm ls-reveal" data-spotlight>
-        <div class="tm-visual a"><span class="tm-mono">M<em>K</em></span><span class="tm-tag" data-i18n="team_page.marko_tag">Inhaber</span></div>
+        <div class="tm-visual photo"><img src="img/marko-katalan.jpg" alt="Marko Katalan" width="1000" height="1497" loading="lazy" decoding="async"><span class="tm-tag" data-i18n="team_page.marko_tag">Inhaber</span></div>
         <div class="tm-body">
           <h2>Marko Katalan</h2>
           <p class="tm-role" data-i18n="team_page.marko_role">Regulatory, International Finance Advisory</p>
@@ -632,7 +638,7 @@
         </div>
       </article>
       <article class="tm ls-reveal" data-spotlight>
-        <div class="tm-visual b"><span class="tm-mono">R<em>D</em></span><span class="tm-tag" data-i18n="team_page.richard_tag">Inhaber</span></div>
+        <div class="tm-visual photo"><img src="img/richard-dobrohruschka.jpg" alt="Richard Dobrohruschka" width="1000" height="1497" loading="lazy" decoding="async"><span class="tm-tag" data-i18n="team_page.richard_tag">Inhaber</span></div>
         <div class="tm-body">
           <h2>Richard Dobrohruschka</h2>
           <p class="tm-role" data-i18n="team_page.richard_role">Marketing · Vertrieb · Prozesse</p>
@@ -787,13 +793,13 @@
     });
   }
 </script>
-<script src="i18n.js?v=202610131100" defer></script>
+<script src="i18n.js?v=202610131200" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.8/dist/umd/supabase.js" integrity="sha384-M65KxMm/JqBppck6onbmAgPVMBHrmPCf1L17Q+71EcvI9/VVI8j5cqoxQf6lj6h2" crossorigin="anonymous" defer></script>
-<script src="supabase-config.js?v=202610131100" defer></script>
-<script src="chatbot.js?v=202610131100" defer></script>
-<script src="analytics.js?v=202610131100" defer></script>
+<script src="supabase-config.js?v=202610131200" defer></script>
+<script src="chatbot.js?v=202610131200" defer></script>
+<script src="analytics.js?v=202610131200" defer></script>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
-<script src="site.js?v=202610131100" defer></script>
+<script src="site.js?v=202610131200" defer></script>
 </body>
 </html>
