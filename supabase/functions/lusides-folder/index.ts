@@ -2,11 +2,11 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 import { handlePreflight, json } from "../_shared/cors.ts";
 import { allow, clientIp } from "../_shared/ratelimit.ts";
 
-// Leistungsfolder gegen Telefonnummer: speichert die Anfrage (public.folder_requests),
-// meldet sie per E-Mail ans Team (Rückruf) und gibt einen 10 Minuten gültigen,
+// Leistungsfolder gegen E-Mail-Adresse: speichert die Anfrage (public.folder_requests),
+// meldet sie per E-Mail ans Team und gibt einen 10 Minuten gültigen,
 // signierten Download-Link auf das private PDF im Storage-Bucket "downloads" zurück.
 //
-//   { phone, consent: true, lang: 'de'|'en', page }  → { ok, url }
+//   { email, consent: true, lang: 'de'|'en', page }  → { ok, url }
 //
 // Secrets: RESEND_API_KEY, optional MAIL_FROM_INFO, MAIL_NOTIFY.
 
@@ -31,17 +31,17 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") return json({ error: "Method not allowed" }, 405);
   let b: Record<string, unknown>; try { b = await req.json(); } catch { return json({ error: "invalid JSON" }, 400); }
 
-  const phone = String(b.phone ?? "").trim().slice(0, 40);
+  const email = String(b.email ?? "").trim().toLowerCase().slice(0, 254);
   const lang = b.lang === "en" ? "en" : "de";
   const page = String(b.page ?? "").slice(0, 200) || null;
   if (b.consent !== true) return json({ error: "consent_required" }, 400);
-  if (!/^[0-9+()/ .\-]+$/.test(phone) || phone.replace(/\D/g, "").length < 6) return json({ error: "invalid_phone" }, 400);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return json({ error: "invalid_email" }, 400);
 
   if (!(await allow(`folder:ip:${clientIp(req)}`, 10))) return json({ error: "rate_limited" }, 429);
 
   try {
     const { data: row, error } = await admin.from("folder_requests")
-      .insert({ phone, lang, page, consent_at: new Date().toISOString() }).select("id, created_at").single();
+      .insert({ email, lang, page, consent_at: new Date().toISOString() }).select("id, created_at").single();
     if (error || !row) throw error ?? new Error("insert failed");
 
     let url = FALLBACK_URL;
@@ -60,10 +60,10 @@ Deno.serve(async (req) => {
         method: "POST",
         headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          from: MAIL_FROM, to: NOTIFY_TO,
-          subject: `Leistungsfolder heruntergeladen – bitte zurückrufen: ${phone}`,
-          html: `<p style="font:15px/1.6 Arial,sans-serif">Jemand hat am ${esc(when)} den Leistungsfolder auf lusides.com heruntergeladen und einem Rückruf zugestimmt.</p>
-            <p style="font:18px/1.5 Arial,sans-serif"><strong><a href="tel:${esc(phone.replace(/[^\d+]/g, ""))}">${esc(phone)}</a></strong></p>
+          from: MAIL_FROM, to: NOTIFY_TO, reply_to: email,
+          subject: `Leistungsfolder heruntergeladen: ${email}`,
+          html: `<p style="font:15px/1.6 Arial,sans-serif">Jemand hat am ${esc(when)} den Leistungsfolder auf lusides.com heruntergeladen und der Kontaktaufnahme per E-Mail zugestimmt.</p>
+            <p style="font:18px/1.5 Arial,sans-serif"><strong><a href="mailto:${esc(email)}">${esc(email)}</a></strong></p>
             <p style="font:13px/1.6 Arial,sans-serif;color:#56677F">Sprache der Website: ${lang === "en" ? "Englisch (USA)" : "Deutsch"}${page ? ` · Seite: ${esc(page)}` : ""}. Alle Anfragen im Admin unter „Folder“.</p>`,
         }),
       });

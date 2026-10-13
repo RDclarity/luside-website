@@ -1,10 +1,10 @@
-// Leistungsfolder: PDF-Download gegen Telefonnummer (Edge Function lusides-folder).
+// Leistungsfolder: PDF-Download gegen E-Mail-Adresse (Edge Function lusides-folder).
 (function(){
   var form = document.getElementById('folderForm');
   if(!form) return;
   var note = document.getElementById('folderNote');
   var btn = document.getElementById('folderBtn');
-  var PHONE_RE = /^[0-9+()\/ .\-]+$/;   // identisch zur Server-Prüfung
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   function lang(){ return window.lusidesI18n ? window.lusidesI18n.currentLang() : 'de'; }
   function str(key, fallback){
@@ -13,7 +13,7 @@
     return v || fallback;
   }
   function show(html, ok){ note.innerHTML = html; note.className = 'folder-note ' + (ok ? 'ok' : 'err'); }
-  function setPlaceholder(){ form.phone.placeholder = str('phone_ph', '+43 660 1234567'); }
+  function setPlaceholder(){ form.email.placeholder = str('email_ph', 'name@firma.at'); }
   setPlaceholder();
   window.addEventListener('lusides:langchange', setPlaceholder);
 
@@ -21,8 +21,8 @@
   form.addEventListener('submit', function(e){
     e.preventDefault();
     if(busy) return;
-    var phone = form.phone.value.trim();
-    if(!PHONE_RE.test(phone) || phone.replace(/\D/g, '').length < 6){ show(str('err_phone', 'Bitte gib eine gültige Telefonnummer an.'), false); form.phone.focus(); return; }
+    var email = form.email.value.trim();
+    if(!EMAIL_RE.test(email)){ show(str('err_email', 'Bitte gib eine gültige E-Mail-Adresse an.'), false); form.email.focus(); return; }
     if(!form.consent.checked){ show(str('err_consent', 'Bitte bestätige, dass wir dich kontaktieren dürfen.'), false); form.consent.focus(); return; }
     var cfg = window.LUSIDES_SUPABASE;
     if(!cfg){ show(str('err_generic', 'Download gerade nicht möglich.'), false); return; }
@@ -32,12 +32,12 @@
     fetch(cfg.url + '/functions/v1/lusides-folder', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', apikey: cfg.anonKey, Authorization: 'Bearer ' + cfg.anonKey },
-      body: JSON.stringify({ phone: phone, consent: true, lang: lang(), page: location.pathname })
+      body: JSON.stringify({ email: email, consent: true, lang: lang(), page: location.pathname })
     }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return { ok: r.ok && d.ok && d.url, status: r.status, d: d }; }); })
       .then(function(res){
         busy = false; btn.disabled = false;
         if(!res.ok){
-          show(res.status === 429 ? str('err_rate', 'Zu viele Versuche.') : res.d.error === 'invalid_phone' ? str('err_phone', 'Bitte gib eine gültige Telefonnummer an.') : str('err_generic', 'Download gerade nicht möglich.'), false);
+          show(res.status === 429 ? str('err_rate', 'Zu viele Versuche.') : res.d.error === 'invalid_email' ? str('err_email', 'Bitte gib eine gültige E-Mail-Adresse an.') : str('err_generic', 'Download gerade nicht möglich.'), false);
           return;
         }
         var url = res.d.url;

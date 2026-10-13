@@ -196,7 +196,7 @@
     $('folderBody').innerHTML = rows.map(function(r){
       return '<tr>'
         + '<td class="primary nowrap" data-label="">' + fmtDate(r.created_at, true) + '</td>'
-        + '<td class="nowrap" data-label="Telefon"><a href="tel:' + esc(String(r.phone).replace(/[^\d+]/g, '')) + '">' + esc(r.phone) + '</a></td>'
+        + '<td data-label="E-Mail">' + (r.email ? '<a href="mailto:' + esc(encodeURIComponent(r.email)) + '">' + esc(r.email) + '</a>' : (r.phone ? '<a href="tel:' + esc(String(r.phone).replace(/[^\d+]/g, '')) + '">' + esc(r.phone) + '</a>' : '—')) + '</td>'
         + '<td data-label="Sprache">' + (r.lang === 'en' ? 'Englisch (USA)' : 'Deutsch') + '</td>'
         + '<td data-label="Status"><select class="fd-status" data-id="' + esc(r.id) + '"><option value="neu"' + (r.status !== 'kontaktiert' ? ' selected' : '') + '>Neu</option><option value="kontaktiert"' + (r.status === 'kontaktiert' ? ' selected' : '') + '>Kontaktiert</option></select></td>'
         + '</tr>';
